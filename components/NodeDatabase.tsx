@@ -6,7 +6,7 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Filter, Anchor, Network, AlertTriangle, Lightbulb, Hexagon, SlidersHorizontal, Eye, Activity, Server, Zap, ShieldAlert, Swords } from 'lucide-react';
+import { Search, X, Filter, Anchor, Network, AlertTriangle, Lightbulb, Hexagon, SlidersHorizontal, Eye, Activity, Server, Zap, ShieldAlert, Swords, Sun, Moon } from 'lucide-react';
 import * as d3 from 'd3-force';
 
 const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { ssr: false });
@@ -33,6 +33,28 @@ interface LinkData {
     source: string;
     target: string;
     label?: string;
+}
+
+const ICON_SVGS: Record<string, string> = {
+    Actor: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>`,
+    Framework: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>`,
+    Logistics: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M6 12v-2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><path d="M10 12v-2"/><path d="M14 12v-2"/><path d="M2 15h20"/><path d="M5 15l1 5h12l1-5"/></svg>`,
+    Digital: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>`,
+    Energy: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    Shock: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`,
+    Rival: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" x2="19" y1="19" y2="13"/><line x1="16" x2="20" y1="16" y2="20"/><line x1="19" x2="21" y1="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" x2="9" y1="14" y2="18"/><line x1="7" x2="4" y1="17" y2="20"/><line x1="3" x2="5" y1="19" y2="21"/></svg>`,
+};
+
+const iconImages: Record<string, HTMLImageElement> = {};
+function getIconImage(type: string, color: string): HTMLImageElement | null {
+    if (typeof window === 'undefined') return null;
+    const key = `${type}-${color}`;
+    if (iconImages[key]) return iconImages[key];
+    const svgStr = ICON_SVGS[type] ? ICON_SVGS[type].replace('currentColor', color) : ICON_SVGS['Framework'].replace('currentColor', color);
+    const img = new Image();
+    img.src = `data:image/svg+xml;base64,${btoa(svgStr)}`;
+    iconImages[key] = img;
+    return img;
 }
 
 const gData: { nodes: NodeData[]; links: LinkData[] } = {
@@ -142,11 +164,12 @@ export default function NodeDatabase() {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeFilter, setActiveFilter] = useState<NodeType | 'All'>('All');
     const [isControlsOpen, setIsControlsOpen] = useState(false);
+    const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
     // Physics Engine Controls (AI War Cloud inspired)
-    const [chargeStrength, setChargeStrength] = useState(-400);
-    const [linkDistance, setLinkDistance] = useState(60);
-    const [collisionRadius, setCollisionRadius] = useState(25);
+    const [chargeStrength, setChargeStrength] = useState(-800);
+    const [linkDistance, setLinkDistance] = useState(120);
+    const [collisionRadius, setCollisionRadius] = useState(30);
 
     useEffect(() => {
         // Apply physics constraints to active D3 Simulation when controls change
@@ -203,7 +226,7 @@ export default function NodeDatabase() {
     }, [fgRef]);
 
     return (
-        <div className="absolute inset-0 z-10 w-full h-screen bg-zinc-950 overflow-hidden font-sans">
+        <div className={`absolute inset-0 z-10 w-full h-screen overflow-hidden font-sans transition-colors duration-500 ${theme === 'dark' ? 'bg-zinc-950' : 'bg-slate-50'}`}>
 
             {/* ── Force Graph ── */}
             <div className="absolute inset-0 cursor-crosshair">
@@ -221,61 +244,100 @@ export default function NodeDatabase() {
                         const isSelected = node === selectedNode;
                         const isDimmed = (hoveredNode && !isHovered && !Array.from(hoveredLinks).some(l => (l.source as any).id === node.id || (l.target as any).id === node.id));
 
-                        const r = Math.sqrt(node.val) * 2;
+                        const r = Math.sqrt(node.val) * 3; // base size
+                        const drawColor = isDimmed ? (theme === 'dark' ? '#18181b' : '#e2e8f0') : node.color;
+                        const bgColor = theme === 'dark' ? '#09090b' : '#ffffff';
 
+                        // Draw background circle
                         ctx.beginPath();
                         ctx.arc(node.x, node.y, r, 0, 2 * Math.PI, false);
-                        ctx.fillStyle = isDimmed ? '#18181b' : node.color; // dim to zinc-900 if not focused
+                        ctx.fillStyle = bgColor;
                         ctx.fill();
 
+                        // Draw precise outer ring
+                        ctx.strokeStyle = drawColor;
+                        ctx.lineWidth = 1.5 / globalScale;
+                        ctx.stroke();
+
                         if (isHovered || isSelected) {
-                            ctx.strokeStyle = '#fff';
-                            ctx.lineWidth = 1.5 / globalScale;
+                            ctx.strokeStyle = theme === 'dark' ? '#fff' : '#000';
+                            ctx.lineWidth = 2 / globalScale;
                             ctx.stroke();
 
                             // Draw outer glow aura
                             ctx.beginPath();
-                            ctx.arc(node.x, node.y, r + 2, 0, 2 * Math.PI, false);
+                            ctx.arc(node.x, node.y, r + 4 / globalScale, 0, 2 * Math.PI, false);
                             ctx.fillStyle = `${node.color}33`;
                             ctx.fill();
                         }
 
-                        // Label
-                        if (!isDimmed) {
+                        // Draw SVG Icon
+                        const img = getIconImage(node.type, drawColor);
+                        if (img) {
+                            const iconSize = r * 1.2;
+                            ctx.drawImage(img, node.x - iconSize / 2, node.y - iconSize / 2, iconSize, iconSize);
+                        }
+
+                        // Label - Hide by default unless zoomed in or hovered to manage density collisions
+                        if (!isDimmed && (globalScale > 2.5 || isSelected || isHovered)) {
                             const label = node.label;
-                            const fontSize = (isSelected || isHovered) ? 14 / globalScale : 11 / globalScale;
+                            const fontSize = (isSelected || isHovered) ? 14 / globalScale : 12 / globalScale;
                             ctx.font = `${fontSize}px Inter, sans-serif`;
                             ctx.textAlign = 'center';
-                            ctx.textBaseline = 'middle';
-                            ctx.fillStyle = (isSelected || isHovered) ? '#ffffff' : '#a1a1aa';
-                            ctx.fillText(label, node.x, node.y + r + (6 / globalScale));
+                            ctx.textBaseline = 'top';
+
+                            // Text shadow to pop against edges
+                            ctx.shadowColor = bgColor;
+                            ctx.shadowBlur = 4 / globalScale;
+                            ctx.lineWidth = 2 / globalScale;
+                            ctx.strokeText(label, node.x, node.y + r + (4 / globalScale));
+                            ctx.shadowBlur = 0;
+
+                            ctx.fillStyle = (isSelected || isHovered)
+                                ? (theme === 'dark' ? '#ffffff' : '#000000')
+                                : (theme === 'dark' ? '#a1a1aa' : '#475569');
+                            ctx.fillText(label, node.x, node.y + r + (4 / globalScale));
                         }
                     }}
                     // Custom Link Drawing
-                    linkDirectionalParticles={1}
+                    linkDirectionalArrowLength={4}
+                    linkDirectionalArrowRelPos={1}
+                    linkDirectionalParticles={2}
                     linkDirectionalParticleWidth={(l) => hoveredLinks.has(l as any) ? 2 : 0}
                     linkWidth={(l) => hoveredLinks.has(l as any) ? 1.5 : 0.5}
-                    linkColor={(l) => hoveredLinks.has(l as any) ? '#22d3ee' : 'rgba(255,255,255,0.05)'} // Cyan for hover
+                    linkColor={(l) => hoveredLinks.has(l as any) ? '#22d3ee' : (theme === 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)')}
+                    linkLabel={(l: any) => l.label ? l.label : undefined}
                 />
             </div>
 
             {/* ── Overlay: Floating Search & Filter Bar ── */}
             <div className="absolute top-24 left-6 z-20 pointer-events-auto">
-                <div className="bg-zinc-900/40 backdrop-blur-xl border border-white/5 rounded-2xl p-4 shadow-2xl w-80">
-                    <div className="relative mb-4">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
-                        <input
-                            type="text"
-                            placeholder="Search intelligence database..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full bg-black/50 border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-zinc-500 transition-colors"
-                        />
+                <div className={`backdrop-blur-xl border rounded-2xl p-4 shadow-2xl w-80 transition-colors duration-500 ${theme === 'dark' ? 'bg-zinc-900/40 border-white/5' : 'bg-white/80 border-slate-200'}`}>
+                    <div className="flex justify-between items-center mb-4">
+                        <div className="relative flex-1 mr-3">
+                            <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-400'}`} />
+                            <input
+                                type="text"
+                                placeholder="Search intelligence database..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className={`w-full border rounded-lg pl-9 pr-4 py-2 text-sm focus:outline-none transition-colors ${theme === 'dark'
+                                    ? 'bg-black/50 border-white/10 text-zinc-200 placeholder-zinc-600 focus:border-zinc-500'
+                                    : 'bg-white border-slate-200 text-slate-800 placeholder-slate-400 focus:border-slate-400'}`}
+                            />
+                        </div>
+                        <button
+                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                            className={`p-2 rounded-lg border transition-colors ${theme === 'dark' ? 'bg-white/5 border-white/10 text-zinc-400 hover:text-white' : 'bg-slate-100 border-slate-200 text-slate-600 hover:text-slate-900'}`}
+                            title="Toggle Theme"
+                        >
+                            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                        </button>
                     </div>
 
                     <div className="flex items-center gap-2 mb-2">
-                        <Filter className="w-3.5 h-3.5 text-zinc-500" />
-                        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Filter by Node Type</span>
+                        <Filter className={`w-3.5 h-3.5 ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-400'}`} />
+                        <span className={`text-[10px] font-mono uppercase tracking-widest ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>Filter by Node Type</span>
                     </div>
 
                     <div className="flex flex-wrap gap-2">
@@ -284,8 +346,9 @@ export default function NodeDatabase() {
                                 key={type}
                                 onClick={() => setActiveFilter(type as any)}
                                 className={`px-3 py-1 text-[10px] uppercase font-mono rounded-full border transition-all ${activeFilter === type
-                                    ? 'bg-zinc-200 text-black border-zinc-200 font-bold'
-                                    : 'bg-white/5 text-zinc-400 border-white/10 hover:border-white/20'}`}
+                                    ? (theme === 'dark' ? 'bg-zinc-200 text-black border-zinc-200 font-bold' : 'bg-slate-800 text-white border-slate-800 font-bold')
+                                    : (theme === 'dark' ? 'bg-white/5 text-zinc-400 border-white/10 hover:border-white/20' : 'bg-slate-50 text-slate-500 border-slate-200 hover:border-slate-300')
+                                    }`}
                             >
                                 {type}
                             </button>
@@ -298,10 +361,11 @@ export default function NodeDatabase() {
             <div className="absolute top-6 right-6 z-20 pointer-events-auto">
                 <button
                     onClick={() => setIsControlsOpen(!isControlsOpen)}
-                    className="mb-4 ml-auto flex items-center justify-center gap-2 bg-zinc-900/60 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-2 hover:bg-white/10 cursor-pointer transition-colors shadow-2xl"
+                    className={`mb-4 ml-auto flex items-center justify-center gap-2 backdrop-blur-xl border rounded-xl px-4 py-2 cursor-pointer transition-colors shadow-2xl ${theme === 'dark' ? 'bg-zinc-900/60 border-white/10 hover:bg-white/10' : 'bg-white/80 border-slate-200 hover:bg-slate-50'
+                        }`}
                 >
-                    <SlidersHorizontal className="w-4 h-4 text-zinc-300" />
-                    <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">Physics Controls</span>
+                    <SlidersHorizontal className={`w-4 h-4 ${theme === 'dark' ? 'text-zinc-300' : 'text-slate-600'}`} />
+                    <span className={`text-xs font-mono uppercase tracking-widest ${theme === 'dark' ? 'text-zinc-300' : 'text-slate-600'}`}>Physics Controls</span>
                 </button>
 
                 <AnimatePresence>
@@ -310,9 +374,9 @@ export default function NodeDatabase() {
                             initial={{ opacity: 0, y: -10, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                            className="w-72 bg-zinc-900/80 backdrop-blur-3xl border border-white/10 rounded-2xl p-5 shadow-2xl ml-auto"
+                            className={`w-72 backdrop-blur-3xl border rounded-2xl p-5 shadow-2xl ml-auto ${theme === 'dark' ? 'bg-zinc-900/80 border-white/10' : 'bg-white/90 border-slate-200'}`}
                         >
-                            <h3 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <h3 className={`text-[10px] font-mono uppercase tracking-widest mb-4 flex items-center gap-2 ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>
                                 <Activity className="w-3 h-3" />
                                 Graph Simulation Engine
                             </h3>
@@ -367,11 +431,14 @@ export default function NodeDatabase() {
                                 </div>
                                 <button
                                     onClick={() => {
-                                        setChargeStrength(-400);
-                                        setLinkDistance(60);
-                                        setCollisionRadius(25);
+                                        setChargeStrength(-800);
+                                        setLinkDistance(120);
+                                        setCollisionRadius(30);
                                     }}
-                                    className="w-full mt-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/5 text-xs text-zinc-400 font-mono transition-colors"
+                                    className={`w-full mt-4 py-2 rounded-lg border text-xs font-mono transition-colors ${theme === 'dark'
+                                        ? 'bg-white/5 hover:bg-white/10 border-white/5 text-zinc-400'
+                                        : 'bg-slate-50 hover:bg-slate-100 border-slate-200 text-slate-500'
+                                        }`}
                                 >
                                     Reset Default Physics
                                 </button>
@@ -389,28 +456,27 @@ export default function NodeDatabase() {
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: 400, opacity: 0 }}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        className="fixed top-24 right-6 bottom-6 w-96 bg-zinc-900/60 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl p-6 z-30 pointer-events-auto flex flex-col"
+                        className={`fixed top-24 right-6 bottom-6 w-96 backdrop-blur-3xl border rounded-2xl shadow-2xl p-6 z-30 pointer-events-auto flex flex-col ${theme === 'dark' ? 'bg-zinc-900/60 border-white/10' : 'bg-white/90 border-slate-200'}`}
                     >
                         <button
                             onClick={() => setSelectedNode(null)}
-                            className="absolute top-4 right-4 p-1.5 rounded-md hover:bg-white/10 text-zinc-400 hover:text-white transition-colors"
+                            className={`absolute top-4 right-4 p-1.5 rounded-md transition-colors ${theme === 'dark' ? 'hover:bg-white/10 text-zinc-400 hover:text-white' : 'hover:bg-slate-100 text-slate-500 hover:text-slate-900'}`}
                         >
                             <X className="w-4 h-4" />
                         </button>
 
-                        {/* Header */}
-                        <div className="mb-6 pr-6">
+                        <div className={`mb-6 pr-6 ${theme === 'dark' ? 'border-b border-white/5 pb-6' : 'border-b border-slate-200 pb-6'}`}>
                             <div className="flex items-center gap-2 mb-2">
                                 <span
                                     className="w-2.5 h-2.5 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)]"
                                     style={{ backgroundColor: selectedNode.color }}
                                 />
-                                <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
+                                <span className={`text-[11px] font-mono uppercase tracking-widest ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`}>
                                     {selectedNode.type} NODE
                                 </span>
                             </div>
                             <h2
-                                className="text-2xl font-semibold text-zinc-100 tracking-tight"
+                                className={`text-2xl font-semibold tracking-tight ${theme === 'dark' ? 'text-zinc-100' : 'text-slate-900'}`}
                                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                             >
                                 {selectedNode.label}
@@ -418,32 +484,32 @@ export default function NodeDatabase() {
                         </div>
 
                         {/* Description */}
-                        <div className="p-4 rounded-xl bg-black/40 border border-white/5 mb-6">
-                            <p className="text-sm text-zinc-300 leading-relaxed font-light">
+                        <div className={`p-4 rounded-xl border mb-6 ${theme === 'dark' ? 'bg-black/40 border-white/5' : 'bg-slate-50 border-slate-200'}`}>
+                            <p className={`text-sm leading-relaxed font-light ${theme === 'dark' ? 'text-zinc-300' : 'text-slate-600'}`}>
                                 {selectedNode.desc}
                             </p>
                         </div>
 
                         {/* Details */}
                         <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                            <h3 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-3 border-b border-white/10 pb-2">
+                            <h3 className={`text-[10px] font-mono uppercase tracking-widest mb-3 border-b pb-2 ${theme === 'dark' ? 'text-zinc-500 border-white/10' : 'text-slate-400 border-slate-200'}`}>
                                 Classified Intelligence
                             </h3>
                             <div className="space-y-3">
                                 {selectedNode.details && selectedNode.details.map((detail, idx) => (
-                                    <div key={idx} className="flex justify-between items-center py-2 border-b border-white/5">
-                                        <span className="text-zinc-500 font-mono">{detail.key}</span>
-                                        <span className="text-zinc-200 font-medium text-right max-w-[60%] truncate">{detail.value}</span>
+                                    <div key={idx} className={`flex justify-between items-center py-2 border-b ${theme === 'dark' ? 'border-white/5' : 'border-slate-100'}`}>
+                                        <span className={`font-mono text-xs ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>{detail.key}</span>
+                                        <span className={`font-medium text-right max-w-[60%] truncate text-sm ${theme === 'dark' ? 'text-zinc-200' : 'text-slate-800'}`}>{detail.value}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
                         {/* Footer decorative */}
-                        <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between opacity-50">
+                        <div className={`pt-4 mt-4 border-t flex items-center justify-between opacity-50 ${theme === 'dark' ? 'border-white/5' : 'border-slate-200'}`}>
                             <div className="flex items-center gap-2">
-                                <Hexagon className="w-3.5 h-3.5 text-zinc-400" strokeWidth={1} />
-                                <span className="text-[10px] font-mono text-zinc-500">ID: {selectedNode.id.toUpperCase()}</span>
+                                <Hexagon className={`w-3.5 h-3.5 ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`} strokeWidth={1} />
+                                <span className={`text-[10px] font-mono ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-500'}`}>ID: {selectedNode.id.toUpperCase()}</span>
                             </div>
                             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                         </div>
