@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useRef, useMemo, useCallback } from 'react';
+import React, { useRef, useMemo, useCallback, useState, useEffect } from 'react';
 
 // Dynamic import handled in layout.tsx — this component is only loaded client-side.
 
@@ -92,29 +90,29 @@ function makeArc(
 }
 
 const arcsData: ArcDatum[] = [
-    // 1. IMEC: Solid, continuous glowing steel-blue line
-    makeArc(coords.mumbai, coords.jebelAli, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.mundra, coords.jebelAli, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.haifa, coords.piraeus, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.piraeus, coords.marseille, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.jebelAli, coords.riyadh, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.riyadh, coords.jordan, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.jordan, coords.haifa, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
+    // 1. IMEC: Flowing steel-blue particles
+    makeArc(coords.mumbai, coords.jebelAli, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
+    makeArc(coords.mundra, coords.jebelAli, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
+    makeArc(coords.haifa, coords.piraeus, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
+    makeArc(coords.piraeus, coords.marseille, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
+    makeArc(coords.jebelAli, coords.riyadh, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
+    makeArc(coords.riyadh, coords.jordan, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
+    makeArc(coords.jordan, coords.haifa, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
 
-    // 2. BRI: Solid Crimson Red line
-    makeArc(coords.urumqi, coords.almaty, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.almaty, coords.samarkand, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.samarkand, coords.tehran, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.tehran, coords.istanbul, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.istanbul, coords.budapest, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
-    makeArc(coords.budapest, coords.duisburg, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
+    // 2. BRI: Flowing Crimson Red particles
+    makeArc(coords.urumqi, coords.almaty, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 0.1, dashGap: 0.05, animateTime: 2500 }),
+    makeArc(coords.almaty, coords.samarkand, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 0.1, dashGap: 0.05, animateTime: 2500 }),
+    makeArc(coords.samarkand, coords.tehran, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 0.1, dashGap: 0.05, animateTime: 2500 }),
+    makeArc(coords.tehran, coords.istanbul, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 0.1, dashGap: 0.05, animateTime: 2500 }),
+    makeArc(coords.istanbul, coords.budapest, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 0.1, dashGap: 0.05, animateTime: 2500 }),
+    makeArc(coords.budapest, coords.duisburg, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 0.1, dashGap: 0.05, animateTime: 2500 }),
 
-    // 3. INSTC: Dashed Emerald Green line
-    makeArc(coords.mumbai, coords.chabahar, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 2000 }),
-    makeArc(coords.chabahar, coords.tehran, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 2000 }),
-    makeArc(coords.tehran, coords.baku, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 2000 }),
-    makeArc(coords.baku, coords.astrakhan, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 2000 }),
-    makeArc(coords.astrakhan, coords.moscow, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 2000 }),
+    // 3. INSTC: Flowing Emerald Green particles
+    makeArc(coords.mumbai, coords.chabahar, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
+    makeArc(coords.chabahar, coords.tehran, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
+    makeArc(coords.tehran, coords.baku, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
+    makeArc(coords.baku, coords.astrakhan, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
+    makeArc(coords.astrakhan, coords.moscow, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.05, animateTime: 2000 }),
 
     // 4. DRP: Dotted Amber line
     makeArc(coords.alFaw, coords.baghdad, 'DRP', 'rgba(217, 119, 6, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
@@ -183,6 +181,14 @@ const Globe = require('react-globe.gl').default;
 export default function GlobeView() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const globeRef = useRef<any>(null);
+    const [countries, setCountries] = useState({ features: [] });
+
+    useEffect(() => {
+        fetch('https://raw.githubusercontent.com/vasturiano/react-globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson')
+            .then(res => res.json())
+            .then(data => setCountries(data.features || []))
+            .catch(console.error);
+    }, []);
 
     // Set initial camera position once globe is ready
     const handleGlobeReady = useCallback(() => {
@@ -209,12 +215,12 @@ export default function GlobeView() {
         <div className="w-full h-full relative bg-zinc-950">
             <Globe
                 ref={globeRef}
-                globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
+                globeImageUrl={undefined}
                 bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
                 backgroundColor="rgba(0,0,0,0)"
                 showAtmosphere={true}
-                atmosphereColor="#ffffff"
-                atmosphereAltitude={0.1}
+                atmosphereColor="rgba(56, 189, 248, 0.2)"
+                atmosphereAltitude={0.15}
                 animateIn={true}
                 onGlobeReady={handleGlobeReady}
 
@@ -238,6 +244,11 @@ export default function GlobeView() {
                 pointAltitude={0.01}
                 pointRadius="size"
 
+                polygonsData={countries}
+                polygonCapColor={() => '#1f2937'}
+                polygonSideColor={() => 'rgba(31, 41, 55, 0)'}
+                polygonStrokeColor={() => '#3f3f46'}
+
                 // ── HTML Floating Labels ──
                 htmlElementsData={memoHtmlLabels}
                 htmlLat="lat"
@@ -245,6 +256,12 @@ export default function GlobeView() {
                 htmlAltitude={() => 0.05}
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 htmlElement={(d: any) => {
+                    const container = document.createElement('div');
+                    container.style.display = 'flex';
+                    container.style.flexDirection = 'column';
+                    container.style.alignItems = 'center';
+                    container.style.pointerEvents = 'none';
+
                     const el = document.createElement('div');
                     el.innerHTML = d.label;
                     el.style.color = d.color;
@@ -257,10 +274,27 @@ export default function GlobeView() {
                     el.style.backgroundColor = 'rgba(9, 9, 11, 0.4)';
                     el.style.backdropFilter = 'blur(8px)';
                     el.style.border = `1px solid ${d.color}30`;
-                    el.style.pointerEvents = 'none';
                     el.style.whiteSpace = 'nowrap';
                     el.style.boxShadow = `0 4px 12px ${d.color}10`;
-                    return el;
+
+                    const line = document.createElement('div');
+                    line.style.width = '1px';
+                    line.style.height = '15px';
+                    line.style.backgroundColor = d.color;
+                    line.style.opacity = '0.5';
+
+                    const dot = document.createElement('div');
+                    dot.style.width = '4px';
+                    dot.style.height = '4px';
+                    dot.style.borderRadius = '50%';
+                    dot.style.backgroundColor = d.color;
+                    dot.style.boxShadow = `0 0 10px 2px ${d.color}`;
+
+                    container.appendChild(el);
+                    container.appendChild(line);
+                    container.appendChild(dot);
+
+                    return container;
                 }}
             />
 

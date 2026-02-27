@@ -35,26 +35,23 @@ interface LinkData {
     label?: string;
 }
 
-const ICON_SVGS: Record<string, string> = {
-    Actor: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>`,
-    Framework: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>`,
-    Logistics: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M6 12v-2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><path d="M10 12v-2"/><path d="M14 12v-2"/><path d="M2 15h20"/><path d="M5 15l1 5h12l1-5"/></svg>`,
-    Digital: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>`,
-    Energy: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
-    Shock: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`,
-    Rival: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" x2="19" y1="19" y2="13"/><line x1="16" x2="20" y1="16" y2="20"/><line x1="19" x2="21" y1="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" x2="9" y1="14" y2="18"/><line x1="7" x2="4" y1="17" y2="20"/><line x1="3" x2="5" y1="19" y2="21"/></svg>`,
+const ICON_PATHS: Record<string, string[]> = {
+    Actor: ['M4 2h16v20H4z', 'M9 22v-4h6v4', 'M8 6h.01', 'M16 6h.01', 'M12 6h.01', 'M12 10h.01', 'M12 14h.01', 'M16 10h.01', 'M16 14h.01', 'M8 10h.01', 'M8 14h.01'],
+    Framework: ['M12 2l10 6.5v7L12 22l-10-6.5v-7z'],
+    Logistics: ['M2 12h20', 'M6 12v-2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2', 'M10 12v-2', 'M14 12v-2', 'M2 15h20', 'M5 15l1 5h12l1-5'],
+    Digital: ['M2 2h20v8H2z', 'M2 14h20v8H2z', 'M6 6h.01', 'M6 18h.01'],
+    Energy: ['M13 2L3 14h9l-1 8 10-12h-9l1-8z'],
+    Shock: ['m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z', 'M12 9v4', 'M12 17h.01'],
+    Rival: ['M14.5 17.5L3 6V3h3l11.5 11.5', 'M13 19l6-6', 'M16 16l4 4', 'M19 21l2-2', 'M14.5 6.5L18 3h3v3l-3.5 3.5', 'M5 14l4 4', 'M7 17l-3 3', 'M3 19l2 2']
 };
 
-const iconImages: Record<string, HTMLImageElement> = {};
-function getIconImage(type: string, color: string): HTMLImageElement | null {
-    if (typeof window === 'undefined') return null;
-    const key = `${type}-${color}`;
-    if (iconImages[key]) return iconImages[key];
-    const svgStr = ICON_SVGS[type] ? ICON_SVGS[type].replace('currentColor', color) : ICON_SVGS['Framework'].replace('currentColor', color);
-    const img = new Image();
-    img.src = `data:image/svg+xml;base64,${btoa(svgStr)}`;
-    iconImages[key] = img;
-    return img;
+const pathCache: Record<string, Path2D[]> = {};
+function getIconPaths(type: string): Path2D[] {
+    if (typeof window === 'undefined') return [];
+    if (pathCache[type]) return pathCache[type];
+    const strings = ICON_PATHS[type] || ICON_PATHS['Framework'];
+    pathCache[type] = strings.map(s => new Path2D(s));
+    return pathCache[type];
 }
 
 const gData: { nodes: NodeData[]; links: LinkData[] } = {
@@ -177,7 +174,7 @@ export default function NodeDatabase() {
             const fg = fgRef.current;
             fg.d3Force('charge').strength(chargeStrength);
             fg.d3Force('link').distance(linkDistance);
-            fg.d3Force('collide', d3.forceCollide(collisionRadius));
+            fg.d3Force('collide', d3.forceCollide().radius((node: any) => Math.sqrt(node.val || 1) * 3 + (collisionRadius * 0.3)));
             fg.d3ReheatSimulation();
         }
     }, [chargeStrength, linkDistance, collisionRadius]);
@@ -248,11 +245,16 @@ export default function NodeDatabase() {
                         const drawColor = isDimmed ? (theme === 'dark' ? '#18181b' : '#e2e8f0') : node.color;
                         const bgColor = theme === 'dark' ? '#09090b' : '#ffffff';
 
-                        // Draw background circle
+                        // Draw background circle with glowing border
                         ctx.beginPath();
                         ctx.arc(node.x, node.y, r, 0, 2 * Math.PI, false);
                         ctx.fillStyle = bgColor;
+                        if (!isDimmed) {
+                            ctx.shadowColor = drawColor;
+                            ctx.shadowBlur = 8 / globalScale;
+                        }
                         ctx.fill();
+                        ctx.shadowBlur = 0;
 
                         // Draw precise outer ring
                         ctx.strokeStyle = drawColor;
@@ -271,15 +273,29 @@ export default function NodeDatabase() {
                             ctx.fill();
                         }
 
-                        // Draw SVG Icon
-                        const img = getIconImage(node.type, drawColor);
-                        if (img) {
-                            const iconSize = r * 1.2;
-                            ctx.drawImage(img, node.x - iconSize / 2, node.y - iconSize / 2, iconSize, iconSize);
+                        // Draw Path2D SVG Icon
+                        const paths = getIconPaths(node.type);
+                        if (paths.length > 0) {
+                            ctx.save();
+                            ctx.translate(node.x, node.y);
+                            const scale = (r * 1.0) / 24;
+                            ctx.scale(scale, scale);
+                            ctx.translate(-12, -12); // center
+
+                            ctx.strokeStyle = drawColor;
+                            ctx.lineWidth = Math.max(1.5 / scale, 1);
+                            ctx.lineCap = 'round';
+                            ctx.lineJoin = 'round';
+
+                            for (const p of paths) {
+                                ctx.stroke(p);
+                            }
+                            ctx.restore();
                         }
 
-                        // Label - Hide by default unless zoomed in or hovered to manage density collisions
-                        if (!isDimmed && (globalScale > 2.5 || isSelected || isHovered)) {
+                        // Label - Smart Labeling (Parent/Major nodes always visible, others on hover or zoom)
+                        const isMajorNode = node.val >= 5;
+                        if (!isDimmed && (isMajorNode || globalScale > 2.5 || isSelected || isHovered)) {
                             const label = node.label;
                             const fontSize = (isSelected || isHovered) ? 14 / globalScale : 12 / globalScale;
                             ctx.font = `${fontSize}px Inter, sans-serif`;
@@ -304,8 +320,8 @@ export default function NodeDatabase() {
                     linkDirectionalArrowRelPos={1}
                     linkDirectionalParticles={2}
                     linkDirectionalParticleWidth={(l) => hoveredLinks.has(l as any) ? 2 : 0}
-                    linkWidth={(l) => hoveredLinks.has(l as any) ? 1.5 : 0.5}
-                    linkColor={(l) => hoveredLinks.has(l as any) ? '#22d3ee' : (theme === 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)')}
+                    linkWidth={0.5}
+                    linkColor={(l) => hoveredLinks.has(l as any) ? '#22d3ee' : 'rgba(255,255,255,0.15)'}
                     linkLabel={(l: any) => l.label ? l.label : undefined}
                 />
             </div>
