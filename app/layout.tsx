@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
-                <title>IMEC Research Platform — Corridor Intelligence</title>
+                <title>India Middle East Europe Economic Corridor Research Platform</title>
                 <meta name="description" content="PhD Research Platform — India-Middle East-Europe Economic Corridor Analysis" />
             </head>
             <body className="min-h-screen bg-black text-zinc-400 font-sans antialiased overflow-x-hidden">
@@ -44,14 +44,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <Link href="/" className="flex items-center gap-2.5 group">
                                 <div className="w-1.5 h-1.5 rounded-full bg-zinc-500" />
                                 <span className="text-[13px] font-semibold text-zinc-200 tracking-tight group-hover:text-zinc-100 transition-colors duration-300">
-                                    IMEC Research Platform
+                                    India Middle East Europe Economic Corridor Research Platform
                                 </span>
                             </Link>
 
                             <nav className="flex items-center gap-1" aria-label="Primary navigation">
-                                <NavLink href="/" label="Policy Aggregator" current={pathname} />
-                                <NavLink href="/maps" label="Geospatial" current={pathname} />
-                                <NavLink href="/dossier" label="Investigator" current={pathname} />
+                                <NavLink href="/" label="Network Graph" current={pathname} />
+                                <NavLink href="/maps" label="Corridors Map" current={pathname} />
+                                <NavLink href="/dossier" label="Researcher profile" current={pathname} />
+                                <NavLink href="/sources" label="Sources and references" current={pathname} />
                             </nav>
                         </div>
                     </header>

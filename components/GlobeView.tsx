@@ -19,24 +19,35 @@ const coords: Record<string, { lat: number; lng: number }> = {
     haifa: { lat: 32.81, lng: 34.99 },
     piraeus: { lat: 37.94, lng: 23.64 },
     marseille: { lat: 43.3, lng: 5.37 },
-    // Blue-Raman
-    oman: { lat: 23.58, lng: 58.38 },
-    jeddah: { lat: 21.49, lng: 39.19 },
-    aqaba: { lat: 29.53, lng: 35.0 },
-    catania: { lat: 37.5, lng: 15.09 },
-    genoa: { lat: 44.41, lng: 8.93 },
     // DRP
     alFaw: { lat: 29.97, lng: 48.47 },
     baghdad: { lat: 33.31, lng: 44.37 },
     mosul: { lat: 36.34, lng: 43.14 },
     ovakoy: { lat: 37.1, lng: 42.4 },
     mersin: { lat: 36.8, lng: 34.63 },
+    istanbul: { lat: 41.00, lng: 28.97 },
     // INSTC
     chabahar: { lat: 25.29, lng: 60.64 },
     tehran: { lat: 35.69, lng: 51.42 },
     baku: { lat: 40.41, lng: 49.87 },
     astrakhan: { lat: 46.35, lng: 48.04 },
     moscow: { lat: 55.76, lng: 37.62 },
+    // BRI
+    urumqi: { lat: 43.82, lng: 87.61 },
+    almaty: { lat: 43.23, lng: 76.88 },
+    samarkand: { lat: 39.62, lng: 66.97 },
+    budapest: { lat: 47.49, lng: 19.04 },
+    duisburg: { lat: 51.43, lng: 6.76 },
+    // Middle Corridor
+    aktau: { lat: 43.64, lng: 51.20 },
+    tbilisi: { lat: 41.71, lng: 44.82 },
+    kars: { lat: 40.60, lng: 43.09 },
+    // CPEC
+    kashgar: { lat: 39.46, lng: 75.98 },
+    gwadar: { lat: 25.12, lng: 62.32 },
+    // EMC
+    chennai: { lat: 13.08, lng: 80.27 },
+    vladivostok: { lat: 43.11, lng: 131.87 },
     // Chokepoints
     babElMandeb: { lat: 12.58, lng: 43.33 },
     suezCanal: { lat: 30.46, lng: 32.35 },
@@ -81,33 +92,49 @@ function makeArc(
 }
 
 const arcsData: ArcDatum[] = [
-    // IMEC: Solid, continuous glowing steel-blue line
-    makeArc(coords.mundra, coords.jebelAli, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6 }),
-    makeArc(coords.haifa, coords.piraeus, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6 }),
-    makeArc(coords.piraeus, coords.marseille, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6 }),
-    makeArc(coords.jebelAli, coords.riyadh, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6 }),
-    makeArc(coords.riyadh, coords.jordan, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6 }),
-    makeArc(coords.jordan, coords.haifa, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6 }),
+    // 1. IMEC: Solid, continuous glowing steel-blue line
+    makeArc(coords.mumbai, coords.jebelAli, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.mundra, coords.jebelAli, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.haifa, coords.piraeus, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.piraeus, coords.marseille, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.jebelAli, coords.riyadh, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.riyadh, coords.jordan, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.jordan, coords.haifa, 'IMEC', 'rgba(56, 189, 248, 0.9)', { stroke: 0.6, dashLength: 1, dashGap: 0 }),
 
-    // Blue-Raman: Fast-moving dashed purple line
-    makeArc(coords.mumbai, coords.oman, 'Blue-Raman', 'rgba(192, 132, 252, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 1200 }),
-    makeArc(coords.oman, coords.jeddah, 'Blue-Raman', 'rgba(192, 132, 252, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 1200 }),
-    makeArc(coords.jeddah, coords.aqaba, 'Blue-Raman', 'rgba(192, 132, 252, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 1200 }),
-    makeArc(coords.aqaba, coords.haifa, 'Blue-Raman', 'rgba(192, 132, 252, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 1200 }),
-    makeArc(coords.haifa, coords.genoa, 'Blue-Raman', 'rgba(192, 132, 252, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 1200 }),
+    // 2. BRI: Solid Crimson Red line
+    makeArc(coords.urumqi, coords.almaty, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.almaty, coords.samarkand, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.samarkand, coords.tehran, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.tehran, coords.istanbul, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.istanbul, coords.budapest, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
+    makeArc(coords.budapest, coords.duisburg, 'BRI', 'rgba(220, 20, 60, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
 
-    // DRP: Static, dotted muted-amber
-    makeArc(coords.alFaw, coords.baghdad, 'DRP', 'rgba(217, 119, 6, 0.7)', { stroke: 0.3, dashLength: 0.05, dashGap: 0.05 }),
-    makeArc(coords.baghdad, coords.mosul, 'DRP', 'rgba(217, 119, 6, 0.7)', { stroke: 0.3, dashLength: 0.05, dashGap: 0.05 }),
-    makeArc(coords.mosul, coords.ovakoy, 'DRP', 'rgba(217, 119, 6, 0.7)', { stroke: 0.3, dashLength: 0.05, dashGap: 0.05 }),
-    makeArc(coords.ovakoy, coords.mersin, 'DRP', 'rgba(217, 119, 6, 0.7)', { stroke: 0.3, dashLength: 0.05, dashGap: 0.05 }),
+    // 3. INSTC: Dashed Emerald Green line
+    makeArc(coords.mumbai, coords.chabahar, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 2000 }),
+    makeArc(coords.chabahar, coords.tehran, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 2000 }),
+    makeArc(coords.tehran, coords.baku, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 2000 }),
+    makeArc(coords.baku, coords.astrakhan, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 2000 }),
+    makeArc(coords.astrakhan, coords.moscow, 'INSTC', 'rgba(16, 185, 129, 0.9)', { stroke: 0.4, dashLength: 0.1, dashGap: 0.1, animateTime: 2000 }),
 
-    // INSTC: Static, dotted rose
-    makeArc(coords.mumbai, coords.chabahar, 'INSTC', 'rgba(225, 29, 72, 0.7)', { stroke: 0.3, dashLength: 0.05, dashGap: 0.05 }),
-    makeArc(coords.chabahar, coords.tehran, 'INSTC', 'rgba(225, 29, 72, 0.7)', { stroke: 0.3, dashLength: 0.05, dashGap: 0.05 }),
-    makeArc(coords.tehran, coords.baku, 'INSTC', 'rgba(225, 29, 72, 0.7)', { stroke: 0.3, dashLength: 0.05, dashGap: 0.05 }),
-    makeArc(coords.baku, coords.astrakhan, 'INSTC', 'rgba(225, 29, 72, 0.7)', { stroke: 0.3, dashLength: 0.05, dashGap: 0.05 }),
-    makeArc(coords.astrakhan, coords.moscow, 'INSTC', 'rgba(225, 29, 72, 0.7)', { stroke: 0.3, dashLength: 0.05, dashGap: 0.05 }),
+    // 4. DRP: Dotted Amber line
+    makeArc(coords.alFaw, coords.baghdad, 'DRP', 'rgba(217, 119, 6, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
+    makeArc(coords.baghdad, coords.mosul, 'DRP', 'rgba(217, 119, 6, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
+    makeArc(coords.mosul, coords.ovakoy, 'DRP', 'rgba(217, 119, 6, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
+    makeArc(coords.ovakoy, coords.mersin, 'DRP', 'rgba(217, 119, 6, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
+    makeArc(coords.mersin, coords.istanbul, 'DRP', 'rgba(217, 119, 6, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
+
+    // 5. Middle Corridor: Dotted Cyan line
+    makeArc(coords.almaty, coords.aktau, 'Middle-Corridor', 'rgba(6, 182, 212, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
+    makeArc(coords.aktau, coords.baku, 'Middle-Corridor', 'rgba(6, 182, 212, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
+    makeArc(coords.baku, coords.tbilisi, 'Middle-Corridor', 'rgba(6, 182, 212, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
+    makeArc(coords.tbilisi, coords.kars, 'Middle-Corridor', 'rgba(6, 182, 212, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
+    makeArc(coords.kars, coords.istanbul, 'Middle-Corridor', 'rgba(6, 182, 212, 0.8)', { stroke: 0.3, dashLength: 0.02, dashGap: 0.04 }),
+
+    // 6. CPEC: Solid Yellow line
+    makeArc(coords.kashgar, coords.gwadar, 'CPEC', 'rgba(253, 224, 71, 0.9)', { stroke: 0.5, dashLength: 1, dashGap: 0 }),
+
+    // 7. EMC: Dashed White line
+    makeArc(coords.chennai, coords.vladivostok, 'EMC', 'rgba(255, 255, 255, 0.7)', { stroke: 0.35, dashLength: 0.1, dashGap: 0.1, animateTime: 3000 }),
 ];
 
 /* ══════════════════════════════════════════════════════════
@@ -116,9 +143,12 @@ const arcsData: ArcDatum[] = [
 
 const htmlElementsData = [
     { lat: 21.0, lng: 51.0, label: 'IMEC', color: '#38bdf8' },
-    { lat: 27.5, lng: 38.0, label: 'Blue-Raman', color: '#c084fc' },
-    { lat: 33.5, lng: 45.5, label: 'DRP', color: '#fbbf24' },
-    { lat: 40.5, lng: 55.0, label: 'INSTC', color: '#fb7185' },
+    { lat: 42.0, lng: 60.0, label: 'BRI', color: '#dc143c' },
+    { lat: 33.5, lng: 45.5, label: 'DRP', color: '#d97706' },
+    { lat: 35.5, lng: 55.0, label: 'INSTC', color: '#10b981' },
+    { lat: 43.0, lng: 48.0, label: 'Middle Corridor', color: '#06b6d4' },
+    { lat: 32.0, lng: 68.0, label: 'CPEC', color: '#fde047' },
+    { lat: 25.0, lng: 95.0, label: 'EMC', color: '#ffffff' },
 ];
 
 /* ══════════════════════════════════════════════════════════
@@ -241,21 +271,26 @@ export default function GlobeView() {
 
                     {[
                         { color: '#38bdf8', label: 'IMEC', desc: 'Sovereign Backbone', style: 'solid' },
-                        { color: '#c084fc', label: 'Blue-Raman', desc: 'Digital Artery', style: 'dashed' },
-                        { color: '#d97706', label: 'DRP', desc: 'Regional Rival', style: 'dotted' },
-                        { color: '#e11d48', label: 'INSTC', desc: 'Eurasian Axis', style: 'dotted' },
+                        { color: '#dc143c', label: 'BRI', desc: 'Chinese Vanguard', style: 'solid' },
+                        { color: '#10b981', label: 'INSTC', desc: 'Russo-Iranian Axis', style: 'dashed' },
+                        { color: '#d97706', label: 'DRP', desc: 'Regional Bypass', style: 'dotted' },
+                        { color: '#06b6d4', label: 'Middle Corridor', desc: 'Trans-Caspian', style: 'dotted' },
+                        { color: '#fde047', label: 'CPEC', desc: 'BRI Flagship', style: 'solid' },
+                        { color: '#ffffff', label: 'EMC', desc: 'Eastern Maritime', style: 'dashed' },
                     ].map((item) => (
                         <div key={item.label} className="flex items-center gap-4">
-                            <div className="w-8 flex items-center justify-center">
+                            <div className="w-8 flex items-center justify-center shrink-0">
                                 {item.style === 'solid' && <div className="h-0.5 w-full rounded-full" style={{ background: item.color }} />}
                                 {item.style === 'dashed' && (
                                     <div className="w-full flex justify-between">
                                         <div className="h-0.5 w-[30%] rounded-full" style={{ background: item.color }} />
                                         <div className="h-0.5 w-[30%] rounded-full" style={{ background: item.color }} />
+                                        <div className="h-0.5 w-[30%] rounded-full" style={{ background: item.color }} />
                                     </div>
                                 )}
                                 {item.style === 'dotted' && (
-                                    <div className="w-full flex justify-between px-1">
+                                    <div className="w-full flex justify-between px-0.5">
+                                        <div className="h-1 w-1 rounded-full" style={{ background: item.color }} />
                                         <div className="h-1 w-1 rounded-full" style={{ background: item.color }} />
                                         <div className="h-1 w-1 rounded-full" style={{ background: item.color }} />
                                         <div className="h-1 w-1 rounded-full" style={{ background: item.color }} />
