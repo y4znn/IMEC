@@ -3,10 +3,11 @@
 
 'use client';
 
-import React, { useState, useRef, useMemo, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Filter, Anchor, Network, AlertTriangle, Lightbulb, Hexagon } from 'lucide-react';
+import { Search, X, Filter, Anchor, Network, AlertTriangle, Lightbulb, Hexagon, SlidersHorizontal, Eye, Activity } from 'lucide-react';
+import * as d3 from 'd3-force';
 
 const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { ssr: false });
 
@@ -14,7 +15,7 @@ const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { ssr: false 
    DATASET (Hardcoded IMEC Intelligence Data)
    ══════════════════════════════════════════════════════════ */
 
-type NodeType = 'Actor' | 'Infrastructure' | 'Event' | 'Concept';
+type NodeType = 'Actor' | 'Infrastructure' | 'Event' | 'Concept' | 'AI System' | 'Tech Corp';
 
 interface NodeData {
     id: string;
@@ -66,6 +67,19 @@ const gData: { nodes: NodeData[]; links: LinkData[] } = {
         { id: 'redundancy', label: 'Supply Chain Redundancy', type: 'Concept', val: 5, color: '#6366f1', desc: 'Need for multi-modal bypasses of chokepoints.', details: [{ key: 'Theoretical Base', value: 'Systems Theory' }] },
         { id: 'geoecon', label: 'Geoeconomic Warfare', type: 'Concept', val: 5, color: '#6366f1', desc: 'Using trade routes as weapons of influence.', details: [{ key: 'Examples', value: 'BRI, IMEC, Sanctions' }] },
         { id: 'multipolarity', label: 'Multipolarity', type: 'Concept', val: 4, color: '#6366f1', desc: 'Desire of Middle Powers to avoid choosing sides.', details: [{ key: 'Practitioners', value: 'India, UAE, Saudi Arabia' }] },
+        { id: 'ai_dss', label: 'AI Decision Support', type: 'Concept', val: 6, color: '#6366f1', desc: 'Accelerated automated targeting architectures.', details: [{ key: 'Usage', value: 'Kill Chain Optimization' }] },
+
+        // AI Systems (AI War Cloud DB)
+        { id: 'nimbus', label: 'Project Nimbus', type: 'AI System', val: 7, color: '#d946ef', desc: 'Cloud contract providing infrastructure for Israeli military.', details: [{ key: 'Provider', value: 'Google / Amazon' }] },
+        { id: 'lavender', label: 'Lavender System', type: 'AI System', val: 6, color: '#d946ef', desc: 'Automated target generation database.', details: [{ key: 'Deployer', value: 'Unit 8200' }, { key: 'Output', value: 'Kill Lists' }] },
+        { id: 'foundry', label: 'Palantir Foundry', type: 'AI System', val: 7, color: '#d946ef', desc: 'Operating system identifying targets and pairing weapons.', details: [{ key: 'Architecture', value: 'AI-powered kill chain' }] },
+        { id: 'clearview', label: 'Clearview AI', type: 'AI System', val: 5, color: '#d946ef', desc: 'Facial recognition deployed in warfare.', details: [{ key: 'Application', value: 'Dead soldier identification' }] },
+
+        // Tech Corps
+        { id: 'google', label: 'Google', type: 'Tech Corp', val: 8, color: '#14b8a6', desc: 'Major defense contractor and subsea cable owner.', details: [{ key: 'Influence', value: 'Project Nimbus, Blue-Raman' }] },
+        { id: 'amazon', label: 'Amazon (AWS)', type: 'Tech Corp', val: 8, color: '#14b8a6', desc: 'Core cloud engine for defense logistics.', details: [{ key: 'Influence', value: 'Project Nimbus' }] },
+        { id: 'palantir', label: 'Palantir', type: 'Tech Corp', val: 7, color: '#14b8a6', desc: 'Military-first software contractor.', details: [{ key: 'Influence', value: 'Gotham, Foundry' }] },
+        { id: 'elbit', label: 'Elbit Systems', type: 'Tech Corp', val: 6, color: '#14b8a6', desc: 'Israeli defense contractor using AI.', details: [{ key: 'Influence', value: 'ARCAS Gunsight' }] },
     ],
     links: [
         { source: 'us', target: 'in', label: 'Partnership' },
@@ -102,6 +116,23 @@ const gData: { nodes: NodeData[]; links: LinkData[] } = {
         { source: 'multipolarity', target: 'in' },
         { source: 'multipolarity', target: 'sa' },
         { source: 'multipolarity', target: 'uae' },
+
+        // AIWAR Connections
+        { source: 'us', target: 'google', label: 'Jurisdiction' },
+        { source: 'us', target: 'amazon', label: 'Jurisdiction' },
+        { source: 'us', target: 'palantir', label: 'Jurisdiction' },
+        { source: 'il', target: 'elbit', label: 'Jurisdiction' },
+        { source: 'google', target: 'nimbus', label: 'Developer' },
+        { source: 'amazon', target: 'nimbus', label: 'Developer' },
+        { source: 'il', target: 'nimbus', label: 'Deployer' },
+        { source: 'il', target: 'lavender', label: 'Deployer' },
+        { source: 'palantir', target: 'foundry', label: 'Developer' },
+        { source: 'google', target: 'blue_raman', label: 'Developer' },
+        { source: 'foundry', target: 'ai_dss', label: 'Instance' },
+        { source: 'lavender', target: 'ai_dss', label: 'Instance' },
+        { source: 'gaza_war', target: 'lavender', label: 'Testing Ground' },
+        { source: 'gaza_war', target: 'nimbus', label: 'Infrastructure' },
+        { source: 'clearview', target: 'ai_dss', label: 'Instance' }
     ]
 };
 
@@ -124,6 +155,23 @@ export default function NodeDatabase() {
 
     const [searchQuery, setSearchQuery] = useState('');
     const [activeFilter, setActiveFilter] = useState<NodeType | 'All'>('All');
+    const [isControlsOpen, setIsControlsOpen] = useState(false);
+
+    // Physics Engine Controls (AI War Cloud inspired)
+    const [chargeStrength, setChargeStrength] = useState(-400);
+    const [linkDistance, setLinkDistance] = useState(60);
+    const [collisionRadius, setCollisionRadius] = useState(25);
+
+    useEffect(() => {
+        // Apply physics constraints to active D3 Simulation when controls change
+        if (fgRef.current) {
+            const fg = fgRef.current;
+            fg.d3Force('charge').strength(chargeStrength);
+            fg.d3Force('link').distance(linkDistance);
+            fg.d3Force('collide', d3.forceCollide(collisionRadius));
+            fg.d3ReheatSimulation();
+        }
+    }, [chargeStrength, linkDistance, collisionRadius]);
 
     // Filter logic
     const filteredData = useMemo(() => {
@@ -245,12 +293,12 @@ export default function NodeDatabase() {
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                        {['All', 'Actor', 'Infrastructure', 'Event', 'Concept'].map((type) => (
+                        {['All', 'Actor', 'Infrastructure', 'Event', 'Concept', 'AI System', 'Tech Corp'].map((type) => (
                             <button
                                 key={type}
                                 onClick={() => setActiveFilter(type as any)}
-                                className={`px-3 py-1 text-xs rounded-full border transition-all ${activeFilter === type
-                                    ? 'bg-zinc-200 text-black border-zinc-200 font-medium'
+                                className={`px-3 py-1 text-[10px] uppercase font-mono rounded-full border transition-all ${activeFilter === type
+                                    ? 'bg-zinc-200 text-black border-zinc-200 font-bold'
                                     : 'bg-white/5 text-zinc-400 border-white/10 hover:border-white/20'}`}
                             >
                                 {type}
@@ -258,6 +306,93 @@ export default function NodeDatabase() {
                         ))}
                     </div>
                 </div>
+            </div>
+
+            {/* ── Overlay: Physics Engine Controls ── */}
+            <div className="absolute top-6 right-6 z-20 pointer-events-auto">
+                <button
+                    onClick={() => setIsControlsOpen(!isControlsOpen)}
+                    className="mb-4 ml-auto flex items-center justify-center gap-2 bg-zinc-900/60 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-2 hover:bg-white/10 cursor-pointer transition-colors shadow-2xl"
+                >
+                    <SlidersHorizontal className="w-4 h-4 text-zinc-300" />
+                    <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">Physics Controls</span>
+                </button>
+
+                <AnimatePresence>
+                    {isControlsOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                            className="w-72 bg-zinc-900/80 backdrop-blur-3xl border border-white/10 rounded-2xl p-5 shadow-2xl ml-auto"
+                        >
+                            <h3 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <Activity className="w-3 h-3" />
+                                Graph Simulation Engine
+                            </h3>
+
+                            <div className="space-y-5">
+                                {/* Charge Strength */}
+                                <div className="space-y-2">
+                                    <div className="flex justify-between text-xs font-mono text-zinc-400">
+                                        <span>Repulsion Force</span>
+                                        <span>{chargeStrength}</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="-1000"
+                                        max="-50"
+                                        value={chargeStrength}
+                                        onChange={(e) => setChargeStrength(Number(e.target.value))}
+                                        className="w-full accent-emerald-500 bg-white/10 h-1 rounded-full appearance-none cursor-pointer"
+                                    />
+                                </div>
+
+                                {/* Link Distance */}
+                                <div className="space-y-2">
+                                    <div className="flex justify-between text-xs font-mono text-zinc-400">
+                                        <span>Link Distance</span>
+                                        <span>{linkDistance}px</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="10"
+                                        max="300"
+                                        value={linkDistance}
+                                        onChange={(e) => setLinkDistance(Number(e.target.value))}
+                                        className="w-full accent-emerald-500 bg-white/10 h-1 rounded-full appearance-none cursor-pointer"
+                                    />
+                                </div>
+
+                                {/* Collision Radius */}
+                                <div className="space-y-2">
+                                    <div className="flex justify-between text-xs font-mono text-zinc-400">
+                                        <span>Collision Radius</span>
+                                        <span>{collisionRadius}px</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="5"
+                                        max="100"
+                                        value={collisionRadius}
+                                        onChange={(e) => setCollisionRadius(Number(e.target.value))}
+                                        className="w-full accent-emerald-500 bg-white/10 h-1 rounded-full appearance-none cursor-pointer"
+                                    />
+                                </div>
+                                <button
+                                    onClick={() => {
+                                        setChargeStrength(-400);
+                                        setLinkDistance(60);
+                                        setCollisionRadius(25);
+                                    }}
+                                    className="w-full mt-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/5 text-xs text-zinc-400 font-mono transition-colors"
+                                >
+                                    Reset Default Physics
+                                </button>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
 
             {/* ── Overlay: Database Dossier Side Panel ── */}
