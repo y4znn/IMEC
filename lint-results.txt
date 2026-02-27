@@ -1,0 +1,162 @@
+
+> temp-app@0.1.0 lint
+> eslint
+
+
+/Users/ahmadghosn/IMEC Web/app/api/intel/route.ts
+  129:10  warning  'containsArabic' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/ahmadghosn/IMEC Web/app/dossier/page.tsx
+  64:93   error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  64:107  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/ahmadghosn/IMEC Web/app/maps/page.tsx
+  4:8  warning  'dynamic' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/ahmadghosn/IMEC Web/components/D3Charts.tsx
+  13:9  error  Error: Cannot access variable before it is declared
+
+`renderTransitChart` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/ahmadghosn/IMEC Web/components/D3Charts.tsx:13:9
+  11 |
+  12 |     useEffect(() => {
+> 13 |         renderTransitChart();
+     |         ^^^^^^^^^^^^^^^^^^ `renderTransitChart` accessed before it is declared
+  14 |         renderCostChart();
+  15 |     }, []);
+  16 |
+
+/Users/ahmadghosn/IMEC Web/components/D3Charts.tsx:17:5
+   15 |     }, []);
+   16 |
+>  17 |     function renderTransitChart() {
+      |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  18 |         if (!transitChartRef.current) return;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  19 |
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 103 |             .text((d) => `${d.days} Days`);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 104 |     }
+      | ^^^^^^ `renderTransitChart` is declared here
+  105 |
+  106 |     function renderCostChart() {
+  107 |         if (!costChartRef.current) return;  react-hooks/immutability
+  14:9  error  Error: Cannot access variable before it is declared
+
+`renderCostChart` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/ahmadghosn/IMEC Web/components/D3Charts.tsx:14:9
+  12 |     useEffect(() => {
+  13 |         renderTransitChart();
+> 14 |         renderCostChart();
+     |         ^^^^^^^^^^^^^^^ `renderCostChart` accessed before it is declared
+  15 |     }, []);
+  16 |
+  17 |     function renderTransitChart() {
+
+/Users/ahmadghosn/IMEC Web/components/D3Charts.tsx:106:5
+  104 |     }
+  105 |
+> 106 |     function renderCostChart() {
+      |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 107 |         if (!costChartRef.current) return;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 108 |
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 232 |             .style('opacity', 1);
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 233 |     }
+      | ^^^^^^ `renderCostChart` is declared here
+  234 |
+  235 |     return (
+  236 |         <div className="flex flex-col gap-4">                            react-hooks/immutability
+
+/Users/ahmadghosn/IMEC Web/components/DefenseContext.tsx
+  102:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/ahmadghosn/IMEC Web/components/DefenseContext.tsx:102:13
+  100 |     useEffect(() => {
+  101 |         if (!isDefenseMode) {
+> 102 |             setCurrentScene(0);
+      |             ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  103 |         }
+  104 |     }, [isDefenseMode]);
+  105 |  react-hooks/set-state-in-effect
+
+/Users/ahmadghosn/IMEC Web/components/Globe.tsx
+  68:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/ahmadghosn/IMEC Web/components/IntelFeed.tsx
+  5:10  warning  'ArrowUpRight' is defined but never used  @typescript-eslint/no-unused-vars
+  5:43  warning  'AlertCircle' is defined but never used   @typescript-eslint/no-unused-vars
+
+/Users/ahmadghosn/IMEC Web/components/MetricsSidebar.tsx
+  10:5  warning  'Zap' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/ahmadghosn/IMEC Web/components/OsintTerminal.tsx
+  58:8  warning  React Hook useEffect has a missing dependency: 'isFinished'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/ahmadghosn/IMEC Web/components/RealisticGlobe.tsx
+    5:67  warning  'shaderMaterial' is defined but never used  @typescript-eslint/no-unused-vars
+  186:28  error    Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+
+/Users/ahmadghosn/IMEC Web/components/ResearchGraph.tsx
+   79:55  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+   82:62  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+   91:43  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+   98:19  error  Error: Cannot access variable before it is declared
+
+`drag` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/ahmadghosn/IMEC Web/components/ResearchGraph.tsx:98:19
+   96 |             .data(nodes)
+   97 |             .join('g')
+>  98 |             .call(drag(simulation));
+      |                   ^^^^ `drag` accessed before it is declared
+   99 |
+  100 |         // Outer Glow (blurry)
+  101 |         node.append('circle')
+
+/Users/ahmadghosn/IMEC Web/components/ResearchGraph.tsx:154:5
+  152 |
+  153 |     // Drag behavior definition
+> 154 |     function drag(simulation: any) {
+      |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 155 |         function dragstarted(event: any) {
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 156 |             if (!event.active) simulation.alphaTarget(0.3).restart();
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 175 |             .on('end', dragended) as any;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 176 |     }
+      | ^^^^^^ `drag` is declared here
+  177 |
+  178 |     return (
+  179 |         <motion.div  react-hooks/immutability
+  134:33  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  135:33  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  136:33  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  137:33  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  139:40  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  154:31  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  155:37  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  161:33  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  166:35  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  175:38  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+
+/Users/ahmadghosn/IMEC Web/components/StatusBar.tsx
+  28:7  warning  'statusTextColor' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 29 problems (21 errors, 8 warnings)
+

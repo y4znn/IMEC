@@ -1,0 +1,127 @@
+# Academic Enterprise Overhaul — IMEC Research Platform
+
+Complete transformation from "hacker/terminal" aesthetic to a multi-million-dollar Academic Enterprise platform (Bloomberg Graphics / WEF quality).
+
+## Proposed Changes
+
+### Design System & Layout
+
+#### [MODIFY] [globals.css](file:///Users/ahmadghosn/IMEC%20Web/app/globals.css)
+- **Remove**: Terminal cursor blink, scanlines overlay, pulse-dot, all hacker-style CSS
+- **Add**: Google Fonts `Inter` (body/nav) + `Playfair Display` (headings/thesis text)
+- **New palette**: `slate-950` background, `slate-100`/`slate-300` text, `blue-600`/`emerald-600` accents
+- **Add**: Professional card styles, smooth transitions, toast animation
+
+#### [MODIFY] [layout.tsx](file:///Users/ahmadghosn/IMEC%20Web/app/layout.tsx)
+- Rename "IMEC INTELLIGENCE" → "IMEC Research Platform"
+- Nav: "Command Center" → "Policy Aggregator", "Maps" → "Geospatial", "Dossier" → "Investigator"
+- Remove noise texture overlay and radial glow
+- Replace Geist font with Inter + Playfair Display
+- Clean, professional header with subtle `border-slate-800` bottom border
+
+---
+
+### Terminal Removal & Component Rewrites
+
+#### [DELETE] [OsintTerminal.tsx](file:///Users/ahmadghosn/IMEC%20Web/components/OsintTerminal.tsx)
+- Entire file deleted. Terminal typing effect completely removed.
+
+#### [MODIFY] [StatusBar.tsx](file:///Users/ahmadghosn/IMEC%20Web/components/StatusBar.tsx)
+- Rename to professional data status strip
+- Remove "GNews API CONNECTED" / "PARTIAL CORRIDOR STATUS" militaristic copy
+- Replace with: "Data Sources: 12 peer-reviewed journals" / "Last Updated: [timestamp]"
+- Subtle `bg-slate-900/50` background with `border-slate-800`
+
+#### [MODIFY] [ThreatMatrix.tsx](file:///Users/ahmadghosn/IMEC%20Web/components/ThreatMatrix.tsx)
+- Rename to `PolicyMatrix.tsx`
+- Change "THREAT / OPPORTUNITY" → "Policy Risk & Opportunity Assessment"
+- Professional severity labels: "Favorable", "Adverse", "Monitoring"
+- Clean card design with `border-slate-800`, no pulsing dots
+
+---
+
+### API & Performance
+
+#### [MODIFY] [route.ts](file:///Users/ahmadghosn/IMEC%20Web/app/api/intel/route.ts)
+- Fetch from GNews API: `https://gnews.io/api/v4/search?q=IMEC+corridor+OR+India+Middle+East+trade&max=100&lang=en&apikey=KEY`
+- Multiple parallel queries (4 queries × 100 results = 400 articles)
+- Search terms: "IMEC corridor", "India Middle East trade", "Suez Canal disruption", "Belt Road Initiative"
+- Fallback to existing curated data if API fails
+- Return `{ articles: [...], source: 'live' | 'cached', error?: string }`
+
+#### [NEW] [Toast.tsx](file:///Users/ahmadghosn/IMEC%20Web/components/Toast.tsx)
+- Elegant slide-in toast notification
+- Triggered when API falls back to cached data
+- Design: `bg-amber-50 border-amber-200 text-amber-900` with dismiss button
+
+#### [MODIFY] [IntelFeed.tsx](file:///Users/ahmadghosn/IMEC%20Web/components/IntelFeed.tsx)
+- Install `@tanstack/react-virtual` for virtualized scrolling (handles 400+ articles smoothly)
+- Scholarly card design: Playfair Display for titles, `Inter` for metadata
+- Category badges: refined `bg-blue-50 text-blue-700` style (no neon colors)
+- Date-sorted, most recent first
+- Show toast when falling back to cached data
+
+---
+
+### 3D Globe Fix
+
+#### [MODIFY] [RealisticGlobe.tsx](file:///Users/ahmadghosn/IMEC%20Web/components/RealisticGlobe.tsx)
+- Ensure `OrbitControls` always has: `enableZoom={true}`, `enablePan={true}`, `enableRotate={true}`
+- Remove the conditional rendering `{!isDefenseMode && <OrbitControls ...>}` — make it always active
+- Lower `autoRotateSpeed` to 0.15 for a subtle, elegant rotation
+
+---
+
+### Disruption Simulator (New Feature)
+
+#### [NEW] [DisruptionSimulator.tsx](file:///Users/ahmadghosn/IMEC%20Web/components/DisruptionSimulator.tsx)
+- Professional panel with Playfair Display heading: "Economic Disruption Simulator"
+- Draggable slider: "Suez Canal Traffic Disruption (%)" — range 0-100
+- Three metric cards that update in real-time as slider moves:
+  1. **IMEC Strategic Value Premium** — starts at 12%, rises to 87% at 100% disruption
+  2. **Global Supply Chain Delay** — starts at 0 days, rises to 18.5 days
+  3. **Overland Freight Surge** — starts at 0 TEUs, rises to 2.4M TEUs
+- Smooth Framer Motion `animate` on the numbers (spring transitions)
+- Economic model: nonlinear curves (quadratic/exponential) for realistic behavior
+- Design: `bg-slate-900/80 border-slate-700` card, clean metric layout
+
+#### [MODIFY] [maps/page.tsx](file:///Users/ahmadghosn/IMEC%20Web/app/maps/page.tsx)
+- Rename "Strategic Maps & Node Architecture" → "Corridor Geospatial Analysis"
+- Add `DisruptionSimulator` below or beside the metrics sidebar
+- Remove militaristic copy ("GEOINT ACTIVE")
+
+---
+
+### Page Rewrites
+
+#### [MODIFY] [page.tsx](file:///Users/ahmadghosn/IMEC%20Web/app/page.tsx)
+- Rename "OSINT Command Center" → "Global Trade & Policy Aggregator"
+- Remove OsintTerminal import/usage
+- Layout: StatusBar (full), PolicyMatrix (left 4 cols), IntelFeed (right 2 cols) — or similar academic layout
+- Professional subtitle copy
+
+#### [MODIFY] [dossier/page.tsx](file:///Users/ahmadghosn/IMEC%20Web/app/dossier/page.tsx)
+- Rename "Researcher Dossier" → "Principal Investigator Profile"
+- "Defense Closing Statement" → "Thesis Synthesis"
+- Fix `&quot;` entities for proper HTML escaping
+- Use Playfair Display for thesis text
+
+---
+
+## Verification Plan
+
+### Automated Checks
+```bash
+# 1. Build verification (must pass with 0 errors)
+cd "/Users/ahmadghosn/IMEC Web" && npx next build
+
+# 2. Lint verification (must pass with 0 errors/warnings)
+cd "/Users/ahmadghosn/IMEC Web" && npx eslint --no-warn-ignored
+```
+
+### Browser Verification
+1. **Page 1** (http://localhost:3000): Verify no terminal, professional naming, IntelFeed renders articles
+2. **Page 2** (http://localhost:3000/maps): Verify globe is draggable/zoomable, DisruptionSimulator slider works
+3. **Page 3** (http://localhost:3000/dossier): Verify professional naming, thesis text renders
+4. **Globe interactivity**: Drag, spin, and zoom the 3D globe to confirm OrbitControls
+5. **Simulator**: Drag slider from 0-100% and verify metric cards animate smoothly
