@@ -6,7 +6,7 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Filter, Anchor, Network, AlertTriangle, Lightbulb, Hexagon, SlidersHorizontal, Eye, Activity } from 'lucide-react';
+import { Search, X, Filter, Anchor, Network, AlertTriangle, Lightbulb, Hexagon, SlidersHorizontal, Eye, Activity, Server, Zap, ShieldAlert, Swords } from 'lucide-react';
 import * as d3 from 'd3-force';
 
 const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { ssr: false });
@@ -15,7 +15,7 @@ const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { ssr: false 
    DATASET (Hardcoded IMEC Intelligence Data)
    ══════════════════════════════════════════════════════════ */
 
-type NodeType = 'Actor' | 'Infrastructure' | 'Event' | 'Concept' | 'AI System' | 'Tech Corp';
+type NodeType = 'Actor' | 'Framework' | 'Logistics' | 'Digital' | 'Energy' | 'Shock' | 'Rival';
 
 interface NodeData {
     id: string;
@@ -26,7 +26,7 @@ interface NodeData {
     x?: number;
     y?: number;
     desc: string;
-    details: { key: string; value: string }[];
+    details?: { key: string; value: string }[];
 }
 
 interface LinkData {
@@ -37,102 +37,85 @@ interface LinkData {
 
 const gData: { nodes: NodeData[]; links: LinkData[] } = {
     nodes: [
-        // Actors
-        { id: 'us', label: 'United States', type: 'Actor', val: 8, color: '#0ea5e9', desc: 'Primary backer of IMEC meant to counter China.', details: [{ key: 'Strategic Goal', value: 'Containment of BRI' }] },
-        { id: 'in', label: 'India', type: 'Actor', val: 8, color: '#0ea5e9', desc: 'Eastern anchor seeking market access to EU.', details: [{ key: 'Economic Impact', value: '+40% Export Speed' }] },
-        { id: 'eu', label: 'European Union', type: 'Actor', val: 7, color: '#0ea5e9', desc: 'Western anchor seeking energy security.', details: [{ key: 'Funding', value: '€300B Global Gateway' }] },
-        { id: 'sa', label: 'Saudi Arabia', type: 'Actor', val: 7, color: '#0ea5e9', desc: 'Crucial land bridge connecting sea to rail.', details: [{ key: 'Investment', value: '$20B Infrastructure' }] },
-        { id: 'uae', label: 'UAE', type: 'Actor', val: 6, color: '#0ea5e9', desc: 'Primary maritime transshipment hub.', details: [{ key: 'Key Asset', value: 'Jebel Ali Port' }] },
-        { id: 'il', label: 'Israel', type: 'Actor', val: 6, color: '#0ea5e9', desc: 'Mediterranean exit point, politically sensitive.', details: [{ key: 'Key Asset', value: 'Haifa Port' }] },
-        { id: 'cn', label: 'China', type: 'Actor', val: 8, color: '#ef4444', desc: 'Systemic rival whose BRI strategy prompted IMEC.', details: [{ key: 'Strategic Goal', value: 'Eurasian Hegemony' }] },
-        { id: 'tr', label: 'Turkey', type: 'Actor', val: 5, color: '#f59e0b', desc: 'Excluded from IMEC, pushing rival corridor.', details: [{ key: 'Response', value: 'Development Road Project' }] },
-        { id: 'ir', label: 'Iran', type: 'Actor', val: 5, color: '#f59e0b', desc: 'Pushing INSTC with Russia, threatening Straits.', details: [{ key: 'Alliance', value: 'Sino-Russian Axis' }] },
+        // CATEGORY: GEOPOLITICAL ACTORS & FRAMEWORKS (Color: Muted Zinc/White)
+        { id: "usa", type: "Actor", val: 6, color: "#e4e4e7", label: "United States", desc: "Strategic backer of IMEC via PGII to counter China's BRI and foster Middle East integration.", details: [] },
+        { id: "india", type: "Actor", val: 6, color: "#e4e4e7", label: "India", desc: "Anchor economy leveraging IMEC to bypass Pakistan and access Europe.", details: [] },
+        { id: "eu", type: "Actor", val: 5, color: "#e4e4e7", label: "European Union", desc: "Aligning IMEC with its €300 Billion Global Gateway fund to de-risk supply chains.", details: [] },
+        { id: "ksa", type: "Actor", val: 5, color: "#e4e4e7", label: "Saudi Arabia", desc: "Crucial land bridge connecting the Gulf to the Levant; focal point for green energy transition.", details: [] },
+        { id: "uae", type: "Actor", val: 5, color: "#e4e4e7", label: "UAE", desc: "Pioneering the logistics network and funding the $2.3B Jordanian railway link.", details: [] },
+        { id: "israel", type: "Actor", val: 4, color: "#e4e4e7", label: "Israel", desc: "The Mediterranean anchor point; provides overland redundancy to the Suez Canal.", details: [] },
+        { id: "china", type: "Actor", val: 6, color: "#e4e4e7", label: "China", desc: "Architect of the $8 Trillion BRI. Views IMEC as a systemic containment threat.", details: [] },
+        { id: "pgii", type: "Framework", val: 3, color: "#e4e4e7", label: "G7 PGII", desc: "Partnership for Global Infrastructure and Investment; Western funding umbrella for IMEC.", details: [] },
+        { id: "global_gateway", type: "Framework", val: 3, color: "#e4e4e7", label: "EU Global Gateway", desc: "EU strategy to mobilize up to €300 billion in investments for sustainable digital and transport connectivity.", details: [] },
+        { id: "i2u2", type: "Framework", val: 3, color: "#e4e4e7", label: "I2U2 Group", desc: "India, Israel, UAE, and US partnership laying the geopolitical groundwork for integration.", details: [] },
 
-        // Infrastructure
-        { id: 'haifa', label: 'Haifa Port', type: 'Infrastructure', val: 6, color: '#10b981', desc: 'Secured by Adani Group, main Med port.', details: [{ key: 'Capacity', value: '3M TEU' }, { key: 'Operator', value: 'Adani Group (India)' }] },
-        { id: 'jebel_ali', label: 'Jebel Ali Port', type: 'Infrastructure', val: 6, color: '#10b981', desc: 'Largest port in the Middle East.', details: [{ key: 'Capacity', value: '19.3M TEU' }] },
-        { id: 'piraeus', label: 'Piraeus Port', type: 'Infrastructure', val: 5, color: '#10b981', desc: 'Greek port, heavily owned by Chinese COSCO.', details: [{ key: 'Ownership', value: '67% COSCO (China)' }] },
-        { id: 'blue_raman', label: 'Blue-Raman Cable', type: 'Infrastructure', val: 6, color: '#a855f7', desc: 'Google-backed digital corridor bypassing Egypt.', details: [{ key: 'Capacity', value: '218 Tbps' }, { key: 'Backer', value: 'Google / Sparkle' }] },
-        { id: 'drp', label: 'Development Road', type: 'Infrastructure', val: 5, color: '#f59e0b', desc: 'Turkey-Iraq rail project to rival IMEC.', details: [{ key: 'Cost', value: '$17 Billion' }] },
-        { id: 'instc', label: 'INSTC Corridor', type: 'Infrastructure', val: 5, color: '#ef4444', desc: 'Iran-Russia network avoiding Western sanctions.', details: [{ key: 'Status', value: 'Active/Expanding' }] },
-        { id: 'suez', label: 'Suez Canal', type: 'Infrastructure', val: 7, color: '#64748b', desc: 'Legacy chokepoint IMEC aims to bypass.', details: [{ key: 'Current Threat', value: 'Houthi Blockade' }] },
+        // CATEGORY: TRANSPORTATION PILLAR - PORTS & RAIL (Color: Steel Blue)
+        { id: "vadhavan", type: "Logistics", val: 4, color: "#3b82f6", label: "Vadhavan Port (IND)", desc: "Upcoming $9B Indian mega-port projected to handle 23.2 million TEUs per annum.", details: [] },
+        { id: "jebel_ali", type: "Logistics", val: 4, color: "#3b82f6", label: "Jebel Ali Port (UAE)", desc: "The largest port in the Middle East; primary maritime entry point for Indian goods.", details: [] },
+        { id: "al_ghuwaifat", type: "Logistics", val: 2, color: "#3b82f6", label: "Al-Ghuwaifat Link", desc: "Crucial UAE-Saudi Arabia rail border crossing requiring network harmonization.", details: [] },
+        { id: "al_haditha", type: "Logistics", val: 2, color: "#3b82f6", label: "Al-Haditha Hub", desc: "Key Saudi-Jordanian border logistics and transshipment hub.", details: [] },
+        { id: "mafraq", type: "Logistics", val: 3, color: "#3b82f6", label: "Mafraq (JOR)", desc: "Jordanian logistical hub requiring significant structural investment.", details: [] },
+        { id: "beit_shean", type: "Logistics", val: 3, color: "#3b82f6", label: "Beit She'an (ISR)", desc: "Vital rail junction connecting the Jordanian network to the Israeli coastal ports.", details: [] },
+        { id: "haifa", type: "Logistics", val: 4, color: "#3b82f6", label: "Haifa Port (ISR)", desc: "Critical Mediterranean gateway; heavily modernized following acquisition by India's Adani Group.", details: [] },
+        { id: "ashdod", type: "Logistics", val: 3, color: "#3b82f6", label: "Ashdod Port (ISR)", desc: "Secondary Mediterranean hub requiring a $2.57B coastal rail link to Haifa to handle IMEC volume.", details: [] },
+        { id: "piraeus", type: "Logistics", val: 4, color: "#3b82f6", label: "Piraeus Port (GRE)", desc: "Major European entry point, though largely controlled by China's COSCO.", details: [] },
+        { id: "marseille", type: "Logistics", val: 3, color: "#3b82f6", label: "Port of Marseille (FRA)", desc: "Key European terminus for both shipping and the TEAS data cables.", details: [] },
 
-        // Events
-        { id: 'g20', label: 'G20 MOU (2023)', type: 'Event', val: 4, color: '#eab308', desc: 'Official launch of IMEC doctrine.', details: [{ key: 'Location', value: 'New Delhi' }] },
-        { id: 'gaza_war', label: 'Gaza War (Oct 7)', type: 'Event', val: 5, color: '#eab308', desc: 'Paused normalization, threatening IMEC land route.', details: [{ key: 'Impact', value: 'Severe Delay' }] },
-        { id: 'red_sea', label: 'Red Sea Crisis', type: 'Event', val: 5, color: '#eab308', desc: 'Houthi attacks paralyzing maritime trade.', details: [{ key: 'Impact', value: 'Validates IMEC overland redundancy' }] },
-        { id: 'abraham', label: 'Abraham Accords', type: 'Event', val: 4, color: '#eab308', desc: 'Normalization groundwork enabling IMEC.', details: [{ key: 'Signatories', value: 'Israel, UAE, Bahrain' }] },
+        // CATEGORY: DIGITAL PILLAR - DATA SOVEREIGNTY (Color: Amethyst Purple)
+        { id: "blue_raman", type: "Digital", val: 5, color: "#a855f7", label: "Blue-Raman Cable", desc: "218 Tbps Google subsea fiber bypassing the Egyptian data chokepoint.", details: [] },
+        { id: "teas", type: "Digital", val: 4, color: "#a855f7", label: "TEAS Network", desc: "Trans Europe Asia System; a 20,000 km terrestrial network linking Mumbai to Marseille.", details: [] },
+        { id: "data_centers", type: "Digital", val: 3, color: "#a855f7", label: "AI Data Centers", desc: "High-compute nodes in the Gulf drawing on IMEC's digital and energy infrastructure.", details: [] },
 
-        // Concepts
-        { id: 'redundancy', label: 'Supply Chain Redundancy', type: 'Concept', val: 5, color: '#6366f1', desc: 'Need for multi-modal bypasses of chokepoints.', details: [{ key: 'Theoretical Base', value: 'Systems Theory' }] },
-        { id: 'geoecon', label: 'Geoeconomic Warfare', type: 'Concept', val: 5, color: '#6366f1', desc: 'Using trade routes as weapons of influence.', details: [{ key: 'Examples', value: 'BRI, IMEC, Sanctions' }] },
-        { id: 'multipolarity', label: 'Multipolarity', type: 'Concept', val: 4, color: '#6366f1', desc: 'Desire of Middle Powers to avoid choosing sides.', details: [{ key: 'Practitioners', value: 'India, UAE, Saudi Arabia' }] },
-        { id: 'ai_dss', label: 'AI Decision Support', type: 'Concept', val: 6, color: '#6366f1', desc: 'Accelerated automated targeting architectures.', details: [{ key: 'Usage', value: 'Kill Chain Optimization' }] },
+        // CATEGORY: ENERGY PILLAR (Color: Emerald Green)
+        { id: "neom_h2", type: "Energy", val: 4, color: "#10b981", label: "NEOM Green Hydrogen", desc: "$8.4B Saudi project aimed at exporting green ammonia to European markets.", details: [] },
+        { id: "hvdc_interconnector", type: "Energy", val: 4, color: "#10b981", label: "UAE-India HVDC", desc: "Proposed High-Voltage Direct Current subsea cable to balance renewable grid loads.", details: [] },
+        { id: "osowog", type: "Energy", val: 3, color: "#10b981", label: "OSOWOG Initiative", desc: "One Sun One World One Grid; establishing India as the fulcrum of an intercontinental power system.", details: [] },
+        { id: "am_green", type: "Energy", val: 3, color: "#10b981", label: "AM Green & Rotterdam", desc: "Agreement enabling up to 1 million tons per year of green hydrogen trade between India and Europe.", details: [] },
 
-        // AI Systems (AI War Cloud DB)
-        { id: 'nimbus', label: 'Project Nimbus', type: 'AI System', val: 7, color: '#d946ef', desc: 'Cloud contract providing infrastructure for Israeli military.', details: [{ key: 'Provider', value: 'Google / Amazon' }] },
-        { id: 'lavender', label: 'Lavender System', type: 'AI System', val: 6, color: '#d946ef', desc: 'Automated target generation database.', details: [{ key: 'Deployer', value: 'Unit 8200' }, { key: 'Output', value: 'Kill Lists' }] },
-        { id: 'foundry', label: 'Palantir Foundry', type: 'AI System', val: 7, color: '#d946ef', desc: 'Operating system identifying targets and pairing weapons.', details: [{ key: 'Architecture', value: 'AI-powered kill chain' }] },
-        { id: 'clearview', label: 'Clearview AI', type: 'AI System', val: 5, color: '#d946ef', desc: 'Facial recognition deployed in warfare.', details: [{ key: 'Application', value: 'Dead soldier identification' }] },
+        // CATEGORY: THREATS, SHOCKS & CHOKEPOINTS (Color: Muted Red)
+        { id: "gaza_war", type: "Shock", val: 5, color: "#ef4444", label: "October 7 / Gaza War", desc: "Systemic shock stalling Saudi-Israeli normalization and immediate rail linkages.", details: [] },
+        { id: "red_sea", type: "Shock", val: 5, color: "#ef4444", label: "Red Sea Crisis", desc: "Houthi attacks paralyzing Suez shipping, paradoxically validating IMEC's overland redundancy.", details: [] },
+        { id: "suez_chokepoint", type: "Shock", val: 4, color: "#ef4444", label: "Suez Canal Vulnerability", desc: "Historical bottleneck handling 1.5 billion tons of cargo and 90% of Euro-Asia internet traffic.", details: [] },
+        { id: "rubymar", type: "Shock", val: 3, color: "#ef4444", label: "MV Rubymar Incident", desc: "Sunken cargo ship that severed three intercontinental submarine data cables in 2024.", details: [] },
+        { id: "jordan_finance_gap", type: "Shock", val: 3, color: "#ef4444", label: "$2B+ Jordan Rail Gap", desc: "Critical missing financial link to establish a standard-gauge network across Jordan.", details: [] },
 
-        // Tech Corps
-        { id: 'google', label: 'Google', type: 'Tech Corp', val: 8, color: '#14b8a6', desc: 'Major defense contractor and subsea cable owner.', details: [{ key: 'Influence', value: 'Project Nimbus, Blue-Raman' }] },
-        { id: 'amazon', label: 'Amazon (AWS)', type: 'Tech Corp', val: 8, color: '#14b8a6', desc: 'Core cloud engine for defense logistics.', details: [{ key: 'Influence', value: 'Project Nimbus' }] },
-        { id: 'palantir', label: 'Palantir', type: 'Tech Corp', val: 7, color: '#14b8a6', desc: 'Military-first software contractor.', details: [{ key: 'Influence', value: 'Gotham, Foundry' }] },
-        { id: 'elbit', label: 'Elbit Systems', type: 'Tech Corp', val: 6, color: '#14b8a6', desc: 'Israeli defense contractor using AI.', details: [{ key: 'Influence', value: 'ARCAS Gunsight' }] },
+        // CATEGORY: RIVAL ARCHITECTURES (Color: Muted Amber)
+        { id: "bri", type: "Rival", val: 5, color: "#f59e0b", label: "Belt & Road Initiative", desc: "China's global infrastructure project. IMEC serves as the Western/Indian market-based alternative.", details: [] },
+        { id: "drp", type: "Rival", val: 4, color: "#f59e0b", label: "Development Road Project", desc: "$17 Billion rail/highway network backed by Iraq and Turkey, designed to bypass IMEC.", details: [] },
+        { id: "instc", type: "Rival", val: 3, color: "#f59e0b", label: "INSTC", desc: "Russia-Iran backed International North-South Transport Corridor.", details: [] },
+        { id: "cpec", type: "Rival", val: 4, color: "#f59e0b", label: "CPEC", desc: "China-Pakistan Economic Corridor; a massive BRI flagship project bypassed by IMEC.", details: [] }
     ],
     links: [
-        { source: 'us', target: 'in', label: 'Partnership' },
-        { source: 'us', target: 'g20' },
-        { source: 'in', target: 'g20' },
-        { source: 'sa', target: 'g20' },
-        { source: 'uae', target: 'g20' },
-        { source: 'eu', target: 'g20' },
-        { source: 'in', target: 'jebel_ali' },
-        { source: 'uae', target: 'jebel_ali' },
-        { source: 'sa', target: 'jebel_ali' },
-        { source: 'sa', target: 'haifa' },
-        { source: 'il', target: 'haifa' },
-        { source: 'haifa', target: 'piraeus' },
-        { source: 'eu', target: 'piraeus' },
-        { source: 'cn', target: 'piraeus', label: 'Ownership' },
-        { source: 'cn', target: 'geoecon' },
-        { source: 'us', target: 'geoecon' },
-        { source: 'tr', target: 'drp' },
-        { source: 'ir', target: 'drp' },
-        { source: 'ir', target: 'instc' },
-        { source: 'in', target: 'instc' },
-        { source: 'blue_raman', target: 'in' },
-        { source: 'blue_raman', target: 'il' },
-        { source: 'blue_raman', target: 'eu' },
-        { source: 'abraham', target: 'il' },
-        { source: 'abraham', target: 'uae' },
-        { source: 'abraham', target: 'us' },
-        { source: 'gaza_war', target: 'il' },
-        { source: 'gaza_war', target: 'red_sea' },
-        { source: 'red_sea', target: 'suez' },
-        { source: 'suez', target: 'redundancy' },
-        { source: 'redundancy', target: 'haifa' },
-        { source: 'multipolarity', target: 'in' },
-        { source: 'multipolarity', target: 'sa' },
-        { source: 'multipolarity', target: 'uae' },
+        // Geopolitical Origins
+        { source: "usa", target: "pgii" }, { source: "eu", target: "global_gateway" },
+        { source: "india", target: "i2u2" }, { source: "uae", target: "i2u2" }, { source: "israel", target: "i2u2" },
+        { source: "pgii", target: "vadhavan" }, { source: "global_gateway", target: "blue_raman" },
 
-        // AIWAR Connections
-        { source: 'us', target: 'google', label: 'Jurisdiction' },
-        { source: 'us', target: 'amazon', label: 'Jurisdiction' },
-        { source: 'us', target: 'palantir', label: 'Jurisdiction' },
-        { source: 'il', target: 'elbit', label: 'Jurisdiction' },
-        { source: 'google', target: 'nimbus', label: 'Developer' },
-        { source: 'amazon', target: 'nimbus', label: 'Developer' },
-        { source: 'il', target: 'nimbus', label: 'Deployer' },
-        { source: 'il', target: 'lavender', label: 'Deployer' },
-        { source: 'palantir', target: 'foundry', label: 'Developer' },
-        { source: 'google', target: 'blue_raman', label: 'Developer' },
-        { source: 'foundry', target: 'ai_dss', label: 'Instance' },
-        { source: 'lavender', target: 'ai_dss', label: 'Instance' },
-        { source: 'gaza_war', target: 'lavender', label: 'Testing Ground' },
-        { source: 'gaza_war', target: 'nimbus', label: 'Infrastructure' },
-        { source: 'clearview', target: 'ai_dss', label: 'Instance' }
+        // The Physical Logistics Route
+        { source: "vadhavan", target: "jebel_ali" }, { source: "india", target: "jebel_ali" },
+        { source: "jebel_ali", target: "al_ghuwaifat" }, { source: "al_ghuwaifat", target: "ksa" },
+        { source: "ksa", target: "al_haditha" }, { source: "al_haditha", target: "mafraq" },
+        { source: "mafraq", target: "jordan_finance_gap" }, { source: "jordan_finance_gap", target: "beit_shean" },
+        { source: "beit_shean", target: "haifa" }, { source: "beit_shean", target: "ashdod" },
+        { source: "ashdod", target: "haifa" }, { source: "haifa", target: "piraeus" },
+        { source: "haifa", target: "marseille" },
+
+        // Digital & Energy Spines
+        { source: "india", target: "blue_raman" }, { source: "israel", target: "blue_raman" }, { source: "marseille", target: "blue_raman" },
+        { source: "india", target: "teas" }, { source: "uae", target: "teas" }, { source: "ksa", target: "teas" }, { source: "marseille", target: "teas" },
+        { source: "blue_raman", target: "data_centers" }, { source: "teas", target: "data_centers" },
+        { source: "ksa", target: "neom_h2" }, { source: "neom_h2", target: "eu" },
+        { source: "india", target: "hvdc_interconnector" }, { source: "uae", target: "hvdc_interconnector" },
+        { source: "india", target: "osowog" }, { source: "india", target: "am_green" },
+
+        // Shocks & Vulnerabilities
+        { source: "gaza_war", target: "red_sea" }, { source: "red_sea", target: "suez_chokepoint" },
+        { source: "red_sea", target: "rubymar" }, { source: "rubymar", target: "blue_raman" },
+        { source: "suez_chokepoint", target: "haifa" }, // Shows Haifa as the redundancy bypass
+
+        // Rivalries
+        { source: "china", target: "bri" }, { source: "bri", target: "drp" },
+        { source: "bri", target: "cpec" }, { source: "instc", target: "india" }
     ]
 };
 
@@ -140,9 +123,12 @@ const gData: { nodes: NodeData[]; links: LinkData[] } = {
 const getTypeIcon = (type: NodeType) => {
     switch (type) {
         case 'Actor': return Network;
-        case 'Infrastructure': return Anchor;
-        case 'Event': return AlertTriangle;
-        case 'Concept': return Lightbulb;
+        case 'Framework': return Hexagon;
+        case 'Logistics': return Anchor;
+        case 'Digital': return Server;
+        case 'Energy': return Zap;
+        case 'Shock': return ShieldAlert;
+        case 'Rival': return Swords;
         default: return Hexagon;
     }
 };
@@ -293,7 +279,7 @@ export default function NodeDatabase() {
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                        {['All', 'Actor', 'Infrastructure', 'Event', 'Concept', 'AI System', 'Tech Corp'].map((type) => (
+                        {['All', 'Actor', 'Framework', 'Logistics', 'Digital', 'Energy', 'Shock', 'Rival'].map((type) => (
                             <button
                                 key={type}
                                 onClick={() => setActiveFilter(type as any)}
@@ -444,12 +430,10 @@ export default function NodeDatabase() {
                                 Classified Intelligence
                             </h3>
                             <div className="space-y-3">
-                                {selectedNode.details.map((detail, i) => (
-                                    <div key={i} className="flex flex-col gap-1">
-                                        <span className="text-xs text-zinc-500 font-medium">{detail.key}</span>
-                                        <span className="text-sm text-zinc-200 bg-white/[0.03] px-3 py-2 rounded-lg border border-white/[0.05]">
-                                            {detail.value}
-                                        </span>
+                                {selectedNode.details && selectedNode.details.map((detail, idx) => (
+                                    <div key={idx} className="flex justify-between items-center py-2 border-b border-white/5">
+                                        <span className="text-zinc-500 font-mono">{detail.key}</span>
+                                        <span className="text-zinc-200 font-medium text-right max-w-[60%] truncate">{detail.value}</span>
                                     </div>
                                 ))}
                             </div>
