@@ -164,10 +164,11 @@ export default function NodeDatabase() {
         }
 
         const nodeIds = new Set(activeNodes.map(n => n.id));
-        const activeLinks = gData.links.filter(l =>
-            nodeIds.has(typeof l.source === 'object' ? (l.source as any).id : l.source) &&
-            nodeIds.has(typeof l.target === 'object' ? (l.target as any).id : l.target)
-        );
+        const activeLinks = gData.links.filter(l => {
+            const sourceId = typeof l.source === 'object' ? (l.source as any).id : l.source;
+            const targetId = typeof l.target === 'object' ? (l.target as any).id : l.target;
+            return nodeIds.has(sourceId) && nodeIds.has(targetId);
+        });
 
         return { nodes: activeNodes, links: activeLinks };
     }, [activeFilter]);
@@ -175,8 +176,9 @@ export default function NodeDatabase() {
     useEffect(() => {
         if (fgRef.current) {
             const fg = fgRef.current;
-            fg.d3Force('charge').strength(-400); // Stronger repulsion 
-            fg.d3Force('collide', d3.forceCollide().radius((node: any) => node.val * 2.5 + 8)); // Ensures absolutely zero overlap
+            fg.d3Force('charge').strength(-400);
+            fg.d3Force('collide', d3.forceCollide().radius((node: any) => node.val * 2.5 + 12));
+            fg.d3Force('link').distance(80);
             fg.d3ReheatSimulation();
         }
     }, [filteredData]);
@@ -210,7 +212,7 @@ export default function NodeDatabase() {
 
         ctx.globalAlpha = opacity;
 
-        // Base Circle
+        // Base Circle Fill first to prevent link bleed
         ctx.beginPath();
         ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI, false);
         ctx.fillStyle = '#09090b';
@@ -224,10 +226,10 @@ export default function NodeDatabase() {
         // Draw SVG pre-loaded Image
         const img = iconImages[node.type];
         if (img && img.complete) {
-            const size = radius * 1.3;
+            const iconSize = radius * 1.4;
             // Draw image slightly dimmed unless hovered/selected for high-contrast obsidian aesthetic
             ctx.globalAlpha = (isHovered || isSelected) ? 1.0 : opacity * 0.8;
-            ctx.drawImage(img, node.x - size / 2, node.y - size / 2, size, size);
+            ctx.drawImage(img, node.x - iconSize / 2, node.y - iconSize / 2, iconSize, iconSize);
             ctx.globalAlpha = opacity; // restoring for the rest of drawing
         }
 
@@ -258,11 +260,15 @@ export default function NodeDatabase() {
         const showLabel = isHovered || isSelected || isMajorActor || (globalScale > 3);
 
         if (showLabel) {
+            ctx.save();
             ctx.font = '4px "JetBrains Mono", monospace';
-            ctx.fillStyle = (isHovered || isSelected) ? '#ffffff' : 'rgba(255, 255, 255, 0.6)';
+            ctx.fillStyle = (isHovered || isSelected) ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.9)';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
+            ctx.shadowColor = 'black';
+            ctx.shadowBlur = 4;
             ctx.fillText(node.label, node.x, node.y + radius + 3);
+            ctx.restore();
         }
 
         ctx.globalAlpha = 1.0;
@@ -340,8 +346,14 @@ export default function NodeDatabase() {
                     return `rgba(255, 255, 255, ${opacity})`;
                 }}
                 linkWidth={0.5}
-                linkDirectionalArrowLength={2.5}
-                linkDirectionalArrowRelPos={1}
+                linkDirectionalParticles={2}
+                linkDirectionalParticleWidth={1.5}
+                linkDirectionalParticleColor={(link) => {
+                    const sourceId = typeof link.source === 'object' ? (link.source as any).id : link.source;
+                    const targetId = typeof link.target === 'object' ? (link.target as any).id : link.target;
+                    const opacity = getLinkOpacity(sourceId, targetId);
+                    return `rgba(255, 255, 255, ${opacity >= 0.5 ? 0.8 : 0.2})`;
+                }}
                 nodeCanvasObject={nodeCanvasObject}
                 onNodeHover={n => {
                     setHoveredNode(n as NodeData | null);
