@@ -11,28 +11,7 @@ import * as d3 from 'd3-force';
 
 const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { ssr: false });
 
-/* ══════════════════════════════════════════════════════════
-   SYNCHRONOUS ICON PRELOADING
-   ══════════════════════════════════════════════════════════ */
 
-const ICONS = {
-    Actor: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>`,
-    Framework: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e4e4e7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>`,
-    Logistics: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/></svg>`,
-    Digital: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>`,
-    Energy: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
-    Shock: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`,
-    Rival: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`
-};
-
-const iconImages: Record<string, HTMLImageElement> = {};
-if (typeof window !== 'undefined') {
-    Object.entries(ICONS).forEach(([type, svg]) => {
-        const img = new Image();
-        img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-        iconImages[type] = img;
-    });
-}
 
 /* ══════════════════════════════════════════════════════════
    DATASET
@@ -176,9 +155,9 @@ export default function NodeDatabase() {
     useEffect(() => {
         if (fgRef.current) {
             const fg = fgRef.current;
-            fg.d3Force('charge').strength(-400);
+            fg.d3Force('charge').strength(-150);
             fg.d3Force('collide', d3.forceCollide().radius((node: any) => node.val * 2.5 + 12));
-            fg.d3Force('link').distance(80);
+            fg.d3Force('link').distance(40);
             fg.d3ReheatSimulation();
         }
     }, [filteredData]);
@@ -195,13 +174,13 @@ export default function NodeDatabase() {
         return 0.1;
     }, [hoveredNode, selectedNode, neighbors]);
 
-    const getLinkOpacity = useCallback((sourceId: string, targetId: string) => {
-        if (!hoveredNode && !selectedNode) return 0.15; // default subtle state
+    const getLinkColor = useCallback((sourceId: string, targetId: string) => {
+        if (!hoveredNode && !selectedNode) return 'rgba(255, 255, 255, 0.08)';
         const activeNode = hoveredNode || selectedNode;
-        if (!activeNode) return 0.15;
+        if (!activeNode) return 'rgba(255, 255, 255, 0.08)';
 
-        if (sourceId === activeNode.id || targetId === activeNode.id) return 0.8;
-        return 0.05;
+        if (sourceId === activeNode.id || targetId === activeNode.id) return 'rgba(255, 255, 255, 0.6)';
+        return 'rgba(255, 255, 255, 0.08)';
     }, [hoveredNode, selectedNode]);
 
     const nodeCanvasObject = useCallback((node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
@@ -210,6 +189,7 @@ export default function NodeDatabase() {
         const isHovered = hoveredNode?.id === node.id;
         const isSelected = selectedNode?.id === node.id;
 
+        ctx.save();
         ctx.globalAlpha = opacity;
 
         // Base Circle Fill first to prevent link bleed
@@ -223,55 +203,52 @@ export default function NodeDatabase() {
         ctx.strokeStyle = node.color;
         ctx.stroke();
 
-        // Draw SVG pre-loaded Image
-        const img = iconImages[node.type];
-        if (img && img.complete) {
-            const iconSize = radius * 1.4;
-            // Draw image slightly dimmed unless hovered/selected for high-contrast obsidian aesthetic
-            ctx.globalAlpha = (isHovered || isSelected) ? 1.0 : opacity * 0.8;
-            ctx.drawImage(img, node.x - iconSize / 2, node.y - iconSize / 2, iconSize, iconSize);
-            ctx.globalAlpha = opacity; // restoring for the rest of drawing
+        // Draw Inner Shape
+        const innerSize = radius * 0.6;
+        ctx.fillStyle = node.color;
+
+        ctx.save();
+        ctx.translate(node.x, node.y);
+        ctx.beginPath();
+        if (node.type === 'Actor') {
+            ctx.rect(-innerSize / 2, -innerSize / 2, innerSize, innerSize);
+        } else if (node.type === 'Logistics') {
+            ctx.moveTo(0, -innerSize / 1.5);
+            ctx.lineTo(innerSize / 1.5, innerSize / 1.5);
+            ctx.lineTo(-innerSize / 1.5, innerSize / 1.5);
+            ctx.closePath();
+        } else if (node.type === 'Digital') {
+            ctx.rotate(45 * Math.PI / 180);
+            ctx.rect(-innerSize / 2, -innerSize / 2, innerSize, innerSize);
+        } else {
+            ctx.arc(0, 0, innerSize / 1.5, 0, 2 * Math.PI);
         }
+        ctx.fill();
+        ctx.restore();
 
-        // Target Crosshair radar rings (Simulated by simple dashed rings if selected)
+        // Selection State
         if (isSelected) {
-            const time = Date.now() / 1000;
-            ctx.save();
-            ctx.translate(node.x, node.y);
-            ctx.rotate(time * 0.5);
             ctx.beginPath();
-            ctx.setLineDash([1, 2]);
-            ctx.arc(0, 0, radius + 3, 0, 2 * Math.PI);
-            ctx.strokeStyle = node.color;
-            ctx.lineWidth = 0.5;
+            ctx.arc(node.x, node.y, radius + 3, 0, 2 * Math.PI);
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1;
+            ctx.globalAlpha = 0.5;
             ctx.stroke();
-
-            ctx.rotate(-time * 1.2);
-            ctx.beginPath();
-            ctx.setLineDash([2, 4]);
-            ctx.arc(0, 0, radius + 6, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.restore();
         }
 
         // Smart Labels
-        const isMajorActor = node.type === 'Actor' && node.val >= 5;
-        // Show if Major Actor, OR hovered/selected, OR if zoomed in really far mapping dense regions
-        const showLabel = isHovered || isSelected || isMajorActor || (globalScale > 3);
+        const showLabel = isHovered || isSelected || (globalScale >= 2.5);
 
         if (showLabel) {
-            ctx.save();
-            ctx.font = '4px "JetBrains Mono", monospace';
-            ctx.fillStyle = (isHovered || isSelected) ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.9)';
+            ctx.globalAlpha = opacity;
+            ctx.font = '3.5px "Inter", sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
-            ctx.shadowColor = 'black';
-            ctx.shadowBlur = 4;
             ctx.fillText(node.label, node.x, node.y + radius + 3);
-            ctx.restore();
         }
 
-        ctx.globalAlpha = 1.0;
+        ctx.restore();
     }, [hoveredNode, selectedNode, getOpacity]);
 
     return (
@@ -342,18 +319,9 @@ export default function NodeDatabase() {
                 linkColor={(link) => {
                     const sourceId = typeof link.source === 'object' ? (link.source as any).id : link.source;
                     const targetId = typeof link.target === 'object' ? (link.target as any).id : link.target;
-                    const opacity = getLinkOpacity(sourceId, targetId);
-                    return `rgba(255, 255, 255, ${opacity})`;
+                    return getLinkColor(sourceId, targetId);
                 }}
                 linkWidth={0.5}
-                linkDirectionalParticles={2}
-                linkDirectionalParticleWidth={1.5}
-                linkDirectionalParticleColor={(link) => {
-                    const sourceId = typeof link.source === 'object' ? (link.source as any).id : link.source;
-                    const targetId = typeof link.target === 'object' ? (link.target as any).id : link.target;
-                    const opacity = getLinkOpacity(sourceId, targetId);
-                    return `rgba(255, 255, 255, ${opacity >= 0.5 ? 0.8 : 0.2})`;
-                }}
                 nodeCanvasObject={nodeCanvasObject}
                 onNodeHover={n => {
                     setHoveredNode(n as NodeData | null);
@@ -364,7 +332,7 @@ export default function NodeDatabase() {
                 onNodeClick={n => setSelectedNode(n as NodeData)}
                 onBackgroundClick={() => setSelectedNode(null)}
                 backgroundColor="#000000"
-                d3AlphaDecay={0.02}
+                d3AlphaDecay={0.05}
                 d3VelocityDecay={0.3}
             />
 
