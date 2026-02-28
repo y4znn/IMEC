@@ -153,6 +153,14 @@ const gData: { nodes: NodeData[]; links: LinkData[] } = {
     ]
 };
 
+const PRESENTATION_STEPS = [
+    { title: "I. The Baseline Geometry", speech: "Before 2023, the logistical architecture relied on legacy chokepoints and emergent diplomatic frameworks like the Abraham Accords.", year: 2022, targetNode: "abraham_accords", camPos: { x: 0, y: 0, z: 250 }, repulsion: -200 },
+    { title: "II. The Sovereign Backbone", speech: "In September 2023, the IMEC was declared, establishing a multi-modal physical corridor from India to Europe.", year: 2023.09, targetNode: "imec_announce", camPos: { x: 50, y: -50, z: 150 }, repulsion: -400 },
+    { title: "III. The Digital Artery & AI-DSS", speech: "This physical route is underpinned by a sovereign digital layer—Project Nimbus, Blue-Raman, and automated intelligence networks.", year: 2024, targetNode: "project_nimbus", camPos: { x: 0, y: 150, z: 100 }, repulsion: -500 },
+    { title: "IV. Systemic Shock & Vulnerability", speech: "However, the architecture is highly fragile. The October kinetic events and subsequent Red Sea crisis paralyzed the physical flow...", year: 2023.11, targetNode: "gaza_war", camPos: { x: -80, y: 0, z: 100 }, repulsion: -600 },
+    { title: "V. The Eurasian Alternative", speech: "...which immediately accelerates the viability of rival architectures like the Development Road and the BRI.", year: 2025, targetNode: "drp", camPos: { x: 0, y: 0, z: 300 }, repulsion: -300 }
+];
+
 export default function NodeDatabase() {
     const fgRef = useRef<any>(null);
     const [selectedNode, setSelectedNode] = useState<NodeData | null>(null);
@@ -167,6 +175,10 @@ export default function NodeDatabase() {
     const [timelineYear, setTimelineYear] = useState<number>(2026);
     const [searchQuery, setSearchQuery] = useState('');
     const [briefingText, setBriefingText] = useState('');
+
+    // Presentation Autopilot
+    const [currentStep, setCurrentStep] = useState<number>(-1);
+    const [isPresentationMode, setIsPresentationMode] = useState(false);
 
     // Physics Engine Controls
     const [linkDistance, setLinkDistance] = useState(80);
@@ -199,12 +211,48 @@ export default function NodeDatabase() {
         return () => cancelAnimationFrame(reqId);
     }, []);
 
+    // Autopilot Execution Engine
+    const executeStep = useCallback((stepIndex: number) => {
+        if (stepIndex < 0 || stepIndex >= PRESENTATION_STEPS.length) {
+            setIsPresentationMode(false);
+            setCurrentStep(-1);
+            return;
+        }
+
+        setIsPresentationMode(true);
+        setCurrentStep(stepIndex);
+
+        const step = PRESENTATION_STEPS[stepIndex];
+        setTimelineYear(step.year);
+        setRepulsion(step.repulsion);
+
+        const targetNode = gData.nodes.find(n => n.id === step.targetNode) || null;
+        if (targetNode) {
+            setSelectedNode(targetNode);
+            setIsPanelOpen(true);
+
+            if (fgRef.current) {
+                fgRef.current.cameraPosition(
+                    step.camPos,
+                    { x: targetNode.x || 0, y: targetNode.y || 0, z: targetNode.z || 0 },
+                    2500
+                );
+            }
+        }
+    }, [fgRef, setTimelineYear, setRepulsion, setSelectedNode, setIsPanelOpen]);
+
     // Typewriter Effect Logic
     useEffect(() => {
         if (!selectedNode) return;
-        const fullText = selectedNode.type === 'Shock' ?
-            "CRITICAL VULNERABILITY DETECTED. Network flow compromised. Immediate state-intervention required to stabilize logistical throughput." :
-            `Analyzing structural dependencies... System nominal. ${selectedNode.type === 'Digital' ? 'Cloud perimeter secure but facing AI intrusion spikes.' : 'Supply chain resilient against secondary shocks.'}`;
+
+        let fullText = "";
+        if (isPresentationMode && currentStep >= 0 && currentStep < PRESENTATION_STEPS.length) {
+            fullText = PRESENTATION_STEPS[currentStep].speech;
+        } else {
+            fullText = selectedNode.type === 'Shock' ?
+                "CRITICAL VULNERABILITY DETECTED. Network flow compromised. Immediate state-intervention required to stabilize logistical throughput." :
+                `Analyzing structural dependencies... System nominal. ${selectedNode.type === 'Digital' ? 'Cloud perimeter secure but facing AI intrusion spikes.' : 'Supply chain resilient against secondary shocks.'}`;
+        }
 
         let currentText = "";
         const interval = setInterval(() => {
@@ -223,7 +271,7 @@ export default function NodeDatabase() {
         }
 
         return () => clearInterval(interval);
-    }, [selectedNode]);
+    }, [selectedNode, isPresentationMode, currentStep]);
 
     // On hover decryption logic for ghost nodes
     const handleNodeHover = useCallback((node: NodeData | null) => {
@@ -628,6 +676,59 @@ export default function NodeDatabase() {
                     pointRadius={2}
                     pointsMerge={false}
                 />
+            </div>
+
+            {/* ── Cinematic Presentation Director ── */}
+            <div className="absolute bottom-6 left-6 z-40">
+                {!isPresentationMode ? (
+                    <button
+                        onClick={() => executeStep(0)}
+                        className="flex items-center gap-2 px-4 py-2 bg-zinc-900/40 backdrop-blur-md border border-cyan-500/30 rounded-xl text-cyan-400 font-mono text-xs tracking-widest hover:bg-cyan-900/20 hover:border-cyan-400 transition-all shadow-[0_0_15px_rgba(34,211,238,0.1)] group"
+                    >
+                        <Eye className="w-4 h-4 group-hover:scale-110 transition-transform" strokeWidth={1.2} />
+                        INITIALIZE DEFENSE SEQUENCE
+                    </button>
+                ) : (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="w-[400px] bg-zinc-900/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto"
+                    >
+                        <div className="flex justify-between items-center px-4 py-3 border-b border-white/10 bg-black/40">
+                            <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase">
+                                Phase {currentStep + 1} / {PRESENTATION_STEPS.length}
+                            </span>
+                            <button onClick={() => executeStep(-1)} className="text-zinc-500 hover:text-white transition-colors">
+                                <X className="w-4 h-4" strokeWidth={1.2} />
+                            </button>
+                        </div>
+                        <div className="p-5">
+                            <h3 className="text-lg font-bold text-white tracking-tight mb-3">
+                                {PRESENTATION_STEPS[currentStep].title}
+                            </h3>
+                            <div className="pl-3 border-l-2 border-cyan-500/50">
+                                <p className="text-sm font-mono text-zinc-300 leading-relaxed">
+                                    {PRESENTATION_STEPS[currentStep].speech}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex px-4 py-3 bg-black/40 border-t border-white/10 gap-3">
+                            <button
+                                onClick={() => executeStep(currentStep - 1)}
+                                disabled={currentStep === 0}
+                                className="flex-1 py-2 text-xs font-mono text-zinc-400 border border-white/10 rounded-lg hover:bg-white/5 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                            >
+                                [ ← BACK ]
+                            </button>
+                            <button
+                                onClick={() => executeStep(currentStep + 1)}
+                                className="flex-1 py-2 text-xs font-mono text-cyan-400 border border-cyan-500/30 rounded-lg hover:bg-cyan-500/10 hover:text-cyan-300 transition-all font-bold"
+                            >
+                                {currentStep === PRESENTATION_STEPS.length - 1 ? '[ CONCLUDE ]' : '[ NEXT → ]'}
+                            </button>
+                        </div>
+                    </motion.div>
+                )}
             </div>
 
         </div>
