@@ -161,9 +161,11 @@ export default function NodeDatabase() {
     // AI Analyst Panel
     const [isPanelOpen, setIsPanelOpen] = useState(false);
     const [timelineYear, setTimelineYear] = useState<number>(2026);
+    const [searchQuery, setSearchQuery] = useState('');
 
     // Physics Engine Controls
     const [linkDistance, setLinkDistance] = useState(80);
+    const [repulsion, setRepulsion] = useState(-400);
 
     // On hover decryption logic for ghost nodes
     const handleNodeHover = useCallback((node: NodeData | null) => {
@@ -203,7 +205,8 @@ export default function NodeDatabase() {
         const activeNodes = gData.nodes.map(n => ({
             ...n,
             decrypted: decryptedNodes.has(n.id)
-        })).filter(n => (n.commencementDate || 2020) <= timelineYear);
+        })).filter(n => (n.commencementDate || 2020) <= timelineYear)
+            .filter(n => n.label.toLowerCase().includes(searchQuery.toLowerCase()) || n.type.toLowerCase().includes(searchQuery.toLowerCase()));
 
         const nodeIds = new Set(activeNodes.map(n => n.id));
         const activeLinks = gData.links.filter(l =>
@@ -213,12 +216,13 @@ export default function NodeDatabase() {
         );
 
         return { nodes: activeNodes, links: activeLinks };
-    }, [timelineYear, decryptedNodes]);
+    }, [timelineYear, decryptedNodes, searchQuery]);
 
     useEffect(() => {
         if (fgRef.current) {
             const fg = fgRef.current;
             fg.d3Force('link').distance(linkDistance);
+            fg.d3Force('charge').strength(repulsion);
             // Lock nodes to their assigned Z planes
             fg.d3Force('z', d3.forceZ().z((d: any) => d.fz !== undefined ? d.fz : 0).strength(1));
             // 3D collision using d3-force-3d internal mappings
@@ -246,10 +250,24 @@ export default function NodeDatabase() {
                 scene.add(gridGroup);
             }
         }
-    }, [linkDistance, filteredData]);
+    }, [linkDistance, repulsion, filteredData]);
 
     return (
         <div className="absolute inset-0 z-10 w-full h-screen overflow-hidden font-sans bg-black">
+
+            {/* ── Search Bar Overlay ── */}
+            <div className="absolute top-24 left-6 z-20 pointer-events-auto">
+                <div className="flex items-center gap-3 px-4 py-2.5 bg-zinc-900/40 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl transition-all group hover:bg-zinc-900/60 focus-within:bg-zinc-900/60 focus-within:border-white/20">
+                    <Search className="w-4 h-4 text-zinc-400 group-hover:text-cyan-400 transition-colors" strokeWidth={1.2} />
+                    <input
+                        type="text"
+                        placeholder="Search node telemetry..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="bg-transparent border-none outline-none text-sm text-zinc-200 placeholder:text-zinc-600 w-56 font-mono tracking-tight"
+                    />
+                </div>
+            </div>
 
             {/* ── 3D Force Graph ── */}
             <div className="absolute inset-0 cursor-crosshair">
@@ -357,7 +375,7 @@ export default function NodeDatabase() {
                 <div className="backdrop-blur-xl bg-zinc-900/60 border border-white/5 rounded-2xl p-6 shadow-2xl flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-4">
                         <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest flex items-center gap-2">
-                            <Clock className="w-3.5 h-3.5" /> Temporal Intelligence
+                            <Clock className="w-3.5 h-3.5" strokeWidth={1.2} /> Temporal Intelligence
                         </span>
                         <span className={`font-mono text-sm font-bold ${timelineYear >= 2023.10 ? 'text-red-500' : 'text-zinc-200'}`}>
                             {timelineYear < 2023.10 ? Math.floor(timelineYear) : (timelineYear === 2023.10 ? 'OCT 2023: GAZA SHOCK' : '2024-2026: ESCALATION')}
@@ -379,6 +397,21 @@ export default function NodeDatabase() {
                         <span>2024</span>
                         <span>2026</span>
                     </div>
+
+                    <div className="w-full flex items-center gap-4 mt-6 pt-4 border-t border-white/5 disabled:opacity-50">
+                        <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest flex items-center gap-1 w-24">
+                            <SlidersHorizontal className="w-3 h-3" strokeWidth={1.2} /> Repulsion
+                        </span>
+                        <input
+                            type="range"
+                            min="-1000"
+                            max="-50"
+                            step="10"
+                            value={repulsion}
+                            onChange={(e) => setRepulsion(parseFloat(e.target.value))}
+                            className="flex-1 appearance-none bg-zinc-800 h-1 rounded-full outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-zinc-400 [&::-webkit-slider-thumb]:rounded-full cursor-pointer hover:[&::-webkit-slider-thumb]:bg-white transition-all"
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -393,11 +426,11 @@ export default function NodeDatabase() {
                     >
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 flex items-center gap-2">
-                                    <Activity className="w-4 h-4 text-purple-400" /> AI-DSS Report
+                                <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 flex items-center gap-2 chromatic-text cursor-default">
+                                    <Activity className="w-4 h-4 text-purple-400" strokeWidth={1.2} /> AI-DSS Report
                                 </h3>
                                 <button onClick={() => setIsPanelOpen(false)} className="text-zinc-500 hover:text-white transition-colors">
-                                    <X className="w-4 h-4" />
+                                    <X className="w-4 h-4" strokeWidth={1.2} />
                                 </button>
                             </div>
 
