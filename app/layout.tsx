@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import './globals.css';
 import { DefenseProvider } from '@/components/DefenseContext';
+import CRTOverlay from '@/components/CRTOverlay';
 
 const PersistentGlobe = dynamic(() => import('@/components/GlobeView'), {
     ssr: false,
@@ -41,11 +42,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     {/* ── Navigation Bar ── */}
                     <header className="fixed top-0 inset-x-0 z-50 bg-black/90 backdrop-blur-lg border-b border-zinc-800/40">
                         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-                            <Link href="/" className="flex items-center gap-2.5 group">
-                                <div className="w-1.5 h-1.5 rounded-full bg-zinc-500" />
-                                <span className="text-[13px] font-semibold text-zinc-200 tracking-tight group-hover:text-zinc-100 transition-colors duration-300">
-                                    India Middle East Europe Economic Corridor Research Platform
-                                </span>
+                            <Link href="/" className="flex flex-col group py-2">
+                                <div className="flex items-center gap-2.5">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                                    <span className="text-[13px] font-semibold text-zinc-200 tracking-tight group-hover:text-white transition-colors duration-300 chromatic-text">
+                                        India Middle East Europe Economic Corridor Research Platform
+                                    </span>
+                                </div>
+                                <div className="pl-4 mt-0.5">
+                                    <span className="text-[9px] font-mono text-cyan-400 tracking-widest uppercase opacity-80">
+                                        TRACE: / {pathname === '/' ? 'DATA_NEXUS/Z-STACK' : pathname === '/maps' ? 'GEOSPATIAL/CORRIDORS' : pathname === '/dossier' ? 'INVESTIGATOR/DOSSIER' : 'DATABASE/REFERENCES'}
+                                    </span>
+                                </div>
                             </Link>
 
                             <nav className="flex items-center gap-1" aria-label="Primary navigation">
@@ -58,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </header>
 
                     {/* ── Page Content ── */}
+                    <CRTOverlay />
                     <main className={`relative z-10 min-h-screen pt-20 pb-16 ${isMapPage ? 'pointer-events-none' : ''}`}>
                         <div className={`max-w-7xl mx-auto px-6 ${isMapPage ? 'pointer-events-none' : ''}`}>
                             {children}

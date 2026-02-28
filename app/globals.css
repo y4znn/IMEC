@@ -160,3 +160,29 @@ input[type='range']::-moz-range-thumb {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* ── Holographic / CRT Additions ── */
+@keyframes scanline {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(4px);
+    }
+}
+
+.animate-scanline {
+    animation: scanline 0.5s linear infinite;
+}
+
+.chromatic-text {
+    position: relative;
+    transition: all 0.2s ease-out;
+}
+
+.chromatic-text:hover {
+    text-shadow: 2px 0px rgba(255, 0, 0, 0.8), -2px 0px rgba(0, 0, 255, 0.8);
+    color: #ffffff;
+    filter: blur(0.5px);
+}
