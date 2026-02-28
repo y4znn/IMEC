@@ -222,8 +222,29 @@ export default function NodeDatabase() {
             // Lock nodes to their assigned Z planes
             fg.d3Force('z', d3.forceZ().z((d: any) => d.fz !== undefined ? d.fz : 0).strength(1));
             // 3D collision using d3-force-3d internal mappings
-            fg.d3Force('collide', d3.forceCollide().radius((node: any) => Math.sqrt(node.val || 1) * 3 + 4));
+            fg.d3Force('collide', d3.forceCollide().radius((node: any) => Math.sqrt(node.val || 1) * 3 + 6 + (node.val > 4 ? 15 : 0)));
             fg.d3ReheatSimulation();
+
+            // Add Environmental Z-Stack Grids
+            const scene = fg.scene();
+            if (scene && !scene.getObjectByName('z-stack-grids')) {
+                const gridGroup = new THREE.Group();
+                gridGroup.name = 'z-stack-grids';
+
+                const createGrid = (z: number) => {
+                    const grid = new THREE.GridHelper(600, 40, 0xffffff, 0xffffff);
+                    grid.position.z = z;
+                    grid.rotation.x = Math.PI / 2; // Orient grid to XY horizontal plane
+                    (grid.material as THREE.Material).opacity = 0.05;
+                    (grid.material as THREE.Material).transparent = true;
+                    return grid;
+                };
+
+                gridGroup.add(createGrid(50));
+                gridGroup.add(createGrid(0));
+                gridGroup.add(createGrid(-50));
+                scene.add(gridGroup);
+            }
         }
     }, [linkDistance, filteredData]);
 
@@ -251,16 +272,32 @@ export default function NodeDatabase() {
                         // Sphere Core
                         const r = Math.sqrt(node.val) * 2;
                         const geometry = new THREE.SphereGeometry(r, 16, 16);
-                        const material = new THREE.MeshLambertMaterial({
+                        const material = new THREE.MeshStandardMaterial({
                             color: node.color,
                             transparent: true,
-                            opacity: isGhost ? 0.2 : (isHovered ? 1.0 : 0.8),
+                            opacity: isGhost ? 0.15 : (isHovered ? 1.0 : 0.8),
                             emissive: node.color,
-                            emissiveIntensity: isGhost ? 0.1 : 0.6,
+                            emissiveIntensity: isHovered ? 2.5 : 1.2,
                             wireframe: isGhost // Gives it a skeletal look
                         });
                         const sphere = new THREE.Mesh(geometry, material);
                         group.add(sphere);
+
+                        // Rotating Ring for Parent Nodes (val >= 5)
+                        if (node.val >= 5 && !isGhost) {
+                            const torusGeo = new THREE.TorusGeometry(r + 1.5, 0.2, 16, 32);
+                            const torusMat = new THREE.MeshStandardMaterial({
+                                color: node.color,
+                                transparent: true,
+                                opacity: 0.5,
+                                emissive: node.color,
+                                emissiveIntensity: 2.0
+                            });
+                            const torus = new THREE.Mesh(torusGeo, torusMat);
+                            // Set static rotation angles or optionally animate via ref
+                            torus.rotation.x = Math.PI / 2;
+                            group.add(torus);
+                        }
 
                         // Text Label (Always faces camera)
                         if (!isGhost || isHovered) {
@@ -276,20 +313,40 @@ export default function NodeDatabase() {
                     }}
 
                     // Custom Link Drawing
-                    linkDirectionalParticles={(l: any) => (l.commencementDate && l.commencementDate === timelineYear) ? 4 : 1}
+                    linkCurvature={0.2}
+                    linkCurveRotation={0.5}
+                    linkDirectionalParticles={(l: any) => {
+                        const sourceZ = typeof l.source === 'object' ? (l.source.fz || 0) : 0;
+                        const targetZ = typeof l.target === 'object' ? (l.target.fz || 0) : 0;
+                        const sourceType = typeof l.source === 'object' ? l.source.type : '';
+                        const targetType = typeof l.target === 'object' ? l.target.type : '';
+
+                        if (sourceType === 'Shock' || targetType === 'Shock') return 6;
+                        if (sourceZ !== targetZ) return 4;
+                        return (l.commencementDate && l.commencementDate === timelineYear) ? 4 : 1;
+                    }}
                     linkDirectionalParticleWidth={1.5}
+                    linkDirectionalParticleColor={(l: any) => {
+                        const sourceType = typeof l.source === 'object' ? l.source.type : '';
+                        const targetType = typeof l.target === 'object' ? l.target.type : '';
+                        if (sourceType === 'Shock' || targetType === 'Shock') return 'rgba(239, 68, 68, 0.8)';
+                        return 'rgba(255, 255, 255, 0.8)';
+                    }}
                     linkWidth={(l: any) => {
-                        const sourceZ = (l.source as any).fz || 0;
-                        const targetZ = (l.target as any).fz || 0;
+                        const sourceZ = typeof l.source === 'object' ? (l.source.fz || 0) : 0;
+                        const targetZ = typeof l.target === 'object' ? (l.target.fz || 0) : 0;
                         return sourceZ !== targetZ ? 1.5 : 0.5; // Thicker vertical links
                     }}
                     linkColor={(l: any) => {
-                        const sourceZ = (l.source as any).fz || 0;
-                        const targetZ = (l.target as any).fz || 0;
+                        const sourceZ = typeof l.source === 'object' ? (l.source.fz || 0) : 0;
+                        const targetZ = typeof l.target === 'object' ? (l.target.fz || 0) : 0;
+                        const sourceType = typeof l.source === 'object' ? l.source.type : '';
+                        const targetType = typeof l.target === 'object' ? l.target.type : '';
+
                         // Glowing white for vertical cross-layer dependencies
                         if (sourceZ !== targetZ) return 'rgba(255, 255, 255, 0.4)';
                         // Red indicator for shock links
-                        if ((l.source as any).type === 'Shock' || (l.target as any).type === 'Shock') return 'rgba(239, 68, 68, 0.5)';
+                        if (sourceType === 'Shock' || targetType === 'Shock') return 'rgba(239, 68, 68, 0.5)';
                         return 'rgba(255, 255, 255, 0.15)';
                     }}
                 />
@@ -332,7 +389,7 @@ export default function NodeDatabase() {
                         initial={{ x: 400, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: 400, opacity: 0 }}
-                        className="absolute top-24 right-6 w-96 max-h-[80vh] overflow-y-auto custom-scrollbar z-30 bg-zinc-900/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl pointer-events-auto"
+                        className="absolute top-24 right-6 w-96 max-h-[80vh] overflow-y-auto custom-scrollbar z-30 bg-zinc-900/60 backdrop-blur-[20px] border border-white/10 rounded-2xl shadow-2xl pointer-events-auto"
                     >
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-6">
@@ -366,6 +423,26 @@ export default function NodeDatabase() {
                                             ) : (
                                                 <span>Analyzing structural dependencies... System nominal. {selectedNode.type === 'Digital' ? 'Cloud perimeter secure but facing AI intrusion spikes.' : 'Supply chain resilient against secondary shocks.'}</span>
                                             )}
+                                        </div>
+                                    </div>
+
+                                    <div className="pt-4 mt-2">
+                                        <h4 className="text-[10px] font-mono text-zinc-500 mb-3 uppercase">Forensic Metadata</h4>
+                                        <div className="grid grid-cols-3 gap-2">
+                                            <div className="bg-black/40 rounded p-2 border border-white/5">
+                                                <div className="text-[9px] text-zinc-500 font-mono mb-1">Z-PLANE</div>
+                                                <div className="text-xs text-white font-mono">{selectedNode.fz === 50 ? 'DIGITAL' : selectedNode.fz === -50 ? 'PHYSICAL' : 'ACTOR'}</div>
+                                            </div>
+                                            <div className="bg-black/40 rounded p-2 border border-white/5">
+                                                <div className="text-[9px] text-zinc-500 font-mono mb-1">RISK INDEX</div>
+                                                <div className={`text-xs font-mono ${selectedNode.type === 'Shock' ? 'text-red-400' : 'text-emerald-400'}`}>
+                                                    {selectedNode.type === 'Shock' ? 'HIGH' : 'LOW'}
+                                                </div>
+                                            </div>
+                                            <div className="bg-black/40 rounded p-2 border border-white/5">
+                                                <div className="text-[9px] text-zinc-500 font-mono mb-1">COMMENCE</div>
+                                                <div className="text-xs text-white font-mono">{selectedNode.commencementDate || 'N/A'}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
