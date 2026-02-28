@@ -10,8 +10,10 @@ import { Search, X, Filter, Anchor, Network, AlertTriangle, Lightbulb, Hexagon, 
 import * as d3 from 'd3-force-3d';
 import * as THREE from 'three';
 import SpriteText from 'three-spritetext';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
 const ForceGraph3D = dynamic(() => import('react-force-graph-3d'), { ssr: false });
+const MiniGlobe = dynamic(() => import('react-globe.gl'), { ssr: false });
 
 /* ══════════════════════════════════════════════════════════
    DATASET (Hardcoded IMEC + AI War Cloud Intelligence Data)
@@ -32,6 +34,8 @@ interface NodeData {
     x?: number;
     y?: number;
     z?: number;
+    lat?: number;
+    lng?: number;
     desc: string;
 }
 
@@ -45,63 +49,63 @@ interface LinkData {
 const gData: { nodes: NodeData[]; links: LinkData[] } = {
     nodes: [
         // CATEGORY: GEOPOLITICAL ACTORS & FRAMEWORKS (Middle Layer: z=0)
-        { id: "usa", type: "Actor", val: 6, color: "#e4e4e7", fz: 0, commencementDate: 2020, label: "United States", desc: "Strategic backer of IMEC via PGII to counter China's BRI." },
-        { id: "india", type: "Actor", val: 6, color: "#e4e4e7", fz: 0, commencementDate: 2020, label: "India", desc: "Anchor economy leveraging IMEC to bypass Pakistan." },
-        { id: "eu", type: "Actor", val: 5, color: "#e4e4e7", fz: 0, commencementDate: 2021, label: "European Union", desc: "Aligning IMEC with its €300 Billion Global Gateway fund." },
-        { id: "ksa", type: "Actor", val: 5, color: "#e4e4e7", fz: 0, commencementDate: 2020, label: "Saudi Arabia", desc: "Crucial land bridge connecting the Gulf to the Levant." },
-        { id: "uae", type: "Actor", val: 5, color: "#e4e4e7", fz: 0, commencementDate: 2020, label: "UAE", desc: "Pioneering the logistics network and funding Jordanian rails." },
-        { id: "israel", type: "Actor", val: 4, color: "#e4e4e7", fz: 0, commencementDate: 2020, label: "Israel", desc: "The Mediterranean anchor point; provides overland redundancy." },
-        { id: "china", type: "Actor", val: 6, color: "#e4e4e7", fz: 0, commencementDate: 2020, label: "China", desc: "Architect of the $8 Trillion BRI. Views IMEC as containment." },
+        { id: "usa", type: "Actor", val: 6, color: "#e4e4e7", fz: 0, commencementDate: 2020, lat: 38.907, lng: -77.036, label: "United States", desc: "Strategic backer of IMEC via PGII to counter China's BRI." },
+        { id: "india", type: "Actor", val: 6, color: "#e4e4e7", fz: 0, commencementDate: 2020, lat: 28.613, lng: 77.209, label: "India", desc: "Anchor economy leveraging IMEC to bypass Pakistan." },
+        { id: "eu", type: "Actor", val: 5, color: "#e4e4e7", fz: 0, commencementDate: 2021, lat: 50.850, lng: 4.351, label: "European Union", desc: "Aligning IMEC with its €300 Billion Global Gateway fund." },
+        { id: "ksa", type: "Actor", val: 5, color: "#e4e4e7", fz: 0, commencementDate: 2020, lat: 23.885, lng: 45.079, label: "Saudi Arabia", desc: "Crucial land bridge connecting the Gulf to the Levant." },
+        { id: "uae", type: "Actor", val: 5, color: "#e4e4e7", fz: 0, commencementDate: 2020, lat: 23.424, lng: 53.847, label: "UAE", desc: "Pioneering the logistics network and funding Jordanian rails." },
+        { id: "israel", type: "Actor", val: 4, color: "#e4e4e7", fz: 0, commencementDate: 2020, lat: 31.046, lng: 34.851, label: "Israel", desc: "The Mediterranean anchor point; provides overland redundancy." },
+        { id: "china", type: "Actor", val: 6, color: "#e4e4e7", fz: 0, commencementDate: 2020, lat: 35.861, lng: 104.195, label: "China", desc: "Architect of the $8 Trillion BRI. Views IMEC as containment." },
 
-        { id: "abraham_accords", type: "Framework", val: 4, color: "#e4e4e7", fz: 0, commencementDate: 2020, label: "Abraham Accords", desc: "Geopolitical normalization underpinning the overland routes." },
-        { id: "pgii", type: "Framework", val: 3, color: "#e4e4e7", fz: 0, commencementDate: 2022, label: "G7 PGII", desc: "Partnership for Global Infrastructure and Investment." },
-        { id: "global_gateway", type: "Framework", val: 3, color: "#e4e4e7", fz: 0, commencementDate: 2021, label: "EU Global Gateway", desc: "EU strategy to mobilize investments." },
-        { id: "i2u2", type: "Framework", val: 3, color: "#e4e4e7", fz: 0, commencementDate: 2021, label: "I2U2 Group", desc: "India, Israel, UAE, and US partnership." },
-        { id: "imec_announce", type: "Framework", val: 5, color: "#38bdf8", fz: 0, commencementDate: 2023.09, label: "IMEC Declaration", desc: "Formal announcement at G20 New Delhi." },
+        { id: "abraham_accords", type: "Framework", val: 4, color: "#e4e4e7", fz: 0, commencementDate: 2020, lat: 38.897, lng: -77.036, label: "Abraham Accords", desc: "Geopolitical normalization underpinning the overland routes." },
+        { id: "pgii", type: "Framework", val: 3, color: "#e4e4e7", fz: 0, commencementDate: 2022, lat: 47.450, lng: 11.002, label: "G7 PGII", desc: "Partnership for Global Infrastructure and Investment." },
+        { id: "global_gateway", type: "Framework", val: 3, color: "#e4e4e7", fz: 0, commencementDate: 2021, lat: 50.850, lng: 4.351, label: "EU Global Gateway", desc: "EU strategy to mobilize investments." },
+        { id: "i2u2", type: "Framework", val: 3, color: "#e4e4e7", fz: 0, commencementDate: 2021, lat: 31.768, lng: 35.213, label: "I2U2 Group", desc: "India, Israel, UAE, and US partnership." },
+        { id: "imec_announce", type: "Framework", val: 5, color: "#38bdf8", fz: 0, commencementDate: 2023.09, lat: 28.613, lng: 77.209, label: "IMEC Declaration", desc: "Formal announcement at G20 New Delhi." },
 
         // -- AI WAR CLOUD INTEGRATIONS (Actors & Frameworks) --
-        { id: "palantir", type: "Actor", val: 5, color: "#e4e4e7", fz: 0, commencementDate: 2021, label: "Palantir Foundry", desc: "Military/intelligence data integration platform." },
-        { id: "scaleai", type: "Actor", val: 4, color: "#e4e4e7", fz: 0, commencementDate: 2022, label: "ScaleAI", desc: "Data labeling for autonomous defense systems." },
-        { id: "elbit", type: "Actor", val: 4, color: "#e4e4e7", fz: 0, commencementDate: 2020, label: "Elbit Systems", desc: "Defense contractor providing physical security infrastructure." },
-        { id: "ai_dss", type: "Framework", val: 4, color: "#a855f7", fz: 0, commencementDate: 2023, label: "AI-DSS Protocol", desc: "Automated Decision Support Systems integrating global sensor nodes." },
+        { id: "palantir", type: "Actor", val: 5, color: "#e4e4e7", fz: 0, commencementDate: 2021, lat: 39.739, lng: -104.990, label: "Palantir Foundry", desc: "Military/intelligence data integration platform." },
+        { id: "scaleai", type: "Actor", val: 4, color: "#e4e4e7", fz: 0, commencementDate: 2022, lat: 37.774, lng: -122.419, label: "ScaleAI", desc: "Data labeling for autonomous defense systems." },
+        { id: "elbit", type: "Actor", val: 4, color: "#e4e4e7", fz: 0, commencementDate: 2020, lat: 32.794, lng: 34.989, label: "Elbit Systems", desc: "Defense contractor providing physical security infrastructure." },
+        { id: "ai_dss", type: "Framework", val: 4, color: "#a855f7", fz: 0, commencementDate: 2023, lat: 31.046, lng: 34.851, label: "AI-DSS Protocol", desc: "Automated Decision Support Systems integrating global sensor nodes." },
 
         // CATEGORY: TRANSPORTATION PILLAR - PORTS & RAIL (Bottom Layer: z=-50)
-        { id: "vadhavan", type: "Logistics", val: 4, color: "#3b82f6", fz: -50, commencementDate: 2024, label: "Vadhavan Port", desc: "Upcoming $9B Indian mega-port." },
-        { id: "jebel_ali", type: "Logistics", val: 4, color: "#3b82f6", fz: -50, commencementDate: 2020, label: "Jebel Ali Port", desc: "The largest port in the Middle East." },
-        { id: "al_ghuwaifat", type: "Logistics", val: 2, color: "#3b82f6", fz: -50, commencementDate: 2021, label: "Al-Ghuwaifat Link", desc: "Crucial UAE-Saudi Arabia rail border crossing." },
-        { id: "al_haditha", type: "Logistics", val: 2, color: "#3b82f6", fz: -50, commencementDate: 2021, label: "Al-Haditha Hub", desc: "Key Saudi-Jordanian border transshipment." },
-        { id: "mafraq", type: "Logistics", val: 3, color: "#3b82f6", fz: -50, commencementDate: 2023, label: "Mafraq (JOR)", desc: "Jordanian logistical hub." },
-        { id: "beit_shean", type: "Logistics", val: 3, color: "#3b82f6", fz: -50, commencementDate: 2023, label: "Beit She'an (ISR)", desc: "Vital rail junction connecting Jordan to Israel." },
-        { id: "haifa", type: "Logistics", val: 5, color: "#3b82f6", fz: -50, commencementDate: 2020, label: "Haifa Port", desc: "Critical Mediterranean gateway, acquired by Adani." },
-        { id: "piraeus", type: "Logistics", val: 4, color: "#3b82f6", fz: -50, commencementDate: 2020, label: "Piraeus Port", desc: "Major European entry point, controlled by COSCO." },
-        { id: "marseille", type: "Logistics", val: 3, color: "#3b82f6", fz: -50, commencementDate: 2020, label: "Port of Marseille", desc: "Key European terminus for shipping and cables." },
+        { id: "vadhavan", type: "Logistics", val: 4, color: "#3b82f6", fz: -50, commencementDate: 2024, lat: 19.798, lng: 72.716, label: "Vadhavan Port", desc: "Upcoming $9B Indian mega-port." },
+        { id: "jebel_ali", type: "Logistics", val: 4, color: "#3b82f6", fz: -50, commencementDate: 2020, lat: 24.985, lng: 55.061, label: "Jebel Ali Port", desc: "The largest port in the Middle East." },
+        { id: "al_ghuwaifat", type: "Logistics", val: 2, color: "#3b82f6", fz: -50, commencementDate: 2021, lat: 24.120, lng: 51.587, label: "Al-Ghuwaifat Link", desc: "Crucial UAE-Saudi Arabia rail border crossing." },
+        { id: "al_haditha", type: "Logistics", val: 2, color: "#3b82f6", fz: -50, commencementDate: 2021, lat: 31.021, lng: 37.151, label: "Al-Haditha Hub", desc: "Key Saudi-Jordanian border transshipment." },
+        { id: "mafraq", type: "Logistics", val: 3, color: "#3b82f6", fz: -50, commencementDate: 2023, lat: 32.342, lng: 36.208, label: "Mafraq (JOR)", desc: "Jordanian logistical hub." },
+        { id: "beit_shean", type: "Logistics", val: 3, color: "#3b82f6", fz: -50, commencementDate: 2023, lat: 32.500, lng: 35.498, label: "Beit She'an (ISR)", desc: "Vital rail junction connecting Jordan to Israel." },
+        { id: "haifa", type: "Logistics", val: 5, color: "#3b82f6", fz: -50, commencementDate: 2020, lat: 32.819, lng: 34.998, label: "Haifa Port", desc: "Critical Mediterranean gateway, acquired by Adani." },
+        { id: "piraeus", type: "Logistics", val: 4, color: "#3b82f6", fz: -50, commencementDate: 2020, lat: 37.942, lng: 23.646, label: "Piraeus Port", desc: "Major European entry point, controlled by COSCO." },
+        { id: "marseille", type: "Logistics", val: 3, color: "#3b82f6", fz: -50, commencementDate: 2020, lat: 43.300, lng: 5.369, label: "Port of Marseille", desc: "Key European terminus for shipping and cables." },
 
         // Ghost Nodes
-        { id: "ben_gurion_canal", type: "Logistics", val: 4, color: "#3b82f6", fz: -50, commencementDate: 2025, ghost: true, label: "Ben Gurion Canal [SPECULATIVE]", desc: "Theoretical Israeli alternative to the Suez Canal." },
+        { id: "ben_gurion_canal", type: "Logistics", val: 4, color: "#3b82f6", fz: -50, commencementDate: 2025, ghost: true, lat: 29.563, lng: 34.951, label: "Ben Gurion Canal [SPECULATIVE]", desc: "Theoretical Israeli alternative to the Suez Canal." },
 
         // CATEGORY: DIGITAL PILLAR - DATA SOVEREIGNTY (Top Layer: z=50)
-        { id: "blue_raman", type: "Digital", val: 5, color: "#a855f7", fz: 50, commencementDate: 2023, label: "Blue-Raman Cable", desc: "218 Tbps Google subsea fiber bypassing Egypt." },
-        { id: "teas", type: "Digital", val: 4, color: "#a855f7", fz: 50, commencementDate: 2023, label: "TEAS Network", desc: "Trans Europe Asia System linking Mumbai to Marseille." },
-        { id: "data_centers", type: "Digital", val: 4, color: "#a855f7", fz: 50, commencementDate: 2024, label: "Gulf AI Data Centers", desc: "High-compute nodes in UAE/KSA drawing on IMEC." },
+        { id: "blue_raman", type: "Digital", val: 5, color: "#a855f7", fz: 50, commencementDate: 2023, lat: 20.0, lng: 60.0, label: "Blue-Raman Cable", desc: "218 Tbps Google subsea fiber bypassing Egypt." },
+        { id: "teas", type: "Digital", val: 4, color: "#a855f7", fz: 50, commencementDate: 2023, lat: 25.0, lng: 55.0, label: "TEAS Network", desc: "Trans Europe Asia System linking Mumbai to Marseille." },
+        { id: "data_centers", type: "Digital", val: 4, color: "#a855f7", fz: 50, commencementDate: 2024, lat: 24.0, lng: 45.0, label: "Gulf AI Data Centers", desc: "High-compute nodes in UAE/KSA drawing on IMEC." },
 
         // -- AI WAR CLOUD INTEGRATIONS (Digital) --
-        { id: "project_nimbus", type: "Digital", val: 5, color: "#a855f7", fz: 50, commencementDate: 2021, label: "Project Nimbus", desc: "$1.2B cloud computing project by Google/Amazon." },
-        { id: "lavender", type: "Digital", val: 4, color: "#a855f7", fz: 50, commencementDate: 2023.10, label: "Lavender AI", desc: "Automated targeting system deployed in asymmetric conflict." },
-        { id: "peace_cable", type: "Digital", val: 4, color: "#a855f7", fz: 50, commencementDate: 2024, ghost: true, label: "PEACE Cable [CLASSIFIED]", desc: "Chinese-backed digital backbone penetrating the Mediterranean." },
+        { id: "project_nimbus", type: "Digital", val: 5, color: "#a855f7", fz: 50, commencementDate: 2021, lat: 31.046, lng: 34.851, label: "Project Nimbus", desc: "$1.2B cloud computing project by Google/Amazon." },
+        { id: "lavender", type: "Digital", val: 4, color: "#a855f7", fz: 50, commencementDate: 2023.10, lat: 31.500, lng: 34.466, label: "Lavender AI", desc: "Automated targeting system deployed in asymmetric conflict." },
+        { id: "peace_cable", type: "Digital", val: 4, color: "#a855f7", fz: 50, commencementDate: 2024, ghost: true, lat: 30.0, lng: 32.0, label: "PEACE Cable [CLASSIFIED]", desc: "Chinese-backed digital backbone penetrating the Mediterranean." },
 
         // CATEGORY: ENERGY PILLAR (Middle Layer: z=0)
-        { id: "neom_h2", type: "Energy", val: 4, color: "#10b981", fz: 0, commencementDate: 2022, label: "NEOM Green Hydrogen", desc: "$8.4B Saudi project aimed at exporting green ammonia." },
-        { id: "hvdc_interconnector", type: "Energy", val: 4, color: "#10b981", fz: 0, commencementDate: 2024, label: "UAE-India HVDC", desc: "Proposed High-Voltage Direct Current subsea cable." },
+        { id: "neom_h2", type: "Energy", val: 4, color: "#10b981", fz: 0, commencementDate: 2022, lat: 28.083, lng: 35.150, label: "NEOM Green Hydrogen", desc: "$8.4B Saudi project aimed at exporting green ammonia." },
+        { id: "hvdc_interconnector", type: "Energy", val: 4, color: "#10b981", fz: 0, commencementDate: 2024, lat: 25.0, lng: 60.0, label: "UAE-India HVDC", desc: "Proposed High-Voltage Direct Current subsea cable." },
 
         // CATEGORY: THREATS, SHOCKS & CHOKEPOINTS (Float dynamically relative to impact)
-        { id: "gaza_war", type: "Shock", val: 6, color: "#ef4444", fz: 0, commencementDate: 2023.10, label: "Gaza War", desc: "Systemic shock stalling normalization." },
-        { id: "red_sea", type: "Shock", val: 5, color: "#ef4444", fz: -50, commencementDate: 2023.11, label: "Red Sea Crisis", desc: "Houthi attacks paralyzing Suez shipping." },
-        { id: "suez_chokepoint", type: "Shock", val: 4, color: "#ef4444", fz: -50, commencementDate: 2020, label: "Suez Vulnerability", desc: "Historical maritime bottleneck." },
-        { id: "automated_targeting", type: "Shock", val: 4, color: "#ef4444", fz: 50, commencementDate: 2024, label: "AI Target Bleed", desc: "Algorithms executing lethal targeting without human loops." },
+        { id: "gaza_war", type: "Shock", val: 6, color: "#ef4444", fz: 0, commencementDate: 2023.10, lat: 31.500, lng: 34.466, label: "Gaza War", desc: "Systemic shock stalling normalization." },
+        { id: "red_sea", type: "Shock", val: 5, color: "#ef4444", fz: -50, commencementDate: 2023.11, lat: 16.500, lng: 41.000, label: "Red Sea Crisis", desc: "Houthi attacks paralyzing Suez shipping." },
+        { id: "suez_chokepoint", type: "Shock", val: 4, color: "#ef4444", fz: -50, commencementDate: 2020, lat: 30.585, lng: 32.265, label: "Suez Vulnerability", desc: "Historical maritime bottleneck." },
+        { id: "automated_targeting", type: "Shock", val: 4, color: "#ef4444", fz: 50, commencementDate: 2024, lat: 32.0, lng: 35.0, label: "AI Target Bleed", desc: "Algorithms executing lethal targeting without human loops." },
 
         // CATEGORY: RIVAL ARCHITECTURES
-        { id: "bri", type: "Rival", val: 5, color: "#f59e0b", fz: 0, commencementDate: 2020, label: "Belt & Road Initiative", desc: "China's global infrastructure project." },
-        { id: "drp", type: "Rival", val: 4, color: "#f59e0b", fz: -50, commencementDate: 2023, label: "Development Road", desc: "$17 Billion Iraq-Turkey rail bypass." },
+        { id: "bri", type: "Rival", val: 5, color: "#f59e0b", fz: 0, commencementDate: 2020, lat: 35.861, lng: 104.195, label: "Belt & Road Initiative", desc: "China's global infrastructure project." },
+        { id: "drp", type: "Rival", val: 4, color: "#f59e0b", fz: -50, commencementDate: 2023, lat: 33.315, lng: 44.361, label: "Development Road", desc: "$17 Billion Iraq-Turkey rail bypass." },
     ],
     links: [
         // Foundations
@@ -162,10 +166,64 @@ export default function NodeDatabase() {
     const [isPanelOpen, setIsPanelOpen] = useState(false);
     const [timelineYear, setTimelineYear] = useState<number>(2026);
     const [searchQuery, setSearchQuery] = useState('');
+    const [briefingText, setBriefingText] = useState('');
 
     // Physics Engine Controls
     const [linkDistance, setLinkDistance] = useState(80);
     const [repulsion, setRepulsion] = useState(-400);
+
+    // Forensic Upgrades States & Refs
+    const materialsToAnimate = useRef<THREE.MeshStandardMaterial[]>([]);
+    const miniGlobeRef = useRef<any>(null);
+    const [countries, setCountries] = useState({ features: [] });
+
+    useEffect(() => {
+        fetch('https://raw.githubusercontent.com/vasturiano/react-globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson')
+            .then(res => res.json())
+            .then(setCountries)
+            .catch(e => console.error("Globemap fetch error", e));
+    }, []);
+
+    // Pulsing Material Engine
+    useEffect(() => {
+        let reqId: number;
+        const animate = () => {
+            const time = Date.now() * 0.001;
+            const pulse = Math.sin(time * 2) * 0.35 + 1.15; // Oscillates 0.8 to 1.5
+            materialsToAnimate.current.forEach(mat => {
+                if (mat) mat.emissiveIntensity = (mat.userData.baseEmissive || 1.2) * (pulse / 1.15);
+            });
+            reqId = requestAnimationFrame(animate);
+        };
+        animate();
+        return () => cancelAnimationFrame(reqId);
+    }, []);
+
+    // Typewriter Effect Logic
+    useEffect(() => {
+        if (!selectedNode) return;
+        const fullText = selectedNode.type === 'Shock' ?
+            "CRITICAL VULNERABILITY DETECTED. Network flow compromised. Immediate state-intervention required to stabilize logistical throughput." :
+            `Analyzing structural dependencies... System nominal. ${selectedNode.type === 'Digital' ? 'Cloud perimeter secure but facing AI intrusion spikes.' : 'Supply chain resilient against secondary shocks.'}`;
+
+        let currentText = "";
+        const interval = setInterval(() => {
+            if (currentText.length === 0) setBriefingText(""); // Clear on first tick implicitly if needed
+            if (currentText.length < fullText.length) {
+                currentText = fullText.substring(0, currentText.length + 1);
+                setBriefingText(currentText);
+            } else {
+                clearInterval(interval);
+            }
+        }, 15);
+
+        // Orient MiniGlobe natively
+        if (miniGlobeRef.current && selectedNode.lat !== undefined) {
+            miniGlobeRef.current.pointOfView({ lat: selectedNode.lat, lng: selectedNode.lng, altitude: 2 }, 1500);
+        }
+
+        return () => clearInterval(interval);
+    }, [selectedNode]);
 
     // On hover decryption logic for ghost nodes
     const handleNodeHover = useCallback((node: NodeData | null) => {
@@ -188,14 +246,18 @@ export default function NodeDatabase() {
         setSelectedNode(node);
         setIsPanelOpen(true);
 
-        // Center camera smoothly in 3D
+        // Center camera smoothly in 3D using a cinematic 45 degree offset fly-by
         if (fgRef.current) {
             const distance = 150;
-            const distRatio = 1 + distance / Math.hypot(node.x || 0, node.y || 0, node.z || 0);
+            const theta = Math.PI / 4;
+            const cx = (node.x || 0) + distance * Math.cos(theta);
+            const cz = (node.z || 0) + distance * Math.sin(theta);
+            const cy = (node.y || 0) + distance * 0.3; // Slight elevation
+
             fgRef.current.cameraPosition(
-                { x: (node.x || 0) * distRatio, y: (node.y || 0) * distRatio, z: (node.z || 0) * distRatio + 100 },
-                node,
-                1500
+                { x: cx, y: cy, z: cz },
+                { x: node.x || 0, y: node.y || 0, z: node.z || 0 },
+                2000
             );
         }
     }, [decryptedNodes, fgRef]);
@@ -217,6 +279,16 @@ export default function NodeDatabase() {
 
         return { nodes: activeNodes, links: activeLinks };
     }, [timelineYear, decryptedNodes, searchQuery]);
+
+    const isStressed = useMemo(() => {
+        return filteredData.nodes.some(n => n.type === 'Shock');
+    }, [filteredData]);
+
+    const riskPercentage = useMemo(() => {
+        const shockCount = filteredData.nodes.filter(n => n.type === 'Shock').length;
+        const maxShocks = 4;
+        return Math.min((shockCount / maxShocks) * 100, 100);
+    }, [filteredData]);
 
     useEffect(() => {
         if (fgRef.current) {
@@ -249,11 +321,23 @@ export default function NodeDatabase() {
                 gridGroup.add(createGrid(-50));
                 scene.add(gridGroup);
             }
+
+            // Global Post-Processing
+            try {
+                const composer = fg.postProcessingComposer();
+                if (composer && !composer.passes.some((p: any) => p.name === 'UnrealBloomPass')) {
+                    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.0, 0.4, 0.85);
+                    (bloomPass as any).name = 'UnrealBloomPass';
+                    composer.addPass(bloomPass);
+                }
+            } catch (e) {
+                console.warn('Post-processing unsupported on this iteration', e);
+            }
         }
     }, [linkDistance, repulsion, filteredData]);
 
     return (
-        <div className="absolute inset-0 z-10 w-full h-screen overflow-hidden font-sans bg-black">
+        <div className={`absolute inset-0 z-10 w-full h-screen overflow-hidden font-sans transition-colors duration-1000 ${isStressed ? 'bg-[#050000]' : 'bg-black'}`}>
 
             {/* ── Search Bar Overlay ── */}
             <div className="absolute top-24 left-6 z-20 pointer-events-auto">
@@ -275,7 +359,7 @@ export default function NodeDatabase() {
                     ref={fgRef}
                     graphData={filteredData}
                     nodeRelSize={4}
-                    backgroundColor="#000000"
+                    backgroundColor={isStressed ? "#050000" : "#000000"}
                     showNavInfo={false}
                     onNodeHover={(n) => handleNodeHover(n as NodeData)}
                     onNodeClick={(n) => handleNodeClick(n as NodeData)}
@@ -298,6 +382,13 @@ export default function NodeDatabase() {
                             emissiveIntensity: isHovered ? 2.5 : 1.2,
                             wireframe: isGhost // Gives it a skeletal look
                         });
+
+                        // Push into pulsing ref
+                        material.userData.baseEmissive = isHovered ? 2.5 : 1.2;
+                        if (!materialsToAnimate.current.includes(material)) {
+                            materialsToAnimate.current.push(material);
+                        }
+
                         const sphere = new THREE.Mesh(geometry, material);
                         group.add(sphere);
 
@@ -315,6 +406,20 @@ export default function NodeDatabase() {
                             // Set static rotation angles or optionally animate via ref
                             torus.rotation.x = Math.PI / 2;
                             group.add(torus);
+                        }
+
+                        // Internal Data Clusters (Digital/Actor)
+                        if (!isGhost && (node.type === 'Digital' || node.type === 'Actor')) {
+                            const pointsGeo = new THREE.BufferGeometry();
+                            const pointsCount = 40;
+                            const pos = new Float32Array(pointsCount * 3);
+                            for (let i = 0; i < pointsCount * 3; i++) {
+                                pos[i] = (Math.random() - 0.5) * r * 1.5;
+                            }
+                            pointsGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+                            const pointsMat = new THREE.PointsMaterial({ color: node.color, size: 0.5, transparent: true, opacity: 0.8 });
+                            const points = new THREE.Points(pointsGeo, pointsMat);
+                            group.add(points);
                         }
 
                         // Text Label (Always faces camera)
@@ -344,6 +449,7 @@ export default function NodeDatabase() {
                         return (l.commencementDate && l.commencementDate === timelineYear) ? 4 : 1;
                     }}
                     linkDirectionalParticleWidth={1.5}
+                    linkDirectionalParticleSpeed={() => isStressed ? 0.03 : 0.01}
                     linkDirectionalParticleColor={(l: any) => {
                         const sourceType = typeof l.source === 'object' ? l.source.type : '';
                         const targetType = typeof l.target === 'object' ? l.target.type : '';
@@ -450,12 +556,26 @@ export default function NodeDatabase() {
 
                                     <div className="pt-4 border-t border-white/10">
                                         <h4 className="text-[10px] font-mono uppercase text-zinc-500 mb-2">Automated Strategic Friction Briefing</h4>
-                                        <div className="bg-black/40 rounded-lg p-4 font-mono text-xs text-zinc-300 leading-relaxed">
-                                            {selectedNode.type === 'Shock' ? (
-                                                <span className="text-red-400">CRITICAL VULNERABILITY DETECTED. Network flow compromised. Immediate state-intervention required to stabilize logistical throughput.</span>
-                                            ) : (
-                                                <span>Analyzing structural dependencies... System nominal. {selectedNode.type === 'Digital' ? 'Cloud perimeter secure but facing AI intrusion spikes.' : 'Supply chain resilient against secondary shocks.'}</span>
-                                            )}
+                                        <div className="bg-black/40 rounded-lg p-4 font-mono text-xs leading-relaxed min-h-[80px]">
+                                            <span className={selectedNode.type === 'Shock' ? "text-red-400" : "text-zinc-300"}>
+                                                {briefingText}
+                                            </span>
+                                            <span className="animate-pulse ml-1 opacity-50 text-zinc-400">_</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="pt-4 mt-2 border-t border-white/10">
+                                        <div className="flex justify-between items-center mb-2">
+                                            <h4 className="text-[10px] font-mono text-zinc-500 uppercase">System Risk Gauge</h4>
+                                            <span className={`text-[10px] font-mono ${riskPercentage > 50 ? 'text-red-400' : 'text-emerald-400'}`}>{Math.round(riskPercentage)}% Criticality</span>
+                                        </div>
+                                        <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                animate={{ width: `${riskPercentage}%` }}
+                                                transition={{ duration: 1 }}
+                                                className={`h-full ${riskPercentage > 50 ? 'bg-red-500' : 'bg-emerald-500'} shadow-[0_0_10px_rgba(239,68,68,0.5)]`}
+                                            />
                                         </div>
                                     </div>
 
@@ -488,6 +608,27 @@ export default function NodeDatabase() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* ── Contextual Mini-Map ── */}
+            <div className="absolute bottom-6 right-6 w-48 h-48 rounded-full overflow-hidden border border-white/10 bg-zinc-900/50 backdrop-blur-md shadow-2xl z-20 pointer-events-none group hover:border-cyan-500/30 transition-colors">
+                <MiniGlobe
+                    ref={miniGlobeRef}
+                    globeImageUrl={undefined}
+                    backgroundColor="rgba(0,0,0,0)"
+                    width={192}
+                    height={192}
+                    polygonsData={countries.features}
+                    polygonCapColor={() => '#1f2937'}
+                    polygonStrokeColor={() => '#3f3f46'}
+                    pointsData={selectedNode && selectedNode.lat ? [selectedNode] : []}
+                    pointLat="lat"
+                    pointLng="lng"
+                    pointColor="color"
+                    pointAltitude={0.1}
+                    pointRadius={2}
+                    pointsMerge={false}
+                />
+            </div>
 
         </div>
     );
