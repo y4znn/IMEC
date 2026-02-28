@@ -185,7 +185,6 @@ export default function NodeDatabase() {
     const [repulsion, setRepulsion] = useState(-400);
 
     // Forensic Upgrades States & Refs
-    const materialsToAnimate = useRef<THREE.MeshStandardMaterial[]>([]);
     const miniGlobeRef = useRef<any>(null);
     const [countries, setCountries] = useState({ features: [] });
 
@@ -194,21 +193,6 @@ export default function NodeDatabase() {
             .then(res => res.json())
             .then(setCountries)
             .catch(e => console.error("Globemap fetch error", e));
-    }, []);
-
-    // Pulsing Material Engine
-    useEffect(() => {
-        let reqId: number;
-        const animate = () => {
-            const time = Date.now() * 0.001;
-            const pulse = Math.sin(time * 2) * 0.35 + 1.15; // Oscillates 0.8 to 1.5
-            materialsToAnimate.current.forEach(mat => {
-                if (mat) mat.emissiveIntensity = (mat.userData.baseEmissive || 1.2) * (pulse / 1.15);
-            });
-            reqId = requestAnimationFrame(animate);
-        };
-        animate();
-        return () => cancelAnimationFrame(reqId);
     }, []);
 
     // Autopilot Execution Engine
@@ -314,9 +298,9 @@ export default function NodeDatabase() {
     const filteredData = useMemo(() => {
         const activeNodes = gData.nodes.map(n => ({
             ...n,
-            decrypted: decryptedNodes.has(n.id)
-        })).filter(n => (n.commencementDate || 2020) <= timelineYear)
-            .filter(n => n.label.toLowerCase().includes(searchQuery.toLowerCase()) || n.type.toLowerCase().includes(searchQuery.toLowerCase()));
+            decrypted: decryptedNodes.has(n.id),
+            isSearched: searchQuery === '' ? true : (n.label.toLowerCase().includes(searchQuery.toLowerCase()) || n.type.toLowerCase().includes(searchQuery.toLowerCase()))
+        })).filter(n => (n.commencementDate || 2020) <= timelineYear);
 
         const nodeIds = new Set(activeNodes.map(n => n.id));
         const activeLinks = gData.links.filter(l =>
@@ -369,18 +353,6 @@ export default function NodeDatabase() {
                 gridGroup.add(createGrid(-50));
                 scene.add(gridGroup);
             }
-
-            // Global Post-Processing
-            try {
-                const composer = fg.postProcessingComposer();
-                if (composer && !composer.passes.some((p: any) => p.name === 'UnrealBloomPass')) {
-                    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.0, 0.4, 0.85);
-                    (bloomPass as any).name = 'UnrealBloomPass';
-                    composer.addPass(bloomPass);
-                }
-            } catch (e) {
-                console.warn('Post-processing unsupported on this iteration', e);
-            }
         }
     }, [linkDistance, repulsion, filteredData]);
 
@@ -425,17 +397,11 @@ export default function NodeDatabase() {
                         const material = new THREE.MeshStandardMaterial({
                             color: node.color,
                             transparent: true,
-                            opacity: isGhost ? 0.15 : (isHovered ? 1.0 : 0.8),
+                            opacity: isGhost ? 0.15 : (!node.isSearched ? 0.1 : (isHovered ? 1.0 : 0.8)),
                             emissive: node.color,
                             emissiveIntensity: isHovered ? 2.5 : 1.2,
                             wireframe: isGhost // Gives it a skeletal look
                         });
-
-                        // Push into pulsing ref
-                        material.userData.baseEmissive = isHovered ? 2.5 : 1.2;
-                        if (!materialsToAnimate.current.includes(material)) {
-                            materialsToAnimate.current.push(material);
-                        }
 
                         const sphere = new THREE.Mesh(geometry, material);
                         group.add(sphere);
@@ -519,53 +485,84 @@ export default function NodeDatabase() {
                         if (sourceZ !== targetZ) return 'rgba(255, 255, 255, 0.4)';
                         // Red indicator for shock links
                         if (sourceType === 'Shock' || targetType === 'Shock') return 'rgba(239, 68, 68, 0.5)';
-                        return 'rgba(255, 255, 255, 0.15)';
+                        return 'rgba(255, 255, 255, 0.05)';
                     }}
                 />
             </div>
 
-            {/* ── Overlay: The Time Machine Slider ── */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 pointer-events-auto w-[600px]">
-                <div className="backdrop-blur-xl bg-zinc-900/60 border border-white/5 rounded-2xl p-6 shadow-2xl flex flex-col items-center">
-                    <div className="flex items-center justify-between w-full mb-4">
-                        <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest flex items-center gap-2">
-                            <Clock className="w-3.5 h-3.5" strokeWidth={1.2} /> Temporal Intelligence
-                        </span>
-                        <span className={`font-mono text-sm font-bold ${timelineYear >= 2023.10 ? 'text-red-500' : 'text-zinc-200'}`}>
-                            {timelineYear < 2023.10 ? Math.floor(timelineYear) : (timelineYear === 2023.10 ? 'OCT 2023: GAZA SHOCK' : '2024-2026: ESCALATION')}
-                        </span>
-                    </div>
-
-                    <input
-                        type="range"
-                        min="2020"
-                        max="2026"
-                        step="0.05"
-                        value={timelineYear}
-                        onChange={(e) => setTimelineYear(parseFloat(e.target.value))}
-                        className="w-full appearance-none bg-zinc-800 h-1 rounded-full outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full cursor-pointer hover:[&::-webkit-slider-thumb]:scale-125 transition-all"
-                    />
-                    <div className="flex justify-between w-full text-[10px] text-zinc-600 font-mono mt-2 px-1">
-                        <span>2020</span>
-                        <span>2022</span>
-                        <span>2024</span>
-                        <span>2026</span>
-                    </div>
-
-                    <div className="w-full flex items-center gap-4 mt-6 pt-4 border-t border-white/5 disabled:opacity-50">
-                        <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest flex items-center gap-1 w-24">
-                            <SlidersHorizontal className="w-3 h-3" strokeWidth={1.2} /> Repulsion
-                        </span>
+            {/* ── Consolidated Command Center Deck ── */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[800px] bg-zinc-900/80 backdrop-blur-2xl border border-white/10 rounded-2xl flex flex-col p-4 shadow-2xl z-40 pointer-events-auto">
+                <div className="flex items-center justify-between gap-6 mb-4">
+                    {/* Search Field */}
+                    <div className="flex items-center gap-3 px-4 py-2 border border-white/10 rounded-lg bg-black/40 flex-1 hover:border-cyan-500/30 transition-colors">
+                        <Search className="w-4 h-4 text-zinc-400" strokeWidth={1.2} />
                         <input
-                            type="range"
-                            min="-1000"
-                            max="-50"
-                            step="10"
-                            value={repulsion}
-                            onChange={(e) => setRepulsion(parseFloat(e.target.value))}
-                            className="flex-1 appearance-none bg-zinc-800 h-1 rounded-full outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-zinc-400 [&::-webkit-slider-thumb]:rounded-full cursor-pointer hover:[&::-webkit-slider-thumb]:bg-white transition-all"
+                            type="text"
+                            placeholder="Search node telemetry..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="bg-transparent border-none outline-none text-sm text-zinc-200 placeholder:text-zinc-600 w-full font-mono tracking-tight"
                         />
                     </div>
+                    {/* Time Machine Slider */}
+                    <div className="flex-1 flex flex-col items-center border border-white/10 rounded-lg bg-black/40 px-4 py-2">
+                        <div className="flex items-center justify-between w-full mb-2">
+                            <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest flex items-center gap-1.5">
+                                <Clock className="w-3.5 h-3.5" strokeWidth={1.2} /> Temporal Intel
+                            </span>
+                            <span className={`font-mono text-xs font-bold ${timelineYear >= 2023.10 ? 'text-red-500' : 'text-zinc-200'}`}>
+                                {timelineYear < 2023.10 ? Math.floor(timelineYear) : (timelineYear === 2023.10 ? 'OCT 2023' : '2024-2026')}
+                            </span>
+                        </div>
+                        <input
+                            type="range"
+                            min="2020"
+                            max="2026"
+                            step="0.05"
+                            value={timelineYear}
+                            onChange={(e) => setTimelineYear(parseFloat(e.target.value))}
+                            className="w-full appearance-none bg-zinc-800 h-1 rounded-full outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full cursor-pointer hover:[&::-webkit-slider-thumb]:scale-125 transition-all"
+                        />
+                    </div>
+                </div>
+
+                {/* Director Deck Sequence Controls */}
+                <div className="border-t border-white/5 pt-4">
+                    {!isPresentationMode ? (
+                        <button
+                            onClick={() => executeStep(0)}
+                            className="w-full flex justify-center items-center gap-2 py-2 bg-black/20 border border-cyan-500/30 rounded-lg text-cyan-400 font-mono text-xs tracking-widest hover:bg-cyan-900/20 hover:border-cyan-400 transition-all shadow-[0_0_15px_rgba(34,211,238,0.1)] group"
+                        >
+                            <Eye className="w-4 h-4 group-hover:scale-110 transition-transform" strokeWidth={1.2} />
+                            INITIALIZE DEFENSE SEQUENCE
+                        </button>
+                    ) : (
+                        <div className="flex flex-col gap-2">
+                            <div className="flex justify-between items-center px-2">
+                                <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase">
+                                    Phase {currentStep + 1} / {PRESENTATION_STEPS.length}: <span className="text-white ml-2">{PRESENTATION_STEPS[currentStep].title}</span>
+                                </span>
+                                <button onClick={() => executeStep(-1)} className="text-zinc-500 hover:text-white transition-colors">
+                                    <X className="w-4 h-4" strokeWidth={1.2} />
+                                </button>
+                            </div>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => executeStep(currentStep - 1)}
+                                    disabled={currentStep === 0}
+                                    className="px-4 py-2 text-xs font-mono text-zinc-400 border border-white/10 rounded-lg hover:bg-white/5 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                                >
+                                    [ ← BACK ]
+                                </button>
+                                <button
+                                    onClick={() => executeStep(currentStep + 1)}
+                                    className="flex-1 py-2 text-xs font-mono text-black bg-cyan-400 border border-cyan-500/30 rounded-lg hover:bg-cyan-300 transition-all font-bold"
+                                >
+                                    {currentStep === PRESENTATION_STEPS.length - 1 ? '[ CONCLUDE ]' : '[ NEXT PHASE ]'}
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -652,84 +649,33 @@ export default function NodeDatabase() {
                                     Select node to decrypt telemetry.
                                 </div>
                             )}
+
+                            {/* Moved Mini Globe into the panel */}
+                            <div className="w-full h-48 mt-6 rounded-xl overflow-hidden border border-white/5 bg-black/40 relative pointer-events-none group hover:border-cyan-500/20 transition-colors">
+                                <div className="absolute top-2 left-2 z-10 text-[9px] font-mono text-zinc-500 tracking-widest uppercase">Target Vector Mapping</div>
+                                <MiniGlobe
+                                    ref={miniGlobeRef}
+                                    globeImageUrl={undefined}
+                                    backgroundColor="rgba(0,0,0,0)"
+                                    width={330}
+                                    height={192}
+                                    polygonsData={countries.features}
+                                    polygonCapColor={() => '#121212'}
+                                    polygonStrokeColor={() => '#27272a'}
+                                    pointsData={selectedNode && selectedNode.lat ? [selectedNode] : []}
+                                    pointLat="lat"
+                                    pointLng="lng"
+                                    pointColor="color"
+                                    pointAltitude={0.15}
+                                    pointRadius={3}
+                                    pointsMerge={false}
+                                />
+                            </div>
+
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            {/* ── Contextual Mini-Map ── */}
-            <div className="absolute bottom-6 right-6 w-48 h-48 rounded-full overflow-hidden border border-white/10 bg-zinc-900/50 backdrop-blur-md shadow-2xl z-20 pointer-events-none group hover:border-cyan-500/30 transition-colors">
-                <MiniGlobe
-                    ref={miniGlobeRef}
-                    globeImageUrl={undefined}
-                    backgroundColor="rgba(0,0,0,0)"
-                    width={192}
-                    height={192}
-                    polygonsData={countries.features}
-                    polygonCapColor={() => '#1f2937'}
-                    polygonStrokeColor={() => '#3f3f46'}
-                    pointsData={selectedNode && selectedNode.lat ? [selectedNode] : []}
-                    pointLat="lat"
-                    pointLng="lng"
-                    pointColor="color"
-                    pointAltitude={0.1}
-                    pointRadius={2}
-                    pointsMerge={false}
-                />
-            </div>
-
-            {/* ── Cinematic Presentation Director ── */}
-            <div className="absolute bottom-6 left-6 z-40">
-                {!isPresentationMode ? (
-                    <button
-                        onClick={() => executeStep(0)}
-                        className="flex items-center gap-2 px-4 py-2 bg-zinc-900/40 backdrop-blur-md border border-cyan-500/30 rounded-xl text-cyan-400 font-mono text-xs tracking-widest hover:bg-cyan-900/20 hover:border-cyan-400 transition-all shadow-[0_0_15px_rgba(34,211,238,0.1)] group"
-                    >
-                        <Eye className="w-4 h-4 group-hover:scale-110 transition-transform" strokeWidth={1.2} />
-                        INITIALIZE DEFENSE SEQUENCE
-                    </button>
-                ) : (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="w-[400px] bg-zinc-900/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto"
-                    >
-                        <div className="flex justify-between items-center px-4 py-3 border-b border-white/10 bg-black/40">
-                            <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase">
-                                Phase {currentStep + 1} / {PRESENTATION_STEPS.length}
-                            </span>
-                            <button onClick={() => executeStep(-1)} className="text-zinc-500 hover:text-white transition-colors">
-                                <X className="w-4 h-4" strokeWidth={1.2} />
-                            </button>
-                        </div>
-                        <div className="p-5">
-                            <h3 className="text-lg font-bold text-white tracking-tight mb-3">
-                                {PRESENTATION_STEPS[currentStep].title}
-                            </h3>
-                            <div className="pl-3 border-l-2 border-cyan-500/50">
-                                <p className="text-sm font-mono text-zinc-300 leading-relaxed">
-                                    {PRESENTATION_STEPS[currentStep].speech}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex px-4 py-3 bg-black/40 border-t border-white/10 gap-3">
-                            <button
-                                onClick={() => executeStep(currentStep - 1)}
-                                disabled={currentStep === 0}
-                                className="flex-1 py-2 text-xs font-mono text-zinc-400 border border-white/10 rounded-lg hover:bg-white/5 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-                            >
-                                [ ← BACK ]
-                            </button>
-                            <button
-                                onClick={() => executeStep(currentStep + 1)}
-                                className="flex-1 py-2 text-xs font-mono text-cyan-400 border border-cyan-500/30 rounded-lg hover:bg-cyan-500/10 hover:text-cyan-300 transition-all font-bold"
-                            >
-                                {currentStep === PRESENTATION_STEPS.length - 1 ? '[ CONCLUDE ]' : '[ NEXT → ]'}
-                            </button>
-                        </div>
-                    </motion.div>
-                )}
-            </div>
 
         </div>
     );
