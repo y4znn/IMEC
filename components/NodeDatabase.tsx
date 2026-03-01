@@ -7,13 +7,12 @@ import { X } from 'lucide-react';
 import * as d3 from 'd3';
 
 /* ─────────────────────────────────────────────
-   COLOR SYSTEM — Editorial Brutalism
-   No purple, no indigo, no violet, no soft blue.
+   COLOR SYSTEM — Institutional Academic Aesthetic
    ───────────────────────────────────────────── */
 
 const TYPE_COLORS: Record<string, string> = {
     Actor: '#ffffff',
-    Framework: '#ffffff',
+    Framework: '#b0b0b0',
     Logistics: '#ffffff',
     Digital: '#ffffff',
     Energy: '#166534',
@@ -21,15 +20,11 @@ const TYPE_COLORS: Record<string, string> = {
     Rival: '#991b1b',
 };
 
-// FontAwesome Unicode mappings
-const TYPE_ICONS: Record<string, string> = {
-    Actor: '\uf19c', // Landmark
-    Framework: '\uf02d', // Book / Document
-    Logistics: '\uf13d', // Anchor
-    Digital: '\uf233', // Server
-    Energy: '\uf0e7', // Lightning Bolt
-    Shock: '\uf071', // Alert Triangle
-    Rival: '\uf05b', // Crosshairs or target
+const CORRIDOR_COLORS: Record<string, string> = {
+    'IMEC': '#2C3E50', // Slate Blue
+    'BRI': '#4A1F1F', // Muted Oxblood
+    'INSTC': '#3D4B3D', // Desaturated Sage
+    'DEFAULT': '#444444' // Neutral Grey for non-corridor links
 };
 
 /* ─────────────────────────────────────────────
@@ -45,6 +40,8 @@ interface NodeData extends d3.SimulationNodeDatum {
     val: number;
     color: string;
     desc: string;
+    coord?: string; // e.g. "25.00° N, 55.05° E"
+    watermark?: string; // e.g. "I N D I A"
     x?: number;
     y?: number;
     vx?: number;
@@ -55,92 +52,72 @@ interface NodeData extends d3.SimulationNodeDatum {
 
 interface LinkData extends d3.SimulationLinkDatum<NodeData> {
     weight: number;
+    corridor: 'IMEC' | 'BRI' | 'INSTC' | 'DEFAULT';
 }
 
 const initialData: { nodes: NodeData[]; links: LinkData[] } = {
     nodes: [
         { id: "usa", type: "Actor", val: 7, color: TYPE_COLORS.Actor, label: "United States", desc: "Strategic backer of IMEC via PGII to counter China's BRI." },
-        { id: "india", type: "Actor", val: 7, color: TYPE_COLORS.Actor, label: "India", desc: "Anchor economy leveraging IMEC to bypass Pakistan." },
-        { id: "eu", type: "Actor", val: 6, color: TYPE_COLORS.Actor, label: "European Union", desc: "Aligning IMEC with its €300B Global Gateway fund." },
-        { id: "ksa", type: "Actor", val: 6, color: TYPE_COLORS.Actor, label: "Saudi Arabia", desc: "Crucial land bridge connecting the Gulf to the Levant." },
-        { id: "uae", type: "Actor", val: 6, color: TYPE_COLORS.Actor, label: "UAE", desc: "Pioneering the logistics network and funding Jordanian rails." },
-        { id: "israel", type: "Actor", val: 5, color: TYPE_COLORS.Actor, label: "Israel", desc: "The Mediterranean anchor point; provides overland redundancy." },
-        { id: "china", type: "Actor", val: 7, color: TYPE_COLORS.Actor, label: "China", desc: "Architect of the $8 Trillion BRI. Views IMEC as containment." },
-        { id: "palantir", type: "Actor", val: 5, color: TYPE_COLORS.Actor, label: "Palantir Foundry", desc: "Military/intelligence data integration platform." },
-        { id: "scaleai", type: "Actor", val: 4, color: TYPE_COLORS.Actor, label: "ScaleAI", desc: "Data labeling for autonomous defense systems." },
-        { id: "elbit", type: "Actor", val: 4, color: TYPE_COLORS.Actor, label: "Elbit Systems", desc: "Defense contractor providing physical security infrastructure." },
+        { id: "india", type: "Actor", val: 7, color: TYPE_COLORS.Actor, label: "India", desc: "Anchor economy leveraging IMEC to bypass Pakistan.", watermark: "I N D I A" },
+        { id: "eu", type: "Actor", val: 6, color: TYPE_COLORS.Actor, label: "European Union", desc: "Aligning IMEC with its €300B Global Gateway fund.", watermark: "E U R O P E A N  U N I O N" },
+        { id: "ksa", type: "Actor", val: 6, color: TYPE_COLORS.Actor, label: "Saudi Arabia", desc: "Crucial land bridge connecting the Gulf to the Levant.", watermark: "S A U D I  A R A B I A" },
+        { id: "uae", type: "Actor", val: 6, color: TYPE_COLORS.Actor, label: "UAE", desc: "Pioneering the logistics network and funding Jordanian rails.", watermark: "U A E" },
+        { id: "israel", type: "Actor", val: 5, color: TYPE_COLORS.Actor, label: "Israel", desc: "The Mediterranean anchor point; provides overland redundancy.", watermark: "I S R A E L" },
+        { id: "greece", type: "Actor", val: 5, color: TYPE_COLORS.Actor, label: "Greece", desc: "Maritime entry point to the European Union.", watermark: "G R E E C E" },
+        { id: "china", type: "Actor", val: 7, color: TYPE_COLORS.Actor, label: "China", desc: "Architect of the $8 Trillion BRI. Views IMEC as containment.", watermark: "C H I N A" },
+        { id: "iraq", type: "Actor", val: 5, color: TYPE_COLORS.Actor, label: "Iraq", desc: "Driving the $17B Development Road as an alternative.", watermark: "I R A Q" },
+
+        { id: "mumbai", type: "Logistics", val: 6, color: TYPE_COLORS.Logistics, label: "MUMBAI (JNPT)", desc: "Primary maritime exit node on India's west coast.", coord: "18.95° N, 72.95° E" },
+        { id: "jebel_ali", type: "Logistics", val: 6, color: TYPE_COLORS.Logistics, label: "JEBEL ALI", desc: "The largest port in the Middle East.", coord: "25.00° N, 55.05° E" },
+        { id: "fujairah", type: "Logistics", val: 5, color: TYPE_COLORS.Logistics, label: "FUJAIRAH", desc: "Key bunkering and transshipment hub bypassing Hormuz.", coord: "25.12° N, 56.32° E" },
+        { id: "haifa", type: "Logistics", val: 6, color: TYPE_COLORS.Logistics, label: "HAIFA PORT", desc: "Critical Mediterranean gateway, acquired by Adani.", coord: "32.81° N, 35.00° E" },
+        { id: "piraeus", type: "Logistics", val: 6, color: TYPE_COLORS.Logistics, label: "PIRAEUS", desc: "Major European entry, controlled by COSCO.", coord: "37.94° N, 23.64° E" },
 
         { id: "abraham_accords", type: "Framework", val: 5, color: TYPE_COLORS.Framework, label: "Abraham Accords", desc: "Geopolitical normalization underpinning the overland routes." },
-        { id: "pgii", type: "Framework", val: 3, color: TYPE_COLORS.Framework, label: "G7 PGII", desc: "Partnership for Global Infrastructure and Investment." },
-        { id: "global_gateway", type: "Framework", val: 3, color: TYPE_COLORS.Framework, label: "EU Global Gateway", desc: "EU strategy to mobilize investments." },
         { id: "i2u2", type: "Framework", val: 4, color: TYPE_COLORS.Framework, label: "I2U2 Group", desc: "India, Israel, UAE, and US partnership." },
-        { id: "imec_announce", type: "Framework", val: 6, color: TYPE_COLORS.Framework, label: "IMEC Declaration", desc: "Formal announcement at G20 New Delhi." },
-        { id: "ai_dss", type: "Framework", val: 4, color: TYPE_COLORS.Framework, label: "AI-DSS Protocol", desc: "Automated Decision Support Systems." },
-
-        { id: "vadhavan", type: "Logistics", val: 4, color: TYPE_COLORS.Logistics, label: "Vadhavan Port", desc: "Upcoming $9B Indian mega-port." },
-        { id: "jebel_ali", type: "Logistics", val: 5, color: TYPE_COLORS.Logistics, label: "Jebel Ali Port", desc: "The largest port in the Middle East." },
-        { id: "al_ghuwaifat", type: "Logistics", val: 2, color: TYPE_COLORS.Logistics, label: "Al-Ghuwaifat", desc: "UAE-Saudi rail border crossing." },
-        { id: "al_haditha", type: "Logistics", val: 2, color: TYPE_COLORS.Logistics, label: "Al-Haditha Hub", desc: "Saudi-Jordanian border transshipment." },
-        { id: "mafraq", type: "Logistics", val: 3, color: TYPE_COLORS.Logistics, label: "Mafraq", desc: "Jordanian logistical hub." },
-        { id: "beit_shean", type: "Logistics", val: 3, color: TYPE_COLORS.Logistics, label: "Beit She'an", desc: "Rail junction connecting Jordan to Israel." },
-        { id: "haifa", type: "Logistics", val: 6, color: TYPE_COLORS.Logistics, label: "Haifa Port", desc: "Critical Mediterranean gateway, acquired by Adani." },
-        { id: "piraeus", type: "Logistics", val: 4, color: TYPE_COLORS.Logistics, label: "Piraeus Port", desc: "Major European entry, controlled by COSCO." },
-        { id: "marseille", type: "Logistics", val: 3, color: TYPE_COLORS.Logistics, label: "Marseille", desc: "Key European terminus for shipping and cables." },
-        { id: "ben_gurion_canal", type: "Logistics", val: 4, color: TYPE_COLORS.Logistics, label: "Ben Gurion Canal", desc: "Theoretical Israeli alternative to Suez." },
 
         { id: "blue_raman", type: "Digital", val: 5, color: TYPE_COLORS.Digital, label: "Blue-Raman Cable", desc: "218 Tbps Google subsea fiber bypassing Egypt." },
-        { id: "teas", type: "Digital", val: 4, color: TYPE_COLORS.Digital, label: "TEAS Network", desc: "Trans Europe Asia System." },
-        { id: "data_centers", type: "Digital", val: 4, color: TYPE_COLORS.Digital, label: "Gulf Data Centers", desc: "High-compute nodes in UAE/KSA." },
-        { id: "project_nimbus", type: "Digital", val: 5, color: TYPE_COLORS.Digital, label: "Project Nimbus", desc: "$1.2B cloud project by Google/Amazon." },
-        { id: "lavender", type: "Digital", val: 4, color: TYPE_COLORS.Digital, label: "Lavender AI", desc: "Automated targeting system." },
-        { id: "peace_cable", type: "Digital", val: 4, color: TYPE_COLORS.Digital, label: "PEACE Cable", desc: "Chinese-backed digital backbone." },
-
-        { id: "neom_h2", type: "Energy", val: 4, color: TYPE_COLORS.Energy, label: "NEOM Hydrogen", desc: "$8.4B Saudi green ammonia project." },
-        { id: "hvdc", type: "Energy", val: 4, color: TYPE_COLORS.Energy, label: "UAE-India HVDC", desc: "Proposed subsea power cable." },
+        { id: "neom_h2", type: "Energy", val: 5, color: TYPE_COLORS.Energy, label: "NEOM Green Hydrogen", desc: "$8.4B Saudi green ammonia project." },
 
         { id: "gaza_war", type: "Shock", val: 7, color: TYPE_COLORS.Shock, label: "Gaza War", desc: "Systemic shock stalling normalization." },
         { id: "red_sea", type: "Shock", val: 6, color: TYPE_COLORS.Shock, label: "Red Sea Crisis", desc: "Houthi attacks paralyzing Suez shipping." },
-        { id: "suez", type: "Shock", val: 5, color: TYPE_COLORS.Shock, label: "Suez Vulnerability", desc: "Historical maritime bottleneck." },
-        { id: "auto_target", type: "Shock", val: 4, color: TYPE_COLORS.Shock, label: "AI Target Bleed", desc: "Lethal targeting without human loops." },
 
         { id: "bri", type: "Rival", val: 6, color: TYPE_COLORS.Rival, label: "Belt & Road", desc: "China's $8T global infrastructure project." },
         { id: "drp", type: "Rival", val: 4, color: TYPE_COLORS.Rival, label: "Development Road", desc: "$17B Iraq-Turkey rail bypass." },
+        { id: "instc_route", type: "Rival", val: 4, color: TYPE_COLORS.Rival, label: "INSTC Network", desc: "International North-South Transport Corridor." },
     ],
     links: [
-        { source: "israel", target: "abraham_accords", weight: 5 },
-        { source: "uae", target: "abraham_accords", weight: 5 },
-        { source: "abraham_accords", target: "i2u2", weight: 4 },
-        { source: "india", target: "i2u2", weight: 4 },
-        { source: "i2u2", target: "imec_announce", weight: 5 },
-        { source: "eu", target: "imec_announce", weight: 4 },
-        { source: "haifa", target: "blue_raman", weight: 3 },
-        { source: "jebel_ali", target: "data_centers", weight: 3 },
-        { source: "ksa", target: "neom_h2", weight: 3 },
-        { source: "vadhavan", target: "jebel_ali", weight: 4 },
-        { source: "jebel_ali", target: "al_ghuwaifat", weight: 4 },
-        { source: "al_ghuwaifat", target: "al_haditha", weight: 3 },
-        { source: "al_haditha", target: "mafraq", weight: 3 },
-        { source: "mafraq", target: "beit_shean", weight: 3 },
-        { source: "beit_shean", target: "haifa", weight: 4 },
-        { source: "haifa", target: "piraeus", weight: 4 },
-        { source: "piraeus", target: "marseille", weight: 3 },
-        { source: "usa", target: "palantir", weight: 4 },
-        { source: "israel", target: "elbit", weight: 3 },
-        { source: "palantir", target: "ai_dss", weight: 4 },
-        { source: "scaleai", target: "ai_dss", weight: 3 },
-        { source: "ai_dss", target: "lavender", weight: 5 },
-        { source: "usa", target: "project_nimbus", weight: 5 },
-        { source: "project_nimbus", target: "israel", weight: 5 },
-        { source: "project_nimbus", target: "lavender", weight: 4 },
-        { source: "lavender", target: "auto_target", weight: 5 },
-        { source: "project_nimbus", target: "data_centers", weight: 3 },
-        { source: "gaza_war", target: "abraham_accords", weight: 5 },
-        { source: "gaza_war", target: "red_sea", weight: 5 },
-        { source: "red_sea", target: "suez", weight: 5 },
-        { source: "china", target: "bri", weight: 5 },
-        { source: "china", target: "peace_cable", weight: 4 },
-        { source: "bri", target: "drp", weight: 4 },
-        { source: "suez", target: "ben_gurion_canal", weight: 3 },
+        // IMEC Backbone
+        { source: "mumbai", target: "jebel_ali", weight: 5, corridor: "IMEC" },
+        { source: "jebel_ali", target: "fujairah", weight: 4, corridor: "IMEC" },
+        { source: "jebel_ali", target: "ksa", weight: 5, corridor: "IMEC" },
+        { source: "fujairah", target: "ksa", weight: 4, corridor: "IMEC" },
+        { source: "ksa", target: "israel", weight: 5, corridor: "IMEC" },
+        { source: "ksa", target: "neom_h2", weight: 4, corridor: "IMEC" },
+        { source: "israel", target: "haifa", weight: 5, corridor: "IMEC" },
+        { source: "haifa", target: "piraeus", weight: 5, corridor: "IMEC" },
+        { source: "piraeus", target: "greece", weight: 5, corridor: "IMEC" },
+        { source: "eu", target: "greece", weight: 5, corridor: "IMEC" },
+        { source: "usa", target: "india", weight: 5, corridor: "IMEC" },
+        { source: "usa", target: "uae", weight: 4, corridor: "IMEC" },
+        { source: "india", target: "i2u2", weight: 4, corridor: "IMEC" },
+        { source: "i2u2", target: "abraham_accords", weight: 4, corridor: "IMEC" },
+        { source: "abraham_accords", target: "israel", weight: 4, corridor: "IMEC" },
+        { source: "haifa", target: "blue_raman", weight: 4, corridor: "IMEC" },
+
+        // BRI Axis
+        { source: "china", target: "bri", weight: 5, corridor: "BRI" },
+        { source: "bri", target: "piraeus", weight: 4, corridor: "BRI" },
+        { source: "iraq", target: "drp", weight: 4, corridor: "BRI" },
+        { source: "china", target: "drp", weight: 3, corridor: "BRI" },
+
+        // INSTC Axis
+        { source: "india", target: "instc_route", weight: 4, corridor: "INSTC" },
+
+        // Default / Shocks
+        { source: "gaza_war", target: "abraham_accords", weight: 5, corridor: "DEFAULT" },
+        { source: "gaza_war", target: "red_sea", weight: 5, corridor: "DEFAULT" },
+        { source: "red_sea", target: "jebel_ali", weight: 4, corridor: "DEFAULT" },
     ]
 };
 
@@ -148,7 +125,7 @@ const initialData: { nodes: NodeData[]; links: LinkData[] } = {
    COMPONENT
    ───────────────────────────────────────────── */
 
-type FilterType = 'ALL' | 'INFRASTRUCTURE' | 'DIGITAL' | 'GEOPOLITICAL';
+type FilterType = 'ALL' | 'IMEC' | 'BRI' | 'GEOPOLITICAL';
 
 export default function NodeDatabase() {
     const svgRef = useRef<SVGSVGElement>(null);
@@ -158,9 +135,6 @@ export default function NodeDatabase() {
     const [threshold, setThreshold] = useState<number>(1);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const resetZoomRef = useRef<() => void>(() => { });
-
-    // Internal state references for D3 hover
-    // Internal state references for D3 hover
 
     // Handle Resize
     useEffect(() => {
@@ -181,30 +155,41 @@ export default function NodeDatabase() {
 
     // Filter data based on activeFilter and threshold
     const filteredData = useMemo(() => {
-        let activeNodes = initialData.nodes;
-        if (activeFilter === 'INFRASTRUCTURE') {
-            activeNodes = activeNodes.filter(n => n.type === 'Logistics' || n.type === 'Energy');
-        } else if (activeFilter === 'DIGITAL') {
-            activeNodes = activeNodes.filter(n => n.type === 'Digital');
-        } else if (activeFilter === 'GEOPOLITICAL') {
-            activeNodes = activeNodes.filter(n => n.type === 'Actor' || n.type === 'Framework' || n.type === 'Shock' || n.type === 'Rival');
+        let activeLinks = initialData.links.filter(l => l.weight >= threshold);
+
+        if (activeFilter === 'IMEC') {
+            activeLinks = activeLinks.filter(l => l.corridor === 'IMEC' || l.corridor === 'DEFAULT');
+        } else if (activeFilter === 'BRI') {
+            activeLinks = activeLinks.filter(l => l.corridor === 'BRI' || l.corridor === 'INSTC' || l.corridor === 'DEFAULT');
         }
 
-        const nodeIds = new Set(activeNodes.map(n => n.id));
-        const activeLinks = initialData.links.filter(l => {
-            const s = typeof l.source === 'object' ? (l.source as any).id : l.source;
-            const t = typeof l.target === 'object' ? (l.target as any).id : l.target;
-            return nodeIds.has(s) && nodeIds.has(t) && l.weight >= threshold;
+        const validIds = new Set<string>();
+        activeLinks.forEach(l => {
+            validIds.add(typeof l.source === 'object' ? (l.source as any).id : l.source);
+            validIds.add(typeof l.target === 'object' ? (l.target as any).id : l.target);
         });
 
-        // Cloning nodes so D3 simulation doesn't mutate our original data constantly on filter change
+        // Always show all nodes or just nodes with valid links?
+        let activeNodes = initialData.nodes.filter(n => validIds.has(n.id) || activeFilter === 'ALL');
+
+        if (activeFilter === 'GEOPOLITICAL') {
+            activeNodes = initialData.nodes.filter(n => n.type === 'Actor' || n.type === 'Shock' || n.type === 'Rival');
+            validIds.clear();
+            activeNodes.forEach(n => validIds.add(n.id));
+            activeLinks = initialData.links.filter(l => {
+                const s = typeof l.source === 'object' ? (l.source as any).id : l.source;
+                const t = typeof l.target === 'object' ? (l.target as any).id : l.target;
+                return validIds.has(s) && validIds.has(t) && l.weight >= threshold;
+            });
+        }
+
         return {
             nodes: activeNodes.map(n => ({ ...n })) as NodeData[],
             links: activeLinks.map(l => ({ ...l })) as LinkData[]
         };
     }, [activeFilter, threshold]);
 
-    // Calculate neighbors globally once for the dossier (independent of filter)
+    // Calculate neighbors globally once for the dossier
     const neighbors = useMemo(() => {
         const map = new Map<string, Set<string>>();
         initialData.links.forEach(link => {
@@ -232,21 +217,25 @@ export default function NodeDatabase() {
 
         // Setup physics simulation
         const simulation = d3.forceSimulation<NodeData>(filteredData.nodes)
-            .force('link', d3.forceLink<NodeData, LinkData>(filteredData.links).id(d => d.id).distance(120))
-            .force('charge', d3.forceManyBody().strength(-500))
+            .force('link', d3.forceLink<NodeData, LinkData>(filteredData.links).id(d => d.id).distance(150))
+            .force('charge', d3.forceManyBody().strength(-800))
             .force('center', d3.forceCenter(width / 2, height / 2))
-            .force('x', d3.forceX(width / 2).strength(0.05))
-            .force('y', d3.forceY(height / 2).strength(0.05))
-            .force('collision', d3.forceCollide<NodeData>().radius(d => d.val * 3.5 + 10))
+            .force('x', d3.forceX(width / 2).strength(0.04))
+            .force('y', d3.forceY(height / 2).strength(0.04))
+            .force('collision', d3.forceCollide<NodeData>().radius(d => d.val * 5 + 20))
             .alphaDecay(0.08);
+
+        // Watermarks Layer (rendered first so it stays in background)
+        const watermarkGroup = zoomGroup.append('g').attr('class', 'watermark-group');
 
         // Links
         const link = zoomGroup.append('g')
             .selectAll('line')
             .data(filteredData.links)
             .join('line')
-            .attr('stroke', '#333333')
-            .attr('stroke-width', 1)
+            .attr('stroke', d => CORRIDOR_COLORS[d.corridor] || '#333333')
+            .attr('stroke-width', 0.5)
+            .attr('stroke-dasharray', '4, 2')
             .attr('class', 'graph-link transition-opacity duration-300');
 
         // Node Groups
@@ -272,59 +261,84 @@ export default function NodeDatabase() {
                 })
             );
 
-        // Solid node circle (no border, no glow)
-        renderNodes.append('circle')
-            .attr('r', d => d.val * 3)
-            .attr('fill', '#000000') // Solid black background circle
-            .attr('stroke', 'transparent')
-            .attr('stroke-width', 0);
+        // Geometric Crosshair
+        renderNodes.append('path')
+            .attr('d', d => {
+                const s = Math.max(4, d.val * 0.8);
+                return `M -${s} 0 L ${s} 0 M 0 -${s} L 0 ${s}`;
+            })
+            .attr('stroke', d => d.type === 'Logistics' ? '#ffffff' : d.color)
+            .attr('stroke-width', 1)
+            .attr('fill', 'none');
 
-        // FontAwesome icon as text
-        renderNodes.append('text')
-            .attr('class', 'icon')
-            .attr('text-anchor', 'middle')
-            .attr('dominant-baseline', 'central')
-            .attr('font-family', '"Font Awesome 5 Free", "Font Awesome 5 Brands"')
-            .attr('font-weight', 900)
-            .style('font-size', d => `${d.val * 2.8}px`)
-            .attr('fill', d => d.color)
-            .text(d => TYPE_ICONS[d.type] || '\uf111');
+        // Tag Background
+        const labelGroup = renderNodes.append('g')
+            .attr('class', 'label-group')
+            // only highest priority visible initially
+            .attr('opacity', d => d.val >= 6 ? 1 : 0);
 
-        // Data Label
-        renderNodes.append('text')
-            .attr('class', 'label')
-            .text(d => d.label)
+        // Compute text width approximation for the sharp rectangle
+        const estCharWidth = 6.8;
+
+        labelGroup.append('rect')
+            .attr('x', d => -(d.label.length * estCharWidth) / 2 - 8)
+            .attr('y', 10)
+            .attr('width', d => d.label.length * estCharWidth + 16)
+            .attr('height', 20)
+            .attr('fill', '#000000')
+            .attr('stroke', d => d.color)
+            .attr('stroke-width', 0.5)
+            .attr('shape-rendering', 'crispEdges');
+
+        // Data Label (Mono)
+        labelGroup.append('text')
+            .text(d => d.type === 'Logistics' ? d.label.toUpperCase() : d.label)
             .attr('text-anchor', 'middle')
             .attr('fill', '#ffffff')
-            .attr('font-family', '"JetBrains Mono", Courier, monospace')
-            .style('font-size', '11px')
-            .attr('dy', d => d.val * 3 + 12)
+            .attr('font-family', '"IBM Plex Mono", "JetBrains Mono", monospace')
+            .style('font-size', '10px')
+            .attr('dy', 24)
             .style('pointer-events', 'none')
-            // Only show labels for highest value initially
-            .attr('opacity', d => d.val >= 6 ? 1 : 0);
+            .attr('text-transform', d => d.type === 'Logistics' ? 'uppercase' : 'none');
+
+        // Coordinates Label (Visible if zoomed & has coordinates)
+        const coordsGroup = labelGroup.append('g').attr('class', 'coords-grp').attr('opacity', 0);
+        coordsGroup.append('text')
+            .text(d => d.coord || '')
+            .attr('text-anchor', 'middle')
+            .attr('fill', '#888888')
+            .attr('font-family', '"IBM Plex Mono", "JetBrains Mono", monospace')
+            .style('font-size', '6px')
+            .attr('dy', 38)
+            .style('pointer-events', 'none');
 
         // Zoom/Pan
         const zoom = d3.zoom<SVGSVGElement, unknown>()
             .scaleExtent([0.6, 10])
             .on("zoom", (e) => {
                 zoomGroup.attr("transform", e.transform);
-                renderNodes.selectAll('.label').attr('opacity', (d: any) => d.val >= 6 || e.transform.k >= 1.5 ? 1 : 0);
+
+                // Smart Zoom Thresholding
+                const k = e.transform.k;
+                renderNodes.selectAll('.label-group').attr('opacity', (d: any) => d.val >= 6 || k >= 1.5 ? 1 : 0);
+                renderNodes.selectAll('.coords-grp').attr('opacity', (d: any) => (d.coord && k >= 2.0) ? 1 : 0);
+
+                // Enforce sharp zoom line thickness
+                link.attr('stroke-width', 0.5 / k);
             });
 
         svg.call(zoom);
         svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.9).translate(-width / 2, -height / 2));
 
-        // Bind Reset View
         resetZoomRef.current = () => {
             svg.transition().duration(750)
                 .call(zoom.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.9).translate(-width / 2, -height / 2));
         };
 
-        // Spotlight Function
         function applySpotlight(activeId: string | null) {
             if (!activeId) {
-                renderNodes.attr('opacity', 1).attr('filter', null);
-                link.attr('opacity', 1).attr('stroke', '#333333');
+                renderNodes.attr('opacity', 1);
+                link.attr('opacity', 1).attr('stroke', (d: any) => CORRIDOR_COLORS[d.corridor] || '#333333');
                 return;
             }
 
@@ -334,18 +348,17 @@ export default function NodeDatabase() {
                 n.id === activeId || activeNeighbors.has(n.id) ? 1 : 0.05
             );
 
-            link.attr('opacity', (l) => {
-                const sId = typeof l.source === 'object' ? (l.source as any).id : l.source;
-                const tId = typeof l.target === 'object' ? (l.target as any).id : l.target;
+            link.attr('opacity', (l: any) => {
+                const sId = typeof l.source === 'object' ? l.source.id : l.source;
+                const tId = typeof l.target === 'object' ? l.target.id : l.target;
                 return (sId === activeId || tId === activeId) ? 1 : 0.05;
-            }).attr('stroke', (l) => {
-                const sId = typeof l.source === 'object' ? (l.source as any).id : l.source;
-                const tId = typeof l.target === 'object' ? (l.target as any).id : l.target;
-                return (sId === activeId || tId === activeId) ? '#ffffff' : '#333333';
+            }).attr('stroke', (l: any) => {
+                const sId = typeof l.source === 'object' ? l.source.id : l.source;
+                const tId = typeof l.target === 'object' ? l.target.id : l.target;
+                return (sId === activeId || tId === activeId) ? '#ffffff' : (CORRIDOR_COLORS[l.corridor] || '#333333');
             });
         }
 
-        // Apply interaction manually via d3.select instead of React state loops to avoid re-mounting simulation
         let currentHoverId: string | null = null;
         let currentSelectId: string | null = selectedNode ? selectedNode.id : null;
 
@@ -353,11 +366,12 @@ export default function NodeDatabase() {
             const activeId = currentSelectId || currentHoverId;
             applySpotlight(activeId);
 
-            // Labels logic
-            renderNodes.selectAll('.label').attr('opacity', function (d: any) {
-                if (d.val >= 6) return 1;
-                if (currentSelectId && (d.id === currentSelectId || neighbors.get(currentSelectId)?.has(d.id))) return 1;
-                if (currentHoverId && (d.id === currentHoverId || neighbors.get(currentHoverId)?.has(d.id))) return 1;
+            renderNodes.selectAll('.label-group').attr('opacity', function (d: any) {
+                const isHovered = currentHoverId && (d.id === currentHoverId || neighbors.get(currentHoverId)?.has(d.id));
+                const isSelected = currentSelectId && (d.id === currentSelectId || neighbors.get(currentSelectId)?.has(d.id));
+                // Get zoom property
+                const tz = d3.zoomTransform(svg.node() as Element).k;
+                if (d.val >= 6 || tz >= 1.5 || isHovered || isSelected) return 1;
                 return 0;
             });
         };
@@ -375,19 +389,32 @@ export default function NodeDatabase() {
             updateVisuals();
         });
 
-        // Background click clears selection
         svg.on('click', () => {
             currentSelectId = null;
             setSelectedNode(null);
             updateVisuals();
         });
 
+        // Initialize Watermark DOM elements based on filter
+        const nodesWithWatermarks = filteredData.nodes.filter(n => n.watermark);
+        const watermarkText = watermarkGroup.selectAll('text')
+            .data(nodesWithWatermarks, (d: any) => d.id)
+            .join('text')
+            .text(d => d.watermark!)
+            .attr('font-family', '"Fraunces", "Libre Baskerville", serif')
+            .attr('font-size', '4rem')
+            .attr('letter-spacing', '0.2em')
+            .attr('fill', '#ffffff')
+            .attr('opacity', 0.15)
+            .attr('text-anchor', 'middle')
+            .attr('dominant-baseline', 'middle')
+            .style('pointer-events', 'none');
+
         // Tick loop
         simulation.on('tick', () => {
-            // Apply bounding box mathematically
             const padding = 20;
             filteredData.nodes.forEach(d => {
-                const radius = d.val * 3 + padding;
+                const radius = d.val * 5 + padding;
                 d.x = Math.max(radius, Math.min(width - radius, d.x!));
                 d.y = Math.max(radius, Math.min(height - radius, d.y!));
             });
@@ -399,12 +426,17 @@ export default function NodeDatabase() {
                 .attr('y2', (d) => (d.target as NodeData).y!);
 
             renderNodes.attr('transform', (d) => `translate(${d.x},${d.y})`);
+
+            // Position watermarks based on their parent node
+            watermarkText
+                .attr('x', (d: any) => d.x)
+                .attr('y', (d: any) => d.y);
         });
 
         updateVisuals();
 
-        // Fast forward 50 ticks to stop initial wobbly rendering
-        for (let i = 0; i < 50; ++i) simulation.tick();
+        // Fast forward
+        for (let i = 0; i < 60; ++i) simulation.tick();
 
         return () => {
             simulation.stop();
@@ -418,18 +450,18 @@ export default function NodeDatabase() {
             {/* ── HEADER ── */}
             <div className="absolute top-0 left-0 z-40 border-b border-white/20 px-8 py-5 pointer-events-auto mt-16 bg-black"
                 style={{ borderRadius: 0 }}>
-                <h1 className="text-2xl font-bold tracking-tight text-white leading-none font-serif">
+                <h1 className="text-2xl font-bold tracking-tight text-white leading-none font-serif" style={{ letterSpacing: '-0.02em' }}>
                     IMEC Strategic Architecture
                 </h1>
                 <p className="text-[11px] tracking-[0.3em] text-white/40 uppercase mt-1 font-mono">
-                    Infrastructure & Intelligence Mapping · PhD Defense
+                    Geospatial Intelligence · Academic Overview
                 </p>
             </div>
 
             {/* ── FILTER TAXONOMY (Bottom Left) ── */}
             <div className="absolute bottom-8 left-8 z-40 pointer-events-auto flex flex-col gap-4">
                 <div className="flex gap-0">
-                    {(['ALL', 'INFRASTRUCTURE', 'DIGITAL', 'GEOPOLITICAL'] as FilterType[]).map(f => (
+                    {(['ALL', 'IMEC', 'BRI', 'GEOPOLITICAL'] as FilterType[]).map(f => (
                         <button
                             key={f}
                             onClick={() => setActiveFilter(f)}
@@ -448,7 +480,7 @@ export default function NodeDatabase() {
                 <div className="border border-white/20 bg-black px-4 py-3" style={{ borderRadius: 0 }}>
                     <div className="flex items-center justify-between mb-2">
                         <span className="text-[10px] tracking-[0.2em] text-white/40 uppercase font-mono">
-                            Connection Threshold
+                            Link Density Threshold
                         </span>
                         <span className="text-[12px] text-white font-bold font-mono">
                             ≥ {threshold}
@@ -477,19 +509,25 @@ export default function NodeDatabase() {
             <div className="absolute bottom-8 right-8 z-40 border border-white/20 bg-black px-5 py-4 pointer-events-auto"
                 style={{ borderRadius: 0 }}>
                 <div className="text-[9px] tracking-[0.2em] text-white/40 uppercase mb-3 font-mono">
-                    Node Taxonomy
+                    Corridor Lexicon
                 </div>
-                <div className="grid grid-cols-2 gap-x-6 gap-y-2">
-                    {Object.entries(TYPE_COLORS).map(([type, color]) => (
+                <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                    {Object.entries(CORRIDOR_COLORS).filter(([k]) => k !== 'DEFAULT').map(([type, color]) => (
                         <div key={type} className="flex items-center gap-2">
-                            <span className="text-[11px] font-black" style={{ color: color, fontFamily: '"Font Awesome 5 Free", "Font Awesome 5 Brands"' }}>
-                                {TYPE_ICONS[type] || '\uf111'}
-                            </span>
-                            <span className="text-[10px] text-white/60 font-mono">
+                            <span className="w-4 h-px" style={{ backgroundColor: color }} />
+                            <span className="text-[10px] tracking-wider text-white/80 font-mono uppercase">
                                 {type}
                             </span>
                         </div>
                     ))}
+                    <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-white/80 font-mono">
+                            +
+                        </span>
+                        <span className="text-[10px] tracking-wider text-white/60 font-mono uppercase">
+                            Target Node
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -500,7 +538,7 @@ export default function NodeDatabase() {
                     className="border border-white/20 bg-black text-white hover:bg-white hover:text-black transition-colors px-6 py-2.5 text-[11px] tracking-[0.2em] font-mono uppercase cursor-pointer flex items-center justify-center"
                     style={{ borderRadius: 0 }}
                 >
-                    [ RESET VIEW ]
+                    [ RESET CARTOGRAPHY ]
                 </button>
             </div>
 
@@ -508,103 +546,111 @@ export default function NodeDatabase() {
             <svg ref={svgRef} className="w-full h-full cursor-move" />
 
             {/* ── DOSSIER PANEL (Right) ── */}
-            {selectedNode && (
-                <div className="absolute right-0 top-0 w-[400px] h-screen bg-black border-l border-white/20 z-40 overflow-y-auto pointer-events-auto"
-                    style={{ borderRadius: 0 }}>
+            {
+                selectedNode && (
+                    <div className="absolute right-0 top-0 w-[400px] h-screen bg-black border-l border-white/20 z-40 overflow-y-auto pointer-events-auto"
+                        style={{ borderRadius: 0 }}>
 
-                    <div className="px-8 pt-24 pb-8">
-                        {/* Close */}
-                        <button onClick={() => setSelectedNode(null)}
-                            className="absolute top-20 right-6 text-white/30 hover:text-white transition-colors cursor-pointer">
-                            <X className="w-5 h-5" strokeWidth={1} />
-                        </button>
+                        <div className="px-8 pt-24 pb-8">
+                            {/* Close */}
+                            <button onClick={() => setSelectedNode(null)}
+                                className="absolute top-20 right-6 text-white/30 hover:text-white transition-colors cursor-pointer">
+                                <X className="w-5 h-5" strokeWidth={1} />
+                            </button>
 
-                        {/* Type Badge */}
-                        <div className="inline-flex items-center gap-2 border border-white/20 px-3 py-1 mb-4 bg-black"
-                            style={{ borderRadius: 0 }}>
-                            <span className="text-[10px] font-black" style={{ color: selectedNode.color, fontFamily: '"Font Awesome 5 Free", "Font Awesome 5 Brands"' }}>
-                                {TYPE_ICONS[selectedNode.type] || '\uf111'}
-                            </span>
-                            <span className="text-[10px] tracking-[0.3em] uppercase font-mono"
-                                style={{ color: selectedNode.color }}>
-                                {selectedNode.type}
-                            </span>
-                        </div>
-
-                        {/* Title */}
-                        <h2 className="text-3xl font-bold tracking-tight text-white leading-tight mb-6 font-serif">
-                            {selectedNode.label}
-                        </h2>
-
-                        {/* Divider */}
-                        <div className="w-full h-px bg-white/20 mb-6" />
-
-                        {/* Desc */}
-                        <div className="mb-8">
-                            <div className="text-[9px] tracking-[0.3em] text-white/30 uppercase mb-2 font-mono">
-                                Intelligence Brief
+                            {/* Type Badge */}
+                            <div className="inline-flex items-center gap-2 border border-white/20 px-3 py-1 mb-4 bg-black"
+                                style={{ borderRadius: 0 }}>
+                                <span className="text-[10px] font-black" style={{ color: selectedNode.color, fontFamily: '"IBM Plex Mono", "JetBrains Mono", monospace' }}>
+                                    +
+                                </span>
+                                <span className="text-[10px] tracking-[0.3em] uppercase font-mono"
+                                    style={{ color: selectedNode.color }}>
+                                    {selectedNode.type}
+                                </span>
                             </div>
-                            <p className="text-[14px] text-white/70 leading-relaxed font-serif">
-                                {selectedNode.desc}
-                            </p>
-                        </div>
 
-                        {/* Metrics */}
-                        <div className="border border-white/20 mb-8 bg-black" style={{ borderRadius: 0 }}>
-                            <div className="flex">
-                                <div className="flex-1 px-4 py-3 border-r border-white/20">
-                                    <div className="text-[9px] tracking-[0.2em] text-white/30 uppercase font-mono">
-                                        Weight
+                            {/* Title */}
+                            <h2 className="text-3xl font-bold text-white leading-tight mb-2 font-serif" style={{ letterSpacing: '-0.02em' }}>
+                                {selectedNode.label}
+                            </h2>
+                            {selectedNode.coord && (
+                                <div className="text-[10px] text-white/50 font-mono tracking-widest mb-6">
+                                    {selectedNode.coord}
+                                </div>
+                            )}
+                            {!selectedNode.coord && <div className="mb-6" />}
+
+                            {/* Divider */}
+                            <div className="w-full h-px bg-white/20 mb-6" />
+
+                            {/* Desc */}
+                            <div className="mb-8">
+                                <div className="text-[9px] tracking-[0.3em] text-white/30 uppercase mb-2 font-mono">
+                                    Intelligence Brief
+                                </div>
+                                <p className="text-[14px] text-white/70 leading-relaxed font-serif">
+                                    {selectedNode.desc}
+                                </p>
+                            </div>
+
+                            {/* Metrics */}
+                            <div className="border border-white/20 mb-8 bg-black" style={{ borderRadius: 0 }}>
+                                <div className="flex">
+                                    <div className="flex-1 px-4 py-3 border-r border-white/20">
+                                        <div className="text-[9px] tracking-[0.2em] text-white/30 uppercase font-mono">
+                                            Density Val
+                                        </div>
+                                        <div className="text-xl text-white font-bold mt-1 font-mono">
+                                            {selectedNode.val}
+                                        </div>
                                     </div>
-                                    <div className="text-xl text-white font-bold mt-1 font-mono">
-                                        {selectedNode.val}
+                                    <div className="flex-1 px-4 py-3">
+                                        <div className="text-[9px] tracking-[0.2em] text-white/30 uppercase font-mono">
+                                            Links
+                                        </div>
+                                        <div className="text-xl text-white font-bold mt-1 font-mono">
+                                            {neighbors.get(selectedNode.id)?.size || 0}
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="flex-1 px-4 py-3">
-                                    <div className="text-[9px] tracking-[0.2em] text-white/30 uppercase font-mono">
-                                        Connections
-                                    </div>
-                                    <div className="text-xl text-white font-bold mt-1 font-mono">
-                                        {neighbors.get(selectedNode.id)?.size || 0}
-                                    </div>
-                                </div>
                             </div>
-                        </div>
 
-                        {/* Neighbors */}
-                        <div>
-                            <div className="text-[9px] tracking-[0.3em] text-white/30 uppercase mb-3 font-mono">
-                                Direct Dependencies
-                            </div>
-                            <div className="flex flex-col gap-0 border-t border-white/20">
-                                {Array.from(neighbors.get(selectedNode.id) || []).map(nId => {
-                                    const n = initialData.nodes.find(nd => nd.id === nId);
-                                    if (!n) return null;
-                                    return (
-                                        <button
-                                            key={n.id}
-                                            onClick={() => setSelectedNode(n as NodeData)}
-                                            className="flex items-center justify-between px-4 py-3 border-b border-x border-white/20 bg-black hover:bg-white/5 transition-colors text-left cursor-pointer"
-                                            style={{ borderRadius: 0, marginTop: -1 }}
-                                        >
-                                            <span className="text-[13px] text-white font-serif flex items-center gap-3">
-                                                <span className="text-[12px] font-black" style={{ color: n.color, fontFamily: '"Font Awesome 5 Free", "Font Awesome 5 Brands"' }}>
-                                                    {TYPE_ICONS[n.type] || '\uf111'}
+                            {/* Neighbors */}
+                            <div>
+                                <div className="text-[9px] tracking-[0.3em] text-white/30 uppercase mb-3 font-mono">
+                                    Vector Dependencies
+                                </div>
+                                <div className="flex flex-col gap-0 border-t border-white/20">
+                                    {Array.from(neighbors.get(selectedNode.id) || []).map(nId => {
+                                        const n = initialData.nodes.find(nd => nd.id === nId);
+                                        if (!n) return null;
+                                        return (
+                                            <button
+                                                key={n.id}
+                                                onClick={() => setSelectedNode(n as NodeData)}
+                                                className="flex items-center justify-between px-4 py-3 border-b border-x border-white/20 bg-black hover:bg-white/5 transition-colors text-left cursor-pointer"
+                                                style={{ borderRadius: 0, marginTop: -1 }}
+                                            >
+                                                <span className="text-[13px] text-white font-serif flex items-center gap-3">
+                                                    <span className="text-[12px] font-black" style={{ color: n.color, fontFamily: '"IBM Plex Mono", "JetBrains Mono", monospace' }}>
+                                                        +
+                                                    </span>
+                                                    {n.label}
                                                 </span>
-                                                {n.label}
-                                            </span>
-                                            <span className="text-[9px] tracking-[0.2em] uppercase font-mono"
-                                                style={{ color: n.color }}>
-                                                {n.type}
-                                            </span>
-                                        </button>
-                                    );
-                                })}
+                                                <span className="text-[9px] tracking-[0.2em] uppercase font-mono"
+                                                    style={{ color: n.color }}>
+                                                    {n.type}
+                                                </span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )
+            }
+        </div >
     );
 }
