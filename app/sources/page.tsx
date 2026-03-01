@@ -9,12 +9,13 @@ import fallbackSources from '@/public/data/sources.json';
 type AcademicSource = {
     id: string;
     title: string;
-    author: string;
-    year: string;
-    type: string;
-    tags: string[];
+    authors: string;
+    date: string;
     url: string;
     quadrant: 'Q1' | 'Q2' | 'Q3' | 'Q4';
+    description: string;
+    type?: string;
+    tags?: string[];
 };
 
 const QUADRANTS = [
@@ -53,8 +54,7 @@ export default function SourcesPage() {
             const lowerQ = searchQuery.toLowerCase();
             active = active.filter(src =>
                 src.title.toLowerCase().includes(lowerQ) ||
-                src.author.toLowerCase().includes(lowerQ) ||
-                src.tags.some(tag => tag.toLowerCase().includes(lowerQ))
+                src.authors.toLowerCase().includes(lowerQ)
             );
         }
 
@@ -166,22 +166,20 @@ export default function SourcesPage() {
 
                                         <div className="flex-1 min-w-0 pr-6">
                                             <div className="flex items-center gap-3 mb-2">
-                                                <span className="text-[10px] font-bold font-mono tracking-widest group-hover:text-black" style={{ color: quadColor }}>
+                                                <span className="text-[10px] font-bold font-mono tracking-widest group-hover:text-black transition-colors" style={{ color: quadColor }}>
                                                     [{src.quadrant}]
                                                 </span>
-                                                <span className="text-[10px] uppercase font-mono tracking-widest text-white/50 group-hover:text-black/50">
-                                                    {src.type}
-                                                </span>
                                             </div>
-                                            <h3 className="text-lg font-bold text-white group-hover:text-black truncate mb-2">
+                                            <h3 className="text-lg font-bold text-white group-hover:text-black transition-colors truncate mb-2">
                                                 {src.title}
                                             </h3>
-                                            <div className="flex items-center gap-3 text-xs text-white/50 font-mono group-hover:text-black/60 truncate">
-                                                <span>{src.author}</span>
+                                            <div className="text-sm font-serif text-white/70 group-hover:text-black/80 transition-colors mb-2 truncate">
+                                                {src.description}
+                                            </div>
+                                            <div className="flex items-center gap-3 text-xs text-white/50 font-mono group-hover:text-black/60 transition-colors truncate">
+                                                <span>{src.authors}</span>
                                                 <span className="w-1 h-1 bg-white/20 group-hover:bg-black/20" />
-                                                <span>{src.year}</span>
-                                                <span className="w-1 h-1 bg-white/20 group-hover:bg-black/20" />
-                                                <span className="truncate">{src.tags.join(' · ')}</span>
+                                                <span>{src.date}</span>
                                             </div>
                                         </div>
 
