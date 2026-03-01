@@ -157,6 +157,7 @@ export default function NodeDatabase() {
     const [activeFilter, setActiveFilter] = useState<FilterType>('ALL');
     const [threshold, setThreshold] = useState<number>(1);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const resetZoomRef = useRef<() => void>(() => { });
 
     // Internal state references for D3 hover
     // Internal state references for D3 hover
@@ -234,7 +235,10 @@ export default function NodeDatabase() {
             .force('link', d3.forceLink<NodeData, LinkData>(filteredData.links).id(d => d.id).distance(120))
             .force('charge', d3.forceManyBody().strength(-500))
             .force('center', d3.forceCenter(width / 2, height / 2))
-            .force('collision', d3.forceCollide<NodeData>().radius(d => d.val * 3.5 + 10));
+            .force('x', d3.forceX(width / 2).strength(0.05))
+            .force('y', d3.forceY(height / 2).strength(0.05))
+            .force('collision', d3.forceCollide<NodeData>().radius(d => d.val * 3.5 + 10))
+            .alphaDecay(0.08);
 
         // Links
         const link = zoomGroup.append('g')
@@ -301,7 +305,7 @@ export default function NodeDatabase() {
 
         // Zoom/Pan
         const zoom = d3.zoom<SVGSVGElement, unknown>()
-            .scaleExtent([0.1, 4])
+            .scaleExtent([0.6, 10])
             .on("zoom", (e) => {
                 zoomGroup.attr("transform", e.transform);
                 renderNodes.selectAll('.label').attr('opacity', (d: any) => d.val >= 6 || e.transform.k >= 1.5 ? 1 : 0);
@@ -309,6 +313,12 @@ export default function NodeDatabase() {
 
         svg.call(zoom);
         svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.9).translate(-width / 2, -height / 2));
+
+        // Bind Reset View
+        resetZoomRef.current = () => {
+            svg.transition().duration(750)
+                .call(zoom.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.9).translate(-width / 2, -height / 2));
+        };
 
         // Spotlight Function
         function applySpotlight(activeId: string | null) {
@@ -374,6 +384,14 @@ export default function NodeDatabase() {
 
         // Tick loop
         simulation.on('tick', () => {
+            // Apply bounding box mathematically
+            const padding = 20;
+            filteredData.nodes.forEach(d => {
+                const radius = d.val * 3 + padding;
+                d.x = Math.max(radius, Math.min(width - radius, d.x!));
+                d.y = Math.max(radius, Math.min(height - radius, d.y!));
+            });
+
             link
                 .attr('x1', (d) => (d.source as NodeData).x!)
                 .attr('y1', (d) => (d.source as NodeData).y!)
@@ -473,6 +491,17 @@ export default function NodeDatabase() {
                         </div>
                     ))}
                 </div>
+            </div>
+
+            {/* ── RESET VIEW BUTTON ── */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 pointer-events-auto">
+                <button
+                    onClick={() => resetZoomRef.current()}
+                    className="border border-white/20 bg-black text-white hover:bg-white hover:text-black transition-colors px-6 py-2.5 text-[11px] tracking-[0.2em] font-mono uppercase cursor-pointer flex items-center justify-center"
+                    style={{ borderRadius: 0 }}
+                >
+                    [ RESET VIEW ]
+                </button>
             </div>
 
             {/* ── CANVAS / SVG ── */}
