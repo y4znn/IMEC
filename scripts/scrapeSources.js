@@ -80,7 +80,7 @@ async function scrapeCrossref() {
     if (fs.existsSync(sourcesPath)) {
         try {
             existingSources = JSON.parse(fs.readFileSync(sourcesPath, 'utf8'));
-        } catch (e) {
+        } catch {
             existingSources = [];
         }
     }
@@ -138,8 +138,8 @@ async function scrapeCrossref() {
                     });
                 }
             }
-        } catch (err) {
-            console.error(`Error fetching query '${query}':`, err.message);
+        } catch {
+            console.log(`[SKIP] Search failed for query: ${query}`);
         }
 
         // Respect rate limits gently

@@ -73,7 +73,7 @@ async function scrapePhase2() {
     if (fs.existsSync(sourcesPath)) {
         try {
             existingSources = JSON.parse(fs.readFileSync(sourcesPath, 'utf8'));
-        } catch (e) {
+        } catch {
             existingSources = [];
         }
     }

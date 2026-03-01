@@ -144,12 +144,55 @@ export default function GlobeView() {
     const globeRef = useRef<any>(null);
     const [countries, setCountries] = useState({ features: [] });
     const [selectedNode, setSelectedNode] = useState<HtmlElementDatum | null>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [paperMaterial, setPaperMaterial] = useState<any>(null);
 
     useEffect(() => {
         fetch('https://raw.githubusercontent.com/vasturiano/react-globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson')
             .then(res => res.json())
             .then(data => setCountries(data.features || []))
             .catch(console.error);
+
+        let isMounted = true;
+        import('three').then((THREE) => {
+            if (!isMounted) return;
+            const mat = new THREE.ShaderMaterial({
+                uniforms: {
+                    baseColor: { value: new THREE.Color('#0D0D0D') },
+                    glowColor: { value: new THREE.Color('#ffffff') },
+                    glowIntensity: { value: 0.08 },
+                    opacity: { value: 0.12 },
+                },
+                transparent: true,
+                vertexShader: `
+                    varying vec3 vNormal;
+                    varying vec3 vPositionNormal;
+                    void main() {
+                        vNormal = normalize(normalMatrix * normal);
+                        vPositionNormal = normalize((modelViewMatrix * vec4(position, 1.0)).xyz);
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    uniform vec3 baseColor;
+                    uniform vec3 glowColor;
+                    uniform float glowIntensity;
+                    uniform float opacity;
+                    varying vec3 vNormal;
+                    varying vec3 vPositionNormal;
+                    void main() {
+                        float fresnel = dot(vNormal, -vPositionNormal);
+                        fresnel = clamp(1.0 - fresnel, 0.0, 1.0);
+                        // Increase the glow spread slightly
+                        float glow = pow(fresnel, 2.5) * glowIntensity;
+                        vec3 finalColor = mix(baseColor, glowColor, glow);
+                        gl_FragColor = vec4(finalColor, opacity);
+                    }
+                `
+            });
+            setPaperMaterial(mat);
+        });
+        return () => { isMounted = false; };
     }, []);
 
     const handleGlobeReady = useCallback(() => {
@@ -164,6 +207,27 @@ export default function GlobeView() {
                 controls.zoomSpeed = 0.6;
             }
             globeRef.current.pointOfView({ lat: 28, lng: 46, altitude: 2.0 }, 1500);
+
+            // Add volumetric lighting
+            const scene = globeRef.current.scene();
+            import('three').then((THREE) => {
+                // Dim down the default ambient light
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const ambientLight = scene.children.find((c: any) => c.type === 'AmbientLight') as any;
+                if (ambientLight) {
+                    ambientLight.intensity = 0.2;
+                }
+
+                // Add Volumetric Directional Light (Top Left)
+                const dirLight = new THREE.DirectionalLight('#ffffff', 3.0); // Adjust intensity for styling
+                dirLight.position.set(-10, 10, 5);
+                scene.add(dirLight);
+
+                // Add a secondary very subtle fill light to not leave it completely pitch black
+                const fillLight = new THREE.DirectionalLight('#ffffff', 0.5);
+                fillLight.position.set(10, -10, -5);
+                scene.add(fillLight);
+            });
         }
     }, []);
 
@@ -177,7 +241,7 @@ export default function GlobeView() {
                 ref={globeRef}
                 globeImageUrl={undefined}
                 bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-                backgroundColor="#000000"
+                backgroundColor="#050505"
                 showAtmosphere={false}
                 animateIn={true}
                 onGlobeReady={handleGlobeReady}
@@ -195,9 +259,10 @@ export default function GlobeView() {
                 arcDashAnimateTime="dashAnimateTime"
 
                 polygonsData={countries}
-                polygonCapColor={() => '#0a0a0a'}
-                polygonSideColor={() => '#000000'}
-                polygonStrokeColor={() => '#222222'}
+                polygonCapMaterial={paperMaterial}
+                polygonSideColor={() => 'rgba(0,0,0,0)'}
+                polygonStrokeColor={() => '#1A1A1A'}
+                polygonAltitude={0.005}
 
                 // ── HTML Overlays ──
                 htmlElementsData={memoHtmlLabels}
@@ -216,7 +281,7 @@ export default function GlobeView() {
                         container.style.fontFamily = '"Fraunces", "Libre Baskerville", serif';
                         container.style.fontWeight = '700';
                         container.style.letterSpacing = '0.5em';
-                        container.style.opacity = '0.05';
+                        container.style.opacity = '0.03';
                         container.style.whiteSpace = 'nowrap';
                         container.style.pointerEvents = 'none';
                         return container;
@@ -288,7 +353,7 @@ export default function GlobeView() {
 
             {/* ── DOSSIER PANEL (Right) ── */}
             {selectedNode && (
-                <div className="absolute right-0 top-0 w-[400px] h-screen bg-black border-l border-white/20 z-40 overflow-y-auto pointer-events-auto shadow-2xl"
+                <div className="absolute right-0 top-0 w-[400px] h-screen bg-black border-l border-white z-40 overflow-y-auto pointer-events-auto shadow-2xl"
                     style={{ borderRadius: 0 }}>
 
                     <div className="px-8 pt-24 pb-8">
@@ -299,7 +364,7 @@ export default function GlobeView() {
                         </button>
 
                         {/* Type Badge */}
-                        <div className="inline-flex items-center gap-2 border border-white/20 px-3 py-1 mb-4 bg-black"
+                        <div className="inline-flex items-center gap-2 border border-white px-3 py-1 mb-4 bg-black"
                             style={{ borderRadius: 0 }}>
                             <span className="text-[10px] font-black font-mono text-white">
                                 +
