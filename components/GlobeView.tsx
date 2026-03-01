@@ -28,8 +28,8 @@ const coords: Record<string, { lat: number; lng: number; label: string; desc: st
    ARC DATA (Corridors)
    ══════════════════════════════════════════════════════════ */
 const PALETTE = {
-    IMEC: '#2C3E50',
-    BRI: '#4A1F1F',
+    IMEC: '#4A90E2',
+    BRI: '#E24A4A',
     INSTC: '#3D4B3D',
     NEUTRAL: '#444444'
 };
@@ -156,12 +156,10 @@ export default function GlobeView() {
         let isMounted = true;
         import('three').then((THREE) => {
             if (!isMounted) return;
-            const mat = new THREE.MeshPhysicalMaterial({
-                color: new THREE.Color('#0D0D0D'),
-                metalness: 0.6,
-                roughness: 0.4,
+            const mat = new THREE.MeshBasicMaterial({
+                color: new THREE.Color('#000000'),
                 transparent: true,
-                opacity: 0.9,
+                opacity: 0.8,
             });
             setPaperMaterial(mat);
         });
@@ -181,7 +179,7 @@ export default function GlobeView() {
             }
             globeRef.current.pointOfView({ lat: 28, lng: 46, altitude: 2.0 }, 1500);
 
-            // Add volumetric lighting
+            // Eradicate default lighting for strict wireframe/blueprint look
             const scene = globeRef.current.scene();
             import('three').then((THREE) => {
                 // Remove default lights
@@ -190,43 +188,25 @@ export default function GlobeView() {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 lightsToRemove.forEach((l: any) => scene.remove(l));
 
-                // 1. Ambient Light
-                const ambientLight = new THREE.AmbientLight('#ffffff', 1.5);
-                scene.add(ambientLight);
-
-                // 2. Key Light (Volumetric Directional Light - Top Left)
-                const dirLight = new THREE.DirectionalLight('#ffffff', 4.0);
-                dirLight.position.set(-10, 10, 5);
-                scene.add(dirLight);
-
-                // 3. Rim Light (Hemisphere Light)
-                const hemiLight = new THREE.HemisphereLight('#ffffff', '#000000', 1.0);
-                scene.add(hemiLight);
-
-                // Add physical material to globe base
+                // Set globe base completely transparent to reveal background
                 const globeMaterial = globeRef.current.globeMaterial();
                 if (globeMaterial) {
-                    globeRef.current.globeMaterial(new THREE.MeshPhysicalMaterial({
-                        color: new THREE.Color('#050505'),
-                        metalness: 0.6,
-                        roughness: 0.4,
-                        clearcoat: 0.1,
-                        clearcoatRoughness: 0.1
+                    globeRef.current.globeMaterial(new THREE.MeshBasicMaterial({
+                        transparent: true,
+                        opacity: 0
                     }));
                 }
 
-                // Force Emissiveness on Arcs via traversal (since react-globe uses generic materials for paths)
+                // Force Flat Colors on Arcs via traversal (since react-globe uses generic materials for paths)
                 setTimeout(() => {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     scene.traverse((child: any) => {
                         if (child.isMesh && child.material && child.__data && child.__data.corridor) {
                             if (child.__data.color) {
-                                child.material = new THREE.MeshStandardMaterial({
+                                child.material = new THREE.MeshBasicMaterial({
                                     color: new THREE.Color(child.__data.color),
-                                    emissive: new THREE.Color(child.__data.color),
-                                    emissiveIntensity: 0.8,
                                     transparent: true,
-                                    opacity: 0.9,
+                                    opacity: 1.0,
                                 });
                             }
                         }
@@ -246,7 +226,7 @@ export default function GlobeView() {
                 ref={globeRef}
                 globeImageUrl={undefined}
                 bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-                backgroundColor="#050505"
+                backgroundColor="rgba(0,0,0,0)"
                 showAtmosphere={false}
                 animateIn={true}
                 onGlobeReady={handleGlobeReady}
@@ -266,7 +246,7 @@ export default function GlobeView() {
                 polygonsData={countries}
                 polygonCapMaterial={paperMaterial}
                 polygonSideColor={() => 'rgba(0,0,0,0)'}
-                polygonStrokeColor={() => '#1A1A1A'}
+                polygonStrokeColor={() => '#A3A3A3'}
                 polygonAltitude={0.005}
 
                 // ── HTML Overlays ──
