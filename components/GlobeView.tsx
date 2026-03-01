@@ -156,39 +156,12 @@ export default function GlobeView() {
         let isMounted = true;
         import('three').then((THREE) => {
             if (!isMounted) return;
-            const mat = new THREE.ShaderMaterial({
-                uniforms: {
-                    baseColor: { value: new THREE.Color('#0D0D0D') },
-                    glowColor: { value: new THREE.Color('#ffffff') },
-                    glowIntensity: { value: 0.08 },
-                    opacity: { value: 0.12 },
-                },
+            const mat = new THREE.MeshPhysicalMaterial({
+                color: new THREE.Color('#0D0D0D'),
+                metalness: 0.6,
+                roughness: 0.4,
                 transparent: true,
-                vertexShader: `
-                    varying vec3 vNormal;
-                    varying vec3 vPositionNormal;
-                    void main() {
-                        vNormal = normalize(normalMatrix * normal);
-                        vPositionNormal = normalize((modelViewMatrix * vec4(position, 1.0)).xyz);
-                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                    }
-                `,
-                fragmentShader: `
-                    uniform vec3 baseColor;
-                    uniform vec3 glowColor;
-                    uniform float glowIntensity;
-                    uniform float opacity;
-                    varying vec3 vNormal;
-                    varying vec3 vPositionNormal;
-                    void main() {
-                        float fresnel = dot(vNormal, -vPositionNormal);
-                        fresnel = clamp(1.0 - fresnel, 0.0, 1.0);
-                        // Increase the glow spread slightly
-                        float glow = pow(fresnel, 2.5) * glowIntensity;
-                        vec3 finalColor = mix(baseColor, glowColor, glow);
-                        gl_FragColor = vec4(finalColor, opacity);
-                    }
-                `
+                opacity: 0.9,
             });
             setPaperMaterial(mat);
         });
@@ -211,22 +184,54 @@ export default function GlobeView() {
             // Add volumetric lighting
             const scene = globeRef.current.scene();
             import('three').then((THREE) => {
-                // Dim down the default ambient light
+                // Remove default lights
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const ambientLight = scene.children.find((c: any) => c.type === 'AmbientLight') as any;
-                if (ambientLight) {
-                    ambientLight.intensity = 0.2;
-                }
+                const lightsToRemove = scene.children.filter((c: any) => c.isLight);
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                lightsToRemove.forEach((l: any) => scene.remove(l));
 
-                // Add Volumetric Directional Light (Top Left)
-                const dirLight = new THREE.DirectionalLight('#ffffff', 3.0); // Adjust intensity for styling
+                // 1. Ambient Light
+                const ambientLight = new THREE.AmbientLight('#ffffff', 1.5);
+                scene.add(ambientLight);
+
+                // 2. Key Light (Volumetric Directional Light - Top Left)
+                const dirLight = new THREE.DirectionalLight('#ffffff', 4.0);
                 dirLight.position.set(-10, 10, 5);
                 scene.add(dirLight);
 
-                // Add a secondary very subtle fill light to not leave it completely pitch black
-                const fillLight = new THREE.DirectionalLight('#ffffff', 0.5);
-                fillLight.position.set(10, -10, -5);
-                scene.add(fillLight);
+                // 3. Rim Light (Hemisphere Light)
+                const hemiLight = new THREE.HemisphereLight('#ffffff', '#000000', 1.0);
+                scene.add(hemiLight);
+
+                // Add physical material to globe base
+                const globeMaterial = globeRef.current.globeMaterial();
+                if (globeMaterial) {
+                    globeRef.current.globeMaterial(new THREE.MeshPhysicalMaterial({
+                        color: new THREE.Color('#050505'),
+                        metalness: 0.6,
+                        roughness: 0.4,
+                        clearcoat: 0.1,
+                        clearcoatRoughness: 0.1
+                    }));
+                }
+
+                // Force Emissiveness on Arcs via traversal (since react-globe uses generic materials for paths)
+                setTimeout(() => {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    scene.traverse((child: any) => {
+                        if (child.isMesh && child.material && child.__data && child.__data.corridor) {
+                            if (child.__data.color) {
+                                child.material = new THREE.MeshStandardMaterial({
+                                    color: new THREE.Color(child.__data.color),
+                                    emissive: new THREE.Color(child.__data.color),
+                                    emissiveIntensity: 0.8,
+                                    transparent: true,
+                                    opacity: 0.9,
+                                });
+                            }
+                        }
+                    });
+                }, 500); // Small delay to ensure geometries construct
             });
         }
     }, []);
@@ -269,7 +274,6 @@ export default function GlobeView() {
                 htmlLat="lat"
                 htmlLng="lng"
                 htmlAltitude={() => 0.05}
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 htmlElement={(d: HtmlElementDatum) => {
                     const container = document.createElement('div');
 
