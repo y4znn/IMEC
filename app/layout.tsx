@@ -20,43 +20,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
                 <title>India Middle East Europe Economic Corridor Research Platform</title>
                 <meta name="description" content="PhD Research Platform — India-Middle East-Europe Economic Corridor Analysis" />
             </head>
-            <body className="min-h-screen bg-black text-zinc-400 font-sans antialiased overflow-x-hidden">
+            <body className="min-h-screen bg-black text-white font-serif antialiased overflow-x-hidden">
                 <DefenseProvider>
                     {/* ── Persistent 3D Globe Background ── */}
                     <div className="fixed inset-0 z-0 pointer-events-auto bg-black">
                         <PersistentGlobe />
                     </div>
 
-                    {/* ── Subtle gradient overlay ── */}
-                    <div
-                        className="fixed inset-0 z-0 pointer-events-none"
-                        style={{
-                            background: 'radial-gradient(ellipse 60% 40% at 50% 30%, rgba(30, 64, 175, 0.04) 0%, transparent 70%)',
-                        }}
-                    />
-
                     {/* ── Navigation Bar ── */}
-                    <header className="fixed top-0 inset-x-0 z-50 bg-black/90 backdrop-blur-lg border-b border-zinc-800/40">
+                    <header className="fixed top-0 inset-x-0 z-50 bg-black border-b border-white/20">
                         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
                             <Link href="/" className="flex flex-col group py-2">
                                 <div className="flex items-center gap-2.5">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                                    <div className="w-1.5 h-1.5 bg-white rounded-none" />
                                     <span className="text-[13px] font-semibold text-zinc-200 tracking-tight group-hover:text-white transition-colors duration-300 chromatic-text">
                                         India Middle East Europe Economic Corridor Research Platform
                                     </span>
                                 </div>
                                 <div className="pl-4 mt-0.5">
-                                    <span className="text-[9px] font-mono text-cyan-400 tracking-widest uppercase opacity-80">
+                                    <span className="text-[9px] font-mono text-zinc-400 tracking-widest uppercase opacity-80">
                                         TRACE: / {pathname === '/' ? 'DATA_NEXUS/Z-STACK' : pathname === '/maps' ? 'GEOSPATIAL/CORRIDORS' : pathname === '/dossier' ? 'INVESTIGATOR/DOSSIER' : 'DATABASE/REFERENCES'}
                                     </span>
                                 </div>
                             </Link>
 
-                            <nav className="flex items-center gap-1" aria-label="Primary navigation">
+                            <nav className="flex items-center gap-2" aria-label="Primary navigation">
                                 <NavLink href="/" label="Network Graph" current={pathname} />
                                 <NavLink href="/maps" label="Corridors Map" current={pathname} />
                                 <NavLink href="/dossier" label="Researcher profile" current={pathname} />
@@ -75,8 +68,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                     {/* ── Footer ── */}
                     {!isMapPage && (
-                        <footer className="relative z-10 border-t border-zinc-800/40 bg-black/90 backdrop-blur-lg">
-                            <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between text-xs text-zinc-600">
+                        <footer className="relative z-10 border-t border-white/20 bg-black">
+                            <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between text-xs text-zinc-500 font-mono">
                                 <span>Ahmad Ghosn · PhD Research Platform</span>
                                 <span>Sources: Atlantic Council · ECFR · CSIS · Brookings</span>
                             </div>
@@ -93,10 +86,11 @@ function NavLink({ href, label, current }: { href: string; label: string; curren
     return (
         <Link
             href={href}
-            className={`px-3.5 py-1.5 text-[13px] rounded-lg transition-all duration-200 cursor-pointer ${isActive
-                ? 'text-zinc-200 bg-zinc-900/60 font-medium'
-                : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/30'
+            className={`px-3.5 py-1.5 text-[11px] font-mono tracking-widest uppercase transition-all duration-200 cursor-pointer border border-transparent ${isActive
+                ? 'text-white border-white/20 bg-white/5'
+                : 'text-zinc-500 hover:text-white hover:border-white/20'
                 }`}
+            style={{ borderRadius: 0 }}
         >
             {label}
         </Link>
