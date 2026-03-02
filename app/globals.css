@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
-/* ── Academic Enterprise Design System ── */
 @theme {
     --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-    --font-mono: 'IBM Plex Mono', 'Fira Code', ui-monospace, monospace;
+    --font-serif: var(--font-fraunces), 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-mono: var(--font-jetbrains-mono), 'IBM Plex Mono', 'Fira Code', ui-monospace, monospace;
 }
 
 /* ── Base ── */
@@ -53,6 +52,26 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Brutalist Scrollbar ── */
+.brutalist-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.brutalist-scrollbar::-webkit-scrollbar-track {
+    background: #000000;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brutalist-scrollbar::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 0;
+}
+
+.brutalist-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #cccccc;
 }
 
 /* ── Toast Animation ── */

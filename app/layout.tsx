@@ -3,9 +3,20 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
+import { Fraunces, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { DefenseProvider } from '@/components/DefenseContext';
 import CRTOverlay from '@/components/CRTOverlay';
+
+const fraunces = Fraunces({
+    subsets: ['latin'],
+    variable: '--font-fraunces',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+    subsets: ['latin'],
+    variable: '--font-jetbrains-mono',
+});
 
 const PersistentGlobe = dynamic(() => import('@/components/GlobeView'), {
     ssr: false,
@@ -20,12 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
                 <title>India Middle East Europe Economic Corridor Research Platform</title>
                 <meta name="description" content="PhD Research Platform — India-Middle East-Europe Economic Corridor Analysis" />
             </head>
-            <body className="min-h-screen bg-black text-white font-serif antialiased overflow-x-hidden">
+            <body className={`min-h-screen bg-black text-white ${fraunces.variable} ${jetbrainsMono.variable} font-serif antialiased overflow-x-hidden`}>
                 <DefenseProvider>
                     {/* ── Persistent 3D Globe Background ── */}
                     <div className="fixed inset-0 z-0 pointer-events-auto bg-black">
@@ -44,16 +53,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                 </div>
                                 <div className="pl-4 mt-0.5">
                                     <span className="text-[9px] font-mono text-zinc-400 tracking-widest uppercase opacity-80">
-                                        TRACE: / {pathname === '/' ? 'DATA_NEXUS/Z-STACK' : pathname === '/maps' ? 'GEOSPATIAL/CORRIDORS' : pathname === '/dossier' ? 'INVESTIGATOR/DOSSIER' : 'DATABASE/REFERENCES'}
+                                        <a href="https://www.linkedin.com/in/ahmadghsnn" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">A Phd Project by Ahmad Ghosn</a>
                                     </span>
                                 </div>
                             </Link>
 
                             <nav className="flex items-center gap-2" aria-label="Primary navigation">
+                                <NavLink href="/sources" label="Sources" current={pathname} />
+                                <NavLink href="/maps" label="Corridors map" current={pathname} />
                                 <NavLink href="/" label="Network Graph" current={pathname} />
-                                <NavLink href="/maps" label="Corridors Map" current={pathname} />
-                                <NavLink href="/dossier" label="Researcher profile" current={pathname} />
-                                <NavLink href="/sources" label="Sources and references" current={pathname} />
+                                <NavLink href="/profile" label="Researcher Profile" current={pathname} />
                             </nav>
                         </div>
                     </header>
