@@ -44,19 +44,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     {/* ── Navigation Bar ── */}
                     <header className="fixed top-0 inset-x-0 z-50 bg-gray-50 border-b border-gray-300">
                         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-                            <Link href="/" className="flex flex-col group py-2">
-                                <div className="flex items-center gap-2.5">
-                                    <div className="w-1.5 h-1.5 bg-white rounded-none" />
-                                    <span className="text-[13px] font-semibold text-gray-800 tracking-tight group-hover:text-gray-900 transition-colors duration-300 chromatic-text">
-                                        India Middle East Europe Economic Corridor Research Platform
-                                    </span>
-                                </div>
+                            <div className="flex flex-col py-2">
+                                <Link href="/" className="group">
+                                    <div className="flex items-center gap-2.5">
+                                        <div className="w-1.5 h-1.5 bg-white rounded-none" />
+                                        <span className="text-[13px] font-semibold text-gray-800 tracking-tight group-hover:text-gray-900 transition-colors duration-300 chromatic-text">
+                                            India Middle East Europe Economic Corridor Research Platform
+                                        </span>
+                                    </div>
+                                </Link>
                                 <div className="pl-4 mt-0.5">
                                     <span className="text-[9px] font-mono text-gray-600 tracking-widest uppercase opacity-80">
                                         <a href="https://www.linkedin.com/in/ahmadghsnn" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">A Phd Project by Ahmad Ghosn</a>
                                     </span>
                                 </div>
-                            </Link>
+                            </div>
 
                             <nav className="flex items-center gap-2" aria-label="Primary navigation">
                                 <NavLink href="/sources" label="Sources" current={pathname} />

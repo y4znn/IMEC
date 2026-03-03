@@ -201,3 +201,14 @@ input[type='range']::-moz-range-thumb {
     text-shadow: 2px 0px rgba(255, 0, 0, 0.8), -2px 0px rgba(0, 0, 255, 0.8);
     color: #ffffff;
 }
+
+@keyframes map-pulse {
+    0% {
+        box-shadow: 0 0 0 0px rgba(17, 24, 39, 0.4);
+        /* Dark grey match */
+    }
+
+    100% {
+        box-shadow: 0 0 0 10px rgba(17, 24, 39, 0);
+    }
+}
