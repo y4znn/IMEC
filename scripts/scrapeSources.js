@@ -3,17 +3,18 @@ const fs = require('fs');
 const path = require('path');
 
 const queries = [
-    "India–Middle East–Europe Economic Corridor: Geoeconomic Architecture of a New Middle East",
-    "IMEC corridor",
-    "India Middle East Europe Economic Corridor",
-    "IMEEC",
-    "India-Middle East-Europe Economic Corridor",
-    "India–Middle East–Europe Economic Corridor",
-    "IMEC UAE Saudi Arabia",
-    "IMEC Israel Haifa port",
-    "IMEC Gulf Europe rail",
-    "East Corridor India Gulf",
-    "North Corridor Gulf Europe"
+    "India–Middle East–Europe Economic Corridor: Geoeconomic Architecture",
+    "IMEC corridor logistics and supply chain analysis",
+    "India Middle East Europe Economic Corridor geopolitical impact",
+    "Blue-Raman submarine cable system geopolitics",
+    "Saudi Arabia UAE green hydrogen export infrastructure",
+    "Israel Haifa port Adani investments IMEC",
+    "Iraq Development Road project vs IMEC competition",
+    "Red Sea Houthi attacks impact on global supply chains and IMEC",
+    "Abraham Accords normalization impact on Middle East trade routes",
+    "EU Global Gateway strategy and India-Middle East connections",
+    "Gaza conflict impact on regional infrastructure projects",
+    "Jordan railway financing gap logistics hub"
 ];
 
 function determineCategory(title, snippet) {
@@ -75,7 +76,7 @@ async function scrapeDuckDuckGo() {
             const items = await page.evaluate(() => {
                 const elements = document.querySelectorAll('.result');
                 const extracted = [];
-                for (let i = 0; i < Math.min(elements.length, 5); i++) {
+                for (let i = 0; i < Math.min(elements.length, 15); i++) {
                     const row = elements[i];
                     const titleEl = row.querySelector('.result__title a');
                     const snippetEl = row.querySelector('.result__snippet');
