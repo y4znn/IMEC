@@ -62,6 +62,15 @@ export default function NarrativeMap() {
             .scaleExtent([1, 8])
             .on("zoom", (event) => {
                 g.attr("transform", event.transform);
+
+                // CRITICAL: Semantic scaling (keep elements crisp and thin regardless of zoom)
+                g.selectAll("path.country").style("stroke-width", 0.5 / event.transform.k + "px");
+                g.selectAll("path.connection").style("stroke-width", 2 / event.transform.k + "px");
+                g.selectAll("g.node-group").attr("transform", (d) => {
+                    const node = d as NodeData;
+                    const [x, y] = projection([node.lng, node.lat]) || [0, 0];
+                    return `translate(${x}, ${y}) scale(${1 / event.transform.k})`;
+                });
             });
 
         svg.call(zoom);
@@ -97,46 +106,123 @@ export default function NarrativeMap() {
                 .style("stroke-width", "0.5px")
                 .style("transition", "fill 0.4s ease-out, stroke 0.4s ease-out")
                 // Make sure bounding box is clickable using visiblePainted or all, transparent strokes don't block
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                .style("pointer-events", (d: any) => imecCountryIds.includes(d.id) ? "all" : "none") // Only register hover on IMEC bounds
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                .on("mouseenter", (_event: MouseEvent, d: any) => {
-                    if (imecCountryIds.includes(d.id)) {
-                        setHoveredNode(d.id);
-                    }
-                })
-                .on("mousemove", (event: MouseEvent) => {
-                    setMousePos({ x: event.clientX, y: event.clientY });
-                })
-                .on("mouseleave", () => {
-                    setHoveredNode(null);
-                });
+                .style("pointer-events", "none"); // Disable direct country pointer events to let Voronoi catch SVG mouse events
 
-            // Recreate nodes selection
-            const nodeSelection = g.selectAll("circle.node")
+            // Recreate nodes selection as groups
+            const nodeSelection = g.selectAll("g.node-group")
                 .data(imecNodes)
-                .join("circle")
-                .attr("class", "node")
-                .attr("cx", d => projection([d.lng, d.lat])?.[0] || 0)
-                .attr("cy", d => projection([d.lng, d.lat])?.[1] || 0)
-                .attr("r", 5) // Increased hit area mapping
-                .style("fill", "#111827")
-                // Allow pointer events on dots so user can hover over cities directly
-                .style("pointer-events", "all")
-                .style("cursor", "pointer")
+                .join("g")
+                .attr("class", "node-group")
+                .attr("transform", d => {
+                    const [x, y] = projection([d.lng, d.lat]) || [0, 0];
+                    // At start zoom k=1 so scale=1
+                    return `translate(${x}, ${y}) scale(1)`;
+                })
                 .style("opacity", 0.5)
-                .style("transition", "all 0.3s ease")
-                .on("mouseenter", (_event: MouseEvent, d) => {
-                    setHoveredNode((d as NodeData).id);
-                })
-                .on("mousemove", (event: MouseEvent) => {
-                    setMousePos({ x: event.clientX, y: event.clientY });
-                })
-                .on("mouseleave", () => {
-                    setHoveredNode(null);
-                });
+                .style("transition", "opacity 0.3s ease")
+                .style("pointer-events", "none");
+
+            // Pulse ring background
+            nodeSelection.selectAll("circle.pulse")
+                .data(d => [d])
+                .join("circle")
+                .attr("class", "pulse")
+                .attr("r", 5)
+                .style("fill", "transparent");
+
+            // Node background circle
+            nodeSelection.selectAll("circle.node-bg")
+                .data(d => [d])
+                .join("circle")
+                .attr("class", "node-bg")
+                .attr("r", 9)
+                .style("fill", "#111827")
+                .style("stroke", "#ffffff")
+                .style("stroke-width", "1.5px");
+
+            // High-Fidelity SVG Iconography
+            const anchorPath = "M12 22V8M5 12H2a10 10 0 0 0 20 0h-3M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z";
+            const trainPath = "M4 11h16M12 3v8m-4 8-2 3m10-3-2-3M8 15h0m8 0h0M6 3h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z";
+
+            nodeSelection.selectAll("path.icon")
+                .data(d => [d])
+                .join("path")
+                .attr("class", "icon")
+                .attr("d", d => ["IND", "ARE", "ISR", "GRC", "ITA", "FRA"].includes(d.id) ? anchorPath : trainPath)
+                .style("fill", "none")
+                .style("stroke", "#ffffff")
+                .style("stroke-width", "2.5px") // Thicker for better readability
+                .style("stroke-linecap", "round")
+                .style("stroke-linejoin", "round")
+                .attr("transform", "translate(-6, -6) scale(0.5)"); // Center 24x24 icons
+
+            // Semantic Voronoi overlay for magnetic hover detection
+            const voronoiPoints: [number, number][] = imecNodes.map(d => {
+                const p = projection([d.lng, d.lat]);
+                return p ? [p[0], p[1]] : [0, 0];
+            });
+            const delaunay = d3.Delaunay.from(voronoiPoints);
+
+            svg.on("mousemove", (event) => {
+                // Get pointer position inside 'g' which inherently considers the zoom transform
+                const [x, y] = d3.pointer(event, g.node());
+                const index = delaunay.find(x, y);
+
+                if (index !== undefined) {
+                    const node = imecNodes[index];
+                    const [nx, ny] = projection([node.lng, node.lat]) || [0, 0];
+                    const distance = Math.hypot(x - nx, y - ny);
+
+                    // Magnetic snapping threshold (80px in projected map coordinates)
+                    if (distance < 80) {
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        if ((d3ContainerRef.current as any)._currentHoveredId !== node.id) {
+                            setHoveredNode(node.id);
+                        }
+                    } else {
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        if ((d3ContainerRef.current as any)._currentHoveredId !== null) {
+                            setHoveredNode(null);
+                        }
+                    }
+                }
+                setMousePos({ x: event.clientX, y: event.clientY });
+            });
+
+            svg.on("mouseleave", () => {
+                setHoveredNode(null);
+            });
+
+            // Radar pulse animation logic
+            const pulseLoop = (targetId: string) => {
+                const pulseNode = nodeSelection.selectAll("circle.pulse").filter((d) => (d as NodeData).id === targetId);
+                function repeat() {
+                    pulseNode
+                        .attr("r", 9)
+                        .style("opacity", 1)
+                        .style("stroke", "#3B82F6")
+                        .style("stroke-width", "2px")
+                        .transition()
+                        .duration(1500)
+                        .ease(d3.easeCubicOut)
+                        .attr("r", 32)
+                        .style("opacity", 0)
+                        .on("end", () => {
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            if ((d3ContainerRef.current as any)._currentNextId === targetId) {
+                                repeat();
+                            }
+                        });
+                }
+                repeat();
+            };
 
             // Expose a method to update the state imperatively bypassing React reconciler overhead for D3 layers
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (d3ContainerRef.current as any)._currentHoveredId = null;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (d3ContainerRef.current as any)._currentNextId = null;
+
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (d3ContainerRef.current as any)._updateD3Visuals = (hoveredId: string | null) => {
                 let nextId: string | null = null;
@@ -144,6 +230,11 @@ export default function NarrativeMap() {
                     const node = imecNodes.find(n => n.id === hoveredId);
                     nextId = node?.next || null;
                 }
+
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (d3ContainerRef.current as any)._currentHoveredId = hoveredId;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (d3ContainerRef.current as any)._currentNextId = nextId;
 
                 // Update map fills (Domino logic)
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -165,13 +256,26 @@ export default function NarrativeMap() {
 
                 // Update map points
                 nodeSelection
-                    .style("opacity", d => {
+                    .style("opacity", (d) => {
+                        const node = d as NodeData;
                         if (!hoveredId) return 0.5;
-                        if (d.id === hoveredId || d.id === nextId) return 1;
+                        if (node.id === hoveredId || node.id === nextId) return 1;
                         return 0.1;
-                    })
-                    .style("fill", d => d.id === nextId ? "#3B82F6" : "#111827")
-                    .attr("r", d => d.id === hoveredId || d.id === nextId ? 5 : 3);
+                    });
+
+                nodeSelection.selectAll("circle.node-bg")
+                    .style("fill", (d) => (d as NodeData).id === nextId ? "#3B82F6" : "#111827")
+                    .attr("r", (d) => (d as NodeData).id === hoveredId || (d as NodeData).id === nextId ? 11 : 9);
+
+                // Setup pulse
+                nodeSelection.selectAll("circle.pulse").interrupt();
+                nodeSelection.selectAll("circle.pulse")
+                    .style("opacity", 0)
+                    .attr("r", 5);
+
+                if (nextId) {
+                    pulseLoop(nextId);
+                }
 
                 // Draw / Remove Connections
                 g.selectAll("path.connection").remove();
@@ -196,7 +300,12 @@ export default function NarrativeMap() {
                                 .attr("d", pathData)
                                 .style("fill", "none")
                                 .style("stroke", "#3B82F6")
-                                .style("stroke-width", "2px")
+                                // semantic zoom awareness
+                                .style("stroke-width", () => {
+                                    // Provide base 2px line based on the container transform
+                                    const currentTransform = d3.zoomTransform(svg.node() as Element);
+                                    return 2 / currentTransform.k + "px";
+                                })
                                 .style("pointer-events", "none");
 
                             // CSS transition trick to draw line
@@ -237,11 +346,13 @@ export default function NarrativeMap() {
             // Re-map all element coordinates
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             g.selectAll("path.country").attr("d", path as any);
-            g.selectAll("circle.node")
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                .attr("cx", (d: any) => projection([d.lng, d.lat])?.[0] || 0)
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                .attr("cy", (d: any) => projection([d.lng, d.lat])?.[1] || 0);
+
+            g.selectAll("g.node-group").attr("transform", (d) => {
+                const node = d as NodeData;
+                const currentTransform = d3.zoomTransform(svg.node() as Element);
+                const [x, y] = projection([node.lng, node.lat]) || [0, 0];
+                return `translate(${x}, ${y}) scale(${1 / currentTransform.k})`;
+            });
 
             // Hide connections for a second to let layout settle
             g.selectAll("path.connection").remove();
@@ -278,13 +389,17 @@ export default function NarrativeMap() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 5, scale: 0.98 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className="fixed pointer-events-none z-50 bg-white border border-gray-200 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] w-[320px]"
+                        className="fixed pointer-events-none z-50 bg-white border border-gray-200 shadow-xl w-[320px]"
                         style={{
                             left: `${mousePos.x + 24}px`,
                             top: `${mousePos.y + 24}px`,
+                            transition: 'left 0.15s ease-out, top 0.15s ease-out',
                             borderRadius: 0, // Strict Bento Box format
                         }}
                     >
+                        {/* Tooltip Arrow Pointer */}
+                        <div className="absolute -left-[9px] top-6 w-4 h-4 bg-white border-l border-t border-gray-200 transform -rotate-45" style={{ zIndex: -1 }}></div>
+
                         <div className="p-6">
                             <div className="flex flex-col mb-4 bg-gray-50/50 p-2 border border-gray-100">
                                 <span className="text-[10px] text-gray-500 font-mono tracking-[0.2em] uppercase">Active Corridor Node // {activeNode.id}</span>
