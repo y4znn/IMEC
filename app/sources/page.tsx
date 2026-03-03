@@ -4,7 +4,6 @@ import { useState, useMemo, useEffect } from 'react';
 import { ExternalLink, BookOpen } from 'lucide-react';
 import fallbackSources from '@/public/data/sources.json';
 
-// Shape of our source object from buildSources.js
 type AcademicSource = {
     id: string;
     title: string;
@@ -12,6 +11,7 @@ type AcademicSource = {
     url: string;
     category: string;
     year: string;
+    authors?: string;
 };
 
 export default function SourcesPage() {
@@ -55,7 +55,7 @@ export default function SourcesPage() {
 
             {/* ── LEFT SIDEBAR: Syllabus Modules ── */}
             <div className="w-[380px] shrink-0 border-r border-gray-300 h-full overflow-y-auto custom-scrollbar flex flex-col">
-                <div className="px-8 py-10 border-b border-gray-300 bg-gray-50 sticky top-0 z-10" style={{ borderRadius: 0 }}>
+                <div className="px-8 py-10 border-b border-gray-300 bg-gray-50 sticky top-0 z-10 rounded-none">
                     <h1 className="text-3xl font-bold tracking-tight uppercase leading-none mb-3">
                         Intel<br />Syllabus
                     </h1>
@@ -73,11 +73,10 @@ export default function SourcesPage() {
                             <button
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
-                                className={`flex flex-col items-start px-5 py-4 text-left transition-colors cursor-pointer border ${isActive
-                                    ? 'bg-white text-black border-gray-400'
+                                className={`flex flex-col items-start px-5 py-4 text-left transition-colors cursor-pointer border rounded-none ${isActive
+                                    ? 'bg-white text-black border-gray-300'
                                     : 'bg-gray-50 text-gray-900/60 border-transparent hover:bg-gray-200 hover:text-gray-900'
                                     }`}
-                                style={{ borderRadius: 0 }}
                             >
                                 <div className="flex items-center gap-2 mb-2 w-full">
                                     <span className={`text-[10px] tracking-widest font-mono font-bold ${isActive ? 'text-black/50' : 'text-gray-900/30'}`}>
@@ -117,31 +116,33 @@ export default function SourcesPage() {
                         {activeSources.map(src => (
                             <div
                                 key={src.id}
-                                className="group relative border border-gray-300 bg-gray-50 p-6 hover:bg-gray-200 transition-colors cursor-default"
-                                style={{ borderRadius: 0 }}
+                                className="group relative border border-gray-300 bg-white p-6 hover:bg-gray-50 transition-colors cursor-default"
                             >
                                 <div className="pr-32">
-                                    <h3 className="text-xl font-bold tracking-tight text-gray-900 group-hover:text-black mb-3 leading-snug transition-colors">
+                                    {src.authors && (
+                                        <p className="font-serif text-base text-gray-800 mb-2">
+                                            {src.authors}
+                                        </p>
+                                    )}
+                                    <h3 className="text-sm font-mono text-gray-900 mb-3 leading-relaxed">
                                         {src.title}
                                     </h3>
-                                    <p className="text-sm font-serif text-gray-900/60 group-hover:text-black/80 leading-relaxed transition-colors mb-4 line-clamp-3">
+                                    <p className="text-sm font-serif text-gray-600 leading-relaxed mb-4 line-clamp-3">
                                         {src.description}
                                     </p>
-                                    <div className="flex items-center gap-3 text-[10px] text-gray-900/40 font-mono tracking-widest uppercase group-hover:text-black/50 transition-colors">
+                                    <div className="flex items-center gap-3 text-[10px] text-gray-500 font-mono tracking-widest uppercase">
                                         <span>REF: {src.id}</span>
-                                        <span className="w-1 h-1 bg-white/20 group-hover:bg-gray-50/20" />
+                                        <span className="w-1 h-1 bg-gray-300" />
                                         <span>CY {src.year}</span>
                                     </div>
                                 </div>
 
-                                {/* Absolute hover button for strict brutalist layout */}
                                 <div className="absolute top-6 right-6">
                                     <a
                                         href={src.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 bg-gray-50 text-gray-900 hover:bg-gray-50 hover:text-gray-900 group-hover:border-black transition-all text-[10px] tracking-[0.2em] font-mono uppercase cursor-pointer"
-                                        style={{ borderRadius: 0 }}
+                                        className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 bg-white text-gray-900 font-mono text-[10px] tracking-widest uppercase hover:bg-gray-100 hover:border-black transition-all"
                                     >
                                         [ ACCESS ]
                                         <ExternalLink className="w-3 h-3" />

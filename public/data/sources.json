@@ -660,15 +660,6 @@
     "authors": "Research group design.nexus, Department of Industrial Systems Engineering and Product Design, Ghent University et al."
   },
   {
-    "id": "live-78",
-    "title": "Optimization of Alignment Model and Metrology During Backside EUV Lithography Patterning for CFET Technology",
-    "url": "https://doi.org/10.1109/ectc51687.2025.00153",
-    "category": "Foundations & Architecture",
-    "description": "Comprehensive academic assessment concerning the geopolitical, economic, and systemic implications of transnational connectivity frameworks.",
-    "year": "2025",
-    "authors": "Sujan Kumar Sarkar et al."
-  },
-  {
     "id": "live-79",
     "title": "Institut Mémoire de 1'Edition Contemporaine (IMEC)",
     "url": "https://doi.org/10.1163/9789004337862_lgbo_com_090344",
@@ -705,15 +696,6 @@
     "authors": "Soumya Bhowmick"
   },
   {
-    "id": "live-83",
-    "title": "Low-Cost Energy-Efficient On-Chip Hotspot Targeted Microjet Cooling for High- Power Electronics",
-    "url": "https://doi.org/10.1109/tcpmt.2019.2948522",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the intersection of physical infrastructure, digital connectivity, and resource transitions.",
-    "year": "2019",
-    "authors": "Tiwei Wei et al."
-  },
-  {
     "id": "live-84",
     "title": "การศึกษาเปรียบเทียบระบบการจัดการทางสัญจรภายในหน่วยงานผ่าตัดแบบ Peripheral corridor style และแบบ Double corridor alternative with surrounding soiled corridor style กรณีศึกษา อาคารสยามินทร์ โรงพยาบาลศิริราช และอาคาร 1 โรงพยาบาลรามาธิบดี",
     "url": "https://doi.org/10.58837/chula.the.2011.2026",
@@ -730,24 +712,6 @@
     "description": "Comprehensive academic assessment concerning the geopolitical, economic, and systemic implications of transnational connectivity frameworks.",
     "year": "2024",
     "authors": "Halina Steiner et al."
-  },
-  {
-    "id": "live-86",
-    "title": "Interuniversity Microelectronics Center (IMEC) (A)",
-    "url": "https://doi.org/10.4135/9781526409799",
-    "category": "Foundations & Architecture",
-    "description": "Comprehensive academic assessment concerning the geopolitical, economic, and systemic implications of transnational connectivity frameworks.",
-    "year": "2017",
-    "authors": "Henry Chesbrough et al."
-  },
-  {
-    "id": "live-87",
-    "title": "Experimental Characterization of a Chip-Level 3-D Printed Microjet Liquid Impingement Cooler for High-Performance Systems",
-    "url": "https://doi.org/10.1109/tcpmt.2019.2905610",
-    "category": "Foundations & Architecture",
-    "description": "Comprehensive academic assessment concerning the geopolitical, economic, and systemic implications of transnational connectivity frameworks.",
-    "year": "2019",
-    "authors": "Tiwei Wei et al."
   },
   {
     "id": "live-88",
@@ -1236,15 +1200,6 @@
     "authors": "Yoram Evron"
   },
   {
-    "id": "live-142",
-    "title": "Energy at the Core",
-    "url": "https://doi.org/10.4324/9781003295624-2",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the intersection of physical infrastructure, digital connectivity, and resource transitions.",
-    "year": "2025",
-    "authors": "Jonathan Fulton"
-  },
-  {
     "id": "live-143",
     "title": "Vision, revision and supervision",
     "url": "https://doi.org/10.4324/9781315185736-4",
@@ -1632,15 +1587,6 @@
     "authors": "Stelios T. Panagiotou et al."
   },
   {
-    "id": "live-186",
-    "title": "Container Shipping in the Economic Crisis Period 2007 – 2010",
-    "url": "https://doi.org/10.5171/2025.4541225",
-    "category": "Foundations & Architecture",
-    "description": "It was verified in previous research (see Gardoń, 2014) that a weekly average net freight in container shipping may be successfully modeled by means of the jump-diffusive process with homogeneous Poissonian jumps. However, there are some doubts among the other researchers if the model works properly in crisis periods.",
-    "year": "2025",
-    "authors": "Albert Gardoń"
-  },
-  {
     "id": "live-187",
     "title": "Short sea shipping",
     "url": "https://doi.org/10.1007/bf03195103",
@@ -1648,15 +1594,6 @@
     "description": "Comprehensive academic assessment concerning the geopolitical, economic, and systemic implications of transnational connectivity frameworks.",
     "year": "2010",
     "authors": "Robert F. Mulligan et al."
-  },
-  {
-    "id": "live-188",
-    "title": "Coastal Oil Spill: Apollo Sea Shipping Disaster — June 1994",
-    "url": "https://doi.org/10.1111/1468-5973.00043",
-    "category": "Foundations & Architecture",
-    "description": "The sinking of the Apollo Sea bulk ore carrier off the west coast of South Africa, in June 1994, resulted in an oil spill which had a great impact on the endangered African Penguin bird populations nesting on islands in the vicinity. Due to the relatively rare occurrence of this type of disaster in this region, the media focused much attention on the plight of these birds, the efforts taken to rehabilitate them, as well as the oil pollution inflicted on many of Cape Town's prime tourist beaches.",
-    "year": "2003",
-    "authors": "Chris Konings"
   },
   {
     "id": "live-189",
@@ -1711,15 +1648,6 @@
     "description": "Comprehensive academic assessment concerning the geopolitical, economic, and systemic implications of transnational connectivity frameworks.",
     "year": "2020",
     "authors": "Syed Muhammad Obaidullah"
-  },
-  {
-    "id": "live-195",
-    "title": "Impact of Commodity Price on Freight Market Considering the 2008 Crisis: An Investigation of Iron Ore Price and Capesize Shipping Rates",
-    "url": "https://doi.org/10.52602/mtl.904918",
-    "category": "Foundations & Architecture",
-    "description": "This study investigated the asymmetric causality from iron ore price to freight market through Capesize rates by considering the possible impact of the 2008 global economic crisis. The study used a monthly data set of 233 observations covering the period between January 2000 and June 2019.",
-    "year": "2021",
-    "authors": "Abdullah AÇIK et al."
   },
   {
     "id": "live-196",
@@ -1812,15 +1740,6 @@
     "authors": "Junji Kinoshita et al."
   },
   {
-    "id": "live-206",
-    "title": "Maritime History: A Gateway to Global History?",
-    "url": "https://doi.org/10.5949/liverpool/9780986497339.003.0001",
-    "category": "Foundations & Architecture",
-    "description": "This chapter introduces the structure and content of the volume and provides an overview of each chapter. It also provides definitions of maritime history, globalisation, and the differences between the study of maritime history and the study of global history.",
-    "year": "2018",
-    "authors": "Amélia Polónia"
-  },
-  {
     "id": "live-207",
     "title": "AFRICA – EU: Global Gateway",
     "url": "https://doi.org/10.1111/j.1467-6346.2024.11727.x",
@@ -1873,15 +1792,6 @@
     "description": "Comprehensive academic assessment concerning the geopolitical, economic, and systemic implications of transnational connectivity frameworks.",
     "year": "2015",
     "authors": "Bas Hooijmaaijers"
-  },
-  {
-    "id": "live-213",
-    "title": "Energy Efficient Sensor Control Scheme for Home Networks based on DLNA-ZigBee Gateway Architecture",
-    "url": "https://doi.org/10.1109/giis.2007.4404170",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the intersection of physical infrastructure, digital connectivity, and resource transitions.",
-    "year": "2008",
-    "authors": "Ryota Kawamoto et al."
   },
   {
     "id": "live-214",
@@ -1974,15 +1884,6 @@
     "authors": "Anonymous / Institution"
   },
   {
-    "id": "live-224",
-    "title": "Sustainability through Innovation in the Gateway of the EU: CIBER Visit to Ireland 2024",
-    "url": "https://doi.org/10.25148/cob.2025.26",
-    "category": "Foundations & Architecture",
-    "description": "This paper explores a 7-day trip to Ireland undertaken by professors who came from more than a dozen universities, including those in marketing, accounting, organizational psychology and international business. This was a faculty development trip sponsored by FIU’s Center for International Business Education and Research (CIBER), housed at FIU Business, and Loyola Marymount University’s CIBER.\n\nIreland occupies a particularly strategic position in the European economy.",
-    "year": "2025",
-    "authors": "Florida International University et al."
-  },
-  {
     "id": "live-225",
     "title": "The European research infrastructure for chemical biology and early drug discovery (EU-OPENSCREEN)",
     "url": "https://doi.org/10.58647/rexpo.24000048.v1",
@@ -2035,15 +1936,6 @@
     "description": "Comprehensive academic assessment concerning the geopolitical, economic, and systemic implications of transnational connectivity frameworks.",
     "year": "2017",
     "authors": "Anonymous / Institution"
-  },
-  {
-    "id": "live-231",
-    "title": "Greening Urban Housing: The Impact of Green Infrastructure on Household Energy-Use Reductions for Cooling",
-    "url": "https://doi.org/10.1007/978-3-319-99837-4_7",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the intersection of physical infrastructure, digital connectivity, and resource transitions.",
-    "year": "2018",
-    "authors": "Ali Cheshmehzangi et al."
   },
   {
     "id": "live-232",
@@ -2613,15 +2505,6 @@
     "authors": "Anonymous / Institution"
   },
   {
-    "id": "live-phase2-295",
-    "title": "Potholes in the Democratic Road, 1936–1958",
-    "url": "https://doi.org/10.23943/princeton/9780691157931.003.0006",
-    "category": "Foundations & Architecture",
-    "description": "This chapter analyzes political developments in Iraq from 1936 to 1958. Any growth of democratic ideas and institutions that had been achieved earlier came to an abrupt halt in 1936 following the military coup.",
-    "year": "2017",
-    "authors": "Adeed Dawisha"
-  },
-  {
     "id": "live-phase2-296",
     "title": "9/11 AND IRAQ",
     "url": "https://doi.org/10.4324/9780203964545-16",
@@ -2746,24 +2629,6 @@
     "description": "Examines the competition and economic statecraft between IMEC and alternative logistics frameworks like the Development Road or INSTC.",
     "year": "2024",
     "authors": "Anonymous / Institution"
-  },
-  {
-    "id": "live-phase2-310",
-    "title": "Project NONIs - development of optimized and sustainable insulated rail joint systems",
-    "url": "https://doi.org/10.5592/co/cetra.2024.1525",
-    "category": "Foundations & Architecture",
-    "description": "Insulated rail joints are critical elements of the traffic control system that are submitted to heavy dynamic loads. Apart from turnouts, these joints contribute to about 40% of railway disruptions in Austria, significantly causing train delays.",
-    "year": "2024",
-    "authors": "Maximilian Bürgler et al."
-  },
-  {
-    "id": "live-phase2-311",
-    "title": "Conclusions",
-    "url": "https://doi.org/10.3366/edinburgh/9780748693023.003.0007",
-    "category": "Foundations & Architecture",
-    "description": "This chapter explains why the book calls Iraq a “neoconservative war” even though its primary executors were George Bush, Dick Cheney and Donald Rumsfeld. It shows that while the primary responsibility for the war lies with these people, the war would not have happened without neoconservative encouragement and practical support.",
-    "year": "2019",
-    "authors": "Muhammad Idrees Ahmad"
   },
   {
     "id": "live-phase2-312",
@@ -2892,15 +2757,6 @@
     "authors": "Anonymous / Institution"
   },
   {
-    "id": "live-phase2-326",
-    "title": "PROJECTLIBRE VS MICROSOFT PROJECT: VANTAGENS DE APRENDIZAGEM E APROPRIAÇÃO DE CONHECIMENTO PARA GESTÃO DE PROJETOS",
-    "url": "https://doi.org/10.24325/issn.2446-5763.v10i29p143-160",
-    "category": "Foundations & Architecture",
-    "description": "Realizar um estudo comparativo na gestão de projetos, em relação ao uso de sof-tware livre, principalmente o ProjectLibre em comparação com o Microsoft Project, como ferramenta educacional, mencionando as principais metodologias e termos-chave na gestão de projetos. Uma RSL foi elaborada selecionando artigos em inglês e indexados no Scopus.",
-    "year": "2025",
-    "authors": "Luis Enrique García Saucedo"
-  },
-  {
     "id": "live-phase2-327",
     "title": "A road too far!",
     "url": "https://doi.org/10.1016/s0961-1290(03)00912-8",
@@ -2908,24 +2764,6 @@
     "description": "A comprehensive academic and strategic assessment concerning Middle East to European structural connectivity.",
     "year": "2003",
     "authors": "Anonymous / Institution"
-  },
-  {
-    "id": "live-phase2-328",
-    "title": "Project Development Strategies for Rental Apartments Catered towards Japanese Families in Sukhumvit Road Area, Bangkok Metropolis",
-    "url": "https://doi.org/10.58837/chula.the.2009.1966",
-    "category": "Foundations & Architecture",
-    "description": "ชาวญี่ปุ่นเป็นกลุ่มชาวต่างชาติที่มีจำนวนมากที่สุดในประเทศไทย ส่วนใหญ่จะเข้ามาทำงานพร้อมกับนำครอบครัวเข้ามาพักอาศัยอยู๋ด้วย คนกลุ่มนี้มีวัฒนธรรมและวีถีชีวิตแตกต่างชนชาติอื่น ๆ อย่างชัดเจน และเชื่อมโยงไปยังความต้องการที่อยู่อาศัย จากสมมติฐานที่ว่า บ้านที่ได้รับการออกแบบมาโดยคำนึงถึงวัฒนธรรมต่าง ๆ ของผู้อาศัยเป็นพิเศษนั้น ย่อมจะได้เปรียบกว่าบ้านที่ถูกออกแบบสำหรับบุคคลทั่วไป งานวิจัยนี้ จึงต้องการศึกษาความต้องการทางกายภาพของที่อยู่อาศัยของชาวญี่ปุ่น และเสนอแนะแนวทางการพัฒนาโครงการในอนาคต รวมไปถึงการปรับปรุงโครงการที่มีอยู่เดิม โดยศึกษาจากโครงการเช่าพักอาศัยสำหรับชาวญี่ป่นบริเวณถนนสุขุมวิท ระหว่างซอย 39-55 ซึ่งเป็นบริเวณที่ได้รับความนิยมจากชาวญี่ปุ่นมาก การวิจัยนี้ใช้วิธีการลงสำรวจพื้นที่ การสัมภาษณ์ผู้ประกอบการ การสัมภาษณ์บริษัทนายหน้าหาบ้านเช่าของชาวญี่ปุ่น และการใช้แบบสอบถามผู้เช่าชาวญี่ปุ่น จำนวน 222 ราย ผลการศึกษาสรุปได้ดังนี้: 1. ลักษณะที่อยู่อาศัยที่เป็นที่นิยมของชาวญี่ปุ่น เป็นอพาร์ทเม้นท์ 3 ห้องนอนขึ้นไป ราคาเฉลี่ยระหว่าง 50,000-80,000 บาทต่อเดือน ห้องพักมีขนาดมากกว่า 200 ตร.ม.",
-    "year": "2025",
-    "authors": "Academic Institute et al."
-  },
-  {
-    "id": "live-phase2-329",
-    "title": "Application of Multicriteria Decision-Making Methods in the Road Construction and Maintenance Project Management",
-    "url": "https://doi.org/10.5592/ce/senet.2022.24",
-    "category": "Foundations & Architecture",
-    "description": "Decision-making process is structural and inseparable part of construction project management as a series of related activities aimed at achieving the set goals.The complex nature of construction projects, the large number of involved stakeholders, conflicting goals and interests make the decision-making process in the construction field poorly structured problems that are effectively solved by applying different multicriteria decision-making methods. In this paper is presented a bibliometric review of Web of Science (WOS) database related to the using of multicriteria decision-making methods in construction project management in general, with a special emphasis on the management of road construction and maintenance projects, an analysis of different unique and hybrid approaches to multicriteria decision-making, as well as guidelines for future research.",
-    "year": "2023",
-    "authors": "Ana Majstorović et al."
   },
   {
     "id": "live-phase2-330",
@@ -3009,15 +2847,6 @@
     "authors": "Mark A. Dungan"
   },
   {
-    "id": "live-phase2-339",
-    "title": "Run-up: the road to Iraq",
-    "url": "https://doi.org/10.1353/dss.0.0032",
-    "category": "Geopolitics & Rival Corridors (BRI)",
-    "description": "Since 2004, accounts of how the Bush administration maneuvered the country into war of choice in Iraq with the false\nclaim that Saddam Hussein possessed weapons of mass destruction have quickly made it on to the best-seller list. It\nis easy to see why.",
-    "year": "2009",
-    "authors": "Nicolaus Mills"
-  },
-  {
     "id": "live-phase2-340",
     "title": "THE IMPACT OF TEACHING ICT FOR DEVELOPING EDUCATION SYSTEMS.",
     "url": "https://doi.org/10.21474/ijar01/4793",
@@ -3034,15 +2863,6 @@
     "description": "Examines the competition and economic statecraft between IMEC and alternative logistics frameworks like the Development Road or INSTC.",
     "year": "2019",
     "authors": "Benjamin Isakhan"
-  },
-  {
-    "id": "live-phase2-342",
-    "title": "Interval Coded Scoring: a toolbox for interpretable scoring systems",
-    "url": "https://doi.org/10.7717/peerj-cs.150",
-    "category": "Foundations & Architecture",
-    "description": "Over the last decades, clinical decision support systems have been gaining importance. They help clinicians to make effective use of the overload of available information to obtain correct diagnoses and appropriate treatments.",
-    "year": "2018",
-    "authors": "Lieven Billiet et al."
   },
   {
     "id": "live-phase2-343",
@@ -3223,15 +3043,6 @@
     "description": "A comprehensive academic and strategic assessment concerning Middle East to European structural connectivity.",
     "year": "2011",
     "authors": "Steven L. Spiegel"
-  },
-  {
-    "id": "live-phase2-363",
-    "title": "Digital democracy vs. digital imperialism",
-    "url": "https://doi.org/10.4324/9781315271699-4",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2024",
-    "authors": "Daya Kishan Thussu"
   },
   {
     "id": "live-phase2-364",
@@ -3594,24 +3405,6 @@
     "authors": "Ravi Kumar et al."
   },
   {
-    "id": "live-phase2-404",
-    "title": "Technology vs. “Terrorism”: Circuits of City Surveillance Since September 11, 2001",
-    "url": "https://doi.org/10.1002/9780470753033.ch17",
-    "category": "Foundations & Architecture",
-    "description": "A comprehensive academic and strategic assessment concerning Middle East to European structural connectivity.",
-    "year": "2008",
-    "authors": "David Lyon"
-  },
-  {
-    "id": "live-phase2-405",
-    "title": "AI-Driven Approach to Subsea Cable Lay Operability: An LSTM Neural Network for Predicting Cable Dynamic Responses",
-    "url": "https://doi.org/10.1115/omae2025-156352",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Abstract\n               This paper presents a novel approach to evaluating the operability of subsea cable lay operations using Artificial Intelligence. Specifically, it introduces a Long Short-Term Memory (LSTM) Artificial Neural Network (ANN) model designed to predict the time-varying dynamics of cable responses—including tension, compression, and curvature—using only vessel motion time-series data.",
-    "year": "2025",
-    "authors": "Javier Riverola Calavia et al."
-  },
-  {
     "id": "live-phase2-406",
     "title": "Modern Subsea Cable Systems Towards Ultimate Cable Capacity",
     "url": "https://doi.org/10.1364/ofc.2022.m1f.1",
@@ -3630,15 +3423,6 @@
     "authors": "William R. Savage et al."
   },
   {
-    "id": "live-phase2-408",
-    "title": "Sensor Analytics for Subsea Pipeline and Cable Inspection: A Review",
-    "url": "https://doi.org/10.31390/gradschool_theses.5914",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2025",
-    "authors": "Academic Institute et al."
-  },
-  {
     "id": "live-phase2-409",
     "title": "Raman spectroscopy for subsea applications",
     "url": "https://doi.org/10.1533/9780857093523.3.409",
@@ -3646,15 +3430,6 @@
     "description": "A comprehensive academic and strategic assessment concerning Middle East to European structural connectivity.",
     "year": "2013",
     "authors": "P.G. Brewer et al."
-  },
-  {
-    "id": "live-phase2-410",
-    "title": "Improved current rating methods of subsea HVAC cable systems for renewable energy applications",
-    "url": "https://doi.org/10.12681/eadd/56865",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Το πλήθος και το μέγεθος των έργων Ανανεώσιμων Πηγών Ενέργειας (ΑΠΕ), όπως είναι τα Υπεράκτια Αιολικά Πάρκα (Α/Π), αυξάνει ταχύτατα τα τελευταία χρόνια, κυρίως εξαιτίας των ολοένα και περισσότερο έντονων περιβαλλοντικών ανησυχιών. Τα Υποβρύχια (Υ/Β) καλώδια ισχύος που απαιτούνται για την μεταφορά της παραγόμενης ισχύος από τις υπεράκτιες Ανεμογεννήτριες (Α/Γ) στην ξηρά αποτελούν έναν κρίσιμο παράγοντα για την βιωσιμότητα των έργων αυτών.",
-    "year": "2024",
-    "authors": "Δημήτριος Χατζηπέτρος"
   },
   {
     "id": "live-phase2-411",
@@ -3693,15 +3468,6 @@
     "authors": "R.T. Bannon"
   },
   {
-    "id": "live-phase2-415",
-    "title": "Bending Mechanics of Cable Cores and Fillers in a Dynamic Submarine Cable",
-    "url": "https://doi.org/10.1115/omae2017-62553",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Dynamic submarine cables are used to provide electrical power to floating oil/gas production platforms and to export power from marine renewable energy systems such as floating wind turbines. During installation and life-time operation, the dynamic power cable is subjected to various loads, e.g.",
-    "year": "2017",
-    "authors": "Denny D. Tjahjanto et al."
-  },
-  {
     "id": "live-phase2-416",
     "title": "1975 subsea cable route studies between Grand Manan island and New Brunswick",
     "url": "https://doi.org/10.4095/129408",
@@ -3711,15 +3477,6 @@
     "authors": "J Stewart et al."
   },
   {
-    "id": "live-phase2-417",
-    "title": "Should Aluminum Conductors be Considered for my Subsea Power Cable Application?",
-    "url": "https://doi.org/10.4043/25866-ms",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Abstract\n               Most baby-boomers have some familiarity with the classical stigma surrounding aluminum conductors in residential and commercial applications: fire hazard. Mention aluminum wiring in a building or residence and, not surprisingly, a lot of folks will react as if the structure in question should be condemned.",
-    "year": "2015",
-    "authors": "R. Voight"
-  },
-  {
     "id": "live-phase2-418",
     "title": "Network protection system for TAT-12/13 subsea cable network",
     "url": "https://doi.org/10.1049/ic:19960445",
@@ -3727,15 +3484,6 @@
     "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
     "year": "2005",
     "authors": "T. Shibagaki"
-  },
-  {
-    "id": "live-phase2-419",
-    "title": "Integrated condition monitoring for subsea power cable systems",
-    "url": "https://doi.org/10.1049/cp.2009.1113",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2009",
-    "authors": "R. Svoma et al."
   },
   {
     "id": "live-phase2-420",
@@ -3774,24 +3522,6 @@
     "authors": "Graham Brading et al."
   },
   {
-    "id": "live-phase2-424",
-    "title": "Investment and Usage of the Subsea Internet Cable Network",
-    "url": "https://doi.org/10.2139/ssrn.4925783",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2024",
-    "authors": "Jihye Jeon et al."
-  },
-  {
-    "id": "live-phase2-425",
-    "title": "Choice of cable for subsea power links",
-    "url": "https://doi.org/10.1109/pesw.2000.850032",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2002",
-    "authors": "M.D. Jeffs"
-  },
-  {
     "id": "live-phase2-426",
     "title": "Hybrid Subsea Power Cable Emulator",
     "url": "https://doi.org/10.1109/apec.2019.8722212",
@@ -3799,15 +3529,6 @@
     "description": "Examines the competition and economic statecraft between IMEC and alternative logistics frameworks like the Development Road or INSTC.",
     "year": "2019",
     "authors": "Francisco Jose Viglus et al."
-  },
-  {
-    "id": "live-phase2-427",
-    "title": "Automatic inspection of subsea optical cable by an autonomous underwater vehicle",
-    "url": "https://doi.org/10.1109/oceanse.2017.8085017",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2017",
-    "authors": "Jialei Zhang et al."
   },
   {
     "id": "live-phase2-428",
@@ -3826,24 +3547,6 @@
     "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
     "year": "2017",
     "authors": "Narasimalu Srikanth et al."
-  },
-  {
-    "id": "live-phase2-430",
-    "title": "Design and Experimental Validation of a Novel Subsea Power Cable Protector for Aquaculture Applications",
-    "url": "https://doi.org/10.2139/ssrn.5396192",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2025",
-    "authors": "Jeong Hun Kim et al."
-  },
-  {
-    "id": "live-phase2-431",
-    "title": "Unmanned Cable Contralled Subsea Vehicles - Status and Potential in the Offshore Oil Industry",
-    "url": "https://doi.org/10.4043/2709-ms",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "ABSTRACT\n                  As a result of increasing oil industry activity in greater water depths offshore, alternate methods for accomplishing assigned tasks need to be considered. One additional tool is the unmanned tethered system being developed and offered for the purpose of relieving some of the burden presently carried by existing systems.",
-    "year": "2008",
-    "authors": "Paul E. Jalbert et al."
   },
   {
     "id": "live-phase2-432",
@@ -3873,15 +3576,6 @@
     "authors": "Ahmad Razin Zainal Abidin et al."
   },
   {
-    "id": "live-phase2-435",
-    "title": "Modeling, navigation and artificial intelligence (AI) based fault detection of subsea cable network",
-    "url": "https://doi.org/10.1109/greentech56823.2023.10173836",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2023",
-    "authors": "Supriyo Karmakar"
-  },
-  {
     "id": "live-phase2-436",
     "title": "Subsea cable projects - minimising risks",
     "url": "https://doi.org/10.1049/cp.2012.1949",
@@ -3900,33 +3594,6 @@
     "authors": "Anonymous"
   },
   {
-    "id": "live-phase2-438",
-    "title": "Storm detection in the North sea with a subsea telecommunication cable and State of Polarization sensing",
-    "url": "https://doi.org/10.5194/egusphere-egu25-1913",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Fibre-optic sensing (FOS) techniques have gained notoriety for geoscientific and industrial applications over the past years. While most research tends to focus on spatially distributed techniques (e.g.",
-    "year": "2025",
-    "authors": "Julián Pelaez et al."
-  },
-  {
-    "id": "live-phase2-439",
-    "title": "Development of an Unmanned Cable Controlled Submersible Vehicle for Surveying and Sampling Exposed Subsea Rock Shelves",
-    "url": "https://doi.org/10.4043/2347-ms",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "ABSTRACT\n                  In geological survey work on the U.K. Continental Shelf, the Institute of Geological Sciences found a need for new equipment to extend their operating capability beyond that of the conventional diver.\n                  To meet this requirement British Aircraft Corporation have developed and built an Unmanned Cable Controlled Submersible (CONSUB) which has recently completed a successful series of sea trials.\n                  During these trials which took place around the Northern coast of the U.K.",
-    "year": "2008",
-    "authors": "Gordon Skidmore et al."
-  },
-  {
-    "id": "live-phase2-440",
-    "title": "Cable design for subsea power links",
-    "url": "https://doi.org/10.1109/39.866861",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2002",
-    "authors": "J.R. Attwood"
-  },
-  {
     "id": "live-phase2-441",
     "title": "Global Ocean Bottom Temperature Observation Design: Observing System Simulation Experiments For Strategic Deployment of SMART Subsea Cables",
     "url": "https://doi.org/10.31390/gradschool_theses.6155",
@@ -3934,15 +3601,6 @@
     "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
     "year": "2025",
     "authors": "Academic Institute et al."
-  },
-  {
-    "id": "live-phase2-442",
-    "title": "Cable Selection Considerations for Subsea Vehicles",
-    "url": "https://doi.org/10.1109/oceanskobe.2018.8559225",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2018",
-    "authors": "Razieh Nejati Fard et al."
   },
   {
     "id": "live-phase2-443",
@@ -3972,33 +3630,6 @@
     "authors": "Shengwei Wang et al."
   },
   {
-    "id": "live-phase2-446",
-    "title": "Hydrogen Gas Accumulation in Subsea Umbilical Cable Splitter Boxes: Evaluating HSE Risk, Overcoming Challenges &amp; Deploying Mitigation Measures",
-    "url": "https://doi.org/10.2118/221869-ms",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Abstract\n               This paper presents a comprehensive analysis of potential sources of hydrogen (H2) gas, its propagation, and accumulation within subsea umbilical cable splitter boxes, leading to deformation of the splitter box. With a focus on addressing challenges and proposing effective mitigation strategies, this paper provides actionable insights for practicing engineers.",
-    "year": "2024",
-    "authors": "Anup Kumar Khatua et al."
-  },
-  {
-    "id": "live-phase2-447",
-    "title": "An Investigation About the Trajectory Control During the Subsea Equipment Installation Using Cable",
-    "url": "https://doi.org/10.1115/omae2012-83798",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Nowadays, several seafloor equipments have been developed and deployed in order to enhance the production of petroleum and natural gas from reservoirs in deep and ultra-deep waters. Thus the installation and maintenance of such seafloor equipments shall be an issue.\n               The most important seafloor equipment during the production phase is the “Wet Christmas-Tree” (X-tree), which is a set of valves that controls the pressure at well bottom.",
-    "year": "2013",
-    "authors": "Eugenio Fortaleza et al."
-  },
-  {
-    "id": "live-phase2-448",
-    "title": "Bitumen Shear Mechanics in a Dynamic Subsea Electrical Cable",
-    "url": "https://doi.org/10.1115/omae2015-41110",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "The bending mechanics of dynamic subsea electrical cables are strongly influenced by the frictional shear interactions that exist between the armour wires and surrounding materials. In some cases the armour wires are clad with bitumen filler material so that the shear mechanics of bitumen are important to the overall bending mechanics of the cable.",
-    "year": "2015",
-    "authors": "Jonathan Mullins et al."
-  },
-  {
     "id": "live-phase2-449",
     "title": "Derivation of Vessel Motions as Operational Limits and Motion Forecasting With 2D Wave Spectra: Case Study of Inter-Array Subsea Cable Installation in the North Sea",
     "url": "https://doi.org/10.1115/omae2022-79459",
@@ -4006,24 +3637,6 @@
     "description": "Abstract\n               The conventional approach for estimating vessel operability for offshore installation operations relies on numerical results from discrete sea state simulations (tabulated operability) and wave forecasts simplified into a set of statistical parameters (Hs, Tp, direction, etc.), leading to an important loss of operability and reliability. Recently, the potential of using vessel motions as cable installation limits has been explored due to the evidence of strong correlations between the vessel motions and the dynamic response of the cable or pipe.",
     "year": "2022",
     "authors": "Javier Riverola Calavia et al."
-  },
-  {
-    "id": "live-phase2-450",
-    "title": "Nonlinear Raman scattering in wavelength division multiplexed cable television applications",
-    "url": "https://doi.org/10.17918/00009628",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2024",
-    "authors": "Academic Institute et al."
-  },
-  {
-    "id": "live-phase2-451",
-    "title": "Torque Evaluation of Cable Under Transport",
-    "url": "https://doi.org/10.1115/omae2023-104935",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Abstract\n               Flexible products such as power cables, flexible pipes and umbilicals may display torsion-related motion under handling, including production, load-out and installation. The torque encountered are a function of the shape of the route they follow, so routes must be designed to minimize the torques generated during handling.",
-    "year": "2023",
-    "authors": "Decao Yin et al."
   },
   {
     "id": "live-phase2-452",
@@ -4044,15 +3657,6 @@
     "authors": "Anonymous / Institution"
   },
   {
-    "id": "live-phase2-454",
-    "title": "Planning, Constructing, and Maintaining a Sustainable Subsea (Marine) Piping, Cable, and Platform (Utility) Infrastructure: Examples from the Norwegian Continental Shelf",
-    "url": "https://doi.org/10.20944/preprints202511.1769.v1",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "The first significant discovery of oil on the Norwegian Continental Shelf was the Ekofisk field discovered in 1970. The drilling was done in 77 m water depth at a location in the Mid-North Sea about 250 km from the southern coast of Norway.",
-    "year": "2025",
-    "authors": "Martin Torvald Hovland"
-  },
-  {
     "id": "live-phase2-455",
     "title": "Harmonics study of a CSI-fed subsea cable transmission",
     "url": "https://doi.org/10.1109/ichqp.2000.896857",
@@ -4071,33 +3675,6 @@
     "authors": "Ali Masoudi et al."
   },
   {
-    "id": "live-phase2-457",
-    "title": "Fatigue, Creep and Electrical Performance of Subsea Power Cable",
-    "url": "https://doi.org/10.1115/omae2013-10852",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Subsea processing is a key aspect of ExxonMobil’s subsea technology qualification efforts. Consequently, the reliable delivery of high voltage power to subsea equipment offshore, such as multi-phase pumps, is essential.",
-    "year": "2013",
-    "authors": "Jaime Buitrago et al."
-  },
-  {
-    "id": "live-phase2-458",
-    "title": "Introduction to Indonesian Cable-based Subsea Tsunameter",
-    "url": "https://doi.org/10.1109/ut49729.2023.10103368",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2023",
-    "authors": "Michael Andreas Purwoadi et al."
-  },
-  {
-    "id": "live-phase2-459",
-    "title": "DAS System for the Evaluation of Subsea Seismic Data from GEOLAB cable in Madeira Island",
-    "url": "https://doi.org/10.5194/egusphere-gc12-fibreoptic-92",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "DAS technology has emerged as a transformative technology with a vast range of applications, both on land and at sea. These applications span from oil and gas exploration to geophysical data collection, infrastructure monitoring, security, and environmental hazard monitoring, including earthquake and tsunami early warning systems (Landr&amp;#248; et al., 2022; Gorshkov et al., 2022).\nThe unique properties of DAS systems can bring high benefits to the demanding field of seismology, as it provides a significant increment in the spatial information that can be obtained from a seismic event.",
-    "year": "2024",
-    "authors": "Cristina Cunha et al."
-  },
-  {
     "id": "live-phase2-460",
     "title": "Passive harmonic filter design scheme for subsea cable applications with 6-pulse variable frequency drives",
     "url": "https://doi.org/10.1109/ecce.2009.5316574",
@@ -4107,15 +3684,6 @@
     "authors": "Xiaodong Liang et al."
   },
   {
-    "id": "live-phase2-461",
-    "title": "Subsea Lifting Operations Considering Taut-Slack Cable Conditions and KC-Dependent Hydrodynamic Coefficients",
-    "url": "https://doi.org/10.1115/omae2024-128171",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Abstract\n               The assessment of the dynamic behavior of vessel-cable-equipment systems can be complex due to the various involved parameters. For this kind of system, the practical point of view is commonly interested in maintaining the taut cable condition, avoiding the slack one.",
-    "year": "2024",
-    "authors": "Emerson M. de Andrade et al."
-  },
-  {
     "id": "live-phase2-462",
     "title": "Point localisation of a subsea cable using particle filters",
     "url": "https://doi.org/10.1109/control.2014.6915155",
@@ -4123,24 +3691,6 @@
     "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
     "year": "2014",
     "authors": "T Szyrowski et al."
-  },
-  {
-    "id": "live-phase2-463",
-    "title": "Sensing Technologies and Artificial Intelligence for Subsea Power Cable Asset Management",
-    "url": "https://doi.org/10.1109/icphm51084.2021.9486586",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2021",
-    "authors": "Wenshuo Tang et al."
-  },
-  {
-    "id": "live-phase2-464",
-    "title": "Turkey - Romania subsea transmission cable investment: Time for reconsideration?",
-    "url": "https://doi.org/10.1109/eem.2013.6607380",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2013",
-    "authors": "Burak Guler et al."
   },
   {
     "id": "live-phase2-465",
@@ -4170,15 +3720,6 @@
     "authors": "Mingxuan Hao et al."
   },
   {
-    "id": "live-phase2-468",
-    "title": "Deepwater Subsea Waterjet Impact on HSE",
-    "url": "https://doi.org/10.4043/24783-ms",
-    "category": "Foundations & Architecture",
-    "description": "Deepwater subsea waterjet technology provides an opportunity to prepare for tier 2 and tier 3 oil spill emergencies and has been developed to enable safe, efficient and reliable means of addressing common subsea maintenance and repair operations.\n               Deepwater subsea waterjet technology extends well known surface-based waterjet techniques into the deepwater subsea space. It was developed in response to the Deepwater Horizon oil spill incident and is directly applicable to subsea emergency response situations.",
-    "year": "2015",
-    "authors": "Bruce Kivisto"
-  },
-  {
     "id": "live-phase2-469",
     "title": "Water Diffusion in High Voltage Subsea Cable Outer Sheath Materials",
     "url": "https://doi.org/10.1109/elinsl.2008.4570401",
@@ -4195,42 +3736,6 @@
     "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
     "year": "2010",
     "authors": "Xiaodong Liang et al."
-  },
-  {
-    "id": "live-phase2-471",
-    "title": "Construction principles of subsea vehicles and robots for laying and repair of underwater cable communication systems in the Arctic region",
-    "url": "https://doi.org/10.54068/00394580_2021_5_58",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2021",
-    "authors": "A.A. Katanovich"
-  },
-  {
-    "id": "live-phase2-472",
-    "title": "Analysis of Falling Object Impact and Fishing Net Drag for Subsea Integrated Fiberglass Protective Structures",
-    "url": "https://doi.org/10.53964/mset.2025001",
-    "category": "Foundations & Architecture",
-    "description": "Objective: This study aims to improve the safety of subsea oil and gas production facilities by designing an integrated fiberglass protective structure. Glass fiber-reinforced materials, noted for their lightweight, high strength, and corrosion resistance, are evaluated for subsea protection applications.",
-    "year": "2025",
-    "authors": "Guang Yang et al."
-  },
-  {
-    "id": "live-phase2-473",
-    "title": "Deep Water XLPE Cable With Aluminum Conductor: Risk of Stress Induced Electrochemical Degradation (SIED)",
-    "url": "https://doi.org/10.1115/omae2017-61255",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "One of the challenges with cables in deep waters is the high topside tension caused by the weight of the cable and the risk of overloading the conductor. Keeping the cable weight as low as possible is therefore a key parameter to reach deep waters.",
-    "year": "2017",
-    "authors": "Magnus Bengtsson et al."
-  },
-  {
-    "id": "live-phase2-474",
-    "title": "Case Study to Investigate the Effects of Modal Damping on Free Spanning Flexible Pipeline, Umbilical and Cable",
-    "url": "https://doi.org/10.1115/omae2025-157457",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Abstract\n               Free spans on slender subsea structures laying on the seabed such as flexible pipeline, umbilical and cable might develop due to various reasons, e.g., seabed unevenness, scouring, crossing and end terminations, etc. Due to lack of direct guidance, the industry generally applies a simplified while conservative methodology for these structures, e.g.",
-    "year": "2025",
-    "authors": "Linlin Jiao et al."
   },
   {
     "id": "live-phase2-475",
@@ -4251,24 +3756,6 @@
     "authors": "yan li et al."
   },
   {
-    "id": "live-phase2-477",
-    "title": "Cyber Security in the Subsea Telecommunication Cable Networks",
-    "url": "https://doi.org/10.34190/iccws.21.1.4505",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "More than 95% of international internet and telecommunication data is transmitted through subsea fiber-optic cables, valued for their cost-efficiency, low latency, and high capacity. The cables connect the network of data centers around the world to form our internet.",
-    "year": "2026",
-    "authors": "Martti Lehto et al."
-  },
-  {
-    "id": "live-phase2-478",
-    "title": "DAS data recorded by a subsea umbilical cable at Atlantis field",
-    "url": "https://doi.org/10.1190/segam2020-3427669.1",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
-    "year": "2020",
-    "authors": "Ge Zhan et al."
-  },
-  {
     "id": "live-phase2-479",
     "title": "Numerical assessment of ship anchor penetration depth in Baltic Sea Sand: Implications for subsea cable burial",
     "url": "https://doi.org/10.1016/j.oceaneng.2024.119674",
@@ -4285,14 +3772,5 @@
     "description": "Investigates the massive capital investments in physical, digital, and green-energy infrastructure necessary to sustain transcontinental connection.",
     "year": "2011",
     "authors": "I. D. Bonnon"
-  },
-  {
-    "id": "live-phase2-481",
-    "title": "Issues and challenges in strategic repositioning: the case of Cable and Wireless",
-    "url": "https://doi.org/10.1002/jsc.640",
-    "category": "Infrastructure: Digital & Energy",
-    "description": "Abstract\n\nBetween 1999 and 2002, Cable and Wireless (C&amp;W) undertook a radical strategic repositioning as it sought to become more focused on key growth markets. Due to a combination of a declining external environment and an inadequate external environment, this process of strategic change failed to establish the company as an Internet powerhouse.\nThis article examines the strategic repositioning undertaken by Cable and Wireless throughout the period 1999 to 2002.",
-    "year": "2003",
-    "authors": "Colin Turner"
   }
 ]
