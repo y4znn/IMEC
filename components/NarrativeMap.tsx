@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // --- DATA STRUCTURES ---
 
+export type Pillar = 'TRANSPORT' | 'DIGITAL' | 'ENERGY';
+
 interface NodeData {
     id: string; // ISO A3 code
     name: string;
@@ -15,25 +17,36 @@ interface NodeData {
     next: string | null; // ISO A3 of next node
     lat: number;
     lng: number;
+    type: 'Sea' | 'Land'; // Context for transport routing
+    infrastructureInvestment: number; // In billions
+    dossierIntelligence: string; // Detail for side panel
 }
 
 const imecNodes: NodeData[] = [
-    { id: "IND", name: "India", role: "The Eastern Anchor", description: "Primary manufacturing and export terminus. Connects to the Middle East via JNPT and Mundra ports.", next: "ARE", lat: 20.5937, lng: 78.9629 },
-    { id: "ARE", name: "United Arab Emirates", role: "The Gulf Transshipment Hub", description: "Jebel Ali and Fujairah serve as the core maritime-to-rail transshipment zone, bypassing the Strait of Hormuz.", next: "SAU", lat: 23.4241, lng: 53.8478 },
-    { id: "SAU", name: "Saudi Arabia", role: "The Desert Land-Bridge", description: "Vast overland railway integration connecting the Persian Gulf to the Jordanian border.", next: "JOR", lat: 23.8859, lng: 45.0792 },
-    { id: "JOR", name: "Jordan", role: "The Vital Transit", description: "Critical connective tissue bridging Saudi rail lines to Israeli seaports.", next: "ISR", lat: 30.5852, lng: 35.2332 },
-    { id: "ISR", name: "Israel", role: "The Mediterranean Hinge", description: "Haifa port acts as the final exit point before entering European waters.", next: "GRC", lat: 31.0461, lng: 34.8516 },
-    { id: "GRC", name: "Greece", role: "The European Entry", description: "Piraeus port serves as the immediate geographic gateway into the EU market.", next: "ITA", lat: 39.0742, lng: 21.8243 },
-    { id: "ITA", name: "Italy", role: "The Central Artery", description: "Core Mediterranean distribution hub for continental supply chains.", next: "FRA", lat: 41.8719, lng: 12.5674 },
-    { id: "FRA", name: "France", role: "The Western Terminus", description: "Marseille acts as the final strategic locus for Western European integration.", next: null, lat: 46.2276, lng: 2.2137 }
+    { id: "IND", name: "India", role: "The Eastern Anchor", description: "Primary manufacturing and export terminus. Connects to the Middle East via JNPT and Mundra ports.", next: "ARE", lat: 20.5937, lng: 78.9629, type: 'Sea', infrastructureInvestment: 10, dossierIntelligence: "Eastern Anchor. $10B national port modernization strategy deployed for hubs like Mundra and Vadhavan." },
+    { id: "OMN", name: "Oman", role: "Digital Gateway", description: "Strategic landing point for the Blue-Raman subsea cable bypassing traditional bottlenecks.", next: "SAU", lat: 21.4735, lng: 55.9754, type: 'Sea', infrastructureInvestment: 2, dossierIntelligence: "Critical digital terrestrial entry point bypassing the traditional internet chokepoints." }, // NEW
+    { id: "ARE", name: "United Arab Emirates", role: "The Gulf Transshipment Hub", description: "Jebel Ali and Fujairah serve as the core maritime-to-rail transshipment zone, bypassing the Strait of Hormuz.", next: "SAU", lat: 23.4241, lng: 53.8478, type: 'Land', infrastructureInvestment: 8, dossierIntelligence: "Integration point for GCC grids. Key maritime-to-rail switchyard." },
+    { id: "SAU", name: "Saudi Arabia", role: "The Desert Land-Bridge", description: "Vast overland railway integration connecting the Persian Gulf to the Jordanian border.", next: "JOR", lat: 23.8859, lng: 45.0792, type: 'Land', infrastructureInvestment: 20, dossierIntelligence: "Integration of the Saudi East Cargo Train; requires 269km of missing rail links from Al-Ghuwaifat (UAE) to Haradh." },
+    { id: "JOR", name: "Jordan", role: "The Vital Transit", description: "Critical connective tissue bridging Saudi rail lines to Israeli seaports.", next: "ISR", lat: 30.5852, lng: 35.2332, type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Crucial Bottleneck. Requires $2.09B - $2.6B to build a 225km standard-gauge freight rail linking Al-Haditha to the Israeli border." },
+    { id: "ISR", name: "Israel", role: "The Mediterranean Hinge", description: "Haifa port acts as the final exit point before entering European waters.", next: "GRC", lat: 31.0461, lng: 34.8516, type: 'Sea', infrastructureInvestment: 6, dossierIntelligence: "Haifa Port Modernization. Terrestrial fusion point for the Blue-Raman data cable bypassing Egypt." },
+    { id: "GRC", name: "Greece", role: "The European Entry", description: "Piraeus port serves as the immediate geographic gateway into the EU market.", next: "ITA", lat: 39.0742, lng: 21.8243, type: 'Sea', infrastructureInvestment: 4, dossierIntelligence: "European entry point distributing energy and digital payloads deep into the EU." },
+    { id: "ITA", name: "Italy", role: "The Central Artery", description: "Core Mediterranean distribution hub for continental supply chains.", next: "FRA", lat: 41.8719, lng: 12.5674, type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Continental supply chain distributor for Western Europe." },
+    { id: "FRA", name: "France", role: "The Western Terminus", description: "Marseille acts as the final strategic locus for Western European integration.", next: null, lat: 46.2276, lng: 2.2137, type: 'Land', infrastructureInvestment: 4, dossierIntelligence: "Western terminus concluding the Blue-Raman route." }
 ];
 
 const imecCountryIds = imecNodes.map(n => n.id);
+
+const chokepoints = [
+    { id: "SUEZ", name: "Suez Canal", lat: 30.5852, lng: 32.2654, description: "Strategic Vulnerability: Houthi threats have reduced Suez Canal container crossings by 90%, necessitating the IMEC overland bypass." },
+    { id: "BAM", name: "Bab el-Mandeb", lat: 12.5833, lng: 43.3333, description: "Strategic Vulnerability: Critical Red Sea access point entirely compromised by asymmetrical warfare, shutting off the Eastern Mediterranean from Asia." }
+];
 
 export default function NarrativeMap() {
     const containerRef = useRef<HTMLDivElement>(null);
     const d3ContainerRef = useRef<HTMLDivElement>(null);
     const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+    const [selectedNode, setSelectedNode] = useState<string | null>(null);
+    const [activePillar, setActivePillar] = useState<Pillar>('TRANSPORT');
     const [mousePos, setMousePos] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
 
     useEffect(() => {
@@ -90,6 +103,13 @@ export default function NarrativeMap() {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const geojson = topojson.feature(topologyData, (topologyData.objects.countries) as any) as any;
 
+            // Setup Choropleth Scale
+            const maxInvestment = d3.max(imecNodes, d => d.infrastructureInvestment) || 20;
+            // Map 0 to maxInvestment to a slate color range, darkest for highest investment
+            const colorScale = d3.scaleLinear<string>()
+                .domain([0, maxInvestment])
+                .range(["#E5E7EB", "#374151"]); // light gray to deep slate
+
             // Render all countries
             const countryPaths = g.selectAll("path.country")
                 .data(geojson.features)
@@ -100,10 +120,16 @@ export default function NarrativeMap() {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 .attr("id", (d: any) => `country-${d.id}`)
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                .style("fill", (d: any) => imecCountryIds.includes(d.id) ? "#D1D5DB" : "transparent") // IMEC resting grey, Ghost transparent
+                .style("fill", (d: any) => {
+                    if (imecCountryIds.includes(d.id)) {
+                        const node = imecNodes.find(n => n.id === d.id);
+                        return node ? colorScale(node.infrastructureInvestment) : "#D1D5DB";
+                    }
+                    return "#F9FAFB";
+                })
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                .style("stroke", (d: any) => imecCountryIds.includes(d.id) ? "#9CA3AF" : "#E5E7EB") // Ghost borders faintly structured
-                .style("stroke-width", "0.5px")
+                .style("stroke", (d: any) => imecCountryIds.includes(d.id) ? "#6B7280" : "#9CA3AF") // Darker strokes for visibility
+                .style("stroke-width", "1px")
                 .style("transition", "fill 0.4s ease-out, stroke 0.4s ease-out")
                 // Make sure bounding box is clickable using visiblePainted or all, transparent strokes don't block
                 .style("pointer-events", "none"); // Disable direct country pointer events to let Voronoi catch SVG mouse events
@@ -148,13 +174,67 @@ export default function NarrativeMap() {
                 .data(d => [d])
                 .join("path")
                 .attr("class", "icon")
-                .attr("d", d => ["IND", "ARE", "ISR", "GRC", "ITA", "FRA"].includes(d.id) ? anchorPath : trainPath)
+                .attr("d", d => {
+                    const id = (d as NodeData).id;
+                    if (id === 'OMN') return "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"; // Smartphone/Server stub
+                    return ["IND", "ARE", "ISR", "GRC", "ITA", "FRA"].includes(id) ? anchorPath : trainPath
+                })
                 .style("fill", "none")
                 .style("stroke", "#ffffff")
                 .style("stroke-width", "2.5px") // Thicker for better readability
                 .style("stroke-linecap", "round")
                 .style("stroke-linejoin", "round")
                 .attr("transform", "translate(-6, -6) scale(0.5)"); // Center 24x24 icons
+
+            // Render Chokepoints
+            const chokepointSelection = g.selectAll("g.chokepoint-group")
+                .data(chokepoints)
+                .join("g")
+                .attr("class", "chokepoint-group")
+                .attr("transform", d => {
+                    const [x, y] = projection([d.lng, d.lat]) || [0, 0];
+                    return `translate(${x}, ${y}) scale(1)`;
+                })
+                .style("pointer-events", "all")
+                // In a multi-pillar map, show only on TRANSPORT or perhaps always to emphasize geopolitics
+                .style("opacity", 1);
+
+            chokepointSelection.selectAll("circle.cp-pulse")
+                .data(d => [d])
+                .join("circle")
+                .attr("class", "cp-pulse")
+                .attr("r", 4)
+                .style("fill", "#EF4444")
+                .style("opacity", 0.5)
+                .style("pointer-events", "none");
+
+            chokepointSelection.selectAll("circle.cp-core")
+                .data(d => [d])
+                .join("circle")
+                .attr("class", "cp-core")
+                .attr("r", 3)
+                .style("fill", "#B91C1C")
+                .style("stroke", "#ffffff")
+                .style("stroke-width", "1px");
+
+            chokepointSelection.selectAll("title")
+                .data(d => [d])
+                .join("title")
+                .text(d => d.description);
+
+            // Animate Chokepoints continuously
+            const animateChokepoints = () => {
+                chokepointSelection.selectAll("circle.cp-pulse")
+                    .attr("r", 4)
+                    .style("opacity", 0.8)
+                    .transition()
+                    .duration(2000)
+                    .ease(d3.easeCircleOut)
+                    .attr("r", 15)
+                    .style("opacity", 0)
+                    .on("end", animateChokepoints);
+            };
+            animateChokepoints();
 
             // Semantic Voronoi overlay for magnetic hover detection
             const voronoiPoints: [number, number][] = imecNodes.map(d => {
@@ -163,6 +243,8 @@ export default function NarrativeMap() {
             });
             const delaunay = d3.Delaunay.from(voronoiPoints);
 
+            // Re-bind mouse handlers safely capturing current state logic requirements although state is kept mostly out of D3
+            // We use a small hack by attaching a click handler to an invisible overlay to avoid re-binding issues with state
             svg.on("mousemove", (event) => {
                 // Get pointer position inside 'g' which inherently considers the zoom transform
                 const [x, y] = d3.pointer(event, g.node());
@@ -191,6 +273,19 @@ export default function NarrativeMap() {
 
             svg.on("mouseleave", () => {
                 setHoveredNode(null);
+            });
+
+            svg.on("click", (event) => {
+                const [x, y] = d3.pointer(event, g.node());
+                const index = delaunay.find(x, y);
+                if (index !== undefined) {
+                    const node = imecNodes[index];
+                    const [nx, ny] = projection([node.lng, node.lat]) || [0, 0];
+                    const distance = Math.hypot(x - nx, y - ny);
+                    if (distance < 80) {
+                        setSelectedNode(node.id);
+                    }
+                }
             });
 
             // Radar pulse animation logic
@@ -224,9 +319,9 @@ export default function NarrativeMap() {
             (d3ContainerRef.current as any)._currentNextId = null;
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (d3ContainerRef.current as any)._updateD3Visuals = (hoveredId: string | null) => {
+            (d3ContainerRef.current as any)._updateD3Visuals = (hoveredId: string | null, pillar: Pillar) => {
                 let nextId: string | null = null;
-                if (hoveredId) {
+                if (hoveredId && pillar === 'TRANSPORT') {
                     const node = imecNodes.find(n => n.id === hoveredId);
                     nextId = node?.next || null;
                 }
@@ -239,16 +334,19 @@ export default function NarrativeMap() {
                 // Update map fills (Domino logic)
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 countryPaths.style("fill", (d: any) => {
-                    if (!imecCountryIds.includes(d.id)) return "transparent"; // Keep ghost world transparent
-                    if (!hoveredId) return "#D1D5DB"; // Default state
+                    if (!imecCountryIds.includes(d.id)) return "#F9FAFB";
+                    if (!hoveredId) {
+                        const node = imecNodes.find(n => n.id === d.id);
+                        return node ? colorScale(node.infrastructureInvestment) : "#D1D5DB";
+                    }
                     if (d.id === hoveredId) return "#111827"; // Deep Charcoal
                     if (d.id === nextId) return "#3B82F6"; // Pulses to Slate Blue
                     return "#F3F4F6"; // Fade everything else
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 }).style("stroke", (d: any) => {
                     // Minor border tweaks when active
-                    if (!imecCountryIds.includes(d.id)) return "#E5E7EB";
-                    if (!hoveredId) return "#9CA3AF";
+                    if (!imecCountryIds.includes(d.id)) return "#9CA3AF";
+                    if (!hoveredId) return "#6B7280";
                     if (d.id === hoveredId) return "#1F2937";
                     if (d.id === nextId) return "#60A5FA";
                     return "#F3F4F6";
@@ -258,6 +356,11 @@ export default function NarrativeMap() {
                 nodeSelection
                     .style("opacity", (d) => {
                         const node = d as NodeData;
+
+                        // Hide Oman in Transport mode
+                        if (pillar === 'TRANSPORT' && node.id === "OMN") return 0;
+                        if (pillar !== 'TRANSPORT' && node.id === "OMN") return 1;
+
                         if (!hoveredId) return 0.5;
                         if (node.id === hoveredId || node.id === nextId) return 1;
                         return 0.1;
@@ -273,52 +376,103 @@ export default function NarrativeMap() {
                     .style("opacity", 0)
                     .attr("r", 5);
 
-                if (nextId) {
+                if (nextId && pillar === 'TRANSPORT') {
                     pulseLoop(nextId);
                 }
 
-                // Draw / Remove Connections
-                g.selectAll("path.connection").remove();
+                // Smoothly fade out old connections
+                g.selectAll("path.connection")
+                    .transition()
+                    .duration(300)
+                    .style("opacity", 0)
+                    .remove();
 
-                if (hoveredId && nextId) {
-                    const start = imecNodes.find(n => n.id === hoveredId);
-                    const end = imecNodes.find(n => n.id === nextId);
+                const drawConnection = (startId: string, endId: string, type: 'TRANSPORT_SEA' | 'TRANSPORT_LAND' | 'DIGITAL' | 'ENERGY') => {
+                    const start = imecNodes.find(n => n.id === startId);
+                    const end = imecNodes.find(n => n.id === endId);
 
                     if (start && end) {
                         const p1 = projection([start.lng, start.lat]);
                         const p2 = projection([end.lng, end.lat]);
 
                         if (p1 && p2) {
-                            // SVG Curved Path
                             const dx = p2[0] - p1[0];
                             const dy = p2[1] - p1[1];
                             const dr = Math.sqrt(dx * dx + dy * dy);
-                            const sweep = start.lng > end.lng ? 1 : 0;
+
+                            // Adjust sweep flag for better arcs depending on the route
+                            let sweep = start.lng > end.lng ? 1 : 0;
+                            // Make the digital bypass sweep nicely over the red sea
+                            if (type === 'DIGITAL') sweep = 0;
+                            if (type === 'ENERGY') sweep = 1;
+
                             const pathData = `M ${p1[0]},${p1[1]} A ${dr * 0.8},${dr * 0.8} 0 0,${sweep} ${p2[0]},${p2[1]}`;
+
+                            let strokeColor = "#3B82F6";
+                            let strokeWidth = "2px";
+                            let dashArray = "none";
+
+                            if (type === 'TRANSPORT_SEA') {
+                                strokeColor = "#3B82F6";
+                                strokeWidth = "2px";
+                                dashArray = "5, 5";
+                            } else if (type === 'TRANSPORT_LAND') {
+                                strokeColor = "#E11D48"; // High contrast crimson
+                                strokeWidth = "2.5px";
+                            } else if (type === 'DIGITAL') {
+                                strokeColor = "#A855F7"; // Purple for digital
+                                strokeWidth = "2.5px";
+                            } else if (type === 'ENERGY') {
+                                strokeColor = "#10B981"; // Bright Green for energy
+                                strokeWidth = "3px";
+                            }
+
                             const connection = g.append("path")
                                 .attr("class", "connection")
                                 .attr("d", pathData)
                                 .style("fill", "none")
-                                .style("stroke", "#3B82F6")
+                                .style("stroke", strokeColor)
+                                .style("stroke-dasharray", dashArray)
+                                .style("opacity", 0)
                                 // semantic zoom awareness
                                 .style("stroke-width", () => {
-                                    // Provide base 2px line based on the container transform
                                     const currentTransform = d3.zoomTransform(svg.node() as Element);
-                                    return 2 / currentTransform.k + "px";
+                                    let baseWidth = 2;
+                                    if (strokeWidth === "2.5px") baseWidth = 2.5;
+                                    if (strokeWidth === "3px") baseWidth = 3;
+                                    return baseWidth / currentTransform.k + "px";
                                 })
                                 .style("pointer-events", "none");
 
-                            // CSS transition trick to draw line
-                            const len = (connection.node() as SVGPathElement).getTotalLength();
-                            connection
-                                .attr("stroke-dasharray", len + " " + len)
-                                .attr("stroke-dashoffset", len)
-                                .transition()
-                                .duration(600)
-                                .ease(d3.easeCubicOut)
-                                .attr("stroke-dashoffset", 0);
+                            // Fade in
+                            connection.transition().duration(500).style("opacity", 1);
                         }
                     }
+                };
+
+                // Draw / Remove Connections based on Pillar
+                if (pillar === 'TRANSPORT') {
+                    if (hoveredId && nextId) {
+                        const start = imecNodes.find(n => n.id === hoveredId);
+                        if (start) {
+                            const type = start.type === 'Sea' ? 'TRANSPORT_SEA' : 'TRANSPORT_LAND';
+                            drawConnection(hoveredId, nextId, type);
+                        }
+                    }
+                } else if (pillar === 'DIGITAL') {
+                    // Draw Blue-Raman static route
+                    drawConnection("IND", "OMN", "DIGITAL");
+                    drawConnection("OMN", "SAU", "DIGITAL");
+                    drawConnection("SAU", "JOR", "DIGITAL");
+                    drawConnection("JOR", "ISR", "DIGITAL");
+                    drawConnection("ISR", "GRC", "DIGITAL");
+                    drawConnection("GRC", "ITA", "DIGITAL");
+                    drawConnection("ITA", "FRA", "DIGITAL");
+                } else if (pillar === 'ENERGY') {
+                    // Draw Energy routes (NEOM & GCC)
+                    drawConnection("SAU", "JOR", "ENERGY"); // Hydrogen pipeline to Med
+                    drawConnection("JOR", "ISR", "ENERGY");
+                    drawConnection("SAU", "ARE", "ENERGY"); // GCC Grid
                 }
             };
         };
@@ -354,8 +508,20 @@ export default function NarrativeMap() {
                 return `translate(${x}, ${y}) scale(${1 / currentTransform.k})`;
             });
 
-            // Hide connections for a second to let layout settle
-            g.selectAll("path.connection").remove();
+            g.selectAll("g.chokepoint-group").attr("transform", (d) => {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const point = d as any;
+                const currentTransform = d3.zoomTransform(svg.node() as Element);
+                const [x, y] = projection([point.lng, point.lat]) || [0, 0];
+                return `translate(${x}, ${y}) scale(${1 / currentTransform.k})`;
+            });
+
+            // Re-trigger state to redraw connections on resize
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            if (d3ContainerRef.current && (d3ContainerRef.current as any)._updateD3Visuals) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (d3ContainerRef.current as any)._updateD3Visuals((d3ContainerRef.current as any)._currentHoveredId, (d3ContainerRef.current as any)._currentPillar || 'TRANSPORT');
+            }
         });
 
         resizeObserver.observe(container);
@@ -370,12 +536,15 @@ export default function NarrativeMap() {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (d3ContainerRef.current && (d3ContainerRef.current as any)._updateD3Visuals) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (d3ContainerRef.current as any)._updateD3Visuals(hoveredNode);
+            (d3ContainerRef.current as any)._currentPillar = activePillar;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (d3ContainerRef.current as any)._updateD3Visuals(hoveredNode, activePillar);
         }
-    }, [hoveredNode]);
+    }, [hoveredNode, activePillar]);
 
-    const activeNode = hoveredNode ? imecNodes.find(n => n.id === hoveredNode) : null;
-    const nextNode = activeNode?.next ? imecNodes.find(n => n.id === activeNode.next) : null;
+    const activeNodeData = hoveredNode ? imecNodes.find(n => n.id === hoveredNode) : null;
+    const nextNodeData = activeNodeData?.next ? imecNodes.find(n => n.id === activeNodeData.next) : null;
+    const selectedNodeData = selectedNode ? imecNodes.find(n => n.id === selectedNode) : null;
 
     return (
         <div ref={containerRef} className="w-full h-full relative" style={{ overflow: 'hidden' }}>
@@ -383,18 +552,17 @@ export default function NarrativeMap() {
             <div ref={d3ContainerRef} className="absolute inset-0" />
 
             <AnimatePresence>
-                {activeNode && (
+                {activeNodeData && (
                     <motion.div
                         initial={{ opacity: 0, y: 10, scale: 0.98 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 5, scale: 0.98 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className="fixed pointer-events-none z-50 bg-white border border-gray-200 shadow-xl w-[320px]"
+                        className="fixed pointer-events-none z-50 bg-white border border-gray-200 shadow-xl w-[320px] rounded-none"
                         style={{
                             left: `${mousePos.x + 24}px`,
                             top: `${mousePos.y + 24}px`,
-                            transition: 'left 0.15s ease-out, top 0.15s ease-out',
-                            borderRadius: 0, // Strict Bento Box format
+                            transition: 'left 0.15s ease-out, top 0.15s ease-out'
                         }}
                     >
                         {/* Tooltip Arrow Pointer */}
@@ -402,36 +570,41 @@ export default function NarrativeMap() {
 
                         <div className="p-6">
                             <div className="flex flex-col mb-4 bg-gray-50/50 p-2 border border-gray-100">
-                                <span className="text-[10px] text-gray-500 font-mono tracking-[0.2em] uppercase">Active Corridor Node // {activeNode.id}</span>
+                                <span className="text-[10px] text-gray-500 font-mono tracking-[0.2em] uppercase">Active Corridor Node // {activeNodeData.id}</span>
                             </div>
 
                             <h3
                                 className="text-2xl text-gray-900 font-bold leading-tight mb-2"
                                 style={{ fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: '-0.02em' }}
                             >
-                                {activeNode.name}
+                                {activeNodeData.name}
                             </h3>
 
                             <div className="w-8 h-px bg-gray-900 mb-4" />
 
                             <div className="mb-4">
                                 <div className="text-[11px] font-mono text-gray-900 uppercase tracking-widest mb-1.5 font-bold">
-                                    {activeNode.role}
+                                    {activeNodeData.role}
                                 </div>
                                 <p className="text-sm text-gray-600 leading-relaxed font-serif">
-                                    {activeNode.description}
+                                    {activeNodeData.description}
                                 </p>
                             </div>
 
-                            {nextNode && (
+                            {activePillar === 'TRANSPORT' && nextNodeData && (
                                 <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
                                     <div className="flex flex-col">
                                         <span className="text-[9px] font-mono text-blue-500 tracking-widest uppercase mb-1">Direct Connectivity To</span>
-                                        <span className="text-xs font-mono text-blue-700 font-bold uppercase tracking-wider">{nextNode.name}</span>
+                                        <span className="text-xs font-mono text-blue-700 font-bold uppercase tracking-wider">{nextNodeData.name}</span>
                                     </div>
                                     <div className="w-5 h-5 flex items-center justify-center bg-blue-50 text-blue-500 rounded-full">
                                         <span className="font-mono text-[10px] transform md:rotate-0 -rotate-45">→</span>
                                     </div>
+                                </div>
+                            )}
+                            {activePillar !== 'TRANSPORT' && (
+                                <div className="mt-4 pt-4 border-t border-gray-100">
+                                    <span className="text-[9px] font-mono text-purple-600 tracking-widest uppercase mb-1 block">Infrastructure Mode: {activePillar}</span>
                                 </div>
                             )}
                         </div>
@@ -439,12 +612,76 @@ export default function NarrativeMap() {
                 )}
             </AnimatePresence>
 
+            {/* Interactive Click Dossier Panel */}
+            <AnimatePresence>
+                {selectedNodeData && (
+                    <motion.div
+                        initial={{ x: '100%', opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: '100%', opacity: 0 }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                        className="absolute right-0 top-0 h-full w-96 bg-white shadow-2xl border-l border-gray-200 z-40 rounded-none overflow-y-auto"
+                    >
+                        <div className="p-8">
+                            <div className="flex justify-between items-center mb-8">
+                                <span className="text-xs font-mono text-blue-600 tracking-[0.2em] uppercase font-bold">Strategic Dossier</span>
+                                <button
+                                    onClick={() => setSelectedNode(null)}
+                                    className="w-8 h-8 flex items-center justify-center border border-gray-200 hover:bg-gray-50 text-gray-400 hover:text-gray-900 transition-colors"
+                                >
+                                    <span className="font-mono text-xs">X</span>
+                                </button>
+                            </div>
+
+                            <h2 className="text-4xl text-gray-900 font-bold leading-tight mb-2" style={{ fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: '-0.03em' }}>
+                                {selectedNodeData.name}
+                            </h2>
+                            <p className="text-gray-500 font-serif mb-8 text-lg">{selectedNodeData.role}</p>
+
+                            <div className="space-y-6">
+                                <div className="border-l-2 border-gray-900 pl-4 py-1">
+                                    <h4 className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-2">Committed Investment</h4>
+                                    <div className="text-2xl text-gray-900 font-mono">${selectedNodeData.infrastructureInvestment}B</div>
+                                </div>
+
+                                <div className="bg-gray-50 p-5 border border-gray-100">
+                                    <h4 className="text-[10px] font-mono text-gray-900 uppercase tracking-widest mb-3 font-bold">Geopolitical Intelligence</h4>
+                                    <p className="text-sm text-gray-700 leading-relaxed font-serif">
+                                        {selectedNodeData.dossierIntelligence}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Three Pillars Toggle Control Bar */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex bg-white shadow-lg border border-gray-200 p-1" style={{ borderRadius: 0 }}>
+                {(['TRANSPORT', 'DIGITAL', 'ENERGY'] as Pillar[]).map((pillar) => (
+                    <button
+                        key={pillar}
+                        onClick={() => setActivePillar(pillar)}
+                        className={`px-6 py-2 text-[10px] font-mono tracking-widest uppercase transition-all ${activePillar === pillar
+                            ? 'bg-gray-900 text-white font-bold'
+                            : 'bg-transparent text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                            }`}
+                    >
+                        [ {pillar} ]
+                    </button>
+                ))}
+            </div>
+
             {/* Informational overlay to act as a legend for D3 layout */}
-            <div className="absolute bottom-8 right-8 z-20 pointer-events-none bg-white/90 backdrop-blur-md border border-gray-200 p-5" style={{ borderRadius: 0 }}>
+            <div className="absolute top-8 right-8 z-20 pointer-events-none bg-white/90 backdrop-blur-md border border-gray-200 p-5" style={{ borderRadius: 0 }}>
                 <h3 className="text-gray-900 text-[10px] tracking-[0.2em] font-mono uppercase mb-3 text-right">Interactive Topology</h3>
                 <div className="flex items-center gap-3 justify-end mb-2">
-                    <span className="text-[10px] text-gray-500 font-serif italic">Hover to isolate sector logic</span>
+                    <span className="text-[10px] text-gray-500 font-serif italic">Hover mapping to isolate logic</span>
                     <div className="w-[6px] h-[6px] rounded-full bg-gray-900"></div>
+                </div>
+                <div className="flex items-center gap-3 justify-end mt-4">
+                    <span className="text-[9px] text-gray-400 font-mono tracking-wider uppercase">Investment Depth</span>
+                    <div className="flex w-24 h-2 bg-gradient-to-r from-gray-200 to-gray-700 border border-gray-300"></div>
                 </div>
             </div>
         </div>
