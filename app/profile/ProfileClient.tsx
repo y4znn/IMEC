@@ -24,11 +24,11 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
         linkedinText: storyData?.linkedinText || "LinkedIn Profile",
         bioHeading: storyData?.bioHeading || "Executive Bio",
         executive_bio: storyData?.executive_bio || "Ahmad Ghosn is a doctoral researcher specializing...",
-        thesisHeading: storyData?.thesisHeading || "Thesis Synthesis",
-        thesis_synthesis: storyData?.thesis_synthesis || "“IMEC functions as a geopolitical operating system requiring structural redundancy to survive Levantine instability.”",
+        thesisHeading: storyData?.thesisHeading || "Dissertation Title",
+        thesis_synthesis: storyData?.thesis_synthesis || "India–Middle East–Europe Economic Corridor: Geoeconomic Architecture of a New Middle East",
         credentialsHeading: storyData?.credentialsHeading || "Academic Record",
         academicRecord: storyData?.academicRecord || [
-            "MA in Strategic Studies, Joint Master’s – Lebanese University & Lebanese Armed Forces",
+            "MA in Strategic Studies, Joint Master’s – Lebanese University & Lebanese Armed Forces.<br />MA Thesis Title: Israeli Militarization of Artificial Intelligence: Case Study of the 2024 War",
             "BA in Philosophy and Political and Social Sciences - Lebanese University"
         ],
         publicationsHeading: storyData?.publicationsHeading || "Publications",
@@ -150,7 +150,12 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                             <div key={i} className="flex items-start gap-2">
                                 <span className="text-gray-900 mt-1 flex-shrink-0 text-xs text-center">—</span>
                                 <div className="text-xs text-gray-900 font-mono leading-relaxed">
-                                    {record}
+                                    {record.split('<br />').map((line: string, lineIdx: number, arr: string[]) => (
+                                        <span key={lineIdx}>
+                                            {line}
+                                            {lineIdx !== arr.length - 1 && <br />}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
                         ))}
