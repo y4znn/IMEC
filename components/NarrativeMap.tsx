@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Crosshair } from 'lucide-react';
+import { Crosshair, ChevronUp, ChevronDown } from 'lucide-react';
 
 // --- DATA STRUCTURES ---
 
@@ -24,8 +24,8 @@ interface NodeData {
 }
 
 const imecNodes: NodeData[] = [
-    { id: "IND", name: "India", role: "The Eastern Anchor", description: "Primary manufacturing and export terminus. Connects to the Middle East via JNPT and Mundra ports.", next: "ARE", lat: 20.5937, lng: 78.9629, type: 'Sea', infrastructureInvestment: 10, dossierIntelligence: "Eastern Anchor. $10B national port modernization strategy deployed for hubs like Mundra and Vadhavan." },
-    { id: "OMN", name: "Oman", role: "Digital Gateway", description: "Strategic landing point for the Blue-Raman subsea cable bypassing traditional bottlenecks.", next: "SAU", lat: 21.4735, lng: 55.9754, type: 'Sea', infrastructureInvestment: 2, dossierIntelligence: "Critical digital terrestrial entry point bypassing the traditional internet chokepoints." }, // NEW
+    { id: "IND", name: "India", role: "The Eastern Anchor", description: "Primary manufacturing and export terminus. Connects to the Middle East via JNPT and Mundra ports.", next: "OMN", lat: 20.5937, lng: 78.9629, type: 'Sea', infrastructureInvestment: 10, dossierIntelligence: "Eastern Anchor. $10B national port modernization strategy deployed for hubs like Mundra and Vadhavan." },
+    { id: "OMN", name: "Oman", role: "Strategic Bypass", description: "Strategic landing point for the Blue-Raman subsea cable and Hafeet Rail project bypassing traditional bottlenecks.", next: "ARE", lat: 21.4735, lng: 55.9754, type: 'Land', infrastructureInvestment: 2, dossierIntelligence: "Strategic Bypass: The Hafeet Rail project links Sohar port to the UAE, offering a critical supply chain redundancy that bypasses the Strait of Hormuz." },
     { id: "ARE", name: "United Arab Emirates", role: "The Gulf Transshipment Hub", description: "Jebel Ali and Fujairah serve as the core maritime-to-rail transshipment zone, bypassing the Strait of Hormuz.", next: "SAU", lat: 23.4241, lng: 53.8478, type: 'Land', infrastructureInvestment: 8, dossierIntelligence: "Integration point for GCC grids. Key maritime-to-rail switchyard." },
     { id: "SAU", name: "Saudi Arabia", role: "The Desert Land-Bridge", description: "Vast overland railway integration connecting the Persian Gulf to the Jordanian border.", next: "JOR", lat: 23.8859, lng: 45.0792, type: 'Land', infrastructureInvestment: 20, dossierIntelligence: "Integration of the Saudi East Cargo Train; requires 269km of missing rail links from Al-Ghuwaifat (UAE) to Haradh." },
     { id: "JOR", name: "Jordan", role: "The Vital Transit", description: "Critical connective tissue bridging Saudi rail lines to Israeli seaports.", next: "ISR", lat: 30.5852, lng: 35.2332, type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Crucial Bottleneck. Requires $2.09B - $2.6B to build a 225km standard-gauge freight rail linking Al-Haditha to the Israeli border." },
@@ -48,6 +48,7 @@ export default function NarrativeMap() {
     const [hoveredNode, setHoveredNode] = useState<string | null>(null);
     const [selectedNode, setSelectedNode] = useState<string | null>(null);
     const [activePillar, setActivePillar] = useState<Pillar>('TRANSPORT');
+    const [isLegendOpen, setIsLegendOpen] = useState(true);
     const [mousePos, setMousePos] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
 
     useEffect(() => {
@@ -74,7 +75,7 @@ export default function NarrativeMap() {
         // Set up zoom behavior
         const zoom = d3.zoom<SVGSVGElement, unknown>()
             .scaleExtent([1, 8])
-            .wheelDelta((event) => -event.deltaY * (event.deltaMode === 1 ? 0.05 : event.deltaMode ? 1 : 0.002) * 0.4) // Smoother framing logic 
+            .wheelDelta((event) => -event.deltaY * (event.deltaMode === 1 ? 0.05 : event.deltaMode ? 1 : 0.002))
             .on("zoom", (event) => {
                 g.attr("transform", event.transform);
 
@@ -373,10 +374,6 @@ export default function NarrativeMap() {
                 nodeSelection
                     .style("opacity", (d) => {
                         const node = d as NodeData;
-
-                        // Hide Oman in Transport mode
-                        if (pillar === 'TRANSPORT' && node.id === "OMN") return 0;
-                        if (pillar !== 'TRANSPORT' && node.id === "OMN") return 1;
 
                         if (!hoveredId) return 0.5;
                         if (node.id === hoveredId || node.id === nextId) return 1;
@@ -690,54 +687,71 @@ export default function NarrativeMap() {
             </div>
 
             {/* Map Legend & Context Panel */}
-            <div className="absolute bottom-8 left-6 z-20 bg-white border border-gray-200 shadow-xl p-6 w-[340px] rounded-none pointer-events-auto">
-                <h2 className="text-[14px] font-bold text-gray-900 font-serif mb-2 leading-tight">IMEC: Multimodal Connectivity Architecture</h2>
-                <p className="text-[11px] text-gray-500 font-serif mb-6 leading-relaxed">
-                    Visualizing the integration of maritime, overland rail, digital (Blue-Raman), and energy infrastructure bypassing traditional vulnerable chokepoints.
-                </p>
+            <div className="absolute bottom-8 left-6 z-20 bg-white border border-gray-200 shadow-xl w-[340px] rounded-none pointer-events-auto transition-all duration-300">
+                {isLegendOpen ? (
+                    <div className="p-6">
+                        <div className="flex justify-between items-start mb-2">
+                            <h2 className="text-[14px] font-bold text-gray-900 font-serif leading-tight">IMEC: Multimodal Connectivity Architecture</h2>
+                            <button onClick={() => setIsLegendOpen(false)} className="text-gray-400 hover:text-gray-900 transition-colors p-1">
+                                <ChevronDown className="w-4 h-4" />
+                            </button>
+                        </div>
+                        <p className="text-[11px] text-gray-500 font-serif mb-6 leading-relaxed">
+                            Visualizing the integration of maritime, overland rail, digital (Blue-Raman), and energy infrastructure bypassing traditional vulnerable chokepoints.
+                        </p>
 
-                <div className="space-y-4 mb-6">
-                    <div className="flex items-center gap-3">
-                        <div className="w-6 border-t-2 border-blue-500 border-dashed"></div>
-                        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Maritime Transport Route</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <div className="w-6 border-t-[2.5px] border-rose-600"></div>
-                        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Overland Rail Link</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <div className="w-6 border-t-[2.5px] border-purple-500"></div>
-                        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Digital Pillar (Blue-Raman)</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <div className="w-6 border-t-[3px] border-emerald-500"></div>
-                        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Energy Pillar (Grid)</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <div className="w-6 flex justify-center">
-                            <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-600 flex items-center justify-center">
-                                <div className="w-1.5 h-1.5 rounded-full bg-red-600"></div>
+                        <div className="space-y-4 mb-6">
+                            <div className="flex items-center gap-3">
+                                <div className="w-6 border-t-2 border-blue-500 border-dashed"></div>
+                                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Maritime Transport Route</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <div className="w-6 border-t-[2.5px] border-rose-600"></div>
+                                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Overland Rail Link</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <div className="w-6 border-t-[2.5px] border-purple-500"></div>
+                                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Digital Pillar (Blue-Raman)</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <div className="w-6 border-t-[3px] border-emerald-500"></div>
+                                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Energy Pillar (Grid)</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <div className="w-6 flex justify-center">
+                                    <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-600 flex items-center justify-center">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-red-600"></div>
+                                    </div>
+                                </div>
+                                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Strategic Chokepoint Zones</span>
                             </div>
                         </div>
-                        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Strategic Chokepoint Zones</span>
-                    </div>
-                </div>
 
-                <div className="pt-5 border-t border-gray-100">
+                        <div className="pt-5 border-t border-gray-100">
+                            <button
+                                onClick={() => {
+                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                    if (d3ContainerRef.current && (d3ContainerRef.current as any)._resetZoom) {
+                                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                        (d3ContainerRef.current as any)._resetZoom();
+                                    }
+                                }}
+                                className="w-full flex items-center justify-center gap-2 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 transition-colors text-[10px] font-mono uppercase tracking-[0.2em]"
+                            >
+                                <Crosshair className="w-3.5 h-3.5" />
+                                Reset View
+                            </button>
+                        </div>
+                    </div>
+                ) : (
                     <button
-                        onClick={() => {
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            if (d3ContainerRef.current && (d3ContainerRef.current as any)._resetZoom) {
-                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                (d3ContainerRef.current as any)._resetZoom();
-                            }
-                        }}
-                        className="w-full flex items-center justify-center gap-2 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 transition-colors text-[10px] font-mono uppercase tracking-[0.2em]"
+                        onClick={() => setIsLegendOpen(true)}
+                        className="w-full flex items-center justify-between px-4 py-3 bg-white hover:bg-gray-50 transition-colors text-[10px] font-mono uppercase tracking-[0.2em] text-gray-700"
                     >
-                        <Crosshair className="w-3.5 h-3.5" />
-                        Reset View
+                        <span>Map Legend +</span>
+                        <ChevronUp className="w-4 h-4" />
                     </button>
-                </div>
+                )}
             </div>
 
             {/* Informational overlay to act as a legend for D3 layout */}

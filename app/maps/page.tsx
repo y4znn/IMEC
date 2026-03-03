@@ -21,11 +21,11 @@ export default function StrategicMaps() {
                             className="text-xl font-semibold text-gray-900 tracking-tight"
                             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                         >
-                            Data-Hologram
+                            Interactive 2D Narrative Map
                         </h1>
                     </div>
                     <p className="text-xs text-gray-600 leading-relaxed font-light mt-2">
-                        Interact with the 3D topology to analyze the IMEC sovereign backbone versus the digital artery and Eurasian axis rivals.
+                        Visualizing the IMEC multimodal supply chain. Hover or click nodes to explore the geopolitical architecture, strategic chokepoints, and infrastructure financing gaps.
                     </p>
                 </motion.div>
             </div>
