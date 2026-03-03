@@ -28,7 +28,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
         thesis_synthesis: storyData?.thesis_synthesis || "India–Middle East–Europe Economic Corridor: Geoeconomic Architecture of a New Middle East",
         credentialsHeading: storyData?.credentialsHeading || "Academic Record",
         academicRecord: storyData?.academicRecord || [
-            "MA in Strategic Studies, Joint Master’s – Lebanese University & Lebanese Armed Forces.<br />MA Thesis Title: Israeli Militarization of Artificial Intelligence: Case Study of the 2024 War",
+            "MA in Strategic Studies, Joint Master’s – Lebanese University & Lebanese Armed Forces.<br />MA Thesis Title: Israeli Militarization of Artificial Intelligence: Case Study of the 2024 War.",
             "BA in Philosophy and Political and Social Sciences - Lebanese University"
         ],
         publicationsHeading: storyData?.publicationsHeading || "Publications",
