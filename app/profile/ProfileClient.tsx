@@ -1,6 +1,6 @@
 'use client';
 
-import { Focus, GraduationCap, Library, Linkedin, User } from 'lucide-react';
+import { Focus, GraduationCap, Library, Linkedin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 
@@ -65,11 +65,11 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     transition={{ duration: 0.8, delay: 0.1 }}
                     className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 flex flex-col items-center justify-center text-center shadow-sm group h-96"
                 >
-                    <div className="w-24 h-24 rounded-none bg-gray-50 border border-gray-300 mb-5 flex items-center justify-center grayscale group-hover:border-gray-400 transition-colors duration-500">
-                        <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                            <User className="w-10 h-10 text-gray-900" strokeWidth={1} />
-                        </div>
-                    </div>
+                    <img
+                        src="/ahmad-profile.jpg"
+                        alt="Ahmad's Profile Picture"
+                        className="w-24 h-24 rounded-none border border-gray-300 mb-5 object-cover grayscale group-hover:grayscale-0 group-hover:border-gray-400 transition-all duration-500"
+                    />
 
                     <div className="text-xl font-medium text-gray-900 tracking-tight font-serif mb-1 truncate w-full">
                         {data.researcherName}
@@ -80,7 +80,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     </div>
 
                     <a
-                        href="https://linkedin.com"
+                        href="https://lb.linkedin.com/in/ahmadghsnn"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-2 w-full px-4 py-2 border border-gray-300 text-xs text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 rounded-none cursor-pointer"
