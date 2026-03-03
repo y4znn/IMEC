@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import * as d3 from 'd3';
 import { Activity } from 'lucide-react';
 

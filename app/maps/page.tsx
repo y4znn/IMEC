@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Globe2, AlertTriangle } from 'lucide-react';
 import BottlenecksPanel from '@/components/BottlenecksPanel';

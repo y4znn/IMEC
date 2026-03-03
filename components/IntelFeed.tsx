@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Newspaper, ExternalLink, Loader2 } from 'lucide-react';
 import { useVirtualizer } from '@tanstack/react-virtual';
@@ -45,10 +45,12 @@ export default function IntelFeed() {
             .finally(() => setLoading(false));
     }, []);
 
+    const estimateSize = useCallback(() => 88, []);
+    // eslint-disable-next-line react-hooks/incompatible-library
     const virtualizer = useVirtualizer({
         count: data.length,
         getScrollElement: () => parentRef.current,
-        estimateSize: useCallback(() => 88, []),
+        estimateSize,
         overscan: 10,
     });
 

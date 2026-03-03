@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
     variable: '--font-jetbrains-mono',
 });
 
-const PersistentGlobe = dynamic(() => import('@/components/GlobeView'), {
+const PersistentMap = dynamic(() => import('@/components/NarrativeMap'), {
     ssr: false,
 });
 
@@ -36,9 +36,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </head>
             <body className={`min-h-screen bg-gray-50 text-gray-900 ${fraunces.variable} ${jetbrainsMono.variable} font-serif antialiased overflow-x-hidden`}>
                 <DefenseProvider>
-                    {/* ── Persistent 3D Globe Background ── */}
+                    {/* ── Persistent 2D Map Background ── */}
                     <div className="fixed inset-0 z-0 pointer-events-auto bg-gray-50">
-                        <PersistentGlobe />
+                        <PersistentMap />
                     </div>
 
                     {/* ── Navigation Bar ── */}

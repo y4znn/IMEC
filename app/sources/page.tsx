@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { ExternalLink, BookOpen } from 'lucide-react';
 import fallbackSources from '@/public/data/sources.json';
 

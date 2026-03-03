@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { Suspense } from 'react';
 import ProfileClient from './ProfileClient';
 
 export default async function ProfilePage() {
@@ -9,7 +8,7 @@ export default async function ProfilePage() {
         const contentPath = path.join(process.cwd(), 'content', 'researcherProfile.json');
         const fileContents = await fs.readFile(contentPath, 'utf8');
         profileData = JSON.parse(fileContents);
-    } catch (e) {
+    } catch {
         console.error("Failed to read profile data. Using fallback.");
     }
 

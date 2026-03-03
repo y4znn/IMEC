@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 export default function CRTOverlay() {
     return (
         <div className="pointer-events-none fixed inset-0 z-[200] h-screen w-screen opacity-[0.08] pointer-events-none mix-blend-overlay">
