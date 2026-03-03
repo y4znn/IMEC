@@ -27,10 +27,10 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
         thesisHeading: storyData?.thesisHeading || "Thesis Synthesis",
         thesis_synthesis: storyData?.thesis_synthesis || "“IMEC functions as a geopolitical operating system requiring structural redundancy to survive Levantine instability.”",
         credentialsHeading: storyData?.credentialsHeading || "Academic Record",
-        cred1Title: storyData?.cred1Title || "Ph.D. International Relations",
-        cred1Subtitle: storyData?.cred1Subtitle || "Focus: Geoeconomic Corridors",
-        cred2Title: storyData?.cred2Title || "M.A. Strategic Studies",
-        cred2Subtitle: storyData?.cred2Subtitle || "Eurasian Connectivity Analysis",
+        academicRecord: storyData?.academicRecord || [
+            "MA in Strategic Studies, Joint Master’s – Lebanese University & Lebanese Armed Forces",
+            "BA in Philosophy and Political and Social Sciences - Lebanese University"
+        ],
         publicationsHeading: storyData?.publicationsHeading || "Publications",
         publications: storyData?.publications || []
     };
@@ -105,7 +105,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                             {data.bioHeading}
                         </div>
                     </div>
-                    <div className="text-gray-700 leading-relaxed font-light text-sm md:text-base font-serif overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    <div className="text-gray-700 leading-relaxed font-light text-sm md:text-base font-serif overflow-y-auto whitespace-pre-wrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                         {data.executive_bio}
                     </div>
                 </motion.div>
@@ -145,27 +145,15 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                             {data.credentialsHeading}
                         </div>
                     </div>
-                    <div className="space-y-6 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                        <div>
-                            <div className="text-sm text-gray-900 font-medium font-serif leading-snug">
-                                {data.cred1Title}
-                            </div>
-                            <div className="mt-1">
-                                <div className="text-[10px] text-gray-600 font-mono tracking-widest uppercase">
-                                    {data.cred1Subtitle}
+                    <div className="space-y-4 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                        {data.academicRecord.map((record: string, i: number) => (
+                            <div key={i} className="flex items-start gap-2">
+                                <span className="text-gray-900 mt-1 flex-shrink-0 text-xs text-center">—</span>
+                                <div className="text-xs text-gray-900 font-mono leading-relaxed">
+                                    {record}
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <div className="text-sm text-gray-900 font-medium font-serif leading-snug">
-                                {data.cred2Title}
-                            </div>
-                            <div className="mt-1">
-                                <div className="text-[10px] text-gray-600 font-mono tracking-widest uppercase">
-                                    {data.cred2Subtitle}
-                                </div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </motion.div>
 

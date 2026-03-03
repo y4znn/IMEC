@@ -5,14 +5,14 @@
   "researcherTitle": "Ph.D. Candidate",
   "linkedinText": "LinkedIn Profile",
   "bioHeading": "Executive Bio",
-  "executive_bio": "Ahmad Ghosn is a doctoral researcher specializing in the geoeconomic structural frameworks of the Middle East, with a specific focus on the India-Middle East-Europe Economic Corridor (IMEC). His research lies at the intersection of Neoclassical Realism and supply chain resilience, analyzing how geopolitical actors deploy connective infrastructure as mechanisms of statecraft. Prior to his current PhD work, he contributed to extensive intelligence briefings analyzing Eurasian connectivity and systemic risk.",
+  "executive_bio": "Ahmad Ghosn is a researcher and contributing analyst specialising in strategic and military studies, with a focus on Middle Eastern security, regional power dynamics, and the evolving nature of warfare. His work increasingly engages questions of geopolitics and geoeconomics, particularly how emerging connectivity projects such as the India–Middle East–Europe Economic Corridor (IMEC) reconfigure regional influence, supply chains, and strategic alignments.\n\nHe holds an MA in Strategic Studies, a joint master’s degree between the Lebanese Armed Forces and the Lebanese University, where his thesis examined the Israeli militarisation of artificial intelligence through the 2024 Gaza–Lebanon war as a central case study. He also holds a BA in Philosophy from the Lebanese University, grounding his work in political thought and epistemology.\nHis research and practice have been recognised through several awards, including the UNDP Youth Leadership Program 2022, the UNODC Counter Crimes and Drugs National Award, and first place in the Internet Law & Policy Foundry annual policy hackathon in 2024.",
   "thesisHeading": "Thesis Synthesis",
   "thesis_synthesis": "“IMEC functions as a geopolitical operating system requiring structural redundancy to survive Levantine instability.”",
   "credentialsHeading": "Academic Record",
-  "cred1Title": "Ph.D. International Relations",
-  "cred1Subtitle": "Focus: Geoeconomic Corridors",
-  "cred2Title": "M.A. Strategic Studies",
-  "cred2Subtitle": "Eurasian Connectivity Analysis",
+  "academicRecord": [
+    "MA in Strategic Studies, Joint Master’s – Lebanese University & Lebanese Armed Forces",
+    "BA in Philosophy and Political and Social Sciences - Lebanese University"
+  ],
   "publicationsHeading": "Publications",
   "publications": [
     {

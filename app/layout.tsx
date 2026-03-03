@@ -61,7 +61,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <nav className="flex items-center gap-2" aria-label="Primary navigation">
                                 <NavLink href="/sources" label="Sources" current={pathname} />
                                 <NavLink href="/maps" label="Corridors map" current={pathname} />
-                                <NavLink href="/" label="Network Graph" current={pathname} />
                                 <NavLink href="/profile" label="Researcher Profile" current={pathname} />
                             </nav>
                         </div>
