@@ -240,22 +240,22 @@ export default function D3Charts() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="rounded-xl border border-white/[0.05] bg-white/[0.02] backdrop-blur-xl p-5"
+                className="rounded-xl border border-gray-200 bg-white backdrop-blur-xl p-5"
             >
                 <div className="flex items-center gap-2 mb-1">
                     <Clock className="w-3.5 h-3.5 text-emerald-400/70" strokeWidth={1.2} />
-                    <h3 className="text-sm font-semibold text-white tracking-tight">Transit Time Analysis</h3>
+                    <h3 className="text-sm font-semibold text-gray-900 tracking-tight">Transit Time Analysis</h3>
                 </div>
-                <p className="text-[11px] text-zinc-500 mb-4 font-mono">
+                <p className="text-[11px] text-gray-500 mb-4 font-mono">
                     IMEC bypasses the 20-30 day Suez loop → 12-15 day optimal window
                 </p>
                 <div className="w-full flex justify-center items-center h-40">
                     <svg ref={transitChartRef} />
                 </div>
                 {/* Big metric */}
-                <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-baseline gap-2">
-                    <span className="text-3xl font-bold text-white tabular-nums tracking-tight">-40%</span>
-                    <span className="text-xs text-zinc-500 font-mono">transit time reduction</span>
+                <div className="mt-3 pt-3 border-t border-gray-200 flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-gray-900 tabular-nums tracking-tight">-40%</span>
+                    <span className="text-xs text-gray-500 font-mono">transit time reduction</span>
                 </div>
             </motion.div>
 
@@ -265,21 +265,21 @@ export default function D3Charts() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.25 }}
-                className="rounded-xl border border-white/[0.05] bg-white/[0.02] backdrop-blur-xl p-5"
+                className="rounded-xl border border-gray-200 bg-white backdrop-blur-xl p-5"
             >
                 <div className="flex items-center gap-2 mb-1">
                     <DollarSign className="w-3.5 h-3.5 text-blue-400/70" strokeWidth={1.2} />
-                    <h3 className="text-sm font-semibold text-white tracking-tight">Logistics Cost Reduction</h3>
+                    <h3 className="text-sm font-semibold text-gray-900 tracking-tight">Logistics Cost Reduction</h3>
                 </div>
-                <p className="text-[11px] text-zinc-500 mb-4 font-mono">
+                <p className="text-[11px] text-gray-500 mb-4 font-mono">
                     30% cost reduction → $5.4B projected annual systemic savings
                 </p>
                 <div className="w-full flex justify-center items-center h-40">
                     <svg ref={costChartRef} />
                 </div>
-                <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-baseline gap-2">
-                    <span className="text-3xl font-bold text-white tabular-nums tracking-tight">-30%</span>
-                    <span className="text-xs text-zinc-500 font-mono">logistics cost reduction</span>
+                <div className="mt-3 pt-3 border-t border-gray-200 flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-gray-900 tabular-nums tracking-tight">-30%</span>
+                    <span className="text-xs text-gray-500 font-mono">logistics cost reduction</span>
                 </div>
             </motion.div>
         </div>

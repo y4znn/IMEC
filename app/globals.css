@@ -12,17 +12,17 @@ html {
 }
 
 body {
-    background: #000000;
-    color: #a1a1aa;
+    background: #F9FAFB;
+    color: #374151;
     /* zinc-400 */
     font-family: var(--font-serif);
 }
 
 /* ── Professional Card ── */
 .card {
-    background: rgba(9, 9, 11, 0.4);
+    background: rgba(255, 255, 255, 1);
     /* zinc-950/40 */
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0;
 }
 
@@ -31,7 +31,7 @@ body {
 }
 
 .card-hover:hover {
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(0, 0, 0, 0.2);
     box-shadow: none;
 }
 
@@ -46,12 +46,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 /* ── Brutalist Scrollbar ── */
@@ -61,12 +61,12 @@ body {
 }
 
 .brutalist-scrollbar::-webkit-scrollbar-track {
-    background: #000000;
+    background: #F9FAFB;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .brutalist-scrollbar::-webkit-scrollbar-thumb {
-    background: #ffffff;
+    background: #000000;
     border-radius: 0;
 }
 
@@ -130,7 +130,7 @@ input[type='range'] {
     appearance: none;
     width: 100%;
     height: 2px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 0;
     outline: none;
     cursor: pointer;
@@ -142,8 +142,8 @@ input[type='range']::-webkit-slider-thumb {
     width: 12px;
     height: 12px;
     border-radius: 0;
-    background: #ffffff;
-    border: 1px solid #000000;
+    background: #000000;
+    border: 1px solid #F9FAFB;
     cursor: grab;
     transition: transform 0.2s;
 }
@@ -160,8 +160,8 @@ input[type='range']::-moz-range-thumb {
     width: 12px;
     height: 12px;
     border-radius: 0;
-    background: #ffffff;
-    border: 1px solid #000000;
+    background: #000000;
+    border: 1px solid #F9FAFB;
     cursor: grab;
 }
 

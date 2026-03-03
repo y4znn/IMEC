@@ -108,7 +108,7 @@ export default function ResearchGraph() {
         // Group colors mapped to the Enterprise Minimalism theme
         const colorScale = d3.scaleOrdinal<number, string>()
             .domain([1, 2, 3])
-            .range(['#94a3b8', '#a1937c', '#9c7373']); // Muted steel (IMEC), Muted amber (Vulnerabilities), Muted rose (Rivals)
+            .range(['#64748b', '#d97706', '#be123c']); // darker steel, darker amber, darker rose
 
         // Setup physics simulation
         const simulation = d3.forceSimulation<GraphNode>(nodes)
@@ -122,7 +122,7 @@ export default function ResearchGraph() {
             .selectAll('line')
             .data(links)
             .join('line')
-            .attr('stroke', 'url(#linkGrad)')
+            .attr('stroke', '#9CA3AF') // solid medium grey
             .attr('stroke-width', (d) => Math.sqrt(d.value) * 1.5)
             .attr('stroke-dasharray', (d) => {
                 const src = d.source as GraphNode;
@@ -152,7 +152,7 @@ export default function ResearchGraph() {
         // Inner solid node
         node.append('circle')
             .attr('r', (d) => d.val)
-            .attr('fill', '#000') // pure black
+            .attr('fill', '#ffffff') // pure white body
             .attr('stroke', (d) => colorScale(d.group))
             .attr('stroke-width', 1)
             .attr('class', 'node-circle transition-all duration-300');
@@ -161,7 +161,7 @@ export default function ResearchGraph() {
         node.append('text')
             .text((d) => d.text)
             .attr('text-anchor', 'middle')
-            .attr('fill', '#d4d4d8') // zinc-300
+            .attr('fill', '#1F2937') // deep charcoal
             .attr('font-size', '10px')
             .attr('font-family', 'var(--font-mono)')
             .attr('dy', 4)
@@ -192,9 +192,9 @@ export default function ResearchGraph() {
             .attr('x1', '0%').attr('y1', '0%')
             .attr('x2', '100%').attr('y2', '0%');
 
-        linkGrad.append('stop').attr('offset', '0%').attr('stop-color', 'rgba(255,255,255,0.05)');
-        linkGrad.append('stop').attr('offset', '50%').attr('stop-color', 'rgba(255,255,255,0.4)');
-        linkGrad.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(255,255,255,0.05)');
+        linkGrad.append('stop').attr('offset', '0%').attr('stop-color', 'rgba(156,163,175,0.2)');
+        linkGrad.append('stop').attr('offset', '50%').attr('stop-color', 'rgba(156,163,175,0.8)');
+        linkGrad.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(156,163,175,0.2)');
 
         // We use dasharray/offset to animate flow instead of pure gradient transform logic
         // due to userSpaceOnUse constraints across different lengths, let's just animate the dash offset directly on the links.
@@ -226,27 +226,27 @@ export default function ResearchGraph() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col rounded-xl border border-white/[0.05] bg-white/[0.02] backdrop-blur-xl overflow-hidden"
+            className="flex flex-col rounded-xl border border-gray-200 bg-white backdrop-blur-xl overflow-hidden"
         >
-            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/[0.05] bg-white/[0.02]">
-                <Network className="w-3.5 h-3.5 text-zinc-500" strokeWidth={1.2} />
-                <span className="text-[11px] font-mono text-zinc-500 tracking-wider uppercase">
+            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-gray-200 bg-white">
+                <Network className="w-3.5 h-3.5 text-gray-500" strokeWidth={1.2} />
+                <span className="text-[11px] font-mono text-gray-500 tracking-wider uppercase">
                     Theoretical Ontology Graph
                 </span>
             </div>
-            <div ref={containerRef} className="w-full relative bg-black/50">
+            <div ref={containerRef} className="w-full relative bg-transparent">
                 <svg ref={svgRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
                 <div className="absolute bottom-4 right-4 pointer-events-none flex gap-3 text-[10px] font-mono">
-                    <span className="flex items-center gap-1 text-zinc-400">
-                        <span className="w-2 h-2 rounded-full bg-zinc-400/20 border border-zinc-400" />
+                    <span className="flex items-center gap-1 text-gray-600">
+                        <span className="w-2 h-2 rounded-full bg-gray-400/20 border border-gray-400" />
                         IMEC Node
                     </span>
-                    <span className="flex items-center gap-1 text-zinc-500">
-                        <span className="w-2 h-2 rounded-full bg-zinc-500/20 border border-zinc-500" />
+                    <span className="flex items-center gap-1 text-gray-500">
+                        <span className="w-2 h-2 rounded-full bg-gray-500/20 border border-gray-400" />
                         Vulnerability
                     </span>
-                    <span className="flex items-center gap-1 text-zinc-500">
-                        <span className="w-2 h-2 rounded-full bg-zinc-500/20 border border-zinc-500" />
+                    <span className="flex items-center gap-1 text-gray-500">
+                        <span className="w-2 h-2 rounded-full bg-gray-500/20 border border-gray-400" />
                         Rival Architecture
                     </span>
                 </div>

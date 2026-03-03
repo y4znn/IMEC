@@ -22,7 +22,7 @@ const CORRIDOR_NODES: NodeStatus[] = [
 const statusColor = {
     operational: 'bg-emerald-600/60',
     limited: 'bg-amber-600/60',
-    inactive: 'bg-zinc-600',
+    inactive: 'bg-gray-300',
 };
 
 export default function StatusBar() {
@@ -54,24 +54,24 @@ export default function StatusBar() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="flex flex-wrap items-center gap-x-5 gap-y-2 px-4 py-2.5 rounded-xl border border-zinc-800/40 bg-zinc-950/40 text-[12px]"
+            className="flex flex-wrap items-center gap-x-5 gap-y-2 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-[12px]"
         >
-            <span className="flex items-center gap-1.5 text-zinc-500">
-                <Clock className="w-3.5 h-3.5 text-zinc-600" strokeWidth={1.2} />
+            <span className="flex items-center gap-1.5 text-gray-500">
+                <Clock className="w-3.5 h-3.5 text-gray-500" strokeWidth={1.2} />
                 <span className="tabular-nums font-mono text-[11px]">{time}</span>
             </span>
 
-            <span className="w-px h-3 bg-zinc-800/60 hidden sm:block" />
+            <span className="w-px h-3 bg-gray-300 hidden sm:block" />
 
-            <span className="flex items-center gap-1.5 text-zinc-500">
-                <Database className="w-3.5 h-3.5 text-zinc-600" strokeWidth={1.2} />
+            <span className="flex items-center gap-1.5 text-gray-500">
+                <Database className="w-3.5 h-3.5 text-gray-500" strokeWidth={1.2} />
                 <span>12 peer-reviewed sources</span>
             </span>
 
-            <span className="w-px h-3 bg-zinc-800/60 hidden sm:block" />
+            <span className="w-px h-3 bg-gray-300 hidden sm:block" />
 
-            <span className="flex items-center gap-1.5 text-zinc-500">
-                <Globe className="w-3.5 h-3.5 text-zinc-600" strokeWidth={1.2} />
+            <span className="flex items-center gap-1.5 text-gray-500">
+                <Globe className="w-3.5 h-3.5 text-gray-500" strokeWidth={1.2} />
                 <span>Corridor Nodes {operational}/{total}</span>
                 <span className="flex items-center gap-0.5 ml-1">
                     {CORRIDOR_NODES.map((node) => (
@@ -84,7 +84,7 @@ export default function StatusBar() {
                 </span>
             </span>
 
-            <span className="ml-auto hidden md:flex items-center gap-1.5 text-zinc-600">
+            <span className="ml-auto hidden md:flex items-center gap-1.5 text-gray-500">
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-700/70" strokeWidth={1.2} />
                 <span>Data pipeline active</span>
             </span>

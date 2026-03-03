@@ -395,19 +395,19 @@ export default function NeuroplasticityTimeline() {
     }, [drawChart]);
 
     return (
-        <div className="rounded-xl border border-zinc-800/40 bg-zinc-950/40 overflow-hidden h-full">
+        <div className="rounded-xl border border-gray-200 bg-white overflow-hidden h-full">
             {/* Header */}
-            <div className="px-4 py-3 border-b border-zinc-800/40">
+            <div className="px-4 py-3 border-b border-gray-200">
                 <div className="flex items-center gap-2 mb-1">
-                    <Activity className="w-3.5 h-3.5 text-zinc-500" strokeWidth={1.2} />
+                    <Activity className="w-3.5 h-3.5 text-gray-500" strokeWidth={1.2} />
                     <h2
-                        className="text-[15px] font-semibold text-zinc-200 tracking-tight"
+                        className="text-[15px] font-semibold text-gray-800 tracking-tight"
                         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                     >
                         IMEC Neuroplasticity Timeline
                     </h2>
                 </div>
-                <p className="text-[11px] text-zinc-500 leading-relaxed">
+                <p className="text-[11px] text-gray-500 leading-relaxed">
                     Chronological neural map of pivotal events shaping the corridor&apos;s evolution.
                 </p>
             </div>
@@ -453,7 +453,7 @@ export default function NeuroplasticityTimeline() {
                                     {tooltip.node.date}
                                 </span>
                             </div>
-                            <p className="text-[12px] text-zinc-300 leading-relaxed">
+                            <p className="text-[12px] text-gray-700 leading-relaxed">
                                 {tooltip.node.text}
                             </p>
                         </div>

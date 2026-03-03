@@ -51,15 +51,15 @@ export default function SourcesPage() {
     }, [sources, finalCategory]);
 
     return (
-        <div className="flex w-full h-[calc(100vh-64px)] pt-16 bg-black font-serif text-white">
+        <div className="flex w-full h-[calc(100vh-64px)] pt-16 bg-gray-50 font-serif text-gray-900">
 
             {/* ── LEFT SIDEBAR: Syllabus Modules ── */}
-            <div className="w-[380px] shrink-0 border-r border-white/20 h-full overflow-y-auto custom-scrollbar flex flex-col">
-                <div className="px-8 py-10 border-b border-white/20 bg-black sticky top-0 z-10" style={{ borderRadius: 0 }}>
+            <div className="w-[380px] shrink-0 border-r border-gray-300 h-full overflow-y-auto custom-scrollbar flex flex-col">
+                <div className="px-8 py-10 border-b border-gray-300 bg-gray-50 sticky top-0 z-10" style={{ borderRadius: 0 }}>
                     <h1 className="text-3xl font-bold tracking-tight uppercase leading-none mb-3">
                         Intel<br />Syllabus
                     </h1>
-                    <p className="text-[10px] text-white/50 tracking-[0.2em] font-mono uppercase">
+                    <p className="text-[10px] text-gray-900/50 tracking-[0.2em] font-mono uppercase">
                         Comprehensive Source Index:<br />
                         [{sources.length}] Verified References
                     </p>
@@ -74,21 +74,21 @@ export default function SourcesPage() {
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
                                 className={`flex flex-col items-start px-5 py-4 text-left transition-colors cursor-pointer border ${isActive
-                                    ? 'bg-white text-black border-white'
-                                    : 'bg-black text-white/60 border-transparent hover:bg-white/5 hover:text-white'
+                                    ? 'bg-white text-black border-gray-400'
+                                    : 'bg-gray-50 text-gray-900/60 border-transparent hover:bg-gray-200 hover:text-gray-900'
                                     }`}
                                 style={{ borderRadius: 0 }}
                             >
                                 <div className="flex items-center gap-2 mb-2 w-full">
-                                    <span className={`text-[10px] tracking-widest font-mono font-bold ${isActive ? 'text-black/50' : 'text-white/30'}`}>
+                                    <span className={`text-[10px] tracking-widest font-mono font-bold ${isActive ? 'text-black/50' : 'text-gray-900/30'}`}>
                                         MODULE 0{idx + 1}
                                     </span>
-                                    <div className={`h-[1px] flex-1 ${isActive ? 'bg-black/10' : 'bg-white/10'}`} />
-                                    <span className={`text-[10px] tracking-widest font-mono ${isActive ? 'text-black' : 'text-white'}`}>
+                                    <div className={`h-[1px] flex-1 ${isActive ? 'bg-gray-50/10' : 'bg-white/10'}`} />
+                                    <span className={`text-[10px] tracking-widest font-mono ${isActive ? 'text-black' : 'text-gray-900'}`}>
                                         {catSourcesCount}
                                     </span>
                                 </div>
-                                <span className={`text-sm tracking-tight font-bold leading-snug ${isActive ? 'text-black' : 'text-white'}`}>
+                                <span className={`text-sm tracking-tight font-bold leading-snug ${isActive ? 'text-black' : 'text-gray-900'}`}>
                                     {cat}
                                 </span>
                             </button>
@@ -98,12 +98,12 @@ export default function SourcesPage() {
             </div>
 
             {/* ── RIGHT PANEL: Source Content (Scrollable) ── */}
-            <div className="flex-1 h-full overflow-y-auto custom-scrollbar bg-black relative">
+            <div className="flex-1 h-full overflow-y-auto custom-scrollbar bg-gray-50 relative">
                 <div className="max-w-4xl mx-auto px-12 py-10">
 
                     {/* Header for Category */}
                     <div className="mb-12">
-                        <div className="text-[10px] text-white/50 tracking-[0.3em] font-mono uppercase mb-4 flex items-center gap-3">
+                        <div className="text-[10px] text-gray-900/50 tracking-[0.3em] font-mono uppercase mb-4 flex items-center gap-3">
                             <BookOpen className="w-3 h-3" />
                             Active Module Syllabus
                         </div>
@@ -117,19 +117,19 @@ export default function SourcesPage() {
                         {activeSources.map(src => (
                             <div
                                 key={src.id}
-                                className="group relative border border-white/20 bg-black p-6 hover:bg-white transition-colors cursor-default"
+                                className="group relative border border-gray-300 bg-gray-50 p-6 hover:bg-gray-200 transition-colors cursor-default"
                                 style={{ borderRadius: 0 }}
                             >
                                 <div className="pr-32">
-                                    <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-black mb-3 leading-snug transition-colors">
+                                    <h3 className="text-xl font-bold tracking-tight text-gray-900 group-hover:text-black mb-3 leading-snug transition-colors">
                                         {src.title}
                                     </h3>
-                                    <p className="text-sm font-serif text-white/60 group-hover:text-black/80 leading-relaxed transition-colors mb-4 line-clamp-3">
+                                    <p className="text-sm font-serif text-gray-900/60 group-hover:text-black/80 leading-relaxed transition-colors mb-4 line-clamp-3">
                                         {src.description}
                                     </p>
-                                    <div className="flex items-center gap-3 text-[10px] text-white/40 font-mono tracking-widest uppercase group-hover:text-black/50 transition-colors">
+                                    <div className="flex items-center gap-3 text-[10px] text-gray-900/40 font-mono tracking-widest uppercase group-hover:text-black/50 transition-colors">
                                         <span>REF: {src.id}</span>
-                                        <span className="w-1 h-1 bg-white/20 group-hover:bg-black/20" />
+                                        <span className="w-1 h-1 bg-white/20 group-hover:bg-gray-50/20" />
                                         <span>CY {src.year}</span>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@ export default function SourcesPage() {
                                         href={src.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-4 py-2 border border-white/20 bg-black text-white hover:bg-black hover:text-white group-hover:border-black transition-all text-[10px] tracking-[0.2em] font-mono uppercase cursor-pointer"
+                                        className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 bg-gray-50 text-gray-900 hover:bg-gray-50 hover:text-gray-900 group-hover:border-black transition-all text-[10px] tracking-[0.2em] font-mono uppercase cursor-pointer"
                                         style={{ borderRadius: 0 }}
                                     >
                                         [ ACCESS ]
@@ -151,7 +151,7 @@ export default function SourcesPage() {
                         ))}
 
                         {activeSources.length === 0 && (
-                            <div className="text-sm text-white/40 font-mono uppercase tracking-widest p-8 border border-white/5">
+                            <div className="text-sm text-gray-900/40 font-mono uppercase tracking-widest p-8 border border-gray-400/5">
                                 Loading repository records...
                             </div>
                         )}

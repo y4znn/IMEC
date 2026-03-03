@@ -17,10 +17,10 @@ type Article = {
 };
 
 const categoryStyle: Record<string, string> = {
-    analysis: 'text-zinc-400 bg-zinc-800/40 border-zinc-700/30',
-    policy: 'text-zinc-400 bg-zinc-800/40 border-zinc-700/30',
-    news: 'text-zinc-500 bg-zinc-800/30 border-zinc-700/30',
-    opinion: 'text-zinc-400 bg-zinc-800/40 border-zinc-700/30',
+    analysis: 'text-gray-600 bg-white border-gray-200',
+    policy: 'text-gray-600 bg-white border-gray-200',
+    news: 'text-gray-500 bg-gray-50 border-gray-200',
+    opinion: 'text-gray-600 bg-white border-gray-200',
 };
 
 export default function IntelFeed() {
@@ -61,16 +61,16 @@ export default function IntelFeed() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="rounded-xl border border-zinc-800/40 bg-zinc-950/40 overflow-hidden"
+                className="rounded-xl border border-gray-200 bg-white overflow-hidden"
             >
                 {/* Header */}
-                <div className="px-4 py-3 border-b border-zinc-800/40 flex items-center justify-between">
+                <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <Newspaper className="w-4 h-4 text-zinc-600" strokeWidth={1.2} />
-                        <h2 className="text-[13px] font-semibold text-zinc-300 tracking-tight">
+                        <Newspaper className="w-4 h-4 text-gray-500" strokeWidth={1.2} />
+                        <h2 className="text-[13px] font-semibold text-gray-700 tracking-tight">
                             Research & Policy Feed
                         </h2>
-                        <span className="text-[11px] text-zinc-500 ml-1">
+                        <span className="text-[11px] text-gray-500 ml-1">
                             {data.length} articles
                         </span>
                     </div>
@@ -79,8 +79,8 @@ export default function IntelFeed() {
                 {/* Content */}
                 {loading ? (
                     <div className="flex items-center justify-center py-16 gap-3">
-                        <Loader2 className="w-5 h-5 text-zinc-600 animate-spin" strokeWidth={1.2} />
-                        <span className="text-[13px] text-zinc-500">Loading articles…</span>
+                        <Loader2 className="w-5 h-5 text-gray-500 animate-spin" strokeWidth={1.2} />
+                        <span className="text-[13px] text-gray-500">Loading articles…</span>
                     </div>
                 ) : (
                     <div
@@ -115,16 +115,16 @@ export default function IntelFeed() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             dir={item.direction}
-                                            className="flex items-start justify-between gap-4 px-4 py-3 group transition-colors duration-150 cursor-pointer hover:bg-zinc-900/30 border-b border-zinc-800/30"
+                                            className="flex items-start justify-between gap-4 px-4 py-3 group transition-colors duration-150 cursor-pointer hover:bg-gray-100/30 border-b border-gray-200"
                                         >
                                             <div className={`flex-1 min-w-0 ${item.direction === 'rtl' ? 'text-right' : ''}`}>
                                                 <div
                                                     className={`flex items-center gap-2 mb-1 text-[11px] ${item.direction === 'rtl' ? 'flex-row-reverse justify-end' : ''
                                                         }`}
                                                 >
-                                                    <span className="text-zinc-600 tabular-nums">{item.date}</span>
-                                                    <span className="text-zinc-700">·</span>
-                                                    <span className="text-zinc-400 font-medium">{item.source}</span>
+                                                    <span className="text-gray-500 tabular-nums">{item.date}</span>
+                                                    <span className="text-gray-400">·</span>
+                                                    <span className="text-gray-600 font-medium">{item.source}</span>
                                                     {item.category && (
                                                         <span
                                                             className={`px-1.5 py-0.5 rounded text-[9px] uppercase border ${categoryStyle[item.category] || categoryStyle.news
@@ -135,14 +135,14 @@ export default function IntelFeed() {
                                                     )}
                                                 </div>
                                                 <p
-                                                    className="text-[14px] text-zinc-400 group-hover:text-zinc-200 transition-colors leading-snug tracking-tight"
+                                                    className="text-[14px] text-gray-600 group-hover:text-gray-800 transition-colors leading-snug tracking-tight"
                                                     style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                                                 >
                                                     {item.title}
                                                 </p>
                                             </div>
                                             <ExternalLink
-                                                className="w-3.5 h-3.5 text-zinc-700 group-hover:text-zinc-400 transition-colors flex-shrink-0 mt-1.5"
+                                                className="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-600 transition-colors flex-shrink-0 mt-1.5"
                                                 strokeWidth={1.2}
                                             />
                                         </a>

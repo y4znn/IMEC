@@ -285,7 +285,7 @@ export default function NodeDatabase() {
             .attr('y', 10)
             .attr('width', d => d.label.length * estCharWidth + 16)
             .attr('height', 20)
-            .attr('fill', '#000000')
+            .attr('fill', '#F9FAFB')
             .attr('stroke', d => d.color)
             .attr('stroke-width', 0.5)
             .attr('shape-rendering', 'crispEdges');
@@ -445,15 +445,15 @@ export default function NodeDatabase() {
     }, [dimensions, filteredData, neighbors, selectedNode]);
 
     return (
-        <div ref={containerRef} className="absolute inset-0 z-10 w-full h-full bg-black overflow-hidden font-serif">
+        <div ref={containerRef} className="absolute inset-0 z-10 w-full h-full bg-gray-50 overflow-hidden font-serif">
 
             {/* ── HEADER ── */}
-            <div className="absolute top-0 left-0 z-40 border-b border-white/20 px-8 py-5 pointer-events-auto mt-16 bg-black"
+            <div className="absolute top-0 left-0 z-40 border-b border-gray-300 px-8 py-5 pointer-events-auto mt-16 bg-gray-50"
                 style={{ borderRadius: 0 }}>
-                <h1 className="text-2xl font-bold tracking-tight text-white leading-none font-serif" style={{ letterSpacing: '-0.02em' }}>
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 leading-none font-serif" style={{ letterSpacing: '-0.02em' }}>
                     IMEC Strategic Architecture
                 </h1>
-                <p className="text-[11px] tracking-[0.3em] text-white/40 uppercase mt-1 font-mono">
+                <p className="text-[11px] tracking-[0.3em] text-gray-900/40 uppercase mt-1 font-mono">
                     Geospatial Intelligence · Academic Overview
                 </p>
             </div>
@@ -466,8 +466,8 @@ export default function NodeDatabase() {
                             key={f}
                             onClick={() => setActiveFilter(f)}
                             className={`px-4 py-2 text-[10px] tracking-[0.2em] uppercase transition-colors font-mono cursor-pointer border border-transparent ${activeFilter === f
-                                ? 'bg-white text-black border-white'
-                                : 'bg-black text-white/50 border-white/20 hover:text-white hover:border-white/60'
+                                ? 'bg-white text-black border-gray-400'
+                                : 'bg-gray-50 text-gray-900/50 border-gray-300 hover:text-gray-900 hover:border-gray-400/60'
                                 }`}
                             style={{ borderRadius: 0 }}
                         >
@@ -477,12 +477,12 @@ export default function NodeDatabase() {
                 </div>
 
                 {/* ── THRESHOLD SLIDER ── */}
-                <div className="border border-white/20 bg-black px-4 py-3" style={{ borderRadius: 0 }}>
+                <div className="border border-gray-300 bg-gray-50 px-4 py-3" style={{ borderRadius: 0 }}>
                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-[10px] tracking-[0.2em] text-white/40 uppercase font-mono">
+                        <span className="text-[10px] tracking-[0.2em] text-gray-900/40 uppercase font-mono">
                             Link Density Threshold
                         </span>
-                        <span className="text-[12px] text-white font-bold font-mono">
+                        <span className="text-[12px] text-gray-900 font-bold font-mono">
                             ≥ {threshold}
                         </span>
                     </div>
@@ -497,7 +497,7 @@ export default function NodeDatabase() {
                     />
                     <div className="flex justify-between mt-1">
                         {[1, 2, 3, 4, 5].map(v => (
-                            <span key={v} className="text-[8px] text-white/30 font-mono">
+                            <span key={v} className="text-[8px] text-gray-900/30 font-mono">
                                 {v}
                             </span>
                         ))}
@@ -506,25 +506,25 @@ export default function NodeDatabase() {
             </div>
 
             {/* ── LEGEND (Bottom Right) ── */}
-            <div className="absolute bottom-8 right-8 z-40 border border-white/20 bg-black px-5 py-4 pointer-events-auto"
+            <div className="absolute bottom-8 right-8 z-40 border border-gray-300 bg-gray-50 px-5 py-4 pointer-events-auto"
                 style={{ borderRadius: 0 }}>
-                <div className="text-[9px] tracking-[0.2em] text-white/40 uppercase mb-3 font-mono">
+                <div className="text-[9px] tracking-[0.2em] text-gray-900/40 uppercase mb-3 font-mono">
                     Corridor Lexicon
                 </div>
                 <div className="grid grid-cols-2 gap-x-6 gap-y-3">
                     {Object.entries(CORRIDOR_COLORS).filter(([k]) => k !== 'DEFAULT').map(([type, color]) => (
                         <div key={type} className="flex items-center gap-2">
                             <span className="w-4 h-px" style={{ backgroundColor: color }} />
-                            <span className="text-[10px] tracking-wider text-white/80 font-mono uppercase">
+                            <span className="text-[10px] tracking-wider text-gray-900/80 font-mono uppercase">
                                 {type}
                             </span>
                         </div>
                     ))}
                     <div className="flex items-center gap-2">
-                        <span className="text-[10px] text-white/80 font-mono">
+                        <span className="text-[10px] text-gray-900/80 font-mono">
                             +
                         </span>
-                        <span className="text-[10px] tracking-wider text-white/60 font-mono uppercase">
+                        <span className="text-[10px] tracking-wider text-gray-900/60 font-mono uppercase">
                             Target Node
                         </span>
                     </div>
@@ -535,7 +535,7 @@ export default function NodeDatabase() {
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 pointer-events-auto">
                 <button
                     onClick={() => resetZoomRef.current()}
-                    className="border border-white/20 bg-black text-white hover:bg-white hover:text-black transition-colors px-6 py-2.5 text-[11px] tracking-[0.2em] font-mono uppercase cursor-pointer flex items-center justify-center"
+                    className="border border-gray-300 bg-gray-50 text-gray-900 hover:bg-gray-200 hover:text-black transition-colors px-6 py-2.5 text-[11px] tracking-[0.2em] font-mono uppercase cursor-pointer flex items-center justify-center"
                     style={{ borderRadius: 0 }}
                 >
                     [ RESET CARTOGRAPHY ]
@@ -548,18 +548,18 @@ export default function NodeDatabase() {
             {/* ── DOSSIER PANEL (Right) ── */}
             {
                 selectedNode && (
-                    <div className="absolute right-0 top-0 w-[400px] h-screen bg-black border-l border-white/20 z-40 overflow-y-auto pointer-events-auto"
+                    <div className="absolute right-0 top-0 w-[400px] h-screen bg-gray-50 border-l border-gray-300 z-40 overflow-y-auto pointer-events-auto"
                         style={{ borderRadius: 0 }}>
 
                         <div className="px-8 pt-24 pb-8">
                             {/* Close */}
                             <button onClick={() => setSelectedNode(null)}
-                                className="absolute top-20 right-6 text-white/30 hover:text-white transition-colors cursor-pointer">
+                                className="absolute top-20 right-6 text-gray-900/30 hover:text-gray-900 transition-colors cursor-pointer">
                                 <X className="w-5 h-5" strokeWidth={1} />
                             </button>
 
                             {/* Type Badge */}
-                            <div className="inline-flex items-center gap-2 border border-white/20 px-3 py-1 mb-4 bg-black"
+                            <div className="inline-flex items-center gap-2 border border-gray-300 px-3 py-1 mb-4 bg-gray-50"
                                 style={{ borderRadius: 0 }}>
                                 <span className="text-[10px] font-black" style={{ color: selectedNode.color, fontFamily: '"IBM Plex Mono", "JetBrains Mono", monospace' }}>
                                     +
@@ -571,11 +571,11 @@ export default function NodeDatabase() {
                             </div>
 
                             {/* Title */}
-                            <h2 className="text-3xl font-bold text-white leading-tight mb-2 font-serif" style={{ letterSpacing: '-0.02em' }}>
+                            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-2 font-serif" style={{ letterSpacing: '-0.02em' }}>
                                 {selectedNode.label}
                             </h2>
                             {selectedNode.coord && (
-                                <div className="text-[10px] text-white/50 font-mono tracking-widest mb-6">
+                                <div className="text-[10px] text-gray-900/50 font-mono tracking-widest mb-6">
                                     {selectedNode.coord}
                                 </div>
                             )}
@@ -586,30 +586,30 @@ export default function NodeDatabase() {
 
                             {/* Desc */}
                             <div className="mb-8">
-                                <div className="text-[9px] tracking-[0.3em] text-white/30 uppercase mb-2 font-mono">
+                                <div className="text-[9px] tracking-[0.3em] text-gray-900/30 uppercase mb-2 font-mono">
                                     Intelligence Brief
                                 </div>
-                                <p className="text-[14px] text-white/70 leading-relaxed font-serif">
+                                <p className="text-[14px] text-gray-900/70 leading-relaxed font-serif">
                                     {selectedNode.desc}
                                 </p>
                             </div>
 
                             {/* Metrics */}
-                            <div className="border border-white/20 mb-8 bg-black" style={{ borderRadius: 0 }}>
+                            <div className="border border-gray-300 mb-8 bg-gray-50" style={{ borderRadius: 0 }}>
                                 <div className="flex">
-                                    <div className="flex-1 px-4 py-3 border-r border-white/20">
-                                        <div className="text-[9px] tracking-[0.2em] text-white/30 uppercase font-mono">
+                                    <div className="flex-1 px-4 py-3 border-r border-gray-300">
+                                        <div className="text-[9px] tracking-[0.2em] text-gray-900/30 uppercase font-mono">
                                             Density Val
                                         </div>
-                                        <div className="text-xl text-white font-bold mt-1 font-mono">
+                                        <div className="text-xl text-gray-900 font-bold mt-1 font-mono">
                                             {selectedNode.val}
                                         </div>
                                     </div>
                                     <div className="flex-1 px-4 py-3">
-                                        <div className="text-[9px] tracking-[0.2em] text-white/30 uppercase font-mono">
+                                        <div className="text-[9px] tracking-[0.2em] text-gray-900/30 uppercase font-mono">
                                             Links
                                         </div>
-                                        <div className="text-xl text-white font-bold mt-1 font-mono">
+                                        <div className="text-xl text-gray-900 font-bold mt-1 font-mono">
                                             {neighbors.get(selectedNode.id)?.size || 0}
                                         </div>
                                     </div>
@@ -618,10 +618,10 @@ export default function NodeDatabase() {
 
                             {/* Neighbors */}
                             <div>
-                                <div className="text-[9px] tracking-[0.3em] text-white/30 uppercase mb-3 font-mono">
+                                <div className="text-[9px] tracking-[0.3em] text-gray-900/30 uppercase mb-3 font-mono">
                                     Vector Dependencies
                                 </div>
-                                <div className="flex flex-col gap-0 border-t border-white/20">
+                                <div className="flex flex-col gap-0 border-t border-gray-300">
                                     {Array.from(neighbors.get(selectedNode.id) || []).map(nId => {
                                         const n = initialData.nodes.find(nd => nd.id === nId);
                                         if (!n) return null;
@@ -629,10 +629,10 @@ export default function NodeDatabase() {
                                             <button
                                                 key={n.id}
                                                 onClick={() => setSelectedNode(n as NodeData)}
-                                                className="flex items-center justify-between px-4 py-3 border-b border-x border-white/20 bg-black hover:bg-white/5 transition-colors text-left cursor-pointer"
+                                                className="flex items-center justify-between px-4 py-3 border-b border-x border-gray-300 bg-gray-50 hover:bg-gray-200 transition-colors text-left cursor-pointer"
                                                 style={{ borderRadius: 0, marginTop: -1 }}
                                             >
-                                                <span className="text-[13px] text-white font-serif flex items-center gap-3">
+                                                <span className="text-[13px] text-gray-900 font-serif flex items-center gap-3">
                                                     <span className="text-[12px] font-black" style={{ color: n.color, fontFamily: '"IBM Plex Mono", "JetBrains Mono", monospace' }}>
                                                         +
                                                     </span>

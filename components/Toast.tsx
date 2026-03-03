@@ -42,7 +42,7 @@ export default function Toast({ message, type = 'warning', onDismiss }: ToastPro
                 <p className="text-[13px] leading-relaxed flex-1">{message}</p>
                 <button
                     onClick={handleDismiss}
-                    className="flex-shrink-0 p-0.5 rounded hover:bg-white/10 transition-colors cursor-pointer"
+                    className="flex-shrink-0 p-0.5 rounded hover:bg-gray-200/10 transition-colors cursor-pointer"
                     aria-label="Dismiss notification"
                 >
                     <X className="w-3.5 h-3.5 opacity-60" strokeWidth={1.5} />

@@ -95,11 +95,11 @@ export default function MetricsSidebar() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.05 }}
-                className="rounded-xl border border-white/[0.05] bg-white/[0.02] backdrop-blur-xl p-4"
+                className="rounded-xl border border-gray-200 bg-white backdrop-blur-xl p-4"
             >
                 <div className="flex items-center gap-2 mb-3">
-                    <Ship className="w-3.5 h-3.5 text-zinc-500" strokeWidth={1.2} />
-                    <span className="text-[10px] font-mono text-zinc-500 tracking-wider uppercase">
+                    <Ship className="w-3.5 h-3.5 text-gray-500" strokeWidth={1.2} />
+                    <span className="text-[10px] font-mono text-gray-500 tracking-wider uppercase">
                         Active Corridors
                     </span>
                 </div>
@@ -108,8 +108,8 @@ export default function MetricsSidebar() {
                         <div key={c.name} className="flex items-start gap-2">
                             <span className={`w-1.5 h-1.5 rounded-full ${c.color} mt-1.5 flex-shrink-0`} />
                             <div>
-                                <span className="text-[11px] font-semibold text-zinc-300 tracking-tight">{c.name}</span>
-                                <p className="text-[10px] text-zinc-600 font-mono leading-tight">{c.nodes}</p>
+                                <span className="text-[11px] font-semibold text-gray-700 tracking-tight">{c.name}</span>
+                                <p className="text-[10px] text-gray-500 font-mono leading-tight">{c.nodes}</p>
                             </div>
                         </div>
                     ))}
@@ -124,26 +124,26 @@ export default function MetricsSidebar() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: 0.1 + i * 0.06 }}
-                    className={`rounded-xl border ${metric.accentBorder} bg-white/[0.02] backdrop-blur-xl p-4 group cursor-default transition-all duration-300 hover:border-cyan-500/50 hover:-translate-y-0.5`}
+                    className={`rounded-xl border ${metric.accentBorder} bg-white backdrop-blur-xl p-4 group cursor-default transition-all duration-300 hover:border-cyan-500/50 hover:-translate-y-0.5`}
                 >
                     {/* Header */}
                     <div className="flex items-center gap-2 mb-2">
                         <span className={`${metric.accent} opacity-60`}>{metric.icon}</span>
-                        <span className="text-[10px] font-mono text-zinc-500 tracking-wider uppercase">
+                        <span className="text-[10px] font-mono text-gray-500 tracking-wider uppercase">
                             {metric.label}
                         </span>
                     </div>
 
                     {/* Big number — pure white for primary metrics */}
                     <div className="flex items-baseline gap-2 mb-1.5">
-                        <span className="text-2xl font-bold text-white tabular-nums tracking-tight">
+                        <span className="text-2xl font-bold text-gray-900 tabular-nums tracking-tight">
                             {metric.value}
                         </span>
-                        <span className="text-[11px] text-zinc-500 font-mono">{metric.unit}</span>
+                        <span className="text-[11px] text-gray-500 font-mono">{metric.unit}</span>
                     </div>
 
                     {/* Detail */}
-                    <p className="text-[11px] text-zinc-500 leading-relaxed">
+                    <p className="text-[11px] text-gray-500 leading-relaxed">
                         {metric.detail}
                     </p>
                 </motion.div>

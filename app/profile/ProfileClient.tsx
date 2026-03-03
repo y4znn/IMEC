@@ -42,15 +42,15 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                 initial={{ opacity: 0, y: -12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="pb-6 border-b border-white/[0.05] mb-8"
+                className="pb-6 border-b border-gray-200 mb-8"
             >
                 <div
-                    className="text-3xl font-semibold text-zinc-100 tracking-tight font-serif"
+                    className="text-3xl font-semibold text-gray-900 tracking-tight font-serif"
                     style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                     {data.pageTitle}
                 </div>
-                <div className="mt-2 text-sm text-zinc-500 font-light tracking-wide font-mono">
+                <div className="mt-2 text-sm text-gray-500 font-light tracking-wide font-mono">
                     {data.pageSubtitle}
                 </div>
             </motion.div>
@@ -63,19 +63,19 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.1 }}
-                    className="md:col-span-1 bg-black border border-white rounded-none p-6 flex flex-col items-center justify-center text-center shadow-xl group h-96"
+                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 flex flex-col items-center justify-center text-center shadow-sm group h-96"
                 >
-                    <div className="w-24 h-24 rounded-none bg-black border border-white/20 mb-5 flex items-center justify-center grayscale group-hover:border-zinc-500 transition-colors duration-500">
-                        <div className="w-full h-full bg-zinc-900 flex items-center justify-center">
-                            <User className="w-10 h-10 text-white" strokeWidth={1} />
+                    <div className="w-24 h-24 rounded-none bg-gray-50 border border-gray-300 mb-5 flex items-center justify-center grayscale group-hover:border-gray-400 transition-colors duration-500">
+                        <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                            <User className="w-10 h-10 text-gray-900" strokeWidth={1} />
                         </div>
                     </div>
 
-                    <div className="text-xl font-medium text-white tracking-tight font-serif mb-1 truncate w-full">
+                    <div className="text-xl font-medium text-gray-900 tracking-tight font-serif mb-1 truncate w-full">
                         {data.researcherName}
                     </div>
 
-                    <div className="mb-6 text-[11px] text-zinc-400 tracking-widest uppercase font-mono truncate w-full">
+                    <div className="mb-6 text-[11px] text-gray-600 tracking-widest uppercase font-mono truncate w-full">
                         {data.researcherTitle}
                     </div>
 
@@ -83,7 +83,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                         href="https://linkedin.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full px-4 py-2 border border-white text-xs text-white hover:bg-white hover:text-black transition-all duration-300 rounded-none cursor-pointer"
+                        className="flex items-center justify-center gap-2 w-full px-4 py-2 border border-gray-300 text-xs text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 rounded-none cursor-pointer"
                     >
                         <Linkedin className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.2} />
                         <div className="font-mono">
@@ -97,15 +97,15 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="md:col-span-3 bg-black border border-white rounded-none p-6 md:p-8 flex flex-col justify-center shadow-xl h-96"
+                    className="md:col-span-3 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm h-96"
                 >
-                    <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-white/20 pb-4">
-                        <Focus className="w-4 h-4 text-white flex-shrink-0" strokeWidth={1.2} />
-                        <div className="text-sm font-medium text-white font-mono uppercase tracking-widest">
+                    <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-gray-300 pb-4">
+                        <Focus className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
+                        <div className="text-sm font-medium text-gray-900 font-mono uppercase tracking-widest">
                             {data.bioHeading}
                         </div>
                     </div>
-                    <div className="text-zinc-300 leading-relaxed font-light text-sm md:text-base font-serif overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    <div className="text-gray-700 leading-relaxed font-light text-sm md:text-base font-serif overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                         {data.executive_bio}
                     </div>
                 </motion.div>
@@ -115,17 +115,17 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="md:col-span-2 bg-black border border-white rounded-none p-6 md:p-8 flex flex-col justify-center shadow-xl relative overflow-hidden h-96 group"
+                    className="md:col-span-2 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm relative overflow-hidden h-96 group"
                 >
-                    <div className="absolute top-0 right-0 p-32 bg-[radial-gradient(circle,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-50" />
+                    <div className="absolute top-0 right-0 p-32 bg-[radial-gradient(circle,rgba(0,0,0,0.03)_0%,transparent_70%)] pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-50" />
 
-                    <div className="mb-6 shrink-0 z-10 border-b border-white/20 pb-4">
-                        <div className="text-[10px] text-zinc-400 uppercase tracking-widest font-mono">
+                    <div className="mb-6 shrink-0 z-10 border-b border-gray-300 pb-4">
+                        <div className="text-[10px] text-gray-600 uppercase tracking-widest font-mono">
                             {data.thesisHeading}
                         </div>
                     </div>
                     <div
-                        className="text-lg md:text-2xl text-white leading-tight font-medium font-serif z-10 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                        className="text-lg md:text-2xl text-gray-900 leading-tight font-medium font-serif z-10 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
                         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                     >
                         {data.thesis_synthesis}
@@ -137,31 +137,31 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="md:col-span-1 bg-black border border-white rounded-none p-6 shadow-xl flex flex-col h-96"
+                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col h-96"
                 >
-                    <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-white/20 pb-4">
-                        <GraduationCap className="w-4 h-4 text-white flex-shrink-0" strokeWidth={1.2} />
-                        <div className="text-sm font-medium text-white font-mono uppercase tracking-widest">
+                    <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-gray-300 pb-4">
+                        <GraduationCap className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
+                        <div className="text-sm font-medium text-gray-900 font-mono uppercase tracking-widest">
                             {data.credentialsHeading}
                         </div>
                     </div>
                     <div className="space-y-6 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                         <div>
-                            <div className="text-sm text-white font-medium font-serif leading-snug">
+                            <div className="text-sm text-gray-900 font-medium font-serif leading-snug">
                                 {data.cred1Title}
                             </div>
                             <div className="mt-1">
-                                <div className="text-[10px] text-zinc-400 font-mono tracking-widest uppercase">
+                                <div className="text-[10px] text-gray-600 font-mono tracking-widest uppercase">
                                     {data.cred1Subtitle}
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <div className="text-sm text-white font-medium font-serif leading-snug">
+                            <div className="text-sm text-gray-900 font-medium font-serif leading-snug">
                                 {data.cred2Title}
                             </div>
                             <div className="mt-1">
-                                <div className="text-[10px] text-zinc-400 font-mono tracking-widest uppercase">
+                                <div className="text-[10px] text-gray-600 font-mono tracking-widest uppercase">
                                     {data.cred2Subtitle}
                                 </div>
                             </div>
@@ -174,11 +174,11 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="md:col-span-1 bg-black border border-white rounded-none p-6 shadow-xl flex flex-col h-96"
+                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col h-96"
                 >
-                    <div className="flex items-center gap-2 mb-4 shrink-0 border-b border-white/20 pb-4">
-                        <Library className="w-4 h-4 text-white flex-shrink-0" strokeWidth={1.2} />
-                        <div className="text-sm font-medium text-white font-mono tracking-widest uppercase">
+                    <div className="flex items-center gap-2 mb-4 shrink-0 border-b border-gray-300 pb-4">
+                        <Library className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
+                        <div className="text-sm font-medium text-gray-900 font-mono tracking-widest uppercase">
                             {data.publicationsHeading}
                         </div>
                     </div>
@@ -192,8 +192,8 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                                     href={pub.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group flex flex-col w-full text-xs font-mono text-zinc-400 transition-all duration-300 
-                                    hover:text-black hover:bg-white border focus:outline-none focus:ring-1 focus:ring-white border-transparent hover:border-white p-2 -mx-2"
+                                    className="group flex flex-col w-full text-xs font-mono text-gray-600 transition-all duration-300 
+                                    hover:text-black hover:bg-gray-100 border focus:outline-none focus:ring-1 focus:ring-gray-600 border-transparent hover:border-gray-300 p-2 -mx-2"
                                 >
                                     <span className="opacity-50 text-[9px] mb-1 group-hover:text-black font-semibold uppercase tracking-widest">
                                         REF {(i + 1).toString().padStart(2, '0')}

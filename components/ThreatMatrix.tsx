@@ -73,22 +73,22 @@ const MATRIX: MatrixEntry[] = [
 
 const severityConfig = {
     favorable: {
-        border: 'border-zinc-800/40',
-        bg: 'bg-zinc-950/30',
+        border: 'border-gray-200',
+        bg: 'bg-gray-50',
         dot: 'bg-emerald-600/60',
         text: 'text-emerald-600/70',
         label: 'Favorable',
     },
     adverse: {
-        border: 'border-zinc-800/40',
-        bg: 'bg-zinc-950/30',
+        border: 'border-gray-200',
+        bg: 'bg-gray-50',
         dot: 'bg-red-500/50',
         text: 'text-red-500/60',
         label: 'Adverse',
     },
     monitoring: {
-        border: 'border-zinc-800/40',
-        bg: 'bg-zinc-950/30',
+        border: 'border-gray-200',
+        bg: 'bg-gray-50',
         dot: 'bg-amber-500/50',
         text: 'text-amber-500/60',
         label: 'Monitoring',
@@ -102,11 +102,11 @@ export default function PolicyMatrix() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="rounded-xl border border-zinc-800/40 bg-zinc-950/40 overflow-hidden"
+            className="rounded-xl border border-gray-200 bg-white overflow-hidden"
         >
             {/* Header */}
-            <div className="px-4 py-2.5 border-b border-zinc-800/40 flex items-center justify-between">
-                <h2 className="text-[12px] font-semibold text-zinc-400 tracking-tight">
+            <div className="px-4 py-2.5 border-b border-gray-200 flex items-center justify-between">
+                <h2 className="text-[12px] font-semibold text-gray-600 tracking-tight">
                     Geopolitical Consequences
                 </h2>
                 <div className="flex items-center gap-2.5">
@@ -132,17 +132,17 @@ export default function PolicyMatrix() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 + i * 0.03, duration: 0.25 }}
-                            className={`p-2.5 rounded-lg border ${config.border} ${config.bg} cursor-default transition-all duration-200 hover:border-zinc-700/40`}
+                            className={`p-2.5 rounded-lg border ${config.border} ${config.bg} cursor-default transition-all duration-200 hover:border-gray-300`}
                         >
                             <div className="flex items-start gap-2">
                                 <span className={`${config.text} mt-0.5 flex-shrink-0 opacity-70`}>
                                     {entry.icon}
                                 </span>
                                 <div className="min-w-0 flex-1">
-                                    <h3 className="text-[11px] font-medium text-zinc-300 leading-tight tracking-tight mb-0.5">
+                                    <h3 className="text-[11px] font-medium text-gray-700 leading-tight tracking-tight mb-0.5">
                                         {entry.label}
                                     </h3>
-                                    <p className="text-[10px] text-zinc-600 leading-snug line-clamp-2">
+                                    <p className="text-[10px] text-gray-500 leading-snug line-clamp-2">
                                         {entry.detail}
                                     </p>
                                 </div>

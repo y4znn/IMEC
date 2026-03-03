@@ -166,9 +166,9 @@ function Scene() {
 /* ── Main Globe Export ── */
 export default function Globe() {
     return (
-        <div className="w-full h-full min-h-[400px] md:min-h-[550px] relative rounded-lg overflow-hidden border border-white/[0.06]">
+        <div className="w-full h-full min-h-[400px] md:min-h-[550px] relative rounded-lg overflow-hidden border border-gray-400/[0.06]">
             {/* Bottom fade gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent to-transparent z-10 pointer-events-none" />
 
             <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
                 <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.4} />
@@ -189,7 +189,7 @@ export default function Globe() {
 /* ── Legend Item ── */
 function LegendItem({ color, label, pulse }: { color: string; label: string; pulse?: boolean }) {
     return (
-        <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-400 bg-zinc-950/80 px-2.5 py-1 rounded border border-white/[0.06] backdrop-blur-sm">
+        <div className="flex items-center gap-2 text-[10px] font-mono text-gray-600 bg-white/80 px-2.5 py-1 rounded border border-gray-400/[0.06] backdrop-blur-sm">
             <div className={`w-1.5 h-1.5 rounded-full ${color} ${pulse ? 'animate-pulse-dot' : ''}`} />
             {label}
         </div>

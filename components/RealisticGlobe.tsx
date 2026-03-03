@@ -296,14 +296,14 @@ function ChokepointMarker({ chokepoint }: { chokepoint: Chokepoint }) {
                         <svg className="absolute left-0 bottom-0 w-8 h-8 pointer-events-none" viewBox="0 0 32 32">
                             <line x1="0" y1="32" x2="32" y2="0" stroke="rgba(239,68,68,0.8)" strokeWidth="1.5" strokeDasharray="2 2" />
                         </svg>
-                        <div className="w-64 p-4 rounded-xl bg-zinc-950/80 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(239,68,68,0.2)]">
+                        <div className="w-64 p-4 rounded-xl bg-white/80 backdrop-blur-xl border border-gray-400/10 shadow-[0_0_30px_rgba(239,68,68,0.2)]">
                             <div className="flex items-center gap-2 mb-2">
                                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,1)]" />
                                 <span className="text-[10px] font-mono text-red-400 tracking-wider uppercase">
                                     {chokepoint.name}
                                 </span>
                             </div>
-                            <p className="text-[13px] text-zinc-300 leading-relaxed tracking-tight">
+                            <p className="text-[13px] text-gray-700 leading-relaxed tracking-tight">
                                 {chokepoint.detail}
                             </p>
                         </div>
@@ -545,7 +545,7 @@ export default function RealisticGlobe() {
                         { color: 'bg-red-500', label: 'INSTC (Iran-Russia)', icon: '- -' },
                         { color: 'bg-red-500 animate-pulse', label: 'Threat Chokepoint', icon: '●' },
                     ].map((item) => (
-                        <div key={item.label} className="flex items-center gap-2 text-[10px] font-mono text-zinc-400 bg-zinc-950/80 px-2.5 py-1 rounded border border-white/[0.04] backdrop-blur-sm">
+                        <div key={item.label} className="flex items-center gap-2 text-[10px] font-mono text-gray-600 bg-white/80 px-2.5 py-1 rounded border border-gray-400/[0.04] backdrop-blur-sm">
                             <span className={`w-1.5 h-1.5 rounded-full ${item.color} flex-shrink-0`} />
                             <span>{item.label}</span>
                         </div>

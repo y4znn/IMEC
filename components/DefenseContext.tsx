@@ -122,7 +122,7 @@ export function DefenseProvider({ children }: { children: ReactNode }) {
             {children}
             {/* Defense Mode HUD */}
             {isDefenseMode && (
-                <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-4 bg-zinc-950/90 backdrop-blur-md border border-emerald-500/30 px-4 py-2 rounded-full pointer-events-none shadow-2xl shadow-emerald-500/10">
+                <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-4 bg-white/90 backdrop-blur-md border border-emerald-500/30 px-4 py-2 rounded-full pointer-events-none shadow-2xl shadow-emerald-500/10">
                     <span className="flex h-2 w-2 relative">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -131,11 +131,11 @@ export function DefenseProvider({ children }: { children: ReactNode }) {
                         Defense Mode Active
                     </span>
                     <div className="h-4 w-px bg-white/10" />
-                    <span className="text-[11px] font-mono text-zinc-300">
+                    <span className="text-[11px] font-mono text-gray-700">
                         Scene {currentScene + 1}/5: {DEFENSE_SCENES[currentScene].title}
                     </span>
                     <div className="h-4 w-px bg-white/10" />
-                    <span className="text-[10px] font-mono text-zinc-500">
+                    <span className="text-[10px] font-mono text-gray-500">
                         [SPACE] or [→] to advance
                     </span>
                 </div>

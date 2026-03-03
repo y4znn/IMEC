@@ -17,7 +17,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className={`w-full h-full min-h-[85vh] rounded-xl border shadow-2xl ${isMapPage
                     ? 'bg-transparent border-transparent shadow-none'
-                    : 'bg-white/[0.02] border-white/[0.05] backdrop-blur-xl p-6 lg:p-8'
+                    : 'bg-white border-gray-200 backdrop-blur-xl p-6 lg:p-8'
                     }`}
             >
                 {children}

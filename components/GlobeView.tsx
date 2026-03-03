@@ -28,8 +28,8 @@ const coords: Record<string, { lat: number; lng: number; label: string; desc: st
    ARC DATA (Corridors)
    ══════════════════════════════════════════════════════════ */
 const PALETTE = {
-    IMEC: '#4A90E2',
-    BRI: '#E24A4A',
+    IMEC: '#3B82F6',
+    BRI: '#FF4444',
     INSTC: '#3D4B3D',
     NEUTRAL: '#444444'
 };
@@ -112,12 +112,13 @@ interface HtmlElementDatum {
 const htmlElementsData: HtmlElementDatum[] = [
     // Ghost layers
     { isGhost: true, lat: 22, lng: 78, label: 'I N D I A' },
+    { isGhost: true, lat: 24, lng: 54, label: 'U N I T E D   A R A B   E M I R A T E S' },
     { isGhost: true, lat: 24, lng: 45, label: 'S A U D I   A R A B I A' },
-    { isGhost: true, lat: 31, lng: 35, label: 'I S R A E L' },
+    { isGhost: true, lat: 31, lng: 36, label: 'J O R D A N' },
+    { isGhost: true, lat: 31.5, lng: 34.7, label: 'I S R A E L' },
     { isGhost: true, lat: 39, lng: 22, label: 'G R E E C E' },
-    { isGhost: true, lat: 50, lng: 20, label: 'E U R O P E' },
-    { isGhost: true, lat: 35, lng: 104, label: 'C H I N A' },
-    { isGhost: true, lat: 33, lng: 43, label: 'I R A Q' },
+    { isGhost: true, lat: 42, lng: 12, label: 'I T A L Y' },
+    { isGhost: true, lat: 46, lng: 2, label: 'F R A N C E' },
 
     // Explicit Node Tags
     ...Object.entries(coords).map(([k, v]) => ({
@@ -144,6 +145,7 @@ export default function GlobeView() {
     const globeRef = useRef<any>(null);
     const [countries, setCountries] = useState({ features: [] });
     const [selectedNode, setSelectedNode] = useState<HtmlElementDatum | null>(null);
+    const [isRotating, setIsRotating] = useState(true);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [paperMaterial, setPaperMaterial] = useState<any>(null);
 
@@ -157,7 +159,7 @@ export default function GlobeView() {
         import('three').then((THREE) => {
             if (!isMounted) return;
             const mat = new THREE.MeshBasicMaterial({
-                color: new THREE.Color('#000000'),
+                color: new THREE.Color('#F9FAFB'),
                 transparent: true,
                 opacity: 0.8,
             });
@@ -170,7 +172,7 @@ export default function GlobeView() {
         if (globeRef.current) {
             const controls = globeRef.current.controls();
             if (controls) {
-                controls.autoRotate = true;
+                controls.autoRotate = isRotating;
                 controls.autoRotateSpeed = 0.2; // Slower, more academic
                 controls.enableZoom = true;
                 controls.minDistance = 150;
@@ -214,14 +216,30 @@ export default function GlobeView() {
                 }, 500); // Small delay to ensure geometries construct
             });
         }
-    }, []);
+    }, [isRotating]);
+
+    useEffect(() => {
+        if (globeRef.current) {
+            const controls = globeRef.current.controls();
+            if (controls) {
+                controls.autoRotate = isRotating;
+            }
+        }
+    }, [isRotating]);
 
     const memoArcs = useMemo(() => arcsData, []);
     const memoHtmlLabels = useMemo(() => htmlElementsData, []);
 
     return (
-        <div className="w-full h-full relative bg-black font-serif">
+        <div className="w-full h-full relative bg-gray-50 font-serif">
             {/* NO ATMOSPHERE, NO NEON, NO EXTERNAL IMAGES */}
+            <button
+                onClick={() => setIsRotating(prev => !prev)}
+                className="absolute top-24 right-6 z-40 bg-gray-50 border border-gray-400/30 text-gray-900/70 hover:text-gray-900 hover:border-gray-400 text-[10px] tracking-widest uppercase font-mono px-3 py-1.5 transition-all"
+                style={{ borderRadius: 0 }}
+            >
+                [ {isRotating ? 'PAUSE ROTATION' : 'RESUME ROTATION'} ]
+            </button>
             <Globe
                 ref={globeRef}
                 globeImageUrl={undefined}
@@ -292,7 +310,7 @@ export default function GlobeView() {
                     tag.style.letterSpacing = '0.1em';
                     tag.style.padding = '3px 6px';
                     tag.style.borderRadius = '0px'; // Strict 90 degree
-                    tag.style.backgroundColor = '#000000';
+                    tag.style.backgroundColor = '#F9FAFB';
                     tag.style.border = `1px solid #333333`;
                     tag.style.whiteSpace = 'nowrap';
                     tag.style.textTransform = 'uppercase';
@@ -312,8 +330,8 @@ export default function GlobeView() {
             />
 
             {/* ── Route Legend ── */}
-            <div className="absolute bottom-8 left-8 z-20 pointer-events-auto border border-white/20 bg-black px-6 py-5" style={{ borderRadius: 0 }}>
-                <h3 className="text-white text-[10px] tracking-[0.2em] font-mono uppercase mb-4">Cartographic Lexicon</h3>
+            <div className="absolute bottom-8 left-8 z-20 pointer-events-auto border border-gray-300 bg-gray-50 px-6 py-5" style={{ borderRadius: 0 }}>
+                <h3 className="text-gray-900 text-[10px] tracking-[0.2em] font-mono uppercase mb-4">Cartographic Lexicon</h3>
 
                 {[
                     { color: PALETTE.IMEC, label: 'IMEC', desc: 'Sovereign Backbone', style: 'dashed' },
@@ -328,8 +346,8 @@ export default function GlobeView() {
                             <div className="h-px w-[30%]" style={{ background: item.color }} />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-[11px] text-white font-mono uppercase tracking-widest">{item.label}</span>
-                            <span className="text-[9px] text-white/50 font-serif" style={{ letterSpacing: '-0.02em' }}>{item.desc}</span>
+                            <span className="text-[11px] text-gray-900 font-mono uppercase tracking-widest">{item.label}</span>
+                            <span className="text-[9px] text-gray-900/50 font-serif" style={{ letterSpacing: '-0.02em' }}>{item.desc}</span>
                         </div>
                     </div>
                 ))}
@@ -337,33 +355,33 @@ export default function GlobeView() {
 
             {/* ── DOSSIER PANEL (Right) ── */}
             {selectedNode && (
-                <div className="absolute right-0 top-0 w-[400px] h-screen bg-black border-l border-white z-40 overflow-y-auto pointer-events-auto shadow-2xl"
+                <div className="absolute right-0 top-0 w-[400px] h-screen bg-gray-50 border-l border-gray-400 z-40 overflow-y-auto pointer-events-auto shadow-2xl"
                     style={{ borderRadius: 0 }}>
 
                     <div className="px-8 pt-24 pb-8">
                         {/* Close */}
                         <button onClick={() => setSelectedNode(null)}
-                            className="absolute top-20 right-6 text-white/30 hover:text-white transition-colors cursor-pointer">
+                            className="absolute top-20 right-6 text-gray-900/30 hover:text-gray-900 transition-colors cursor-pointer">
                             <X className="w-5 h-5" strokeWidth={1} />
                         </button>
 
                         {/* Type Badge */}
-                        <div className="inline-flex items-center gap-2 border border-white px-3 py-1 mb-4 bg-black"
+                        <div className="inline-flex items-center gap-2 border border-gray-400 px-3 py-1 mb-4 bg-gray-50"
                             style={{ borderRadius: 0 }}>
-                            <span className="text-[10px] font-black font-mono text-white">
+                            <span className="text-[10px] font-black font-mono text-gray-900">
                                 +
                             </span>
-                            <span className="text-[10px] tracking-[0.3em] uppercase font-mono text-white">
+                            <span className="text-[10px] tracking-[0.3em] uppercase font-mono text-gray-900">
                                 {selectedNode.type || 'NODE'}
                             </span>
                         </div>
 
                         {/* Title */}
-                        <h2 className="text-3xl font-bold text-white leading-tight mb-2 font-serif uppercase tracking-tight" style={{ letterSpacing: '-0.02em' }}>
+                        <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-2 font-serif uppercase tracking-tight" style={{ letterSpacing: '-0.02em' }}>
                             {selectedNode.label.replace(/-/g, ' ')}
                         </h2>
                         {selectedNode.coord && (
-                            <div className="text-[10px] text-white/50 font-mono tracking-widest mb-6">
+                            <div className="text-[10px] text-gray-900/50 font-mono tracking-widest mb-6">
                                 {selectedNode.coord}
                             </div>
                         )}
@@ -374,10 +392,10 @@ export default function GlobeView() {
 
                         {/* Desc */}
                         <div className="mb-8">
-                            <div className="text-[9px] tracking-[0.3em] text-white/30 uppercase mb-2 font-mono">
+                            <div className="text-[9px] tracking-[0.3em] text-gray-900/30 uppercase mb-2 font-mono">
                                 Intelligence Brief
                             </div>
-                            <p className="text-[14px] text-white/70 leading-relaxed font-serif">
+                            <p className="text-[14px] text-gray-900/70 leading-relaxed font-serif">
                                 {selectedNode.desc || "Verified geospatial transit anchor within the defined corridor matrices."}
                             </p>
                         </div>

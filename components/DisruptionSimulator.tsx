@@ -45,20 +45,20 @@ export default function DisruptionSimulator() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="rounded-xl border border-zinc-800/40 bg-zinc-950/40 overflow-hidden"
+            className="rounded-xl border border-gray-200 bg-white overflow-hidden"
         >
             {/* Header */}
-            <div className="px-5 py-3.5 border-b border-zinc-800/40">
+            <div className="px-5 py-3.5 border-b border-gray-200">
                 <div className="flex items-center gap-2.5 mb-1">
-                    <Gauge className="w-4 h-4 text-zinc-500" strokeWidth={1.2} />
+                    <Gauge className="w-4 h-4 text-gray-500" strokeWidth={1.2} />
                     <h2
-                        className="text-[15px] font-semibold text-zinc-200 tracking-tight"
+                        className="text-[15px] font-semibold text-gray-800 tracking-tight"
                         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                     >
                         Economic Disruption Simulator
                     </h2>
                 </div>
-                <p className="text-[12px] text-zinc-500 leading-relaxed">
+                <p className="text-[12px] text-gray-500 leading-relaxed">
                     Model the cascading effects of Suez Canal traffic disruption on IMEC corridor strategic value.
                 </p>
             </div>
@@ -66,10 +66,10 @@ export default function DisruptionSimulator() {
             {/* Slider */}
             <div className="px-5 py-5">
                 <div className="flex items-center justify-between mb-3">
-                    <label className="text-[12px] font-medium text-zinc-400">
+                    <label className="text-[12px] font-medium text-gray-600">
                         Suez Canal Traffic Disruption
                     </label>
-                    <span className="text-[13px] font-semibold text-zinc-400 tabular-nums">
+                    <span className="text-[13px] font-semibold text-gray-600 tabular-nums">
                         {disruption}%
                     </span>
                 </div>
@@ -83,7 +83,7 @@ export default function DisruptionSimulator() {
                     className="w-full"
                     aria-label="Suez Canal Traffic Disruption Percentage"
                 />
-                <div className="flex justify-between text-[10px] text-zinc-600 mt-1.5">
+                <div className="flex justify-between text-[10px] text-gray-500 mt-1.5">
                     <span>0% — Normal operations</span>
                     <span>100% — Full blockage</span>
                 </div>
@@ -97,8 +97,8 @@ export default function DisruptionSimulator() {
                     value={metrics.imecValue.toFixed(1)}
                     unit="%"
                     color="text-emerald-600/70"
-                    borderColor="border-zinc-800/40"
-                    bgColor="bg-zinc-950/30"
+                    borderColor="border-gray-200"
+                    bgColor="bg-gray-50"
                 />
                 <MetricCard
                     icon={<Clock className="w-4 h-4" strokeWidth={1.2} />}
@@ -106,17 +106,17 @@ export default function DisruptionSimulator() {
                     value={metrics.delay.toFixed(1)}
                     unit=" days"
                     color="text-amber-500/60"
-                    borderColor="border-zinc-800/40"
-                    bgColor="bg-zinc-950/30"
+                    borderColor="border-gray-200"
+                    bgColor="bg-gray-50"
                 />
                 <MetricCard
                     icon={<Ship className="w-4 h-4" strokeWidth={1.2} />}
                     label="Overland Freight Surge"
                     value={formatNumber(metrics.freight)}
                     unit=" TEUs"
-                    color="text-zinc-400"
-                    borderColor="border-zinc-800/40"
-                    bgColor="bg-zinc-950/30"
+                    color="text-gray-600"
+                    borderColor="border-gray-200"
+                    bgColor="bg-gray-50"
                 />
             </div>
         </motion.div>
@@ -158,9 +158,9 @@ function MetricCard({
                         {value}
                     </motion.span>
                 </AnimatePresence>
-                <span className="text-[11px] text-zinc-600">{unit}</span>
+                <span className="text-[11px] text-gray-500">{unit}</span>
             </div>
-            <p className="text-[10px] text-zinc-600 leading-relaxed">{label}</p>
+            <p className="text-[10px] text-gray-500 leading-relaxed">{label}</p>
         </div>
     );
 }
