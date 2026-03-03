@@ -5,16 +5,23 @@ const path = require('path');
 const queries = [
     "India–Middle East–Europe Economic Corridor: Geoeconomic Architecture",
     "IMEC corridor logistics and supply chain analysis",
-    "India Middle East Europe Economic Corridor geopolitical impact",
-    "Blue-Raman submarine cable system geopolitics",
-    "Saudi Arabia UAE green hydrogen export infrastructure",
-    "Israel Haifa port Adani investments IMEC",
-    "Iraq Development Road project vs IMEC competition",
-    "Red Sea Houthi attacks impact on global supply chains and IMEC",
     "Abraham Accords normalization impact on Middle East trade routes",
-    "EU Global Gateway strategy and India-Middle East connections",
-    "Gaza conflict impact on regional infrastructure projects",
-    "Jordan railway financing gap logistics hub"
+    "Geopolitics of the Eastern Mediterranean and IMEC",
+    "US-India joint statement strategic infrastructure investments",
+    "Israel Haifa port Adani investments IMEC",
+    "Piraeus port Greece European Gateway supply chain",
+    "Mundra port Vadhavan India IMEC transshipment",
+    "Jebel Ali Dammam Gulf transshipment hubs IMEC",
+    "Jordan railway financing gap logistics hub",
+    "Saudi Arabia East Cargo Train Al-Ghuwaifat rail link",
+    "Oman Hafeet Rail project bypassing Strait of Hormuz",
+    "Blue-Raman submarine cable system data sovereignty",
+    "Saudi Arabia UAE green hydrogen export infrastructure NEOM",
+    "GCC Interconnection Authority electricity grid integration",
+    "Iraq Development Road project vs IMEC competition",
+    "Al Faw port Turkey transit route geopolitics",
+    "China Belt and Road Initiative (BRI) vs IMEC strategic rivalry",
+    "Red Sea Houthi attacks impact on global supply chains and Suez Canal"
 ];
 
 function determineCategory(title, snippet) {
@@ -70,59 +77,89 @@ async function scrapeDuckDuckGo() {
         try {
             await page.goto(`https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
 
-            // Wait slightly to prevent bot blocks
-            await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 1500));
+            for (let pageNum = 1; pageNum <= 3; pageNum++) {
+                // Randomized delay for rate limit evasion
+                await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
 
-            const items = await page.evaluate(() => {
-                const elements = document.querySelectorAll('.result');
-                const extracted = [];
-                for (let i = 0; i < Math.min(elements.length, 15); i++) {
-                    const row = elements[i];
-                    const titleEl = row.querySelector('.result__title a');
-                    const snippetEl = row.querySelector('.result__snippet');
-                    const urlEl = row.querySelector('.result__url');
+                const items = await page.evaluate(() => {
+                    const elements = document.querySelectorAll('.result');
+                    const extracted = [];
+                    // Grab up to 30 results per page, but duckduckgo usually returns around 30 anyway
+                    for (let i = 0; i < elements.length; i++) {
+                        const row = elements[i];
+                        const titleEl = row.querySelector('.result__title a');
+                        const snippetEl = row.querySelector('.result__snippet');
+                        const urlEl = row.querySelector('.result__url');
 
-                    if (titleEl && urlEl) {
-                        extracted.push({
-                            title: titleEl.innerText.trim(),
-                            snippet: snippetEl ? snippetEl.innerText.trim() : "",
-                            url: urlEl.getAttribute('href')
-                        });
+                        if (titleEl && urlEl) {
+                            extracted.push({
+                                title: titleEl.innerText.trim(),
+                                snippet: snippetEl ? snippetEl.innerText.trim() : "",
+                                url: urlEl.getAttribute('href')
+                            });
+                        }
+                    }
+                    return extracted;
+                });
+
+                for (let item of items) {
+                    let realUrl = item.url;
+                    if (realUrl.includes('//duckduckgo.com/l/?uddg=')) {
+                        try {
+                            const uddgMatch = realUrl.match(/uddg=([^&]+)/);
+                            if (uddgMatch && uddgMatch[1]) {
+                                realUrl = decodeURIComponent(uddgMatch[1]);
+                            }
+                        } catch (e) { }
+                    }
+
+                    if (seenUrls.has(realUrl) || seenTitles.has(item.title.toLowerCase())) continue;
+
+                    seenUrls.add(realUrl);
+                    seenTitles.add(item.title.toLowerCase());
+
+                    const category = determineCategory(item.title, item.snippet);
+                    const summary = summarizeText(item.snippet);
+                    const publisher = extractDomain(realUrl);
+                    const currentYear = new Date().getFullYear().toString();
+
+                    results.push({
+                        id: `live-${results.length + 1}`,
+                        title: item.title,
+                        url: realUrl,
+                        category: category,
+                        description: summary,
+                        year: currentYear,
+                        authors: publisher
+                    });
+                }
+
+                if (pageNum < 3) {
+                    const hasNext = await page.evaluate(() => {
+                        const nextForm = document.querySelector('.nav-link form');
+                        const nextBtn = document.querySelector('.nav-link form input[type="submit"][value="Next"]');
+                        if (nextBtn) {
+                            nextBtn.click();
+                            return true;
+                        }
+                        if (nextForm) {
+                            nextForm.submit();
+                            return true;
+                        }
+                        return false;
+                    });
+
+                    if (hasNext) {
+                        try {
+                            await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 15000 });
+                        } catch (e) {
+                            console.log("    Navigation timeout or no next page");
+                            break;
+                        }
+                    } else {
+                        break;
                     }
                 }
-                return extracted;
-            });
-
-            for (let item of items) {
-                let realUrl = item.url;
-                if (realUrl.includes('//duckduckgo.com/l/?uddg=')) {
-                    try {
-                        const uddgMatch = realUrl.match(/uddg=([^&]+)/);
-                        if (uddgMatch && uddgMatch[1]) {
-                            realUrl = decodeURIComponent(uddgMatch[1]);
-                        }
-                    } catch (e) { }
-                }
-
-                if (seenUrls.has(realUrl) || seenTitles.has(item.title.toLowerCase())) continue;
-
-                seenUrls.add(realUrl);
-                seenTitles.add(item.title.toLowerCase());
-
-                const category = determineCategory(item.title, item.snippet);
-                const summary = summarizeText(item.snippet);
-                const publisher = extractDomain(realUrl);
-                const currentYear = new Date().getFullYear().toString();
-
-                results.push({
-                    id: `live-${results.length + 1}`,
-                    title: item.title,
-                    url: realUrl,
-                    category: category,
-                    description: summary,
-                    year: currentYear,
-                    authors: publisher
-                });
             }
         } catch (err) {
             console.warn(`Attempt failed for query "${query}": ${err.message}`);
