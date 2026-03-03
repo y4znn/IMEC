@@ -1,16 +1,12 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Globe2, AlertTriangle } from 'lucide-react';
-import BottlenecksPanel from '@/components/BottlenecksPanel';
+import { Globe2 } from 'lucide-react';
 
 export default function StrategicMaps() {
-    const [isPanelOpen, setIsPanelOpen] = useState(false);
-
     return (
         <>
-            <div className="absolute top-24 left-6 z-10 pointer-events-none">
+            <div className="absolute top-24 left-6 z-10 pointer-events-none hidden md:block">
                 <motion.div
                     initial={{ opacity: 0, y: -12 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -33,20 +29,6 @@ export default function StrategicMaps() {
                     </p>
                 </motion.div>
             </div>
-
-            {/* Floating Action Button for bottlenecks */}
-            <div className="absolute bottom-8 left-6 z-20">
-                <button
-                    onClick={() => setIsPanelOpen(true)}
-                    className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 text-[10px] font-mono uppercase tracking-[0.2em] shadow-lg transition-colors cursor-pointer border border-red-800"
-                    style={{ borderRadius: 0 }}
-                >
-                    <AlertTriangle className="w-3.5 h-3.5" strokeWidth={1.5} />
-                    4 Strategic Issues
-                </button>
-            </div>
-
-            <BottlenecksPanel isOpen={isPanelOpen} onClose={() => setIsPanelOpen(false)} />
         </>
     );
 }

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Crosshair } from 'lucide-react';
 
 // --- DATA STRUCTURES ---
 
@@ -73,6 +74,7 @@ export default function NarrativeMap() {
         // Set up zoom behavior
         const zoom = d3.zoom<SVGSVGElement, unknown>()
             .scaleExtent([1, 8])
+            .wheelDelta((event) => -event.deltaY * (event.deltaMode === 1 ? 0.05 : event.deltaMode ? 1 : 0.002) * 0.4) // Smoother framing logic 
             .on("zoom", (event) => {
                 g.attr("transform", event.transform);
 
@@ -84,9 +86,24 @@ export default function NarrativeMap() {
                     const [x, y] = projection([node.lng, node.lat]) || [0, 0];
                     return `translate(${x}, ${y}) scale(${1 / event.transform.k})`;
                 });
+                g.selectAll("g.chokepoint-group").attr("transform", (d) => {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const point = d as any;
+                    const [x, y] = projection([point.lng, point.lat]) || [0, 0];
+                    return `translate(${x}, y) scale(${1 / event.transform.k})`;
+                });
             });
 
         svg.call(zoom);
+
+        // Expose a method to reset zoom smoothly
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (d3ContainerRef.current as any)._resetZoom = () => {
+            svg.transition()
+                .duration(750)
+                .ease(d3.easeCubicInOut)
+                .call(zoom.transform, d3.zoomIdentity);
+        };
 
         // Natural Earth projection mapping to Eurasia + Africa roughly
         const projection = d3.geoNaturalEarth1()
@@ -670,6 +687,57 @@ export default function NarrativeMap() {
                         [ {pillar} ]
                     </button>
                 ))}
+            </div>
+
+            {/* Map Legend & Context Panel */}
+            <div className="absolute bottom-8 left-6 z-20 bg-white border border-gray-200 shadow-xl p-6 w-[340px] rounded-none pointer-events-auto">
+                <h2 className="text-[14px] font-bold text-gray-900 font-serif mb-2 leading-tight">IMEC: Multimodal Connectivity Architecture</h2>
+                <p className="text-[11px] text-gray-500 font-serif mb-6 leading-relaxed">
+                    Visualizing the integration of maritime, overland rail, digital (Blue-Raman), and energy infrastructure bypassing traditional vulnerable chokepoints.
+                </p>
+
+                <div className="space-y-4 mb-6">
+                    <div className="flex items-center gap-3">
+                        <div className="w-6 border-t-2 border-blue-500 border-dashed"></div>
+                        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Maritime Transport Route</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <div className="w-6 border-t-[2.5px] border-rose-600"></div>
+                        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Overland Rail Link</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <div className="w-6 border-t-[2.5px] border-purple-500"></div>
+                        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Digital Pillar (Blue-Raman)</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <div className="w-6 border-t-[3px] border-emerald-500"></div>
+                        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Energy Pillar (Grid)</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <div className="w-6 flex justify-center">
+                            <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-600 flex items-center justify-center">
+                                <div className="w-1.5 h-1.5 rounded-full bg-red-600"></div>
+                            </div>
+                        </div>
+                        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Strategic Chokepoint Zones</span>
+                    </div>
+                </div>
+
+                <div className="pt-5 border-t border-gray-100">
+                    <button
+                        onClick={() => {
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            if (d3ContainerRef.current && (d3ContainerRef.current as any)._resetZoom) {
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                (d3ContainerRef.current as any)._resetZoom();
+                            }
+                        }}
+                        className="w-full flex items-center justify-center gap-2 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 transition-colors text-[10px] font-mono uppercase tracking-[0.2em]"
+                    >
+                        <Crosshair className="w-3.5 h-3.5" />
+                        Reset View
+                    </button>
+                </div>
             </div>
 
             {/* Informational overlay to act as a legend for D3 layout */}
