@@ -7,11 +7,11 @@ import fallbackSources from '@/public/data/sources.json';
 type AcademicSource = {
     id: string;
     title: string;
-    description: string;
+    summary: string;
     url: string;
     category: string;
-    year: string;
-    authors?: string;
+    date: string;
+    publisher?: string;
 };
 
 export default function SourcesPage() {
@@ -25,7 +25,7 @@ export default function SourcesPage() {
             .then(data => setSources(data))
             .catch(() => {
                 console.warn("Failed to fetch sources.json, using fallback.");
-                setSources(fallbackSources as AcademicSource[]);
+                setSources(fallbackSources as any as AcademicSource[]);
             });
     }, []);
 
@@ -119,21 +119,21 @@ export default function SourcesPage() {
                                 className="group relative border border-gray-300 bg-white p-6 hover:bg-gray-50 transition-colors cursor-default"
                             >
                                 <div className="pr-32">
-                                    {src.authors && (
+                                    {src.publisher && (
                                         <p className="font-serif text-base text-gray-800 mb-2">
-                                            {src.authors}
+                                            {src.publisher}
                                         </p>
                                     )}
                                     <h3 className="text-sm font-mono text-gray-900 mb-3 leading-relaxed">
                                         {src.title}
                                     </h3>
                                     <p className="text-sm font-serif text-gray-600 leading-relaxed mb-4 line-clamp-3">
-                                        {src.description}
+                                        {src.summary}
                                     </p>
                                     <div className="flex items-center gap-3 text-[10px] text-gray-500 font-mono tracking-widest uppercase">
                                         <span>REF: {src.id}</span>
                                         <span className="w-1 h-1 bg-gray-300" />
-                                        <span>CY {src.year}</span>
+                                        <span>CY {src.date}</span>
                                     </div>
                                 </div>
 

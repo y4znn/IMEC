@@ -3,21 +3,30 @@ const fs = require('fs');
 const path = require('path');
 
 const queries = [
+    // Core IMEC & Geopolitics
     "India–Middle East–Europe Economic Corridor: Geoeconomic Architecture",
     "IMEC corridor logistics and supply chain analysis",
     "Abraham Accords normalization impact on Middle East trade routes",
     "Geopolitics of the Eastern Mediterranean and IMEC",
     "US-India joint statement strategic infrastructure investments",
+
+    // Maritime & Port Specifics
     "Israel Haifa port Adani investments IMEC",
     "Piraeus port Greece European Gateway supply chain",
     "Mundra port Vadhavan India IMEC transshipment",
     "Jebel Ali Dammam Gulf transshipment hubs IMEC",
+
+    // Overland & Rail Bottlenecks
     "Jordan railway financing gap logistics hub",
     "Saudi Arabia East Cargo Train Al-Ghuwaifat rail link",
     "Oman Hafeet Rail project bypassing Strait of Hormuz",
+
+    // Digital & Energy Pillars
     "Blue-Raman submarine cable system data sovereignty",
     "Saudi Arabia UAE green hydrogen export infrastructure NEOM",
     "GCC Interconnection Authority electricity grid integration",
+
+    // Rivals & Threats
     "Iraq Development Road project vs IMEC competition",
     "Al Faw port Turkey transit route geopolitics",
     "China Belt and Road Initiative (BRI) vs IMEC strategic rivalry",
@@ -78,8 +87,8 @@ async function scrapeDuckDuckGo() {
             await page.goto(`https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
 
             for (let pageNum = 1; pageNum <= 3; pageNum++) {
-                // Randomized delay for rate limit evasion
-                await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+                // Randomized delay for rate limit evasion (1000ms - 3000ms)
+                await new Promise(resolve => setTimeout(resolve, 1000 + Math.floor(Math.random() * 2000)));
 
                 const items = await page.evaluate(() => {
                     const elements = document.querySelectorAll('.result');
@@ -128,9 +137,9 @@ async function scrapeDuckDuckGo() {
                         title: item.title,
                         url: realUrl,
                         category: category,
-                        description: summary,
-                        year: currentYear,
-                        authors: publisher
+                        summary: summary,
+                        date: currentYear,
+                        publisher: publisher
                     });
                 }
 
