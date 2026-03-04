@@ -51,21 +51,21 @@ export default function SourcesPage() {
     }, [sources, finalCategory]);
 
     return (
-        <div className="flex w-full h-[calc(100vh-64px)] pt-16 bg-gray-50 font-serif text-gray-900">
+        <div className="flex flex-col md:flex-row w-full min-h-[calc(100vh-64px)] md:h-[calc(100vh-64px)] pt-16 bg-gray-50 font-serif text-gray-900">
 
             {/* ── LEFT SIDEBAR: Syllabus Modules ── */}
-            <div className="w-[380px] shrink-0 border-r border-gray-300 h-full overflow-y-auto custom-scrollbar flex flex-col">
-                <div className="px-8 py-10 border-b border-gray-300 bg-gray-50 sticky top-0 z-10 rounded-none">
-                    <h1 className="text-3xl font-bold tracking-tight uppercase leading-none mb-3">
-                        Intel<br />Syllabus
+            <div className="w-full md:w-[380px] shrink-0 border-b md:border-b-0 md:border-r border-gray-300 md:h-full overflow-y-auto custom-scrollbar flex flex-col">
+                <div className="px-4 md:px-8 py-6 md:py-10 border-b border-gray-300 bg-gray-50 sticky top-0 z-10 rounded-none">
+                    <h1 className="text-2xl md:text-3xl font-bold tracking-tight uppercase leading-none mb-3">
+                        Intel<br className="hidden md:block" /><span className="md:hidden"> </span>Syllabus
                     </h1>
                     <p className="text-[10px] text-gray-900/50 tracking-[0.2em] font-mono uppercase">
-                        Comprehensive Source Index:<br />
+                        Comprehensive Source Index:<br className="hidden md:block" /><span className="md:hidden"> </span>
                         [{sources.length}] Verified References
                     </p>
                 </div>
 
-                <nav className="flex flex-col flex-1 p-4 gap-2">
+                <nav className="flex flex-row md:flex-col flex-1 p-3 md:p-4 gap-2 overflow-x-auto md:overflow-x-visible">
                     {categories.map((cat, idx) => {
                         const isActive = activeCategory === cat;
                         const catSourcesCount = sources.filter(s => s.category === cat).length;
@@ -73,7 +73,7 @@ export default function SourcesPage() {
                             <button
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
-                                className={`flex flex-col items-start px-5 py-4 text-left transition-colors cursor-pointer border rounded-none ${isActive
+                                className={`flex flex-col items-start px-3 md:px-5 py-3 md:py-4 text-left transition-colors cursor-pointer border rounded-none min-w-[160px] md:min-w-0 shrink-0 md:shrink ${isActive
                                     ? 'bg-white text-black border-gray-300'
                                     : 'bg-gray-50 text-gray-900/60 border-transparent hover:bg-gray-200 hover:text-gray-900'
                                     }`}
@@ -82,12 +82,12 @@ export default function SourcesPage() {
                                     <span className={`text-[10px] tracking-widest font-mono font-bold ${isActive ? 'text-black/50' : 'text-gray-900/30'}`}>
                                         MODULE 0{idx + 1}
                                     </span>
-                                    <div className={`h-[1px] flex-1 ${isActive ? 'bg-gray-50/10' : 'bg-white/10'}`} />
+                                    <div className={`h-[1px] flex-1 ${isActive ? 'bg-gray-50/10' : 'bg-white/10'} hidden md:block`} />
                                     <span className={`text-[10px] tracking-widest font-mono ${isActive ? 'text-black' : 'text-gray-900'}`}>
                                         {catSourcesCount}
                                     </span>
                                 </div>
-                                <span className={`text-sm tracking-tight font-bold leading-snug ${isActive ? 'text-black' : 'text-gray-900'}`}>
+                                <span className={`text-xs md:text-sm tracking-tight font-bold leading-snug ${isActive ? 'text-black' : 'text-gray-900'}`}>
                                     {cat}
                                 </span>
                             </button>
@@ -97,52 +97,53 @@ export default function SourcesPage() {
             </div>
 
             {/* ── RIGHT PANEL: Source Content (Scrollable) ── */}
-            <div className="flex-1 h-full overflow-y-auto custom-scrollbar bg-gray-50 relative">
-                <div className="max-w-4xl mx-auto px-12 py-10">
+            <div className="flex-1 md:h-full overflow-y-auto custom-scrollbar bg-gray-50 relative">
+                <div className="max-w-4xl mx-auto px-4 md:px-12 py-6 md:py-10">
 
                     {/* Header for Category */}
-                    <div className="mb-12">
-                        <div className="text-[10px] text-gray-900/50 tracking-[0.3em] font-mono uppercase mb-4 flex items-center gap-3">
+                    <div className="mb-8 md:mb-12">
+                        <div className="text-[10px] text-gray-900/50 tracking-[0.3em] font-mono uppercase mb-3 md:mb-4 flex items-center gap-3">
                             <BookOpen className="w-3 h-3" />
                             Active Module Syllabus
                         </div>
-                        <h2 className="text-4xl font-bold tracking-tight leading-none">
+                        <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-none">
                             {activeCategory}
                         </h2>
                     </div>
 
                     {/* Source List */}
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-4 md:gap-6">
                         {activeSources.map(src => (
                             <div
                                 key={src.id}
-                                className="group relative border border-gray-300 bg-white p-6 hover:bg-gray-50 transition-colors cursor-default"
+                                className="group relative border border-gray-300 bg-white p-4 md:p-6 hover:bg-gray-50 transition-colors cursor-default"
                             >
-                                <div className="pr-32">
+                                <div className="pr-0 md:pr-32">
                                     {src.publisher && (
-                                        <p className="font-serif text-base text-gray-800 mb-2">
+                                        <p className="font-serif text-sm md:text-base text-gray-800 mb-2">
                                             {src.publisher}
                                         </p>
                                     )}
-                                    <h3 className="text-sm font-mono text-gray-900 mb-3 leading-relaxed">
+                                    <h3 className="text-xs md:text-sm font-mono text-gray-900 mb-3 leading-relaxed">
                                         {src.title}
                                     </h3>
-                                    <p className="text-sm font-serif text-gray-600 leading-relaxed mb-4 line-clamp-3">
+                                    <p className="text-xs md:text-sm font-serif text-gray-600 leading-relaxed mb-4 line-clamp-3">
                                         {src.summary}
                                     </p>
-                                    <div className="flex items-center gap-3 text-[10px] text-gray-500 font-mono tracking-widest uppercase">
+                                    <div className="flex flex-wrap items-center gap-2 md:gap-3 text-[9px] md:text-[10px] text-gray-500 font-mono tracking-widest uppercase mb-4 md:mb-0">
                                         <span>REF: {src.id}</span>
                                         <span className="w-1 h-1 bg-gray-300" />
                                         <span>CY {src.date}</span>
                                     </div>
                                 </div>
 
-                                <div className="absolute top-6 right-6">
+                                {/* Access button - static on mobile, absolute on desktop */}
+                                <div className="md:absolute md:top-6 md:right-6">
                                     <a
                                         href={src.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 bg-white text-gray-900 font-mono text-[10px] tracking-widest uppercase hover:bg-gray-100 hover:border-black transition-all"
+                                        className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 bg-white text-gray-900 font-mono text-[10px] tracking-widest uppercase hover:bg-gray-100 hover:border-black transition-all w-full md:w-auto"
                                     >
                                         [ ACCESS ]
                                         <ExternalLink className="w-3 h-3" />
@@ -152,13 +153,13 @@ export default function SourcesPage() {
                         ))}
 
                         {activeSources.length === 0 && (
-                            <div className="text-sm text-gray-900/40 font-mono uppercase tracking-widest p-8 border border-gray-400/5">
+                            <div className="text-sm text-gray-900/40 font-mono uppercase tracking-widest p-6 md:p-8 border border-gray-400/5">
                                 Loading repository records...
                             </div>
                         )}
                     </div>
 
-                    <div className="h-20" /> {/* Bottom padding */}
+                    <div className="h-10 md:h-20" /> {/* Bottom padding */}
                 </div>
             </div>
 

@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/',
-        destination: '/sources',
+        destination: '/maps',
         permanent: true,
       },
     ];

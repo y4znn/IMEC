@@ -36,21 +36,21 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
     };
 
     return (
-        <div className="max-w-6xl mx-auto space-y-6 pt-10 pb-20 relative">
+        <div className="max-w-6xl mx-auto space-y-4 md:space-y-6 pt-6 md:pt-10 pb-12 md:pb-20 relative">
             {/* ── Page Header ── */}
             <motion.div
                 initial={{ opacity: 0, y: -12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="pb-6 border-b border-gray-200 mb-8"
+                className="pb-4 md:pb-6 border-b border-gray-200 mb-6 md:mb-8"
             >
                 <div
-                    className="text-3xl font-semibold text-gray-900 tracking-tight font-serif"
+                    className="text-2xl md:text-3xl font-semibold text-gray-900 tracking-tight font-serif"
                     style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                     {data.pageTitle}
                 </div>
-                <div className="mt-2 text-sm text-gray-500 font-light tracking-wide font-mono">
+                <div className="mt-2 text-xs md:text-sm text-gray-500 font-light tracking-wide font-mono">
                     {data.pageSubtitle}
                 </div>
             </motion.div>
@@ -63,7 +63,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.1 }}
-                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 flex flex-col items-center justify-center text-center shadow-sm group h-96"
+                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 flex flex-col items-center justify-center text-center shadow-sm group h-auto md:h-96"
                 >
                     <img
                         src="/ahmad-profile.jpg"
@@ -97,7 +97,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="md:col-span-3 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm h-96"
+                    className="md:col-span-3 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm h-auto md:h-96"
                 >
                     <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-gray-300 pb-4">
                         <Focus className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
@@ -115,7 +115,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="md:col-span-2 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm relative overflow-hidden h-96 group"
+                    className="md:col-span-2 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm relative overflow-hidden h-auto md:h-96 group"
                 >
                     <div className="absolute top-0 right-0 p-32 bg-[radial-gradient(circle,rgba(0,0,0,0.03)_0%,transparent_70%)] pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-50" />
 
@@ -137,7 +137,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col h-96"
+                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col h-auto md:h-96"
                 >
                     <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-gray-300 pb-4">
                         <GraduationCap className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
@@ -167,7 +167,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col h-96"
+                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col h-auto md:h-96"
                 >
                     <div className="flex items-center gap-2 mb-4 shrink-0 border-b border-gray-300 pb-4">
                         <Library className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
