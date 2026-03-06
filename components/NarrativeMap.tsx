@@ -27,8 +27,8 @@ interface NodeData {
 }
 
 const imecNodes: NodeData[] = [
-    { id: "IND", name: "India", role: "The Eastern Anchor", description: "Primary manufacturing and export terminus. Connects to the Middle East via JNPT and Mundra ports.", next: "OMN", lat: 20.5937, lng: 78.9629, type: 'Sea', infrastructureInvestment: 10, dossierIntelligence: "Eastern Anchor. $10B national port modernization strategy deployed for hubs like Mundra and Vadhavan.", dx: 15, dy: 0, textAnchor: "start" },
-    { id: "OMN", name: "Oman", role: "Strategic Bypass", description: "Strategic landing point for the Blue-Raman subsea cable and Hafeet Rail project bypassing traditional bottlenecks.", next: "ARE", lat: 21.4735, lng: 55.9754, type: 'Land', infrastructureInvestment: 2, dossierIntelligence: "Strategic Bypass: The Hafeet Rail project links Sohar port to the UAE, offering a critical supply chain redundancy that bypasses the Strait of Hormuz.", dx: -15, dy: -5, textAnchor: "end" },
+    { id: "IND", name: "India", role: "The Eastern Anchor", description: "Primary manufacturing and export terminus. Connects to the Middle East via JNPT and Mundra ports.", next: "ARE", lat: 20.5937, lng: 78.9629, type: 'Sea', infrastructureInvestment: 10, dossierIntelligence: "Eastern Anchor. $10B national port modernization strategy deployed for hubs like Mundra and Vadhavan.", dx: 15, dy: 0, textAnchor: "start" },
+    { id: "OMN", name: "Oman", role: "Strategic Bypass", description: "Strategic landing point for the Blue-Raman subsea cable and Hafeet Rail project bypassing traditional bottlenecks.", next: null, lat: 21.4735, lng: 55.9754, type: 'Land', infrastructureInvestment: 2, dossierIntelligence: "Strategic Bypass: The Hafeet Rail project links Sohar port to the UAE, offering a critical supply chain redundancy that bypasses the Strait of Hormuz.", dx: -15, dy: -5, textAnchor: "end" },
     { id: "ARE", name: "United Arab Emirates", role: "The Gulf Transshipment Hub", description: "Jebel Ali and Fujairah serve as the core maritime-to-rail transshipment zone, bypassing the Strait of Hormuz.", next: "SAU", lat: 23.4241, lng: 53.8478, type: 'Land', infrastructureInvestment: 8, dossierIntelligence: "Integration point for GCC grids. Key maritime-to-rail switchyard.", dx: 0, dy: -20, textAnchor: "middle" },
     { id: "SAU", name: "Saudi Arabia", role: "The Desert Land-Bridge", description: "Vast overland railway integration connecting the Persian Gulf to the Jordanian border.", next: "JOR", lat: 23.8859, lng: 45.0792, type: 'Land', infrastructureInvestment: 20, dossierIntelligence: "Integration of the Saudi East Cargo Train; requires 269km of missing rail links from Al-Ghuwaifat (UAE) to Haradh.", dx: 0, dy: -20, textAnchor: "middle" },
     { id: "JOR", name: "Jordan", role: "The Vital Transit", description: "Critical connective tissue bridging Saudi rail lines to Israeli seaports.", next: "ISR", lat: 30.5852, lng: 35.2332, type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Crucial Bottleneck. Requires $2.09B - $2.6B to build a 225km standard-gauge freight rail linking Al-Haditha to the Israeli border.", dx: 15, dy: -10, textAnchor: "start" },
@@ -38,7 +38,7 @@ const imecNodes: NodeData[] = [
     { id: "FRA", name: "France", role: "The Western Terminus", description: "Marseille acts as the final strategic locus for Western European integration.", next: null, lat: 46.2276, lng: 2.2137, type: 'Land', infrastructureInvestment: 4, dossierIntelligence: "Western terminus concluding the Blue-Raman route.", dx: -15, dy: 5, textAnchor: "end" }
 ];
 
-const imecCountryIds = imecNodes.map(n => n.id);
+
 
 const chokepoints = [
     { id: "SUEZ", name: "Suez Canal", lat: 30.5852, lng: 32.2654, description: "Strategic Vulnerability: Houthi threats have reduced Suez Canal container crossings by 90%, necessitating the IMEC overland bypass." },
@@ -51,7 +51,7 @@ export default function NarrativeMap() {
     const [activePillar, setActivePillar] = useState<Pillar>('TRANSPORT');
     const [isLegendOpen, setIsLegendOpen] = useState(true);
     const [topology, setTopology] = useState<TopoJSON.Topology | null>(null);
-    
+
     // For cleaning up the resize observer across renders if needed
     const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
@@ -76,7 +76,7 @@ export default function NarrativeMap() {
     // EFFECT 2: Render & Update D3 Logic
     useEffect(() => {
         if (!topology || !d3ContainerRef.current || !containerRef.current) return;
-        
+
         const container = containerRef.current;
         const width = container.clientWidth;
         const height = container.clientHeight;
@@ -150,6 +150,11 @@ export default function NarrativeMap() {
             .domain([0, maxInvestment])
             .range(["#E5E7EB", "#374151"]);
 
+        const visibleNodes = activePillar === 'DIGITAL'
+            ? imecNodes
+            : imecNodes.filter(n => n.id !== 'OMN');
+        const visibleCountryIds = visibleNodes.map(n => n.id);
+
         // Render all countries
         g.selectAll("path.country")
             .data(geojson.features)
@@ -161,20 +166,20 @@ export default function NarrativeMap() {
             .attr("id", (d: any) => `country-${d.id}`)
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             .style("fill", (d: any) => {
-                if (imecCountryIds.includes(d.id)) {
-                    const node = imecNodes.find(n => n.id === d.id);
+                if (visibleCountryIds.includes(d.id)) {
+                    const node = visibleNodes.find(n => n.id === d.id);
                     return node ? colorScale(node.infrastructureInvestment) : "#D1D5DB";
                 }
                 return "#F9FAFB";
             })
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            .style("stroke", (d: any) => imecCountryIds.includes(d.id) ? "#6B7280" : "#9CA3AF")
+            .style("stroke", (d: any) => visibleCountryIds.includes(d.id) ? "#6B7280" : "#9CA3AF")
             .style("stroke-width", "1px")
             .style("pointer-events", "none");
 
         // Recreate nodes selection as groups
         const nodeSelection = g.selectAll("g.node-group")
-            .data(imecNodes)
+            .data(visibleNodes)
             .join("g")
             .attr("class", "node-group")
             .attr("transform", d => {
@@ -320,7 +325,7 @@ export default function NarrativeMap() {
             const cpPulse = chokepointSelection.selectAll("circle.cp-pulse")
                 .attr("r", 4)
                 .style("opacity", 0.8);
-            
+
             const loop = () => {
                 cpPulse.transition()
                     .duration(2000)
@@ -423,7 +428,7 @@ export default function NarrativeMap() {
 
         // Draw / Remove Connections based on Pillar
         if (activePillar === 'TRANSPORT') {
-            imecNodes.forEach(node => {
+            visibleNodes.forEach(node => {
                 if (node.next) {
                     const type = node.type === 'Sea' ? 'TRANSPORT_SEA' : 'TRANSPORT_LAND';
                     drawConnection(node.id, node.next, type);
@@ -449,7 +454,7 @@ export default function NarrativeMap() {
         if (resizeObserverRef.current) {
             resizeObserverRef.current.disconnect();
         }
-        
+
         resizeObserverRef.current = new ResizeObserver(() => {
             if (!topology || !g.selectAll) return; // Strict guard
             if (!containerRef.current) return;
@@ -475,11 +480,11 @@ export default function NarrativeMap() {
                 const [x, y] = projection([point.lng, point.lat]) || [0, 0];
                 return `translate(${x}, ${y}) scale(${1 / currentTransform.k})`;
             });
-            
+
             // Re-draw connections on resize by removing and drawing
             g.selectAll("path.trade-route").remove();
             if (activePillar === 'TRANSPORT') {
-                imecNodes.forEach(node => {
+                visibleNodes.forEach(node => {
                     if (node.next) {
                         const type = node.type === 'Sea' ? 'TRANSPORT_SEA' : 'TRANSPORT_LAND';
                         drawConnection(node.id, node.next, type);
@@ -494,9 +499,9 @@ export default function NarrativeMap() {
                 drawConnection("GRC", "ITA", "DIGITAL");
                 drawConnection("ITA", "FRA", "DIGITAL");
             } else if (activePillar === 'ENERGY') {
-                drawConnection("SAU", "JOR", "ENERGY"); 
+                drawConnection("SAU", "JOR", "ENERGY");
                 drawConnection("JOR", "ISR", "ENERGY");
-                drawConnection("SAU", "ARE", "ENERGY"); 
+                drawConnection("SAU", "ARE", "ENERGY");
             }
         });
 
