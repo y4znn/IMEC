@@ -81,7 +81,10 @@ export default function NarrativeMap() {
 
                 // CRITICAL: Semantic scaling (keep elements crisp and thin regardless of zoom)
                 g.selectAll("path.country").style("stroke-width", 0.5 / event.transform.k + "px");
-                g.selectAll("path.connection").style("stroke-width", 2 / event.transform.k + "px");
+                g.selectAll("path.connection").style("stroke-width", function () {
+                    const baseWidth = parseFloat(d3.select(this).attr("data-basewidth") || "2");
+                    return (baseWidth / event.transform.k) + "px";
+                });
                 g.selectAll("g.node-group").attr("transform", (d) => {
                     const node = d as NodeData;
                     const [x, y] = projection([node.lng, node.lat]) || [0, 0];
@@ -414,52 +417,74 @@ export default function NarrativeMap() {
                             const dy = p2[1] - p1[1];
                             const dr = Math.sqrt(dx * dx + dy * dy);
 
-                            // Adjust sweep flag for better arcs depending on the route
+                            // Sweeping Bezier arcs mimicking real shipping lanes and routes
                             let sweep = start.lng > end.lng ? 1 : 0;
-                            // Make the digital bypass sweep nicely over the red sea
+                            const arcScale = 0.8;
+
+                            // Adjusting sweep flags for elegant curvatures
                             if (type === 'DIGITAL') sweep = 0;
                             if (type === 'ENERGY') sweep = 1;
 
-                            const pathData = `M ${p1[0]},${p1[1]} A ${dr * 0.8},${dr * 0.8} 0 0,${sweep} ${p2[0]},${p2[1]}`;
+                            const pathData = `M ${p1[0]},${p1[1]} A ${dr * arcScale},${dr * arcScale} 0 0,${sweep} ${p2[0]},${p2[1]}`;
 
-                            let strokeColor = "#3B82F6";
-                            let strokeWidth = "2px";
-                            let dashArray = "none";
+                            let haloColor = "";
+                            let coreColor = "";
+                            let haloWidth = 6;
+                            let coreWidth = 2;
+                            let coreDashArray = "none";
+                            let haloOpacity = 0.15;
 
                             if (type === 'TRANSPORT_SEA') {
-                                strokeColor = "#3B82F6";
-                                strokeWidth = "2px";
-                                dashArray = "5, 5";
+                                haloColor = "#3B82F6";
+                                coreColor = "#3B82F6";
+                                haloOpacity = 0.15;
+                                coreWidth = 1.5;
+                                coreDashArray = "4, 4";
                             } else if (type === 'TRANSPORT_LAND') {
-                                strokeColor = "#E11D48"; // High contrast crimson
-                                strokeWidth = "2.5px";
+                                haloColor = "#E11D48";
+                                coreColor = "#111827"; // deep charcoal
+                                haloOpacity = 0.1;
+                                coreWidth = 2;
                             } else if (type === 'DIGITAL') {
-                                strokeColor = "#A855F7"; // Purple for digital
-                                strokeWidth = "2.5px";
+                                haloColor = "#A855F7"; // Purple for digital
+                                coreColor = "#A855F7";
+                                haloOpacity = 0.15;
+                                coreWidth = 1.5;
+                                coreDashArray = "4, 4";
                             } else if (type === 'ENERGY') {
-                                strokeColor = "#10B981"; // Bright Green for energy
-                                strokeWidth = "3px";
+                                haloColor = "#10B981"; // Bright Green for energy
+                                coreColor = "#10B981";
+                                haloOpacity = 0.15;
+                                coreWidth = 1.5;
                             }
 
-                            const connection = g.append("path")
+                            const currentTransform = d3.zoomTransform(svg.node() as Element);
+                            const k = currentTransform.k;
+
+                            // Render Halo layer immediately without transition
+                            g.append("path")
                                 .attr("class", "connection")
+                                .attr("data-basewidth", haloWidth)
                                 .attr("d", pathData)
                                 .style("fill", "none")
-                                .style("stroke", strokeColor)
-                                .style("stroke-dasharray", dashArray)
-                                .style("opacity", 0)
-                                // semantic zoom awareness
-                                .style("stroke-width", () => {
-                                    const currentTransform = d3.zoomTransform(svg.node() as Element);
-                                    let baseWidth = 2;
-                                    if (strokeWidth === "2.5px") baseWidth = 2.5;
-                                    if (strokeWidth === "3px") baseWidth = 3;
-                                    return baseWidth / currentTransform.k + "px";
-                                })
+                                .style("stroke", haloColor)
+                                .style("stroke-width", (haloWidth / k) + "px")
+                                .style("opacity", haloOpacity)
+                                .style("stroke-linecap", "round")
                                 .style("pointer-events", "none");
 
-                            // Fade in
-                            connection.transition().duration(500).style("opacity", 1);
+                            // Render Core layer immediately without transition
+                            g.append("path")
+                                .attr("class", "connection")
+                                .attr("data-basewidth", coreWidth)
+                                .attr("d", pathData)
+                                .style("fill", "none")
+                                .style("stroke", coreColor)
+                                .style("stroke-dasharray", coreDashArray)
+                                .style("stroke-width", (coreWidth / k) + "px")
+                                .style("opacity", 1)
+                                .style("stroke-linecap", "round")
+                                .style("pointer-events", "none");
                         }
                     }
                 };
