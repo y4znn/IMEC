@@ -16,8 +16,7 @@ interface NodeData {
     role: string;
     description: string;
     next: string | null; // ISO A3 of next node
-    lat: number;
-    lng: number;
+    coordinates: [number, number];
     type: 'Sea' | 'Land'; // Context for transport routing
     infrastructureInvestment: number; // In billions
     dossierIntelligence: string; // Detail for side panel
@@ -27,22 +26,22 @@ interface NodeData {
 }
 
 const imecNodes: NodeData[] = [
-    { id: "IND", name: "India", role: "The Eastern Anchor", description: "Primary manufacturing and export terminus. Connects to the Middle East via JNPT and Mundra ports.", next: "ARE", lat: 20.5937, lng: 78.9629, type: 'Sea', infrastructureInvestment: 10, dossierIntelligence: "Eastern Anchor. $10B national port modernization strategy deployed for hubs like Mundra and Vadhavan.", dx: 15, dy: 0, textAnchor: "start" },
-    { id: "OMN", name: "Oman", role: "Strategic Bypass", description: "Strategic landing point for the Blue-Raman subsea cable and Hafeet Rail project bypassing traditional bottlenecks.", next: null, lat: 21.4735, lng: 55.9754, type: 'Land', infrastructureInvestment: 2, dossierIntelligence: "Strategic Bypass: The Hafeet Rail project links Sohar port to the UAE, offering a critical supply chain redundancy that bypasses the Strait of Hormuz.", dx: -15, dy: -5, textAnchor: "end" },
-    { id: "ARE", name: "United Arab Emirates", role: "The Gulf Transshipment Hub", description: "Jebel Ali and Fujairah serve as the core maritime-to-rail transshipment zone, bypassing the Strait of Hormuz.", next: "SAU", lat: 23.4241, lng: 53.8478, type: 'Land', infrastructureInvestment: 8, dossierIntelligence: "Integration point for GCC grids. Key maritime-to-rail switchyard.", dx: 0, dy: -20, textAnchor: "middle" },
-    { id: "SAU", name: "Saudi Arabia", role: "The Desert Land-Bridge", description: "Vast overland railway integration connecting the Persian Gulf to the Jordanian border.", next: "JOR", lat: 23.8859, lng: 45.0792, type: 'Land', infrastructureInvestment: 20, dossierIntelligence: "Integration of the Saudi East Cargo Train; requires 269km of missing rail links from Al-Ghuwaifat (UAE) to Haradh.", dx: 0, dy: -20, textAnchor: "middle" },
-    { id: "JOR", name: "Jordan", role: "The Vital Transit", description: "Critical connective tissue bridging Saudi rail lines to Israeli seaports.", next: "ISR", lat: 30.5852, lng: 35.2332, type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Crucial Bottleneck. Requires $2.09B - $2.6B to build a 225km standard-gauge freight rail linking Al-Haditha to the Israeli border.", dx: 15, dy: -10, textAnchor: "start" },
-    { id: "ISR", name: "Israel", role: "The Mediterranean Hinge", description: "Haifa port acts as the final exit point before entering European waters.", next: "GRC", lat: 31.0461, lng: 34.8516, type: 'Sea', infrastructureInvestment: 6, dossierIntelligence: "Haifa Port Modernization. Terrestrial fusion point for the Blue-Raman data cable bypassing Egypt.", dx: -15, dy: -10, textAnchor: "end" },
-    { id: "GRC", name: "Greece", role: "The European Entry", description: "Piraeus port serves as the immediate geographic gateway into the EU market.", next: "ITA", lat: 39.0742, lng: 21.8243, type: 'Sea', infrastructureInvestment: 4, dossierIntelligence: "European entry point distributing energy and digital payloads deep into the EU.", dx: -15, dy: -10, textAnchor: "end" },
-    { id: "ITA", name: "Italy", role: "The Central Artery", description: "Core Mediterranean distribution hub for continental supply chains.", next: "FRA", lat: 41.8719, lng: 12.5674, type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Continental supply chain distributor for Western Europe.", dx: -15, dy: -5, textAnchor: "end" },
-    { id: "FRA", name: "France", role: "The Western Terminus", description: "Marseille acts as the final strategic locus for Western European integration.", next: null, lat: 46.2276, lng: 2.2137, type: 'Land', infrastructureInvestment: 4, dossierIntelligence: "Western terminus concluding the Blue-Raman route.", dx: -15, dy: 5, textAnchor: "end" }
+    { id: "IND", name: "India", role: "The Eastern Anchor", description: "Primary manufacturing and export terminus. Connects to the Middle East via JNPT and Mundra ports.", next: "ARE", coordinates: [69.73, 22.83], type: 'Sea', infrastructureInvestment: 10, dossierIntelligence: "Eastern Anchor. $10B national port modernization strategy deployed for hubs like Mundra and Vadhavan.", dx: 15, dy: 0, textAnchor: "start" },
+    { id: "OMN", name: "Oman", role: "Strategic Bypass", description: "Strategic landing point for the Blue-Raman subsea cable and Hafeet Rail project bypassing traditional bottlenecks.", next: null, coordinates: [56.62, 24.36], type: 'Land', infrastructureInvestment: 2, dossierIntelligence: "Strategic Bypass: The Hafeet Rail project links Sohar port to the UAE, offering a critical supply chain redundancy that bypasses the Strait of Hormuz.", dx: -15, dy: -5, textAnchor: "end" },
+    { id: "ARE", name: "United Arab Emirates", role: "The Gulf Transshipment Hub", description: "Jebel Ali and Fujairah serve as the core maritime-to-rail transshipment zone, bypassing the Strait of Hormuz.", next: "SAU", coordinates: [55.02, 24.98], type: 'Land', infrastructureInvestment: 8, dossierIntelligence: "Integration point for GCC grids. Key maritime-to-rail switchyard.", dx: 0, dy: -20, textAnchor: "middle" },
+    { id: "SAU", name: "Saudi Arabia", role: "The Desert Land-Bridge", description: "Vast overland railway integration connecting the Persian Gulf to the Jordanian border.", next: "JOR", coordinates: [49.06, 24.13], type: 'Land', infrastructureInvestment: 20, dossierIntelligence: "Integration of the Saudi East Cargo Train; requires 269km of missing rail links from Al-Ghuwaifat (UAE) to Haradh.", dx: 0, dy: -20, textAnchor: "middle" },
+    { id: "JOR", name: "Jordan", role: "The Vital Transit", description: "Critical connective tissue bridging Saudi rail lines to Israeli seaports.", next: "ISR", coordinates: [36.20, 32.33], type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Crucial Bottleneck. Requires $2.09B - $2.6B to build a 225km standard-gauge freight rail linking Al-Haditha to the Israeli border.", dx: 15, dy: -10, textAnchor: "start" },
+    { id: "ISR", name: "Israel", role: "The Mediterranean Hinge", description: "Haifa port acts as the final exit point before entering European waters.", next: "GRC", coordinates: [35.01, 32.81], type: 'Sea', infrastructureInvestment: 6, dossierIntelligence: "Haifa Port Modernization. Terrestrial fusion point for the Blue-Raman data cable bypassing Egypt.", dx: -15, dy: -10, textAnchor: "end" },
+    { id: "GRC", name: "Greece", role: "The European Entry", description: "Piraeus port serves as the immediate geographic gateway into the EU market.", next: "ITA", coordinates: [23.63, 37.94], type: 'Sea', infrastructureInvestment: 4, dossierIntelligence: "European entry point distributing energy and digital payloads deep into the EU.", dx: -15, dy: -10, textAnchor: "end" },
+    { id: "ITA", name: "Italy", role: "The Central Artery", description: "Core Mediterranean distribution hub for continental supply chains.", next: "FRA", coordinates: [15.55, 38.19], type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Continental supply chain distributor for Western Europe.", dx: -15, dy: -5, textAnchor: "end" },
+    { id: "FRA", name: "France", role: "The Western Terminus", description: "Marseille acts as the final strategic locus for Western European integration.", next: null, coordinates: [2.21, 46.23], type: 'Land', infrastructureInvestment: 4, dossierIntelligence: "Western terminus concluding the Blue-Raman route.", dx: -15, dy: 5, textAnchor: "end" }
 ];
 
 
 
-const chokepoints = [
-    { id: "SUEZ", name: "Suez Canal", lat: 30.5852, lng: 32.2654, description: "Strategic Vulnerability: Houthi threats have reduced Suez Canal container crossings by 90%, necessitating the IMEC overland bypass." },
-    { id: "BAM", name: "Bab el-Mandeb", lat: 12.5833, lng: 43.3333, description: "Strategic Vulnerability: Critical Red Sea access point entirely compromised by asymmetrical warfare, shutting off the Eastern Mediterranean from Asia." }
+const chokepoints: { id: string; name: string; coordinates: [number, number]; description: string }[] = [
+    { id: "SUEZ", name: "Suez Canal", coordinates: [32.2654, 30.5852], description: "Strategic Vulnerability: Houthi threats have reduced Suez Canal container crossings by 90%, necessitating the IMEC overland bypass." },
+    { id: "BAM", name: "Bab el-Mandeb", coordinates: [43.3333, 12.5833], description: "Strategic Vulnerability: Critical Red Sea access point entirely compromised by asymmetrical warfare, shutting off the Eastern Mediterranean from Asia." }
 ];
 
 export default function NarrativeMap() {
@@ -119,13 +118,13 @@ export default function NarrativeMap() {
                 });
                 g.selectAll("g.node-group").attr("transform", (d) => {
                     const node = d as NodeData;
-                    const [x, y] = projection([node.lng, node.lat]) || [0, 0];
+                    const [x, y] = projection(node.coordinates) || [0, 0];
                     return `translate(${x}, ${y}) scale(${1 / event.transform.k})`;
                 });
                 g.selectAll("g.chokepoint-group").attr("transform", (d) => {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const point = d as any;
-                    const [x, y] = projection([point.lng, point.lat]) || [0, 0];
+                    const [x, y] = projection(point.coordinates) || [0, 0];
                     return `translate(${x}, ${y}) scale(${1 / event.transform.k})`;
                 });
             });
@@ -183,7 +182,7 @@ export default function NarrativeMap() {
             .join("g")
             .attr("class", "node-group")
             .attr("transform", d => {
-                const [x, y] = projection([d.lng, d.lat]) || [0, 0];
+                const [x, y] = projection(d.coordinates) || [0, 0];
                 return `translate(${x}, ${y}) scale(1)`;
             })
             .style("opacity", 1)
@@ -290,7 +289,7 @@ export default function NarrativeMap() {
             .join("g")
             .attr("class", "chokepoint-group")
             .attr("transform", d => {
-                const [x, y] = projection([d.lng, d.lat]) || [0, 0];
+                const [x, y] = projection(d.coordinates) || [0, 0];
                 return `translate(${x}, ${y}) scale(1)`;
             })
             .style("pointer-events", "all") // Important: Ensure chokepoints capture events
@@ -346,8 +345,8 @@ export default function NarrativeMap() {
             const end = imecNodes.find(n => n.id === endId);
 
             if (start && end) {
-                const p1 = projection([start.lng, start.lat]);
-                const p2 = projection([end.lng, end.lat]);
+                const p1 = projection(start.coordinates);
+                const p2 = projection(end.coordinates);
 
                 if (p1 && p2) {
                     const dx = p2[0] - p1[0];
@@ -355,7 +354,7 @@ export default function NarrativeMap() {
                     const dr = Math.sqrt(dx * dx + dy * dy);
 
                     // Sweeping Bezier arcs mimicking real shipping lanes and routes
-                    let sweep = start.lng > end.lng ? 1 : 0;
+                    let sweep = start.coordinates[0] > end.coordinates[0] ? 1 : 0;
                     const arcScale = 0.8;
 
                     // Adjusting sweep flags for elegant curvatures
@@ -469,7 +468,7 @@ export default function NarrativeMap() {
             g.selectAll("g.node-group").attr("transform", (d) => {
                 const node = d as NodeData;
                 const currentTransform = d3.zoomTransform(svg.node() as Element);
-                const [x, y] = projection([node.lng, node.lat]) || [0, 0];
+                const [x, y] = projection(node.coordinates) || [0, 0];
                 return `translate(${x}, ${y}) scale(${1 / currentTransform.k})`;
             });
 
@@ -477,7 +476,7 @@ export default function NarrativeMap() {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const point = d as any;
                 const currentTransform = d3.zoomTransform(svg.node() as Element);
-                const [x, y] = projection([point.lng, point.lat]) || [0, 0];
+                const [x, y] = projection(point.coordinates) || [0, 0];
                 return `translate(${x}, ${y}) scale(${1 / currentTransform.k})`;
             });
 
