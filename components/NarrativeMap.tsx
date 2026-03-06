@@ -50,14 +50,38 @@ export default function NarrativeMap() {
     const d3ContainerRef = useRef<HTMLDivElement>(null);
     const [activePillar, setActivePillar] = useState<Pillar>('TRANSPORT');
     const [isLegendOpen, setIsLegendOpen] = useState(true);
+    const [topology, setTopology] = useState<TopoJSON.Topology | null>(null);
+    
+    // For cleaning up the resize observer across renders if needed
+    const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
+    // EFFECT 1: Fetch Map Data Once
     useEffect(() => {
-        if (!containerRef.current || !d3ContainerRef.current) return;
+        let isMounted = true;
+        const fetchTopology = async () => {
+            try {
+                const res = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+                const data = await res.json();
+                if (isMounted) {
+                    setTopology(data);
+                }
+            } catch (err) {
+                console.error("Failed to load map data", err);
+            }
+        };
+        fetchTopology();
+        return () => { isMounted = false; };
+    }, []);
+
+    // EFFECT 2: Render & Update D3 Logic
+    useEffect(() => {
+        if (!topology || !d3ContainerRef.current || !containerRef.current) return;
+        
         const container = containerRef.current;
         const width = container.clientWidth;
         const height = container.clientHeight;
 
-        // Clear previous renders
+        // Clear previous renders (destroy entire map to rebuild cleanly or setup base map)
         d3.select(d3ContainerRef.current).selectAll("*").remove();
 
         const svg = d3.select(d3ContainerRef.current)
@@ -67,10 +91,18 @@ export default function NarrativeMap() {
             .style("position", "absolute")
             .style("top", 0)
             .style("left", 0)
-            .style("z-index", 1) // Ensure it sits above background but can capture events
+            .style("z-index", 1) // Ensure it sits above background
             .style("cursor", "crosshair");
 
         const g = svg.append("g");
+
+        // Natural Earth projection mapping to Eurasia + Africa roughly
+        const projection = d3.geoNaturalEarth1()
+            .scale(width / 3.5)
+            .translate([width / 2.2, height / 1.7])
+            .center([40, 25]); // Rough center roughly over middle east
+
+        const path = d3.geoPath().projection(projection);
 
         // Set up zoom behavior
         const zoom = d3.zoom<SVGSVGElement, unknown>()
@@ -81,7 +113,7 @@ export default function NarrativeMap() {
 
                 // CRITICAL: Semantic scaling (keep elements crisp and thin regardless of zoom)
                 g.selectAll("path.country").style("stroke-width", 0.5 / event.transform.k + "px");
-                g.selectAll("path.connection").style("stroke-width", function () {
+                g.selectAll("path.trade-route").style("stroke-width", function () {
                     const baseWidth = parseFloat(d3.select(this).attr("data-basewidth") || "2");
                     return (baseWidth / event.transform.k) + "px";
                 });
@@ -109,381 +141,317 @@ export default function NarrativeMap() {
                 .call(zoom.transform, d3.zoomIdentity);
         };
 
-        // Natural Earth projection mapping to Eurasia + Africa roughly
-        const projection = d3.geoNaturalEarth1()
-            .scale(width / 3.5)
-            .translate([width / 2.2, height / 1.7])
-            .center([40, 25]); // Rough center roughly over middle east
+        // Render Base Map
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const geojson = topojson.feature(topology, (topology.objects.countries) as any) as any;
 
-        const path = d3.geoPath().projection(projection);
+        const maxInvestment = d3.max(imecNodes, d => d.infrastructureInvestment) || 20;
+        const colorScale = d3.scaleLinear<string>()
+            .domain([0, maxInvestment])
+            .range(["#E5E7EB", "#374151"]);
 
-        let topologyData: TopoJSON.Topology | null = null;
-
-        const renderMap = () => {
-            if (!topologyData) return;
+        // Render all countries
+        g.selectAll("path.country")
+            .data(geojson.features)
+            .join("path")
+            .attr("class", "country")
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const geojson = topojson.feature(topologyData, (topologyData.objects.countries) as any) as any;
+            .attr("d", path as any)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .attr("id", (d: any) => `country-${d.id}`)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .style("fill", (d: any) => {
+                if (imecCountryIds.includes(d.id)) {
+                    const node = imecNodes.find(n => n.id === d.id);
+                    return node ? colorScale(node.infrastructureInvestment) : "#D1D5DB";
+                }
+                return "#F9FAFB";
+            })
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .style("stroke", (d: any) => imecCountryIds.includes(d.id) ? "#6B7280" : "#9CA3AF")
+            .style("stroke-width", "1px")
+            .style("pointer-events", "none");
 
-            // Setup Choropleth Scale
-            const maxInvestment = d3.max(imecNodes, d => d.infrastructureInvestment) || 20;
-            // Map 0 to maxInvestment to a slate color range, darkest for highest investment
-            const colorScale = d3.scaleLinear<string>()
-                .domain([0, maxInvestment])
-                .range(["#E5E7EB", "#374151"]); // light gray to deep slate
+        // Recreate nodes selection as groups
+        const nodeSelection = g.selectAll("g.node-group")
+            .data(imecNodes)
+            .join("g")
+            .attr("class", "node-group")
+            .attr("transform", d => {
+                const [x, y] = projection([d.lng, d.lat]) || [0, 0];
+                return `translate(${x}, ${y}) scale(1)`;
+            })
+            .style("opacity", 1)
+            .style("pointer-events", "all"); // Important: Ensure nodes capture events
 
-            // Render all countries
-            const countryPaths = g.selectAll("path.country")
-                .data(geojson.features)
-                .join("path")
-                .attr("class", "country")
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                .attr("d", path as any)
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                .attr("id", (d: any) => `country-${d.id}`)
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                .style("fill", (d: any) => {
-                    if (imecCountryIds.includes(d.id)) {
-                        const node = imecNodes.find(n => n.id === d.id);
-                        return node ? colorScale(node.infrastructureInvestment) : "#D1D5DB";
-                    }
-                    return "#F9FAFB";
-                })
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                .style("stroke", (d: any) => imecCountryIds.includes(d.id) ? "#6B7280" : "#9CA3AF") // Darker strokes for visibility
-                .style("stroke-width", "1px")
-                .style("transition", "fill 0.4s ease-out, stroke 0.4s ease-out")
-                // Make sure bounding box is clickable using visiblePainted or all, transparent strokes don't block
-                .style("pointer-events", "none"); // Disable direct country pointer events to let Voronoi catch SVG mouse events
+        nodeSelection.selectAll("circle.node-bg")
+            .data(d => [d])
+            .join("circle")
+            .attr("class", "node-bg")
+            .attr("r", 9)
+            .style("fill", "#111827")
+            .style("stroke", "#ffffff")
+            .style("stroke-width", "1.5px");
 
-            // Recreate nodes selection as groups
-            const nodeSelection = g.selectAll("g.node-group")
-                .data(imecNodes)
-                .join("g")
-                .attr("class", "node-group")
-                .attr("transform", d => {
-                    const [x, y] = projection([d.lng, d.lat]) || [0, 0];
-                    // At start zoom k=1 so scale=1
-                    return `translate(${x}, ${y}) scale(1)`;
-                })
-                .style("opacity", 0.5)
-                .style("transition", "opacity 0.3s ease")
-                .style("pointer-events", "none");
+        const anchorPath = "M12 22V8M5 12H2a10 10 0 0 0 20 0h-3M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z";
+        const trainPath = "M4 11h16M12 3v8m-4 8-2 3m10-3-2-3M8 15h0m8 0h0M6 3h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z";
 
-            // Pulse ring background
-            nodeSelection.selectAll("circle.pulse")
-                .data(d => [d])
-                .join("circle")
-                .attr("class", "pulse")
-                .attr("r", 5)
-                .style("fill", "transparent");
+        nodeSelection.selectAll("path.icon")
+            .data(d => [d])
+            .join("path")
+            .attr("class", "icon")
+            .attr("d", d => {
+                const id = (d as NodeData).id;
+                if (id === 'OMN') return "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z";
+                return ["IND", "ARE", "ISR", "GRC", "ITA", "FRA"].includes(id) ? anchorPath : trainPath
+            })
+            .style("fill", "none")
+            .style("stroke", "#ffffff")
+            .style("stroke-width", "2.5px")
+            .style("stroke-linecap", "round")
+            .style("stroke-linejoin", "round")
+            .attr("transform", "translate(-6, -6) scale(0.5)")
+            .style("pointer-events", "none");
 
-            // Node background circle
-            nodeSelection.selectAll("circle.node-bg")
-                .data(d => [d])
-                .join("circle")
-                .attr("class", "node-bg")
-                .attr("r", 9)
-                .style("fill", "#111827")
-                .style("stroke", "#ffffff")
-                .style("stroke-width", "1.5px");
+        // Native SVG Text Labels (Halo Title)
+        nodeSelection.selectAll("text.halo-title")
+            .data(d => [d])
+            .join("text")
+            .attr("class", "halo-title")
+            .attr("dx", d => (d as NodeData).dx)
+            .attr("dy", d => (d as NodeData).dy)
+            .attr("text-anchor", d => (d as NodeData).textAnchor)
+            .text(d => (d as NodeData).name)
+            .style("font-family", "serif")
+            .style("font-size", "14px")
+            .style("font-weight", "bold")
+            .style("fill", "none")
+            .style("stroke", "#FFFFFF")
+            .style("stroke-width", "4px")
+            .style("stroke-linejoin", "round")
+            .style("opacity", "0.9")
+            .style("pointer-events", "none");
 
-            // High-Fidelity SVG Iconography
-            const anchorPath = "M12 22V8M5 12H2a10 10 0 0 0 20 0h-3M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z";
-            const trainPath = "M4 11h16M12 3v8m-4 8-2 3m10-3-2-3M8 15h0m8 0h0M6 3h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z";
+        // Halo Subtitle/Role
+        nodeSelection.selectAll("text.halo-role")
+            .data(d => [d])
+            .join("text")
+            .attr("class", "halo-role")
+            .attr("dx", d => (d as NodeData).dx)
+            .attr("dy", d => (d as NodeData).dy + 14)
+            .attr("text-anchor", d => (d as NodeData).textAnchor)
+            .text(d => (d as NodeData).role)
+            .style("font-family", "monospace")
+            .style("font-size", "10px")
+            .style("fill", "none")
+            .style("stroke", "#FFFFFF")
+            .style("stroke-width", "4px")
+            .style("stroke-linejoin", "round")
+            .style("opacity", "0.9")
+            .style("pointer-events", "none");
 
-            nodeSelection.selectAll("path.icon")
-                .data(d => [d])
-                .join("path")
-                .attr("class", "icon")
-                .attr("d", d => {
-                    const id = (d as NodeData).id;
-                    if (id === 'OMN') return "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"; // Smartphone/Server stub
-                    return ["IND", "ARE", "ISR", "GRC", "ITA", "FRA"].includes(id) ? anchorPath : trainPath
-                })
-                .style("fill", "none")
-                .style("stroke", "#ffffff")
-                .style("stroke-width", "2.5px") // Thicker for better readability
-                .style("stroke-linecap", "round")
-                .style("stroke-linejoin", "round")
-                .attr("transform", "translate(-6, -6) scale(0.5)"); // Center 24x24 icons
+        // Core Title
+        nodeSelection.selectAll("text.core-title")
+            .data(d => [d])
+            .join("text")
+            .attr("class", "core-title")
+            .attr("dx", d => (d as NodeData).dx)
+            .attr("dy", d => (d as NodeData).dy)
+            .attr("text-anchor", d => (d as NodeData).textAnchor)
+            .text(d => (d as NodeData).name)
+            .style("font-family", "serif")
+            .style("font-size", "14px")
+            .style("font-weight", "bold")
+            .style("fill", "#111827")
+            .style("pointer-events", "none");
 
-            // --- NATIVE SVG TEXT LABELS (Title & Subtitle with Halo) ---
-            // Halo Title
-            nodeSelection.selectAll("text.halo-title")
-                .data(d => [d])
-                .join("text")
-                .attr("class", "halo-title")
-                .attr("dx", d => (d as NodeData).dx)
-                .attr("dy", d => (d as NodeData).dy)
-                .attr("text-anchor", d => (d as NodeData).textAnchor)
-                .text(d => (d as NodeData).name)
-                .style("font-family", "serif")
-                .style("font-size", "14px")
-                .style("font-weight", "bold")
-                .style("fill", "none")
-                .style("stroke", "#FFFFFF")
-                .style("stroke-width", "4px")
-                .style("stroke-linejoin", "round")
-                .style("opacity", "0.9")
-                .style("pointer-events", "none");
+        // Core Subtitle/Role
+        nodeSelection.selectAll("text.core-role")
+            .data(d => [d])
+            .join("text")
+            .attr("class", "core-role")
+            .attr("dx", d => (d as NodeData).dx)
+            .attr("dy", d => (d as NodeData).dy + 14)
+            .attr("text-anchor", d => (d as NodeData).textAnchor)
+            .text(d => (d as NodeData).role)
+            .style("font-family", "monospace")
+            .style("font-size", "10px")
+            .style("fill", "#4B5563")
+            .style("pointer-events", "none");
 
-            // Halo Subtitle/Role
-            nodeSelection.selectAll("text.halo-role")
-                .data(d => [d])
-                .join("text")
-                .attr("class", "halo-role")
-                .attr("dx", d => (d as NodeData).dx)
-                .attr("dy", d => (d as NodeData).dy + 14)
-                .attr("text-anchor", d => (d as NodeData).textAnchor)
-                .text(d => (d as NodeData).role)
-                .style("font-family", "monospace")
-                .style("font-size", "10px")
-                .style("fill", "none")
-                .style("stroke", "#FFFFFF")
-                .style("stroke-width", "4px")
-                .style("stroke-linejoin", "round")
-                .style("opacity", "0.9")
-                .style("pointer-events", "none");
+        // Render Chokepoints
+        const chokepointSelection = g.selectAll("g.chokepoint-group")
+            .data(chokepoints)
+            .join("g")
+            .attr("class", "chokepoint-group")
+            .attr("transform", d => {
+                const [x, y] = projection([d.lng, d.lat]) || [0, 0];
+                return `translate(${x}, ${y}) scale(1)`;
+            })
+            .style("pointer-events", "all") // Important: Ensure chokepoints capture events
+            .style("opacity", 1);
 
-            // Core Title
-            nodeSelection.selectAll("text.core-title")
-                .data(d => [d])
-                .join("text")
-                .attr("class", "core-title")
-                .attr("dx", d => (d as NodeData).dx)
-                .attr("dy", d => (d as NodeData).dy)
-                .attr("text-anchor", d => (d as NodeData).textAnchor)
-                .text(d => (d as NodeData).name)
-                .style("font-family", "serif")
-                .style("font-size", "14px")
-                .style("font-weight", "bold")
-                .style("fill", "#111827")
-                .style("pointer-events", "none");
+        chokepointSelection.selectAll("circle.cp-pulse")
+            .data(d => [d])
+            .join("circle")
+            .attr("class", "cp-pulse")
+            .attr("r", 4)
+            .style("fill", "#EF4444")
+            .style("opacity", 0.5)
+            .style("pointer-events", "none");
 
-            // Core Subtitle/Role
-            nodeSelection.selectAll("text.core-role")
-                .data(d => [d])
-                .join("text")
-                .attr("class", "core-role")
-                .attr("dx", d => (d as NodeData).dx)
-                .attr("dy", d => (d as NodeData).dy + 14)
-                .attr("text-anchor", d => (d as NodeData).textAnchor)
-                .text(d => (d as NodeData).role)
-                .style("font-family", "monospace")
-                .style("font-size", "10px")
-                .style("fill", "#4B5563")
-                .style("pointer-events", "none");
+        chokepointSelection.selectAll("circle.cp-core")
+            .data(d => [d])
+            .join("circle")
+            .attr("class", "cp-core")
+            .attr("r", 3)
+            .style("fill", "#B91C1C")
+            .style("stroke", "#ffffff")
+            .style("stroke-width", "1px")
+            .style("pointer-events", "none");
 
-            // Render Chokepoints
-            const chokepointSelection = g.selectAll("g.chokepoint-group")
-                .data(chokepoints)
-                .join("g")
-                .attr("class", "chokepoint-group")
-                .attr("transform", d => {
-                    const [x, y] = projection([d.lng, d.lat]) || [0, 0];
-                    return `translate(${x}, ${y}) scale(1)`;
-                })
-                .style("pointer-events", "all")
-                // In a multi-pillar map, show only on TRANSPORT or perhaps always to emphasize geopolitics
-                .style("opacity", 1);
+        chokepointSelection.selectAll("title")
+            .data(d => [d])
+            .join("title")
+            .text(d => d.description);
 
-            chokepointSelection.selectAll("circle.cp-pulse")
-                .data(d => [d])
-                .join("circle")
-                .attr("class", "cp-pulse")
+        // Animate Chokepoints continuously
+        const animateChokepoints = () => {
+            const cpPulse = chokepointSelection.selectAll("circle.cp-pulse")
                 .attr("r", 4)
-                .style("fill", "#EF4444")
-                .style("opacity", 0.5)
-                .style("pointer-events", "none");
-
-            chokepointSelection.selectAll("circle.cp-core")
-                .data(d => [d])
-                .join("circle")
-                .attr("class", "cp-core")
-                .attr("r", 3)
-                .style("fill", "#B91C1C")
-                .style("stroke", "#ffffff")
-                .style("stroke-width", "1px");
-
-            chokepointSelection.selectAll("title")
-                .data(d => [d])
-                .join("title")
-                .text(d => d.description);
-
-            // Animate Chokepoints continuously
-            const animateChokepoints = () => {
-                chokepointSelection.selectAll("circle.cp-pulse")
-                    .attr("r", 4)
-                    .style("opacity", 0.8)
-                    .transition()
+                .style("opacity", 0.8);
+            
+            const loop = () => {
+                cpPulse.transition()
                     .duration(2000)
                     .ease(d3.easeCircleOut)
                     .attr("r", 15)
                     .style("opacity", 0)
-                    .on("end", animateChokepoints);
+                    .on("end", loop);
             };
-            animateChokepoints();
-
-            // Expose a method to update the state imperatively bypassing React reconciler overhead for D3 layers
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (d3ContainerRef.current as any)._updateD3Visuals = (pillar: Pillar) => {
-                // Update map fills (Domino logic)
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                countryPaths.style("fill", (d: any) => {
-                    if (!imecCountryIds.includes(d.id)) return "#F9FAFB";
-                    const node = imecNodes.find(n => n.id === d.id);
-                    return node ? colorScale(node.infrastructureInvestment) : "#D1D5DB";
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                }).style("stroke", (d: any) => {
-                    if (!imecCountryIds.includes(d.id)) return "#9CA3AF";
-                    return "#6B7280";
-                });
-
-                // Update map points
-                nodeSelection.style("opacity", 1);
-                nodeSelection.selectAll("circle.node-bg")
-                    .style("fill", "#111827")
-                    .attr("r", 9);
-
-                // Setup pulse (disabled as no more hover)
-                nodeSelection.selectAll("circle.pulse").interrupt();
-                nodeSelection.selectAll("circle.pulse")
-                    .style("opacity", 0)
-                    .attr("r", 5);
-
-                // Smoothly fade out old connections
-                g.selectAll("path.connection")
-                    .transition()
-                    .duration(300)
-                    .style("opacity", 0)
-                    .remove();
-
-                const drawConnection = (startId: string, endId: string, type: 'TRANSPORT_SEA' | 'TRANSPORT_LAND' | 'DIGITAL' | 'ENERGY') => {
-                    const start = imecNodes.find(n => n.id === startId);
-                    const end = imecNodes.find(n => n.id === endId);
-
-                    if (start && end) {
-                        const p1 = projection([start.lng, start.lat]);
-                        const p2 = projection([end.lng, end.lat]);
-
-                        if (p1 && p2) {
-                            const dx = p2[0] - p1[0];
-                            const dy = p2[1] - p1[1];
-                            const dr = Math.sqrt(dx * dx + dy * dy);
-
-                            // Sweeping Bezier arcs mimicking real shipping lanes and routes
-                            let sweep = start.lng > end.lng ? 1 : 0;
-                            const arcScale = 0.8;
-
-                            // Adjusting sweep flags for elegant curvatures
-                            if (type === 'DIGITAL') sweep = 0;
-                            if (type === 'ENERGY') sweep = 1;
-
-                            const pathData = `M ${p1[0]},${p1[1]} A ${dr * arcScale},${dr * arcScale} 0 0,${sweep} ${p2[0]},${p2[1]}`;
-
-                            let haloColor = "";
-                            let coreColor = "";
-                            const haloWidth = 6;
-                            let coreWidth = 2;
-                            let coreDashArray = "none";
-                            let haloOpacity = 0.15;
-
-                            if (type === 'TRANSPORT_SEA') {
-                                haloColor = "#3B82F6";
-                                coreColor = "#3B82F6";
-                                haloOpacity = 0.15;
-                                coreWidth = 1.5;
-                                coreDashArray = "4, 4";
-                            } else if (type === 'TRANSPORT_LAND') {
-                                haloColor = "#E11D48";
-                                coreColor = "#111827"; // deep charcoal
-                                haloOpacity = 0.1;
-                                coreWidth = 2;
-                            } else if (type === 'DIGITAL') {
-                                haloColor = "#A855F7"; // Purple for digital
-                                coreColor = "#A855F7";
-                                haloOpacity = 0.15;
-                                coreWidth = 1.5;
-                                coreDashArray = "4, 4";
-                            } else if (type === 'ENERGY') {
-                                haloColor = "#10B981"; // Bright Green for energy
-                                coreColor = "#10B981";
-                                haloOpacity = 0.15;
-                                coreWidth = 1.5;
-                            }
-
-                            const currentTransform = d3.zoomTransform(svg.node() as Element);
-                            const k = currentTransform.k;
-
-                            // Render Halo layer immediately without transition
-                            g.append("path")
-                                .attr("class", "connection")
-                                .attr("data-basewidth", haloWidth)
-                                .attr("d", pathData)
-                                .style("fill", "none")
-                                .style("stroke", haloColor)
-                                .style("stroke-width", (haloWidth / k) + "px")
-                                .style("opacity", haloOpacity)
-                                .style("stroke-linecap", "round")
-                                .style("pointer-events", "none");
-
-                            // Render Core layer immediately without transition
-                            g.append("path")
-                                .attr("class", "connection")
-                                .attr("data-basewidth", coreWidth)
-                                .attr("d", pathData)
-                                .style("fill", "none")
-                                .style("stroke", coreColor)
-                                .style("stroke-dasharray", coreDashArray)
-                                .style("stroke-width", (coreWidth / k) + "px")
-                                .style("opacity", 1)
-                                .style("stroke-linecap", "round")
-                                .style("pointer-events", "none");
-                        }
-                    }
-                };
-
-                // Draw / Remove Connections based on Pillar
-                if (pillar === 'TRANSPORT') {
-                    imecNodes.forEach(node => {
-                        if (node.next) {
-                            const type = node.type === 'Sea' ? 'TRANSPORT_SEA' : 'TRANSPORT_LAND';
-                            drawConnection(node.id, node.next, type);
-                        }
-                    });
-                } else if (pillar === 'DIGITAL') {
-                    // Draw Blue-Raman static route
-                    drawConnection("IND", "OMN", "DIGITAL");
-                    drawConnection("OMN", "SAU", "DIGITAL");
-                    drawConnection("SAU", "JOR", "DIGITAL");
-                    drawConnection("JOR", "ISR", "DIGITAL");
-                    drawConnection("ISR", "GRC", "DIGITAL");
-                    drawConnection("GRC", "ITA", "DIGITAL");
-                    drawConnection("ITA", "FRA", "DIGITAL");
-                } else if (pillar === 'ENERGY') {
-                    // Draw Energy routes (NEOM & GCC)
-                    drawConnection("SAU", "JOR", "ENERGY"); // Hydrogen pipeline to Med
-                    drawConnection("JOR", "ISR", "ENERGY");
-                    drawConnection("SAU", "ARE", "ENERGY"); // GCC Grid
-                }
-            };
+            loop();
         };
+        animateChokepoints();
 
-        const fetchTopology = async () => {
-            try {
-                // Pre-fetch geometries from CDN (standard topology map source)
-                const res = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
-                topologyData = await res.json();
-                renderMap();
-            } catch (err) {
-                console.error("Failed to load map data", err);
+        // TASK B: Fix "Ghost Lines" via explicitly removing the old ones
+        g.selectAll("path.trade-route").remove();
+
+        const drawConnection = (startId: string, endId: string, type: 'TRANSPORT_SEA' | 'TRANSPORT_LAND' | 'DIGITAL' | 'ENERGY') => {
+            const start = imecNodes.find(n => n.id === startId);
+            const end = imecNodes.find(n => n.id === endId);
+
+            if (start && end) {
+                const p1 = projection([start.lng, start.lat]);
+                const p2 = projection([end.lng, end.lat]);
+
+                if (p1 && p2) {
+                    const dx = p2[0] - p1[0];
+                    const dy = p2[1] - p1[1];
+                    const dr = Math.sqrt(dx * dx + dy * dy);
+
+                    // Sweeping Bezier arcs mimicking real shipping lanes and routes
+                    let sweep = start.lng > end.lng ? 1 : 0;
+                    const arcScale = 0.8;
+
+                    // Adjusting sweep flags for elegant curvatures
+                    if (type === 'DIGITAL') sweep = 0;
+                    if (type === 'ENERGY') sweep = 1;
+
+                    const pathData = `M ${p1[0]},${p1[1]} A ${dr * arcScale},${dr * arcScale} 0 0,${sweep} ${p2[0]},${p2[1]}`;
+
+                    let haloColor = "";
+                    let coreColor = "";
+                    const haloWidth = 6;
+                    let coreWidth = 2;
+                    let coreDashArray = "none";
+                    let haloOpacity = 0.15;
+
+                    if (type === 'TRANSPORT_SEA') {
+                        haloColor = "#3B82F6";
+                        coreColor = "#3B82F6";
+                        haloOpacity = 0.15;
+                        coreWidth = 1.5;
+                        coreDashArray = "4, 4";
+                    } else if (type === 'TRANSPORT_LAND') {
+                        haloColor = "#E11D48";
+                        coreColor = "#111827"; // deep charcoal
+                        haloOpacity = 0.1;
+                        coreWidth = 2;
+                    } else if (type === 'DIGITAL') {
+                        haloColor = "#A855F7"; // Purple for digital
+                        coreColor = "#A855F7";
+                        haloOpacity = 0.15;
+                        coreWidth = 1.5;
+                        coreDashArray = "4, 4";
+                    } else if (type === 'ENERGY') {
+                        haloColor = "#10B981"; // Bright Green for energy
+                        coreColor = "#10B981";
+                        haloOpacity = 0.15;
+                        coreWidth = 1.5;
+                    }
+
+                    const currentTransform = d3.zoomTransform(svg.node() as Element);
+                    const k = currentTransform.k;
+
+                    // Render Halo layer (Task D: Explicit pointer-events none)
+                    g.append("path")
+                        .attr("class", "trade-route connection halo")
+                        .attr("data-basewidth", haloWidth)
+                        .attr("d", pathData)
+                        .style("fill", "none")
+                        .style("stroke", haloColor)
+                        .style("stroke-width", (haloWidth / k) + "px")
+                        .style("opacity", haloOpacity)
+                        .style("stroke-linecap", "round")
+                        .style("pointer-events", "none");
+
+                    // Render Core layer (Task D: Explicit pointer-events none)
+                    g.append("path")
+                        .attr("class", "trade-route connection core")
+                        .attr("data-basewidth", coreWidth)
+                        .attr("d", pathData)
+                        .style("fill", "none")
+                        .style("stroke", coreColor)
+                        .style("stroke-dasharray", coreDashArray)
+                        .style("stroke-width", (coreWidth / k) + "px")
+                        .style("opacity", 1)
+                        .style("stroke-linecap", "round")
+                        .style("pointer-events", "none");
+                }
             }
         };
 
-        fetchTopology();
+        // Draw / Remove Connections based on Pillar
+        if (activePillar === 'TRANSPORT') {
+            imecNodes.forEach(node => {
+                if (node.next) {
+                    const type = node.type === 'Sea' ? 'TRANSPORT_SEA' : 'TRANSPORT_LAND';
+                    drawConnection(node.id, node.next, type);
+                }
+            });
+        } else if (activePillar === 'DIGITAL') {
+            // Draw Blue-Raman static route
+            drawConnection("IND", "OMN", "DIGITAL");
+            drawConnection("OMN", "SAU", "DIGITAL");
+            drawConnection("SAU", "JOR", "DIGITAL");
+            drawConnection("JOR", "ISR", "DIGITAL");
+            drawConnection("ISR", "GRC", "DIGITAL");
+            drawConnection("GRC", "ITA", "DIGITAL");
+            drawConnection("ITA", "FRA", "DIGITAL");
+        } else if (activePillar === 'ENERGY') {
+            // Draw Energy routes (NEOM & GCC)
+            drawConnection("SAU", "JOR", "ENERGY"); // Hydrogen pipeline to Med
+            drawConnection("JOR", "ISR", "ENERGY");
+            drawConnection("SAU", "ARE", "ENERGY"); // GCC Grid
+        }
 
-        // Responsive handler to redraw everything when window size changes
-        const resizeObserver = new ResizeObserver(() => {
+        // TASK C: Safe ResizeObserver Implementation
+        if (resizeObserverRef.current) {
+            resizeObserverRef.current.disconnect();
+        }
+        
+        resizeObserverRef.current = new ResizeObserver(() => {
+            if (!topology || !g.selectAll) return; // Strict guard
             if (!containerRef.current) return;
             const newWidth = containerRef.current.clientWidth;
             const newHeight = containerRef.current.clientHeight;
@@ -507,32 +475,39 @@ export default function NarrativeMap() {
                 const [x, y] = projection([point.lng, point.lat]) || [0, 0];
                 return `translate(${x}, ${y}) scale(${1 / currentTransform.k})`;
             });
-
-            // Re-trigger state to redraw connections on resize
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            if (d3ContainerRef.current && (d3ContainerRef.current as any)._updateD3Visuals) {
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (d3ContainerRef.current as any)._updateD3Visuals((d3ContainerRef.current as any)._currentPillar || 'TRANSPORT');
+            
+            // Re-draw connections on resize by removing and drawing
+            g.selectAll("path.trade-route").remove();
+            if (activePillar === 'TRANSPORT') {
+                imecNodes.forEach(node => {
+                    if (node.next) {
+                        const type = node.type === 'Sea' ? 'TRANSPORT_SEA' : 'TRANSPORT_LAND';
+                        drawConnection(node.id, node.next, type);
+                    }
+                });
+            } else if (activePillar === 'DIGITAL') {
+                drawConnection("IND", "OMN", "DIGITAL");
+                drawConnection("OMN", "SAU", "DIGITAL");
+                drawConnection("SAU", "JOR", "DIGITAL");
+                drawConnection("JOR", "ISR", "DIGITAL");
+                drawConnection("ISR", "GRC", "DIGITAL");
+                drawConnection("GRC", "ITA", "DIGITAL");
+                drawConnection("ITA", "FRA", "DIGITAL");
+            } else if (activePillar === 'ENERGY') {
+                drawConnection("SAU", "JOR", "ENERGY"); 
+                drawConnection("JOR", "ISR", "ENERGY");
+                drawConnection("SAU", "ARE", "ENERGY"); 
             }
         });
 
-        resizeObserver.observe(container);
+        resizeObserverRef.current.observe(container);
 
         return () => {
-            resizeObserver.disconnect();
+            if (resizeObserverRef.current) {
+                resizeObserverRef.current.disconnect();
+            }
         };
-    }, []);
-
-    // Call D3 internal update synchronously with React state
-    useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if (d3ContainerRef.current && (d3ContainerRef.current as any)._updateD3Visuals) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (d3ContainerRef.current as any)._currentPillar = activePillar;
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (d3ContainerRef.current as any)._updateD3Visuals(activePillar);
-        }
-    }, [activePillar]);
+    }, [topology, activePillar]); // Make sure to only use these dependencies
 
     return (
         <div ref={containerRef} className="w-full h-full relative" style={{ overflow: 'hidden' }}>
