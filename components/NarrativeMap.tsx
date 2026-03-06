@@ -116,7 +116,7 @@ export default function NarrativeMap() {
                     const baseWidth = parseFloat(d3.select(this).attr("data-basewidth") || "2");
                     return (baseWidth / event.transform.k) + "px";
                 });
-                g.selectAll("g.node-group").attr("transform", (d) => {
+                g.selectAll("g.imec-node").attr("transform", (d) => {
                     const node = d as NodeData;
                     const [x, y] = projection(node.coordinates) || [0, 0];
                     return `translate(${x}, ${y}) scale(${1 / event.transform.k})`;
@@ -338,21 +338,24 @@ export default function NarrativeMap() {
         };
         animateChokepoints();
 
-        // Recreate nodes selection as groups
-        const nodeSelection = g.selectAll("g.node-group")
+        // Node rendering was moved below trade routes to ensure correct SVG Z-index layering!
+
+        // Recreate nodes selection as groups (Rendered LAST so they sit on top)
+        const nodeGroups = g.selectAll("g.imec-node")
             .data(visibleNodes)
             .join("g")
-            .attr("class", "node-group")
+            .attr("class", "imec-node")
             .attr("transform", d => {
                 const [x, y] = projection(d.coordinates) || [0, 0];
-                return `translate(${x}, ${y}) scale(1)`;
+                return `translate(${x}, ${y})`;
             })
             .style("opacity", 1)
             .style("pointer-events", "all");
 
-        nodeSelection.selectAll("*").remove();
+        // Clear group contents on update to prevent infinite nesting
+        nodeGroups.selectAll("*").remove();
 
-        nodeSelection.append("circle")
+        nodeGroups.append("circle")
             .attr("class", "node-bg")
             .attr("r", 9)
             .style("fill", "#111827")
@@ -362,10 +365,10 @@ export default function NarrativeMap() {
         const anchorPath = "M12 22V8M5 12H2a10 10 0 0 0 20 0h-3M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z";
         const trainPath = "M4 11h16M12 3v8m-4 8-2 3m10-3-2-3M8 15h0m8 0h0M6 3h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z";
 
-        nodeSelection.append("path")
+        nodeGroups.append("path")
             .attr("class", "icon")
             .attr("d", d => {
-                const id = (d as NodeData).id;
+                const id = d.id;
                 if (id === 'OMN') return "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z";
                 return ["IND", "ARE", "ISR", "GRC", "ITA", "FRA"].includes(id) ? anchorPath : trainPath
             })
@@ -377,62 +380,58 @@ export default function NarrativeMap() {
             .attr("transform", "translate(-6, -6) scale(0.5)")
             .style("pointer-events", "none");
 
-        // Native SVG Text Labels (Halo Title)
-        nodeSelection.append("text")
-            .attr("class", "halo-title")
-            .attr("dx", d => (d as NodeData).dx)
-            .attr("dy", d => (d as NodeData).dy)
-            .attr("text-anchor", d => (d as NodeData).textAnchor)
-            .text(d => (d as NodeData).name)
+        // 2. Append the Text Halo (Background for readability)
+        nodeGroups.append("text")
+            .text(d => d.name)
+            .attr("dx", d => d.dx || 10)
+            .attr("dy", d => d.dy || 4)
+            .attr("text-anchor", d => d.textAnchor || "start")
+            .attr("stroke", "#FFFFFF")
+            .attr("stroke-width", "2.5px")
             .style("font-family", "serif")
             .style("font-size", "11px")
             .style("font-weight", "bold")
-            .style("fill", "none")
-            .style("stroke", "#FFFFFF")
-            .style("stroke-width", "2.5px")
             .style("stroke-linejoin", "round")
+            .style("fill", "none")
             .style("opacity", "0.9")
             .style("pointer-events", "none");
 
-        // Halo Subtitle/Role
-        nodeSelection.append("text")
-            .attr("class", "halo-role")
-            .attr("dx", d => (d as NodeData).dx)
-            .attr("dy", d => (d as NodeData).dy + 10)
-            .attr("text-anchor", d => (d as NodeData).textAnchor)
-            .text(d => (d as NodeData).role)
-            .style("font-family", "sans-serif")
-            .style("font-size", "7px")
-            .style("fill", "none")
-            .style("stroke", "#FFFFFF")
-            .style("stroke-width", "2.5px")
-            .style("stroke-linejoin", "round")
-            .style("opacity", "0.9")
-            .style("pointer-events", "none");
-
-        // Core Title
-        nodeSelection.append("text")
-            .attr("class", "core-title")
-            .attr("dx", d => (d as NodeData).dx)
-            .attr("dy", d => (d as NodeData).dy)
-            .attr("text-anchor", d => (d as NodeData).textAnchor)
-            .text(d => (d as NodeData).name)
+        // 3. Append the Main Title Text (Foreground)
+        nodeGroups.append("text")
+            .text(d => d.name)
+            .attr("dx", d => d.dx || 10)
+            .attr("dy", d => d.dy || 4)
+            .attr("text-anchor", d => d.textAnchor || "start")
             .style("font-family", "serif")
             .style("font-size", "11px")
             .style("font-weight", "bold")
             .style("fill", "#111827")
             .style("pointer-events", "none");
 
-        // Core Subtitle/Role
-        nodeSelection.append("text")
-            .attr("class", "core-role")
-            .attr("dx", d => (d as NodeData).dx)
-            .attr("dy", d => (d as NodeData).dy + 10)
-            .attr("text-anchor", d => (d as NodeData).textAnchor)
-            .text(d => (d as NodeData).role)
+        // Halo Subtitle/Role
+        nodeGroups.append("text")
+            .text(d => d.role)
+            .attr("dx", d => d.dx || 10)
+            .attr("dy", d => (d.dy || 4) + 10)
+            .attr("text-anchor", d => d.textAnchor || "start")
+            .attr("stroke", "#FFFFFF")
+            .attr("stroke-width", "2.5px")
             .style("font-family", "sans-serif")
             .style("font-size", "7px")
+            .style("stroke-linejoin", "round")
+            .style("fill", "none")
+            .style("opacity", "0.9")
+            .style("pointer-events", "none");
+
+        // 4. Append the Subtitle/Role Text
+        nodeGroups.append("text")
+            .text(d => d.role)
+            .attr("dx", d => d.dx || 10)
+            .attr("dy", d => (d.dy || 4) + 10)
+            .attr("text-anchor", d => d.textAnchor || "start")
             .style("fill", "#6B7280")
+            .style("font-family", "sans-serif")
+            .style("font-size", "7px")
             .style("pointer-events", "none");
 
         // TASK C: Safe ResizeObserver Implementation
@@ -451,7 +450,7 @@ export default function NarrativeMap() {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             g.selectAll("path.country").attr("d", path as any);
 
-            g.selectAll("g.node-group").attr("transform", (d) => {
+            g.selectAll("g.imec-node").attr("transform", (d) => {
                 const node = d as NodeData;
                 const currentTransform = d3.zoomTransform(svg.node() as Element);
                 const [x, y] = projection(node.coordinates) || [0, 0];
