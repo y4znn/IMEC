@@ -29,9 +29,9 @@ const imecNodes: NodeData[] = [
     { id: "IND", name: "India", role: "The Eastern Anchor", description: "Primary manufacturing and export terminus. Connects to the Middle East via JNPT and Mundra ports.", next: "ARE", coordinates: [69.73, 22.83], type: 'Sea', infrastructureInvestment: 10, dossierIntelligence: "Eastern Anchor. $10B national port modernization strategy deployed for hubs like Mundra and Vadhavan.", dx: 15, dy: 0, textAnchor: "start" },
     { id: "OMN", name: "Oman", role: "Strategic Bypass", description: "Strategic landing point for the Blue-Raman subsea cable and Hafeet Rail project bypassing traditional bottlenecks.", next: null, coordinates: [56.62, 24.36], type: 'Land', infrastructureInvestment: 2, dossierIntelligence: "Strategic Bypass: The Hafeet Rail project links Sohar port to the UAE, offering a critical supply chain redundancy that bypasses the Strait of Hormuz.", dx: -15, dy: -5, textAnchor: "end" },
     { id: "ARE", name: "United Arab Emirates", role: "The Gulf Transshipment Hub", description: "Jebel Ali and Fujairah serve as the core maritime-to-rail transshipment zone, bypassing the Strait of Hormuz.", next: "SAU", coordinates: [55.02, 24.98], type: 'Land', infrastructureInvestment: 8, dossierIntelligence: "Integration point for GCC grids. Key maritime-to-rail switchyard.", dx: 0, dy: -20, textAnchor: "middle" },
-    { id: "SAU", name: "Saudi Arabia", role: "The Desert Land-Bridge", description: "Vast overland railway integration connecting the Persian Gulf to the Jordanian border.", next: "JOR", coordinates: [49.06, 24.13], type: 'Land', infrastructureInvestment: 20, dossierIntelligence: "Integration of the Saudi East Cargo Train; requires 269km of missing rail links from Al-Ghuwaifat (UAE) to Haradh.", dx: 0, dy: -20, textAnchor: "middle" },
-    { id: "JOR", name: "Jordan", role: "The Vital Transit", description: "Critical connective tissue bridging Saudi rail lines to Israeli seaports.", next: "ISR", coordinates: [36.20, 32.33], type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Crucial Bottleneck. Requires $2.09B - $2.6B to build a 225km standard-gauge freight rail linking Al-Haditha to the Israeli border.", dx: 15, dy: -10, textAnchor: "start" },
-    { id: "ISR", name: "Israel", role: "The Mediterranean Hinge", description: "Haifa port acts as the final exit point before entering European waters.", next: "GRC", coordinates: [35.01, 32.81], type: 'Sea', infrastructureInvestment: 6, dossierIntelligence: "Haifa Port Modernization. Terrestrial fusion point for the Blue-Raman data cable bypassing Egypt.", dx: -15, dy: -10, textAnchor: "end" },
+    { id: "SAU", name: "Saudi Arabia", role: "The Desert Land-Bridge", description: "Vast overland railway integration connecting the Persian Gulf to the Jordanian border.", next: "JOR", coordinates: [49.06, 24.13], type: 'Land', infrastructureInvestment: 20, dossierIntelligence: "Integration of the Saudi East Cargo Train; requires 269km of missing rail links from Al-Ghuwaifat (UAE) to Haradh.", dx: 0, dy: 15, textAnchor: "middle" },
+    { id: "JOR", name: "Jordan", role: "The Vital Transit", description: "Critical connective tissue bridging Saudi rail lines to Israeli seaports.", next: "ISR", coordinates: [36.20, 32.33], type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Crucial Bottleneck. Requires $2.09B - $2.6B to build a 225km standard-gauge freight rail linking Al-Haditha to the Israeli border.", dx: 8, dy: 8, textAnchor: "start" },
+    { id: "ISR", name: "Israel", role: "The Mediterranean Hinge", description: "Haifa port acts as the final exit point before entering European waters.", next: "GRC", coordinates: [35.01, 32.81], type: 'Sea', infrastructureInvestment: 6, dossierIntelligence: "Haifa Port Modernization. Terrestrial fusion point for the Blue-Raman data cable bypassing Egypt.", dx: -8, dy: -8, textAnchor: "end" },
     { id: "GRC", name: "Greece", role: "The European Entry", description: "Piraeus port serves as the immediate geographic gateway into the EU market.", next: "ITA", coordinates: [23.63, 37.94], type: 'Sea', infrastructureInvestment: 4, dossierIntelligence: "European entry point distributing energy and digital payloads deep into the EU.", dx: -15, dy: -10, textAnchor: "end" },
     { id: "ITA", name: "Italy", role: "The Central Artery", description: "Core Mediterranean distribution hub for continental supply chains.", next: "FRA", coordinates: [15.55, 38.19], type: 'Land', infrastructureInvestment: 5, dossierIntelligence: "Continental supply chain distributor for Western Europe.", dx: -15, dy: -5, textAnchor: "end" },
     { id: "FRA", name: "France", role: "The Western Terminus", description: "Marseille acts as the final strategic locus for Western European integration.", next: null, coordinates: [2.21, 46.23], type: 'Land', infrastructureInvestment: 4, dossierIntelligence: "Western terminus concluding the Blue-Raman route.", dx: -15, dy: 5, textAnchor: "end" }
@@ -173,7 +173,7 @@ export default function NarrativeMap() {
             })
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             .style("stroke", (d: any) => visibleCountryIds.includes(d.id) ? "#6B7280" : "#9CA3AF")
-            .style("stroke-width", "1px")
+            .style("stroke-width", "0.5px")
             .style("pointer-events", "none");
 
         // Recreate nodes selection as groups
@@ -227,11 +227,11 @@ export default function NarrativeMap() {
             .attr("text-anchor", d => (d as NodeData).textAnchor)
             .text(d => (d as NodeData).name)
             .style("font-family", "serif")
-            .style("font-size", "14px")
+            .style("font-size", "11px")
             .style("font-weight", "bold")
             .style("fill", "none")
             .style("stroke", "#FFFFFF")
-            .style("stroke-width", "4px")
+            .style("stroke-width", "2.5px")
             .style("stroke-linejoin", "round")
             .style("opacity", "0.9")
             .style("pointer-events", "none");
@@ -242,14 +242,14 @@ export default function NarrativeMap() {
             .join("text")
             .attr("class", "halo-role")
             .attr("dx", d => (d as NodeData).dx)
-            .attr("dy", d => (d as NodeData).dy + 14)
+            .attr("dy", d => (d as NodeData).dy + 10)
             .attr("text-anchor", d => (d as NodeData).textAnchor)
             .text(d => (d as NodeData).role)
-            .style("font-family", "monospace")
-            .style("font-size", "10px")
+            .style("font-family", "sans-serif")
+            .style("font-size", "7px")
             .style("fill", "none")
             .style("stroke", "#FFFFFF")
-            .style("stroke-width", "4px")
+            .style("stroke-width", "2.5px")
             .style("stroke-linejoin", "round")
             .style("opacity", "0.9")
             .style("pointer-events", "none");
@@ -264,7 +264,7 @@ export default function NarrativeMap() {
             .attr("text-anchor", d => (d as NodeData).textAnchor)
             .text(d => (d as NodeData).name)
             .style("font-family", "serif")
-            .style("font-size", "14px")
+            .style("font-size", "11px")
             .style("font-weight", "bold")
             .style("fill", "#111827")
             .style("pointer-events", "none");
@@ -275,12 +275,12 @@ export default function NarrativeMap() {
             .join("text")
             .attr("class", "core-role")
             .attr("dx", d => (d as NodeData).dx)
-            .attr("dy", d => (d as NodeData).dy + 14)
+            .attr("dy", d => (d as NodeData).dy + 10)
             .attr("text-anchor", d => (d as NodeData).textAnchor)
             .text(d => (d as NodeData).role)
-            .style("font-family", "monospace")
-            .style("font-size", "10px")
-            .style("fill", "#4B5563")
+            .style("font-family", "sans-serif")
+            .style("font-size", "7px")
+            .style("fill", "#6B7280")
             .style("pointer-events", "none");
 
         // Render Chokepoints
@@ -365,8 +365,8 @@ export default function NarrativeMap() {
 
                     let haloColor = "";
                     let coreColor = "";
-                    const haloWidth = 6;
-                    let coreWidth = 2;
+                    const haloWidth = 3.5;
+                    let coreWidth = 1.2;
                     let coreDashArray = "none";
                     let haloOpacity = 0.15;
 
@@ -374,24 +374,24 @@ export default function NarrativeMap() {
                         haloColor = "#3B82F6";
                         coreColor = "#3B82F6";
                         haloOpacity = 0.15;
-                        coreWidth = 1.5;
+                        coreWidth = 1.2;
                         coreDashArray = "4, 4";
                     } else if (type === 'TRANSPORT_LAND') {
                         haloColor = "#E11D48";
                         coreColor = "#111827"; // deep charcoal
                         haloOpacity = 0.1;
-                        coreWidth = 2;
+                        coreWidth = 1.2;
                     } else if (type === 'DIGITAL') {
                         haloColor = "#A855F7"; // Purple for digital
                         coreColor = "#A855F7";
                         haloOpacity = 0.15;
-                        coreWidth = 1.5;
+                        coreWidth = 1.2;
                         coreDashArray = "4, 4";
                     } else if (type === 'ENERGY') {
                         haloColor = "#10B981"; // Bright Green for energy
                         coreColor = "#10B981";
                         haloOpacity = 0.15;
-                        coreWidth = 1.5;
+                        coreWidth = 1.2;
                     }
 
                     const currentTransform = d3.zoomTransform(svg.node() as Element);
@@ -552,20 +552,32 @@ export default function NarrativeMap() {
 
                         <div className="space-y-4 mb-6">
                             <div className="flex items-center gap-3">
-                                <div className="w-6 border-t-2 border-blue-500 border-dashed"></div>
-                                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Maritime Transport Route</span>
+                                <svg width="24" height="10" viewBox="0 0 24 10" className="flex-shrink-0">
+                                    <line x1="0" y1="5" x2="24" y2="5" stroke="#3B82F6" strokeWidth="4" strokeOpacity="0.15" strokeLinecap="round" />
+                                    <line x1="0" y1="5" x2="24" y2="5" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4, 4" strokeLinecap="round" />
+                                </svg>
+                                <span className="text-[10px] font-sans text-gray-600 uppercase tracking-widest">Maritime Transport Route</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="w-6 border-t-[2.5px] border-rose-600"></div>
-                                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Overland Rail Link</span>
+                                <svg width="24" height="10" viewBox="0 0 24 10" className="flex-shrink-0">
+                                    <line x1="0" y1="5" x2="24" y2="5" stroke="#E11D48" strokeWidth="4" strokeOpacity="0.1" strokeLinecap="round" />
+                                    <line x1="0" y1="5" x2="24" y2="5" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" />
+                                </svg>
+                                <span className="text-[10px] font-sans text-gray-600 uppercase tracking-widest">Overland Rail Link</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="w-6 border-t-[2.5px] border-purple-500"></div>
-                                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Digital Pillar (Blue-Raman)</span>
+                                <svg width="24" height="10" viewBox="0 0 24 10" className="flex-shrink-0">
+                                    <line x1="0" y1="5" x2="24" y2="5" stroke="#A855F7" strokeWidth="4" strokeOpacity="0.15" strokeLinecap="round" />
+                                    <line x1="0" y1="5" x2="24" y2="5" stroke="#A855F7" strokeWidth="1.5" strokeDasharray="4, 4" strokeLinecap="round" />
+                                </svg>
+                                <span className="text-[10px] font-sans text-gray-600 uppercase tracking-widest">Digital Pillar (Blue-Raman)</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="w-6 border-t-[3px] border-emerald-500"></div>
-                                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Energy Pillar (Grid)</span>
+                                <svg width="24" height="10" viewBox="0 0 24 10" className="flex-shrink-0">
+                                    <line x1="0" y1="5" x2="24" y2="5" stroke="#10B981" strokeWidth="4" strokeOpacity="0.15" strokeLinecap="round" />
+                                    <line x1="0" y1="5" x2="24" y2="5" stroke="#10B981" strokeWidth="1.5" strokeLinecap="round" />
+                                </svg>
+                                <span className="text-[10px] font-sans text-gray-600 uppercase tracking-widest">Energy Pillar (Grid)</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <div className="w-6 flex justify-center">
@@ -573,7 +585,7 @@ export default function NarrativeMap() {
                                         <div className="w-1.5 h-1.5 rounded-full bg-red-600"></div>
                                     </div>
                                 </div>
-                                <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">Strategic Chokepoint Zones</span>
+                                <span className="text-[10px] font-sans text-gray-600 uppercase tracking-widest">Strategic Chokepoint Zones</span>
                             </div>
                         </div>
 
