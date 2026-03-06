@@ -176,167 +176,6 @@ export default function NarrativeMap() {
             .style("stroke-width", "0.5px")
             .style("pointer-events", "none");
 
-        // Recreate nodes selection as groups
-        const nodeSelection = g.selectAll("g.node-group")
-            .data(visibleNodes)
-            .join("g")
-            .attr("class", "node-group")
-            .attr("transform", d => {
-                const [x, y] = projection(d.coordinates) || [0, 0];
-                return `translate(${x}, ${y}) scale(1)`;
-            })
-            .style("opacity", 1)
-            .style("pointer-events", "all"); // Important: Ensure nodes capture events
-
-        nodeSelection.selectAll("circle.node-bg")
-            .data(d => [d])
-            .join("circle")
-            .attr("class", "node-bg")
-            .attr("r", 9)
-            .style("fill", "#111827")
-            .style("stroke", "#ffffff")
-            .style("stroke-width", "1.5px");
-
-        const anchorPath = "M12 22V8M5 12H2a10 10 0 0 0 20 0h-3M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z";
-        const trainPath = "M4 11h16M12 3v8m-4 8-2 3m10-3-2-3M8 15h0m8 0h0M6 3h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z";
-
-        nodeSelection.selectAll("path.icon")
-            .data(d => [d])
-            .join("path")
-            .attr("class", "icon")
-            .attr("d", d => {
-                const id = (d as NodeData).id;
-                if (id === 'OMN') return "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z";
-                return ["IND", "ARE", "ISR", "GRC", "ITA", "FRA"].includes(id) ? anchorPath : trainPath
-            })
-            .style("fill", "none")
-            .style("stroke", "#ffffff")
-            .style("stroke-width", "2.5px")
-            .style("stroke-linecap", "round")
-            .style("stroke-linejoin", "round")
-            .attr("transform", "translate(-6, -6) scale(0.5)")
-            .style("pointer-events", "none");
-
-        // Native SVG Text Labels (Halo Title)
-        nodeSelection.selectAll("text.halo-title")
-            .data(d => [d])
-            .join("text")
-            .attr("class", "halo-title")
-            .attr("dx", d => (d as NodeData).dx)
-            .attr("dy", d => (d as NodeData).dy)
-            .attr("text-anchor", d => (d as NodeData).textAnchor)
-            .text(d => (d as NodeData).name)
-            .style("font-family", "serif")
-            .style("font-size", "11px")
-            .style("font-weight", "bold")
-            .style("fill", "none")
-            .style("stroke", "#FFFFFF")
-            .style("stroke-width", "2.5px")
-            .style("stroke-linejoin", "round")
-            .style("opacity", "0.9")
-            .style("pointer-events", "none");
-
-        // Halo Subtitle/Role
-        nodeSelection.selectAll("text.halo-role")
-            .data(d => [d])
-            .join("text")
-            .attr("class", "halo-role")
-            .attr("dx", d => (d as NodeData).dx)
-            .attr("dy", d => (d as NodeData).dy + 10)
-            .attr("text-anchor", d => (d as NodeData).textAnchor)
-            .text(d => (d as NodeData).role)
-            .style("font-family", "sans-serif")
-            .style("font-size", "7px")
-            .style("fill", "none")
-            .style("stroke", "#FFFFFF")
-            .style("stroke-width", "2.5px")
-            .style("stroke-linejoin", "round")
-            .style("opacity", "0.9")
-            .style("pointer-events", "none");
-
-        // Core Title
-        nodeSelection.selectAll("text.core-title")
-            .data(d => [d])
-            .join("text")
-            .attr("class", "core-title")
-            .attr("dx", d => (d as NodeData).dx)
-            .attr("dy", d => (d as NodeData).dy)
-            .attr("text-anchor", d => (d as NodeData).textAnchor)
-            .text(d => (d as NodeData).name)
-            .style("font-family", "serif")
-            .style("font-size", "11px")
-            .style("font-weight", "bold")
-            .style("fill", "#111827")
-            .style("pointer-events", "none");
-
-        // Core Subtitle/Role
-        nodeSelection.selectAll("text.core-role")
-            .data(d => [d])
-            .join("text")
-            .attr("class", "core-role")
-            .attr("dx", d => (d as NodeData).dx)
-            .attr("dy", d => (d as NodeData).dy + 10)
-            .attr("text-anchor", d => (d as NodeData).textAnchor)
-            .text(d => (d as NodeData).role)
-            .style("font-family", "sans-serif")
-            .style("font-size", "7px")
-            .style("fill", "#6B7280")
-            .style("pointer-events", "none");
-
-        // Render Chokepoints
-        const chokepointSelection = g.selectAll("g.chokepoint-group")
-            .data(chokepoints)
-            .join("g")
-            .attr("class", "chokepoint-group")
-            .attr("transform", d => {
-                const [x, y] = projection(d.coordinates) || [0, 0];
-                return `translate(${x}, ${y}) scale(1)`;
-            })
-            .style("pointer-events", "all") // Important: Ensure chokepoints capture events
-            .style("opacity", 1);
-
-        chokepointSelection.selectAll("circle.cp-pulse")
-            .data(d => [d])
-            .join("circle")
-            .attr("class", "cp-pulse")
-            .attr("r", 4)
-            .style("fill", "#EF4444")
-            .style("opacity", 0.5)
-            .style("pointer-events", "none");
-
-        chokepointSelection.selectAll("circle.cp-core")
-            .data(d => [d])
-            .join("circle")
-            .attr("class", "cp-core")
-            .attr("r", 3)
-            .style("fill", "#B91C1C")
-            .style("stroke", "#ffffff")
-            .style("stroke-width", "1px")
-            .style("pointer-events", "none");
-
-        chokepointSelection.selectAll("title")
-            .data(d => [d])
-            .join("title")
-            .text(d => d.description);
-
-        // Animate Chokepoints continuously
-        const animateChokepoints = () => {
-            const cpPulse = chokepointSelection.selectAll("circle.cp-pulse")
-                .attr("r", 4)
-                .style("opacity", 0.8);
-
-            const loop = () => {
-                cpPulse.transition()
-                    .duration(2000)
-                    .ease(d3.easeCircleOut)
-                    .attr("r", 15)
-                    .style("opacity", 0)
-                    .on("end", loop);
-            };
-            loop();
-        };
-        animateChokepoints();
-
         // TASK B: Fix "Ghost Lines" via explicitly removing the old ones
         g.selectAll("path.trade-route").remove();
 
@@ -448,6 +287,153 @@ export default function NarrativeMap() {
             drawConnection("JOR", "ISR", "ENERGY");
             drawConnection("SAU", "ARE", "ENERGY"); // GCC Grid
         }
+
+        // Render Chokepoints
+        const chokepointSelection = g.selectAll("g.chokepoint-group")
+            .data(chokepoints)
+            .join("g")
+            .attr("class", "chokepoint-group")
+            .attr("transform", d => {
+                const [x, y] = projection(d.coordinates) || [0, 0];
+                return `translate(${x}, ${y}) scale(1)`;
+            })
+            .style("pointer-events", "all")
+            .style("opacity", 1);
+
+        chokepointSelection.selectAll("*").remove();
+
+        chokepointSelection.append("circle")
+            .attr("class", "cp-pulse")
+            .attr("r", 4)
+            .style("fill", "#EF4444")
+            .style("opacity", 0.5)
+            .style("pointer-events", "none");
+
+        chokepointSelection.append("circle")
+            .attr("class", "cp-core")
+            .attr("r", 3)
+            .style("fill", "#B91C1C")
+            .style("stroke", "#ffffff")
+            .style("stroke-width", "1px")
+            .style("pointer-events", "none");
+
+        chokepointSelection.append("title")
+            .text(d => d.description);
+
+        // Animate Chokepoints continuously
+        const animateChokepoints = () => {
+            const cpPulse = chokepointSelection.selectAll("circle.cp-pulse")
+                .attr("r", 4)
+                .style("opacity", 0.8);
+
+            const loop = () => {
+                cpPulse.transition()
+                    .duration(2000)
+                    .ease(d3.easeCircleOut)
+                    .attr("r", 15)
+                    .style("opacity", 0)
+                    .on("end", loop);
+            };
+            loop();
+        };
+        animateChokepoints();
+
+        // Recreate nodes selection as groups
+        const nodeSelection = g.selectAll("g.node-group")
+            .data(visibleNodes)
+            .join("g")
+            .attr("class", "node-group")
+            .attr("transform", d => {
+                const [x, y] = projection(d.coordinates) || [0, 0];
+                return `translate(${x}, ${y}) scale(1)`;
+            })
+            .style("opacity", 1)
+            .style("pointer-events", "all");
+
+        nodeSelection.selectAll("*").remove();
+
+        nodeSelection.append("circle")
+            .attr("class", "node-bg")
+            .attr("r", 9)
+            .style("fill", "#111827")
+            .style("stroke", "#ffffff")
+            .style("stroke-width", "1.5px");
+
+        const anchorPath = "M12 22V8M5 12H2a10 10 0 0 0 20 0h-3M12 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z";
+        const trainPath = "M4 11h16M12 3v8m-4 8-2 3m10-3-2-3M8 15h0m8 0h0M6 3h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z";
+
+        nodeSelection.append("path")
+            .attr("class", "icon")
+            .attr("d", d => {
+                const id = (d as NodeData).id;
+                if (id === 'OMN') return "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z";
+                return ["IND", "ARE", "ISR", "GRC", "ITA", "FRA"].includes(id) ? anchorPath : trainPath
+            })
+            .style("fill", "none")
+            .style("stroke", "#ffffff")
+            .style("stroke-width", "2.5px")
+            .style("stroke-linecap", "round")
+            .style("stroke-linejoin", "round")
+            .attr("transform", "translate(-6, -6) scale(0.5)")
+            .style("pointer-events", "none");
+
+        // Native SVG Text Labels (Halo Title)
+        nodeSelection.append("text")
+            .attr("class", "halo-title")
+            .attr("dx", d => (d as NodeData).dx)
+            .attr("dy", d => (d as NodeData).dy)
+            .attr("text-anchor", d => (d as NodeData).textAnchor)
+            .text(d => (d as NodeData).name)
+            .style("font-family", "serif")
+            .style("font-size", "11px")
+            .style("font-weight", "bold")
+            .style("fill", "none")
+            .style("stroke", "#FFFFFF")
+            .style("stroke-width", "2.5px")
+            .style("stroke-linejoin", "round")
+            .style("opacity", "0.9")
+            .style("pointer-events", "none");
+
+        // Halo Subtitle/Role
+        nodeSelection.append("text")
+            .attr("class", "halo-role")
+            .attr("dx", d => (d as NodeData).dx)
+            .attr("dy", d => (d as NodeData).dy + 10)
+            .attr("text-anchor", d => (d as NodeData).textAnchor)
+            .text(d => (d as NodeData).role)
+            .style("font-family", "sans-serif")
+            .style("font-size", "7px")
+            .style("fill", "none")
+            .style("stroke", "#FFFFFF")
+            .style("stroke-width", "2.5px")
+            .style("stroke-linejoin", "round")
+            .style("opacity", "0.9")
+            .style("pointer-events", "none");
+
+        // Core Title
+        nodeSelection.append("text")
+            .attr("class", "core-title")
+            .attr("dx", d => (d as NodeData).dx)
+            .attr("dy", d => (d as NodeData).dy)
+            .attr("text-anchor", d => (d as NodeData).textAnchor)
+            .text(d => (d as NodeData).name)
+            .style("font-family", "serif")
+            .style("font-size", "11px")
+            .style("font-weight", "bold")
+            .style("fill", "#111827")
+            .style("pointer-events", "none");
+
+        // Core Subtitle/Role
+        nodeSelection.append("text")
+            .attr("class", "core-role")
+            .attr("dx", d => (d as NodeData).dx)
+            .attr("dy", d => (d as NodeData).dy + 10)
+            .attr("text-anchor", d => (d as NodeData).textAnchor)
+            .text(d => (d as NodeData).role)
+            .style("font-family", "sans-serif")
+            .style("font-size", "7px")
+            .style("fill", "#6B7280")
+            .style("pointer-events", "none");
 
         // TASK C: Safe ResizeObserver Implementation
         if (resizeObserverRef.current) {
