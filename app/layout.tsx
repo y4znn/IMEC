@@ -100,14 +100,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </main>
 
                     {/* ── Footer ── */}
-                    {!isMapPage && (
-                        <footer className="relative z-10 border-t border-gray-300 bg-gray-50">
-                            <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500 font-mono text-center sm:text-left">
-                                <span>Ahmad Ghosn · PhD Research Platform</span>
-                                <span className="text-[10px] sm:text-xs">Sources: Atlantic Council · ECFR · CSIS · Brookings</span>
-                            </div>
-                        </footer>
-                    )}
+                    <footer className={`relative z-10 border-t border-gray-300 bg-gray-50 ${isMapPage ? 'md:hidden' : ''}`}>
+                        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500 font-mono text-center sm:text-left">
+                            <span>Ahmad Ghosn · PhD Research Platform</span>
+                            <span className="text-[10px] sm:text-xs">Sources: Atlantic Council · ECFR · CSIS · Brookings</span>
+                        </div>
+                    </footer>
                 </DefenseProvider>
             </body>
         </html>

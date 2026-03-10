@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Globe2, Hand } from 'lucide-react';
+import { Globe2 } from 'lucide-react';
 
 export default function StrategicMaps() {
     return (
@@ -31,36 +31,6 @@ export default function StrategicMaps() {
                 </motion.div>
             </div>
 
-            {/* Mobile overlay card */}
-            <div className="fixed bottom-4 left-4 right-4 z-10 pointer-events-none md:hidden">
-                <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="bg-white/90 backdrop-blur-xl border border-gray-200 rounded-xl p-4 shadow-lg"
-                >
-                    <div className="flex items-start gap-3">
-                        <div className="p-2 bg-gray-100 rounded-lg border border-gray-200 shrink-0">
-                            <Globe2 className="w-4 h-4 text-gray-700" strokeWidth={1.2} />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                            <h1
-                                className="text-base font-semibold text-gray-900 tracking-tight mb-1"
-                                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                            >
-                                Interactive Corridor Map
-                            </h1>
-                            <p className="text-[11px] text-gray-600 leading-relaxed font-light">
-                                Pinch to zoom. Tap nodes to explore the IMEC geopolitical architecture.
-                            </p>
-                            <div className="flex items-center gap-1.5 mt-2 text-[10px] text-gray-500 font-mono">
-                                <Hand className="w-3 h-3" />
-                                <span>Touch to interact</span>
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-            </div>
         </>
     );
 }

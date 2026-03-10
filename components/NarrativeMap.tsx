@@ -506,7 +506,7 @@ export default function NarrativeMap() {
 
 
             {/* Three Pillars Toggle Control Bar */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex bg-white shadow-lg border border-gray-200 p-1" style={{ borderRadius: 0 }}>
+            <div className="absolute bottom-20 md:bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex bg-white shadow-lg border border-gray-200 p-1" style={{ borderRadius: 0 }}>
                 {(['TRANSPORT', 'DIGITAL', 'ENERGY'] as Pillar[]).map((pillar) => (
                     <button
                         key={pillar}
@@ -521,8 +521,8 @@ export default function NarrativeMap() {
                 ))}
             </div>
 
-            {/* Map Legend & Context Panel */}
-            <div className="absolute bottom-8 left-6 z-20 bg-white border border-gray-200 shadow-xl w-[340px] rounded-none pointer-events-auto transition-all duration-300">
+            {/* Map Legend & Context Panel - hidden on mobile */}
+            <div className="absolute bottom-8 left-6 z-20 hidden md:block bg-white border border-gray-200 shadow-xl w-[340px] rounded-none pointer-events-auto transition-all duration-300">
                 {isLegendOpen ? (
                     <div className="p-6">
                         <div className="flex justify-between items-start mb-2">
@@ -601,8 +601,8 @@ export default function NarrativeMap() {
                 )}
             </div>
 
-            {/* Informational overlay to act as a legend for D3 layout */}
-            <div className="absolute top-8 right-8 z-20 pointer-events-none bg-white/90 backdrop-blur-md border border-gray-200 p-5" style={{ borderRadius: 0 }}>
+            {/* Informational overlay to act as a legend for D3 layout - hidden on mobile */}
+            <div className="absolute top-8 right-8 z-20 pointer-events-none hidden md:block bg-white/90 backdrop-blur-md border border-gray-200 p-5" style={{ borderRadius: 0 }}>
                 <h3 className="text-gray-900 text-[10px] tracking-[0.2em] font-mono uppercase mb-3 text-right">Topology Base Map</h3>
                 <div className="flex items-center gap-3 justify-end mt-4">
                     <span className="text-[9px] text-gray-400 font-mono tracking-wider uppercase">Investment Depth</span>
