@@ -58,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         <div className="max-w-7xl mx-auto px-4 md:px-6 pt-10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
                             <div className="flex flex-col py-2 min-w-0 flex-1">
                                 <Link href="/" className="group inline-block">
-                                    <h1 className="text-7xl md:text-8xl font-sans font-bold tracking-tighter text-gray-900 animate-in fade-in slide-in-from-bottom-6 duration-1000 ease-out fill-mode-forwards">
+                                    <h1 className="text-4xl md:text-5xl font-sans font-bold tracking-tighter leading-tight text-gray-900 animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out fill-mode-forwards">
                                         IMEC radar
                                     </h1>
                                 </Link>
