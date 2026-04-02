@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <div className="flex flex-col py-2 min-w-0 flex-1">
                                 <Link href="/" className="group inline-block">
                                     <h1 className="text-4xl md:text-5xl font-sans font-bold tracking-tighter leading-tight text-gray-900 animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out fill-mode-forwards">
-                                        IMEC radar
+                                        IMEC Radar
                                     </h1>
                                 </Link>
                                 <div className="mt-4 hidden sm:block">
