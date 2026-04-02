@@ -9,6 +9,7 @@ import { Menu, X } from 'lucide-react';
 import './globals.css';
 import { DefenseProvider } from '@/components/DefenseContext';
 import CRTOverlay from '@/components/CRTOverlay';
+import IntelligencePulse from '@/components/IntelligencePulse';
 
 const fraunces = Fraunces({
     subsets: ['latin'],
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <div className="fixed inset-0 z-0 pointer-events-auto bg-gray-50">
                         <PersistentMap />
                     </div>
+                    <IntelligencePulse />
 
                     {/* ── Navigation Bar ── */}
                     <header className="relative z-50 bg-gray-50 border-b border-gray-300">
