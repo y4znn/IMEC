@@ -1,6 +1,6 @@
 export default function IntelligencePulse() {
     return (
-        <div className="fixed bottom-6 left-6 z-50 animate-in fade-in slide-in-from-bottom-2 duration-1000 fill-mode-forwards delay-500 opacity-0 bg-white border border-gray-200 rounded-xl px-4 py-3 shadow-sm hover:shadow-md transition-shadow">
+        <div className="animate-in fade-in slide-in-from-top-2 duration-700 fill-mode-forwards bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 shadow-sm hover:shadow-md transition-shadow text-left opacity-0">
             <div className="flex flex-col gap-1">
                 <div className="text-[10px] font-mono text-gray-500 tracking-wider uppercase">
                     GLOBAL INTELLIGENCE VOLUME

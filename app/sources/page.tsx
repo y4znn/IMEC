@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { ExternalLink, BookOpen, Search } from 'lucide-react';
 import fallbackSources from '@/public/data/sources.json';
+import IntelligencePulse from '@/components/IntelligencePulse';
 
 type AcademicSource = {
     id: string;
@@ -113,14 +114,19 @@ export default function SourcesPage() {
                 <div className="max-w-4xl mx-auto px-4 md:px-12 py-6 md:py-10">
 
                     {/* Header for Category */}
-                    <div className="mb-8 md:mb-12">
-                        <div className="text-[10px] text-gray-900/50 tracking-[0.3em] font-mono uppercase mb-3 md:mb-4 flex items-center gap-3">
-                            <BookOpen className="w-3 h-3" />
-                            Active Module Syllabus
+                    <div className="mb-8 md:mb-12 flex flex-col md:flex-row md:items-start justify-between gap-6">
+                        <div>
+                            <div className="text-[10px] text-gray-900/50 tracking-[0.3em] font-mono uppercase mb-3 md:mb-4 flex items-center gap-3">
+                                <BookOpen className="w-3 h-3" />
+                                Active Module Syllabus
+                            </div>
+                            <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-none">
+                                {activeCategory}
+                            </h2>
                         </div>
-                        <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-none">
-                            {activeCategory}
-                        </h2>
+                        <div className="shrink-0">
+                            <IntelligencePulse />
+                        </div>
                     </div>
 
                     {/* Search Bar */}
