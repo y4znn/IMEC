@@ -54,27 +54,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </div>
 
                     {/* ── Navigation Bar ── */}
-                    <header className="fixed top-0 inset-x-0 z-50 bg-gray-50 border-b border-gray-300">
-                        <div className="max-w-7xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
+                    <header className="relative z-50 bg-gray-50 border-b border-gray-300">
+                        <div className="max-w-7xl mx-auto px-4 md:px-6 pt-10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
                             <div className="flex flex-col py-2 min-w-0 flex-1">
-                                <Link href="/" className="group">
-                                    <div className="flex items-center gap-2.5">
-                                        <div className="w-1.5 h-1.5 bg-white rounded-none shrink-0" />
-                                        <span className="text-[11px] md:text-[13px] font-semibold text-gray-800 tracking-tight group-hover:text-gray-900 transition-colors duration-300 chromatic-text truncate">
-                                            <span className="hidden sm:inline">India Middle East Europe Economic Corridor Radar</span>
-                                            <span className="sm:hidden">IMEC Radar</span>
-                                        </span>
-                                    </div>
+                                <Link href="/" className="group inline-block">
+                                    <h1 className="text-5xl md:text-7xl font-serif text-gray-900 tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                                        IMEC radar
+                                    </h1>
                                 </Link>
-                                <div className="pl-4 mt-0.5 hidden sm:block">
-                                    <span className="text-[9px] font-mono text-gray-600 tracking-widest uppercase opacity-80">
+                                <div className="mt-4 hidden sm:block">
+                                    <span className="text-[10px] font-mono text-gray-600 tracking-widest uppercase opacity-80">
                                         <a href="https://www.linkedin.com/in/ahmadghsnn" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">A Phd Project by Ahmad Ghosn</a>
                                     </span>
                                 </div>
                             </div>
 
                             {/* Desktop Navigation */}
-                            <nav className="hidden md:flex items-center gap-2" aria-label="Primary navigation">
+                            <nav className="hidden md:flex items-center gap-2 mb-2" aria-label="Primary navigation">
                                 <NavLink href="/sources" label="Sources" current={pathname} />
                                 <NavLink href="/maps" label="Corridors map" current={pathname} />
                                 <NavLink href="/profile" label="Researcher Profile" current={pathname} />
@@ -82,17 +78,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                             {/* Mobile Menu Button */}
                             <button
-                                className="md:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors"
+                                className="md:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors absolute top-6 right-4"
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                                 aria-label="Toggle menu"
                             >
-                                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                             </button>
                         </div>
 
                         {/* Mobile Navigation Menu */}
                         {mobileMenuOpen && (
-                            <nav className="md:hidden border-t border-gray-300 bg-gray-50 px-4 py-3 flex flex-col gap-1" aria-label="Mobile navigation">
+                            <nav className="md:hidden border-t border-gray-300 bg-gray-50 px-4 py-3 flex flex-col gap-1 absolute top-full left-0 right-0 z-50 shadow-xl" aria-label="Mobile navigation">
                                 <MobileNavLink href="/sources" label="Sources" current={pathname} onClick={() => setMobileMenuOpen(false)} />
                                 <MobileNavLink href="/maps" label="Corridors map" current={pathname} onClick={() => setMobileMenuOpen(false)} />
                                 <MobileNavLink href="/profile" label="Researcher Profile" current={pathname} onClick={() => setMobileMenuOpen(false)} />
@@ -102,7 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                     {/* ── Page Content ── */}
                     <CRTOverlay />
-                    <main className={`relative z-10 min-h-screen pt-16 md:pt-20 pb-12 md:pb-16 ${isMapPage ? 'pointer-events-none' : ''}`}>
+                    <main className={`relative z-10 min-h-screen pt-6 pb-12 md:pb-16 ${isMapPage ? 'pointer-events-none' : ''}`}>
                         <div className={`max-w-7xl mx-auto px-4 md:px-6 ${isMapPage ? 'pointer-events-none' : ''}`}>
                             {children}
                         </div>

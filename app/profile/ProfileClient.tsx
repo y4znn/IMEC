@@ -1,7 +1,6 @@
 'use client';
 
 import { Focus, GraduationCap, Library, Linkedin } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 
 interface Publication {
@@ -38,10 +37,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
     return (
         <div className="max-w-6xl mx-auto space-y-4 md:space-y-6 pt-6 md:pt-10 pb-12 md:pb-20 relative">
             {/* ── Page Header ── */}
-            <motion.div
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+            <div
                 className="pb-4 md:pb-6 border-b border-gray-200 mb-6 md:mb-8"
             >
                 <div
@@ -53,16 +49,13 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                 <div className="mt-2 text-xs md:text-sm text-gray-500 font-light tracking-wide font-mono">
                     {data.pageSubtitle}
                 </div>
-            </motion.div>
+            </div>
 
             {/* ── Bento Grid Layout ── */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
 
                 {/* Box 1: Profile (col-span-1) */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.1 }}
+                <div
                     className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 flex flex-col items-center justify-center text-center shadow-sm group h-auto md:h-96"
                 >
                     <img
@@ -90,13 +83,10 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                             {data.linkedinText}
                         </div>
                     </a>
-                </motion.div>
+                </div>
 
                 {/* Box 2: Executive Bio (col-span-3) */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                <div
                     className="md:col-span-3 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm h-auto md:h-96"
                 >
                     <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-gray-300 pb-4">
@@ -108,13 +98,10 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     <div className="text-gray-700 leading-relaxed font-light text-sm md:text-base font-serif overflow-y-auto whitespace-pre-wrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                         {data.executive_bio}
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Box 3: The Thesis (col-span-2) */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
+                <div
                     className="md:col-span-2 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm relative overflow-hidden h-auto md:h-96 group"
                 >
                     <div className="absolute top-0 right-0 p-32 bg-[radial-gradient(circle,rgba(0,0,0,0.03)_0%,transparent_70%)] pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-50" />
@@ -130,13 +117,10 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     >
                         {data.thesis_synthesis}
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Box 4: Education (col-span-1) */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                <div
                     className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col h-auto md:h-96"
                 >
                     <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-gray-300 pb-4">
@@ -160,13 +144,10 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                             </div>
                         ))}
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Box 5: Publications Section (col-span-1) */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
+                <div
                     className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col h-auto md:h-96"
                 >
                     <div className="flex items-center gap-2 mb-4 shrink-0 border-b border-gray-300 pb-4">
@@ -198,7 +179,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                             ))}
                         </div>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </div>
     );
