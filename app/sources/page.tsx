@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
-import { ExternalLink, BookOpen } from 'lucide-react';
+import { ExternalLink, BookOpen, Search } from 'lucide-react';
 import fallbackSources from '@/public/data/sources.json';
 
 type AcademicSource = {
@@ -17,6 +17,7 @@ type AcademicSource = {
 export default function SourcesPage() {
     const [activeCategory, setActiveCategory] = useState<string>('Foundations & Architecture');
     const [sources, setSources] = useState<AcademicSource[]>([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     // Fetch data safely
     useEffect(() => {
@@ -47,8 +48,19 @@ export default function SourcesPage() {
     const finalCategory = (!categories.includes(activeCategory) && categories.length > 0) ? categories[0] : activeCategory;
 
     const activeSources = useMemo(() => {
-        return sources.filter(s => s.category === finalCategory);
-    }, [sources, finalCategory]);
+        let filtered = sources.filter(s => s.category === finalCategory);
+        
+        if (searchQuery.trim()) {
+            const query = searchQuery.toLowerCase();
+            filtered = filtered.filter(s => 
+                (s.title || '').toLowerCase().includes(query) || 
+                (s.publisher || '').toLowerCase().includes(query) || 
+                (s.summary || '').toLowerCase().includes(query)
+            );
+        }
+        
+        return filtered;
+    }, [sources, finalCategory, searchQuery]);
 
     return (
         <div className="flex flex-col md:flex-row w-full min-h-[calc(100vh-64px)] md:h-[calc(100vh-64px)] pt-16 bg-gray-50 font-serif text-gray-900">
@@ -109,6 +121,22 @@ export default function SourcesPage() {
                         <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-none">
                             {activeCategory}
                         </h2>
+                    </div>
+
+                    {/* Search Bar */}
+                    <div className="mb-8">
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <Search className="h-4 w-4 text-gray-400" />
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Search specific intelligence, publisher, or keywords..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-gray-900 sm:text-sm font-sans"
+                            />
+                        </div>
                     </div>
 
                     {/* Source List */}

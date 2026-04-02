@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <title>India Middle East Europe Economic Corridor Research Platform</title>
+                <title>IMEC Radar</title>
                 <meta name="description" content="PhD Research Platform — India-Middle East-Europe Economic Corridor Analysis" />
             </head>
             <body className={`min-h-screen bg-gray-50 text-gray-900 ${fraunces.variable} ${jetbrainsMono.variable} font-serif antialiased overflow-x-hidden`}>
@@ -52,8 +52,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                     <div className="flex items-center gap-2.5">
                                         <div className="w-1.5 h-1.5 bg-white rounded-none shrink-0" />
                                         <span className="text-[11px] md:text-[13px] font-semibold text-gray-800 tracking-tight group-hover:text-gray-900 transition-colors duration-300 chromatic-text truncate">
-                                            <span className="hidden sm:inline">India Middle East Europe Economic Corridor Research Platform</span>
-                                            <span className="sm:hidden">IMEC Research Platform</span>
+                                            <span className="hidden sm:inline">India Middle East Europe Economic Corridor Radar</span>
+                                            <span className="sm:hidden">IMEC Radar</span>
                                         </span>
                                     </div>
                                 </Link>
