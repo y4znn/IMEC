@@ -24,10 +24,15 @@ export default function SourcesPage() {
     useEffect(() => {
         fetch('/data/sources.json')
             .then(res => res.json())
-            .then(data => setSources(data))
+            .then(data => {
+                // Sort chronologically: newest first
+                const sorted = [...data].sort((a, b) => b.date.localeCompare(a.date));
+                setSources(sorted);
+            })
             .catch(() => {
                 console.warn("Failed to fetch sources.json, using fallback.");
-                setSources(fallbackSources as any as AcademicSource[]);
+                const sortedFallback = [...fallbackSources].sort((a: any, b: any) => b.date.localeCompare(a.date));
+                setSources(sortedFallback as any as AcademicSource[]);
             });
     }, []);
 
@@ -127,16 +132,24 @@ export default function SourcesPage() {
                 <div className="max-w-4xl mx-auto px-4 md:px-12 py-6 md:py-10">
 
                     {/* Header for Category */}
-                    <div className="mb-8 md:mb-12 flex flex-col md:flex-row md:items-start justify-between gap-6">
-                        <div>
-                            <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-none">
-                                {activeCategory || "Global Intelligence"}
-                            </h2>
+                    {activeCategory && (
+                        <div className="mb-8 md:mb-12 flex flex-col md:flex-row md:items-start justify-between gap-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
+                            <div>
+                                <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-none text-gray-900 uppercase">
+                                    {activeCategory}
+                                </h2>
+                            </div>
+                            <div className="shrink-0">
+                                <IntelligencePulse />
+                            </div>
                         </div>
-                        <div className="shrink-0">
+                    )}
+
+                    {!activeCategory && (
+                        <div className="mb-8 md:mb-12 flex justify-end">
                             <IntelligencePulse />
                         </div>
-                    </div>
+                    )}
 
                     {/* Search Bar */}
                     <div className="mb-8">

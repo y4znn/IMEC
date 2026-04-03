@@ -56,14 +56,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                     {/* ── Navigation Bar ── */}
                     <header className="relative z-50 bg-gray-50 border-b border-gray-300">
-                        <div className="max-w-7xl mx-auto px-4 md:px-6 pt-6 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-6">
-                            <div className="flex flex-col py-2 min-w-0 flex-1">
+                        <div className="max-w-7xl mx-auto px-4 md:px-6 pt-1.5 pb-1 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                            <div className="flex flex-col py-0 min-w-0 flex-1">
                                 <Link href="/" className="group inline-block">
                                     <h1 className="text-4xl md:text-5xl font-sans font-bold tracking-tighter leading-tight text-gray-900 animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out fill-mode-forwards">
                                         IMEC Radar
                                     </h1>
                                 </Link>
-                                <div className="mt-2 hidden sm:block">
+                                <div className="mt-0 hidden sm:block">
                                     <span className="text-[11px] font-sans text-gray-600 tracking-widest uppercase opacity-80 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
                                         <a href="https://www.linkedin.com/in/ahmadghsnn" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">a project by ahmad ghosn</a>
                                     </span>
@@ -71,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             </div>
 
                             {/* Desktop Navigation */}
-                            <nav className="hidden md:flex items-center gap-2 mb-2" aria-label="Primary navigation">
+                            <nav className="hidden md:flex items-center gap-2 mb-0.5" aria-label="Primary navigation">
                                 <NavLink href="/sources" label="Sources" current={pathname} />
                                 <NavLink href="/maps" label="Corridors map" current={pathname} />
                                 <NavLink href="/profile" label="Researcher Profile" current={pathname} />
