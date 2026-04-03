@@ -14407,23 +14407,23 @@
     "snippet": "Home / Our Offerings / Publications / Green Growth Pathways for Saudi Arabia Abstract Green growth emphasizes that positive environmental outcomes can be consistent with economic prosperity and that greater social wellbeing can be achieved through ‘less use, more value’ policies.",
     "cached_at": "2026-04-03T11:14:53.154738+00:00"
   },
-  "cc985c77e4fe6519": {
-    "url": "https://doi.org/10.3726/978-3-0352-6125-7/3",
+  "55d0c9a98f75dac3": {
+    "url": "https://www.lokmattimes.com/international/eam-jaishankar-highlights-imecs-role-in-strengthening-global-connectivity-amid-west-asia-conflict/",
     "record": {
       "id": "unknown",
-      "title": "PART ONE. EUROPE AND THE ARAB-ISRAELI CONFLICT",
-      "url": "https://doi.org/10.3726/978-3-0352-6125-7/3",
-      "total_score": 4.5,
+      "title": "EAM Jaishankar highlights IMEC’s role in strengthening global connectivity amid West Asia conflict",
+      "url": "https://www.lokmattimes.com/international/eam-jaishankar-highlights-imecs-role-in-strengthening-global-connectivity-amid-west-asia-conflict/",
+      "total_score": 6.95,
       "breakdown": {
         "geographic": {
-          "score": 1.7999999999999998,
+          "score": 3.0,
           "max": 4.0,
-          "reason": "Strong geographic grounding: 3 nodes matched"
+          "reason": "Strong geographic grounding: 5 nodes matched"
         },
         "pillars": {
-          "score": 1.7,
+          "score": 2.95,
           "max": 4.0,
-          "reason": "Single pillar (Transport): 1 keywords"
+          "reason": "Two pillars covered: 3 keywords"
         },
         "comparative": {
           "score": 1.0,
@@ -14438,13 +14438,293 @@
         }
       },
       "action": "KEEP",
-      "decision": "HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.95 exceeds 4.0 threshold",
       "fetch_method": "harvest-fast",
-      "snippet_of_proof": "Loading... × Preview Citation Zitatvorschau in APA MLA Chicago Harvard Copy to clipboard Export Citation ProCite RefWorks Reference Manager .ris BibTeX Zotero .bib EndNote .enw Europe and the Middle East The hour of the EU? by Birte Wassenberg (Volume editor) Giovanni Faleg (Volume editor) ©2012 Conference proceedings 154 Pages History & Political Science Series: Euroclio , Volume 63 Summary At a time when momentous changes are taking place in the Middle East, this volume provides a timely and c",
-      "timestamp": "2026-04-03T18:43:10.699666+00:00",
-      "harvest_timestamp": "2026-04-03T18:43:10.699852+00:00"
+      "snippet_of_proof": "EAM Jaishankar highlights IMEC’s role in strengthening global connectivity amid West Asia conflict By IANS | Updated: March 27, 2026 11:15 IST 2026-03-27T11:11:07+5:30 2026-03-27T11:15:28+5:30 Preferred on Preferred on Next Paris, March 27 External Affairs Minister (EAM) S. Jaishankar emphasised the importance of the India-Middle East-Europe Economic Corridor ... EAM Jaishankar highlights IMEC’s role in strengthening global connectivity amid West Asia conflict Paris, March 27 External Affairs Mi",
+      "timestamp": "2026-04-03T18:42:14.809600+00:00",
+      "harvest_timestamp": "2026-04-03T18:42:14.809802+00:00"
     },
-    "snippet": "Loading... × Preview Citation Zitatvorschau in APA MLA Chicago Harvard Copy to clipboard Export Citation ProCite RefWorks Reference Manager .ris BibTeX Zotero .bib EndNote .enw Europe and the Middle East The hour of the EU? by Birte Wassenberg (Volume editor) Giovanni Faleg (Volume editor) ©2012 Conference proceedings 154 Pages History & Political Science Series: Euroclio , Volume 63 Summary At a time when momentous changes are taking place in the Middle East, this volume provides a timely and c",
-    "cached_at": "2026-04-03T18:43:10.699893+00:00"
+    "snippet": "EAM Jaishankar highlights IMEC’s role in strengthening global connectivity amid West Asia conflict By IANS | Updated: March 27, 2026 11:15 IST 2026-03-27T11:11:07+5:30 2026-03-27T11:15:28+5:30 Preferred on Preferred on Next Paris, March 27 External Affairs Minister (EAM) S. Jaishankar emphasised the importance of the India-Middle East-Europe Economic Corridor ... EAM Jaishankar highlights IMEC’s role in strengthening global connectivity amid West Asia conflict Paris, March 27 External Affairs Mi",
+    "cached_at": "2026-04-03T18:42:14.809824+00:00"
+  },
+  "d120d26ac995ff4c": {
+    "url": "https://www.onmanorama.com/news/global-indian/2026/03/04/gulf-attack-india-iran-us-conflict-impact.html",
+    "record": {
+      "id": "unknown",
+      "title": "Any attack on the Gulf is an attack on India",
+      "url": "https://www.onmanorama.com/news/global-indian/2026/03/04/gulf-attack-india-iran-us-conflict-impact.html",
+      "total_score": 7.4,
+      "breakdown": {
+        "geographic": {
+          "score": 3.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 5 nodes matched"
+        },
+        "pillars": {
+          "score": 3.4,
+          "max": 4.0,
+          "reason": "All three pillars covered: 4 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 7.4 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "ADVERTISEMENT NEWS Global Indian Any attack on the Gulf is an attack on India TP Sreenivasan Published: March 04, 2026 09:50 AM IST 3 minute Read Share × Copy Link Email Facebook Twitter WhatsApp LinkedIn Telegram Reddit Comments Link Copied ADVERTISEMENT Smoke rises following an explosion, after Israel and the US launched strikes on Iran, in Tehran, Iran, February 28, 2026. Photo: Reuters. Mail This Article × Follow Us When President Trump told the Iranian negotiators in Vienna that if his term",
+      "timestamp": "2026-04-03T18:42:15.718864+00:00",
+      "harvest_timestamp": "2026-04-03T18:42:15.719035+00:00"
+    },
+    "snippet": "ADVERTISEMENT NEWS Global Indian Any attack on the Gulf is an attack on India TP Sreenivasan Published: March 04, 2026 09:50 AM IST 3 minute Read Share × Copy Link Email Facebook Twitter WhatsApp LinkedIn Telegram Reddit Comments Link Copied ADVERTISEMENT Smoke rises following an explosion, after Israel and the US launched strikes on Iran, in Tehran, Iran, February 28, 2026. Photo: Reuters. Mail This Article × Follow Us When President Trump told the Iranian negotiators in Vienna that if his term",
+    "cached_at": "2026-04-03T18:42:15.719045+00:00"
+  },
+  "67c2c35b3498a8ce": {
+    "url": "https://economictimes.indiatimes.com/opinion/et-commentary/global-trade-shifts-could-create-a-new-club-med-for-emerging-markets/articleshow/129616011.cms",
+    "record": {
+      "id": "unknown",
+      "title": "Global trade shifts could create a ‘New Club Med’ for emerging markets",
+      "url": "https://economictimes.indiatimes.com/opinion/et-commentary/global-trade-shifts-could-create-a-new-club-med-for-emerging-markets/articleshow/129616011.cms",
+      "total_score": 8.75,
+      "breakdown": {
+        "geographic": {
+          "score": 3.5999999999999996,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 6 nodes matched"
+        },
+        "pillars": {
+          "score": 3.4,
+          "max": 4.0,
+          "reason": "Two pillars covered: 6 keywords"
+        },
+        "comparative": {
+          "score": 1.75,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 1 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 8.75 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Synopsis The landscape of global commerce is undergoing a transformation as uncertainty grips West Asia. Rising to prominence is the India-Middle East-Europe Economic Corridor (IMEC), a strategic initiative designed to link India, the Gulf, and Europe. This corridor not only aims to enhance trade flows but also to elevate the Mediterranean's significance in global logistics. Listen to this article in summarized format Listen Antonio Tajani Antonio Tajani is Deputy Prime Minister of Italy and Min",
+      "timestamp": "2026-04-03T18:42:16.218885+00:00",
+      "harvest_timestamp": "2026-04-03T18:42:16.219076+00:00"
+    },
+    "snippet": "Synopsis The landscape of global commerce is undergoing a transformation as uncertainty grips West Asia. Rising to prominence is the India-Middle East-Europe Economic Corridor (IMEC), a strategic initiative designed to link India, the Gulf, and Europe. This corridor not only aims to enhance trade flows but also to elevate the Mediterranean's significance in global logistics. Listen to this article in summarized format Listen Antonio Tajani Antonio Tajani is Deputy Prime Minister of Italy and Min",
+    "cached_at": "2026-04-03T18:42:16.219088+00:00"
+  },
+  "3a1fb82680409b85": {
+    "url": "https://www.livemint.com/news/world/pm-modi-calls-for-dialogue-and-peace-in-joint-press-briefing-with-finland-president-stubb-amid-middle-east-tensions-11772700493171.html",
+    "record": {
+      "id": "unknown",
+      "title": "PM Modi calls for dialogue and peace in joint press briefing with Finland President Stubb amid Middle East tensions",
+      "url": "https://www.livemint.com/news/world/pm-modi-calls-for-dialogue-and-peace-in-joint-press-briefing-with-finland-president-stubb-amid-middle-east-tensions-11772700493171.html",
+      "total_score": 8.2,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 2.8,
+          "max": 4.0,
+          "reason": "Two pillars covered: 2 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 2 corridors in 2 comparative contexts"
+        },
+        "dialectical": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "Pro-connectivity framing: 1 markers",
+          "stance": "pro"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 8.2 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "View Market Dashboard PM Modi calls for dialogue and peace in joint press briefing with Finland President Stubb amid Middle East tensions PM Modi, during a joint press briefing with Finnish President Stubb, emphasised the importance of dialogue and peace. Highlighting the historic trade deal with the EU, the PM has said India and Europe are entering a golden era of partnership with enhanced cooperation across various sectors. Garvit Bhirani Published 5 Mar 2026, 03:05 PM IST PM Modi calls for di",
+      "timestamp": "2026-04-03T18:42:17.378267+00:00",
+      "harvest_timestamp": "2026-04-03T18:42:17.378452+00:00"
+    },
+    "snippet": "View Market Dashboard PM Modi calls for dialogue and peace in joint press briefing with Finland President Stubb amid Middle East tensions PM Modi, during a joint press briefing with Finnish President Stubb, emphasised the importance of dialogue and peace. Highlighting the historic trade deal with the EU, the PM has said India and Europe are entering a golden era of partnership with enhanced cooperation across various sectors. Garvit Bhirani Published 5 Mar 2026, 03:05 PM IST PM Modi calls for di",
+    "cached_at": "2026-04-03T18:42:17.378462+00:00"
+  },
+  "aac2dad20b508f89": {
+    "url": "https://www.steelorbis.com/steel-news/latest-news/red-sea-shipping-route-disruption-causes-diversions-via-cape-of-good-hope-1439272.htm",
+    "record": {
+      "id": "unknown",
+      "title": "Red Sea shipping route disruption causes diversions via Cape of Good Hope",
+      "url": "https://www.steelorbis.com/steel-news/latest-news/red-sea-shipping-route-disruption-causes-diversions-via-cape-of-good-hope-1439272.htm",
+      "total_score": 6.3,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 2.9000000000000004,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 7 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.3 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "< Latest Steel News Home > Steel News > Latest Steel News > Red... Red Sea shipping route disruption causes diversions via Cape of Good Hope Wednesday, 04 March 2026 15:05:23 (GMT+3) | Istanbul Loading... Read Aloud Major container shipping lines have suspended plans to return to the Red Sea-Suez Canal route after war broke out in the Middle East over the weekend. According to industry reports, tensions escalated in the region at the weekend after Israel and the US attacked Iran. Although no off",
+      "timestamp": "2026-04-03T18:42:17.568807+00:00",
+      "harvest_timestamp": "2026-04-03T18:42:17.568954+00:00"
+    },
+    "snippet": "< Latest Steel News Home > Steel News > Latest Steel News > Red... Red Sea shipping route disruption causes diversions via Cape of Good Hope Wednesday, 04 March 2026 15:05:23 (GMT+3) | Istanbul Loading... Read Aloud Major container shipping lines have suspended plans to return to the Red Sea-Suez Canal route after war broke out in the Middle East over the weekend. According to industry reports, tensions escalated in the region at the weekend after Israel and the US attacked Iran. Although no off",
+    "cached_at": "2026-04-03T18:42:17.568966+00:00"
+  },
+  "1cd36c2c37f941b2": {
+    "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/indias-oilmeal-export-to-china-jumps-20-fold-to-7-79-lakh-tons-in-11-months-of-fy26-sea/articleshow/129675439.cms",
+    "record": {
+      "id": "unknown",
+      "title": "India's oilmeal export to China jumps 20-fold to 7.79 lakh tons in 11 months of FY26: SEA",
+      "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/indias-oilmeal-export-to-china-jumps-20-fold-to-7-79-lakh-tons-in-11-months-of-fy26-sea/articleshow/129675439.cms",
+      "total_score": 7.7,
+      "breakdown": {
+        "geographic": {
+          "score": 3.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 5 nodes matched"
+        },
+        "pillars": {
+          "score": 2.7,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 6 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 2 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 7.7 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Agencies India's oilmeal exports to China surged over 20-fold to 7.79 lakh tonnes in the first eleven months of this fiscal, following higher demand due to lower prices compared to competitors, according to industry body SEA data. Solvent Extractors' Association of India (SEA), however, said the exports could face a challenge going forward. India exported 7,79,016 tonnes of oilmeals, mainly rapeseed meal, to China during April 2025-February 2026 against 38,240 tonnes in the corresponding period ",
+      "timestamp": "2026-04-03T18:42:18.089720+00:00",
+      "harvest_timestamp": "2026-04-03T18:42:18.089884+00:00"
+    },
+    "snippet": "Agencies India's oilmeal exports to China surged over 20-fold to 7.79 lakh tonnes in the first eleven months of this fiscal, following higher demand due to lower prices compared to competitors, according to industry body SEA data. Solvent Extractors' Association of India (SEA), however, said the exports could face a challenge going forward. India exported 7,79,016 tonnes of oilmeals, mainly rapeseed meal, to China during April 2025-February 2026 against 38,240 tonnes in the corresponding period ",
+    "cached_at": "2026-04-03T18:42:18.089899+00:00"
+  },
+  "ed884417aa785288": {
+    "url": "https://doi.org/10.26425/1816-4277-2017-12-39-43",
+    "record": {
+      "id": "unknown",
+      "title": "ABOUT THE FUTURISTIC CITY OF NEOM IN SAUDI ARABIA",
+      "url": "https://doi.org/10.26425/1816-4277-2017-12-39-43",
+      "total_score": 5.8,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 2.8,
+          "max": 4.0,
+          "reason": "Two pillars covered: 2 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.8 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Войти Вестник университета Расширенный поиск Архивы Главная О журнале Текущий выпуск Архивы Отправить статью Правила для авторов Редакционная коллегия Редакционный совет Рецензирование Этика публикаций Главная > № 12 (2017) > Бирюков О ФУТУРИСТИЧЕСКОМ ГОРОДЕ НЕОМ В САУДОВСКОЙ АРАВИИ Е. С. Бирюков https://doi.org/10.26425/1816-4277-2017-12-39-43 Полный текст: PDF (Rus) сгенерировать QR код Аннотация Об авторе Список литературы Cited By Scopus Cited Аннотация Рассматривается прикладной аспект поли",
+      "timestamp": "2026-04-03T18:44:46.024940+00:00",
+      "harvest_timestamp": "2026-04-03T18:44:46.025077+00:00"
+    },
+    "snippet": "Войти Вестник университета Расширенный поиск Архивы Главная О журнале Текущий выпуск Архивы Отправить статью Правила для авторов Редакционная коллегия Редакционный совет Рецензирование Этика публикаций Главная > № 12 (2017) > Бирюков О ФУТУРИСТИЧЕСКОМ ГОРОДЕ НЕОМ В САУДОВСКОЙ АРАВИИ Е. С. Бирюков https://doi.org/10.26425/1816-4277-2017-12-39-43 Полный текст: PDF (Rus) сгенерировать QR код Аннотация Об авторе Список литературы Cited By Scopus Cited Аннотация Рассматривается прикладной аспект поли",
+    "cached_at": "2026-04-03T18:44:46.025094+00:00"
+  },
+  "69f3d8c4abcb64d5": {
+    "url": "https://doi.org/10.1007/978-981-95-1176-1_4",
+    "record": {
+      "id": "unknown",
+      "title": "Domestic Workers in Saudi Arabia",
+      "url": "https://doi.org/10.1007/978-981-95-1176-1_4",
+      "total_score": 7.25,
+      "breakdown": {
+        "geographic": {
+          "score": 3.5999999999999996,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 6 nodes matched"
+        },
+        "pillars": {
+          "score": 1.9,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 2 keywords"
+        },
+        "comparative": {
+          "score": 1.75,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 1 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 7.25 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Abstract Labour migration has played a significant role in contributing to overseas employment and remittances, thus driving Bangladesh's economic success over the past few decades. This phenomenon has effectively alleviated unemployment pressure and provided a substantial boost to the economy. Annually, a considerable number of Bangladeshi labourers seek opportunities for overseas employment, making it a viable option for millions of workers. This is a preview of subscription content, log in vi",
+      "timestamp": "2026-04-03T18:44:46.039642+00:00",
+      "harvest_timestamp": "2026-04-03T18:44:46.039923+00:00"
+    },
+    "snippet": "Abstract Labour migration has played a significant role in contributing to overseas employment and remittances, thus driving Bangladesh's economic success over the past few decades. This phenomenon has effectively alleviated unemployment pressure and provided a substantial boost to the economy. Annually, a considerable number of Bangladeshi labourers seek opportunities for overseas employment, making it a viable option for millions of workers. This is a preview of subscription content, log in vi",
+    "cached_at": "2026-04-03T18:44:46.039931+00:00"
   }
 }

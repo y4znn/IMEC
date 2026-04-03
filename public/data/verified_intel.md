@@ -2889,3 +2889,91 @@ Vector-borne diseases, such a..._
 - **Decision:** HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold
 - **Snippet:** _Loading... × Preview Citation Zitatvorschau in APA MLA Chicago Harvard Copy to clipboard Export Citation ProCite RefWorks Reference Manager .ris BibTeX Zotero .bib EndNote .enw Europe and the Middle E..._
 
+
+---
+
+## Daily Harvest — 2026-04-03
+
+**9** new sources auto-deployed (score > 4.0)
+
+### [unknown] EAM Jaishankar highlights IMEC’s role in strengthening global connectivity amid West Asia conflict
+- **Score:** 6.95/10.0 (harvest-fast)
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.95 exceeds 4.0 threshold
+- **Snippet:** _EAM Jaishankar highlights IMEC’s role in strengthening global connectivity amid West Asia conflict By IANS | Updated: March 27, 2026 11:15 IST 2026-03-27T11:11:07+5:30 2026-03-27T11:15:28+5:30 Preferr..._
+
+### [unknown] Any attack on the Gulf is an attack on India
+- **Score:** 7.4/10.0 (harvest-fast)
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 3.4/4.0 — All three pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.4 exceeds 4.0 threshold
+- **Snippet:** _ADVERTISEMENT NEWS Global Indian Any attack on the Gulf is an attack on India TP Sreenivasan Published: March 04, 2026 09:50 AM IST 3 minute Read Share × Copy Link Email Facebook Twitter WhatsApp Link..._
+
+### [unknown] Global trade shifts could create a ‘New Club Med’ for emerging markets
+- **Score:** 8.75/10.0 (harvest-fast)
+- **Geographic:** 3.5999999999999996/4.0 — Strong geographic grounding: 6 nodes matched
+- **Pillars:** 3.4/4.0 — Two pillars covered: 6 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.75 exceeds 4.0 threshold
+- **Snippet:** _Synopsis The landscape of global commerce is undergoing a transformation as uncertainty grips West Asia. Rising to prominence is the India-Middle East-Europe Economic Corridor (IMEC), a strategic init..._
+
+### [unknown] PM Modi calls for dialogue and peace in joint press briefing with Finland President Stubb amid Middle East tensions
+- **Score:** 8.2/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 2 corridors in 2 comparative contexts
+- **Dialectical:** 1.0/2.0 — Pro-connectivity framing: 1 markers [pro]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.2 exceeds 4.0 threshold
+- **Snippet:** _View Market Dashboard PM Modi calls for dialogue and peace in joint press briefing with Finland President Stubb amid Middle East tensions PM Modi, during a joint press briefing with Finnish President ..._
+
+### [unknown] Red Sea shipping route disruption causes diversions via Cape of Good Hope
+- **Score:** 6.3/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 2.9000000000000004/4.0 — Single pillar (Transport): 7 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.3 exceeds 4.0 threshold
+- **Snippet:** _< Latest Steel News Home > Steel News > Latest Steel News > Red... Red Sea shipping route disruption causes diversions via Cape of Good Hope Wednesday, 04 March 2026 15:05:23 (GMT+3) | Istanbul Loadin..._
+
+### [unknown] India's oilmeal export to China jumps 20-fold to 7.79 lakh tons in 11 months of FY26: SEA
+- **Score:** 7.7/10.0 (harvest-fast)
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 2.7/4.0 — Single pillar (Transport): 6 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.7 exceeds 4.0 threshold
+- **Snippet:** _Agencies India's oilmeal exports to China surged over 20-fold to 7.79 lakh tonnes in the first eleven months of this fiscal, following higher demand due to lower prices compared to competitors, accord..._
+
+### [unknown] Hapag-Lloyd's Strategy Amidst Middle East Shipping Crisis
+- **Score:** 5.8/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.8 exceeds 4.0 threshold
+- **Snippet:** _Hapag-Lloyd's Strategy Amidst Middle East Shipping Crisis Hapag-Lloyd is negotiating with partners to address rising costs due to Middle East tensions, which have increased expenses by $40-$50 million..._
+
+### [unknown] ABOUT THE FUTURISTIC CITY OF NEOM IN SAUDI ARABIA
+- **Score:** 5.8/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.8 exceeds 4.0 threshold
+- **Snippet:** _Войти Вестник университета Расширенный поиск Архивы Главная О журнале Текущий выпуск Архивы Отправить статью Правила для авторов Редакционная коллегия Редакционный совет Рецензирование Этика публикаци..._
+
+### [unknown] Domestic Workers in Saudi Arabia
+- **Score:** 7.25/10.0 (harvest-fast)
+- **Geographic:** 3.5999999999999996/4.0 — Strong geographic grounding: 6 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Transport): 2 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.25 exceeds 4.0 threshold
+- **Snippet:** _Abstract Labour migration has played a significant role in contributing to overseas employment and remittances, thus driving Bangladesh's economic success over the past few decades. This phenomenon ha..._
+
