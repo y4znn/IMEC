@@ -70,10 +70,10 @@ export default function SourcesPage() {
             <div className="w-full md:w-[380px] shrink-0 border-b md:border-b-0 md:border-r border-gray-300 md:h-full overflow-y-auto custom-scrollbar flex flex-col">
                 <div className="px-4 md:px-8 py-6 md:py-10 border-b border-gray-300 bg-gray-50 sticky top-0 z-10 rounded-none">
                     <h1 className="text-2xl md:text-3xl font-sans font-bold tracking-tight uppercase leading-none mb-3 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
-                        Comprehensive<br className="hidden md:block" /><span className="md:hidden"> </span>Source Index
+                        Sources
                     </h1>
                     <p className="text-[10px] text-gray-900/50 tracking-[0.2em] font-mono uppercase animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 fill-mode-forwards">
-                        Verified Intelligence Records:<br className="hidden md:block" /><span className="md:hidden"> </span>
+                        Verified Sources:<br className="hidden md:block" /><span className="md:hidden"> </span>
                         [{sources.length}] Reference Entries
                     </p>
                 </div>
@@ -118,7 +118,7 @@ export default function SourcesPage() {
                         <div>
                             <div className="text-[10px] text-gray-900/50 tracking-[0.3em] font-mono uppercase mb-3 md:mb-4 flex items-center gap-3">
                                 <BookOpen className="w-3 h-3" />
-                                Active Source Index Module
+                                Active Sources Module
                             </div>
                             <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-none">
                                 {activeCategory}
