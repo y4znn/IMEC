@@ -2873,3 +2873,19 @@ Vector-borne diseases, such a..._
 - **Decision:** HARVEST-AUTO-DEPLOY: Score 4.95 exceeds 4.0 threshold
 - **Snippet:** _Biogeochemical Interactions and Their Role in European Underground Hydrogen Storage  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.3390/min15090929..._
 
+
+---
+
+## Daily Harvest — 2026-04-03
+
+**1** new sources auto-deployed (score > 4.0)
+
+### [unknown] PART ONE. EUROPE AND THE ARAB-ISRAELI CONFLICT
+- **Score:** 4.5/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold
+- **Snippet:** _Loading... × Preview Citation Zitatvorschau in APA MLA Chicago Harvard Copy to clipboard Export Citation ProCite RefWorks Reference Manager .ris BibTeX Zotero .bib EndNote .enw Europe and the Middle E..._
+

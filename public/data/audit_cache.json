@@ -14406,5 +14406,45 @@
     },
     "snippet": "Home / Our Offerings / Publications / Green Growth Pathways for Saudi Arabia Abstract Green growth emphasizes that positive environmental outcomes can be consistent with economic prosperity and that greater social wellbeing can be achieved through ‘less use, more value’ policies.",
     "cached_at": "2026-04-03T11:14:53.154738+00:00"
+  },
+  "cc985c77e4fe6519": {
+    "url": "https://doi.org/10.3726/978-3-0352-6125-7/3",
+    "record": {
+      "id": "unknown",
+      "title": "PART ONE. EUROPE AND THE ARAB-ISRAELI CONFLICT",
+      "url": "https://doi.org/10.3726/978-3-0352-6125-7/3",
+      "total_score": 4.5,
+      "breakdown": {
+        "geographic": {
+          "score": 1.7999999999999998,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 3 nodes matched"
+        },
+        "pillars": {
+          "score": 1.7,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 1 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Loading... × Preview Citation Zitatvorschau in APA MLA Chicago Harvard Copy to clipboard Export Citation ProCite RefWorks Reference Manager .ris BibTeX Zotero .bib EndNote .enw Europe and the Middle East The hour of the EU? by Birte Wassenberg (Volume editor) Giovanni Faleg (Volume editor) ©2012 Conference proceedings 154 Pages History & Political Science Series: Euroclio , Volume 63 Summary At a time when momentous changes are taking place in the Middle East, this volume provides a timely and c",
+      "timestamp": "2026-04-03T18:43:10.699666+00:00",
+      "harvest_timestamp": "2026-04-03T18:43:10.699852+00:00"
+    },
+    "snippet": "Loading... × Preview Citation Zitatvorschau in APA MLA Chicago Harvard Copy to clipboard Export Citation ProCite RefWorks Reference Manager .ris BibTeX Zotero .bib EndNote .enw Europe and the Middle East The hour of the EU? by Birte Wassenberg (Volume editor) Giovanni Faleg (Volume editor) ©2012 Conference proceedings 154 Pages History & Political Science Series: Euroclio , Volume 63 Summary At a time when momentous changes are taking place in the Middle East, this volume provides a timely and c",
+    "cached_at": "2026-04-03T18:43:10.699893+00:00"
   }
 }
