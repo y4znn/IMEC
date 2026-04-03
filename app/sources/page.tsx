@@ -73,8 +73,7 @@ export default function SourcesPage() {
                         Sources
                     </h1>
                     <p className="text-[10px] text-gray-900/50 tracking-[0.2em] font-mono uppercase animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 fill-mode-forwards">
-                        Verified Sources:<br className="hidden md:block" /><span className="md:hidden"> </span>
-                        [{sources.length}] Reference Entries
+                        [{sources.length}] Verified References
                     </p>
                 </div>
 

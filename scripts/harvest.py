@@ -518,7 +518,7 @@ def write_pulse_config(total_sources: int, today_added: int,
                        top_score: float):
     """Write pulse_config.json for the IntelligencePulse component."""
     config = {
-        "total_indexed": 6130000,
+        "total_indexed": 11300000,
         "verified_sources": total_sources,
         "today_added": today_added,
         "top_score": top_score,

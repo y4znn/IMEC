@@ -21,8 +21,8 @@ export default function IntelligencePulse() {
     }, []);
 
     const displayCount = pulse
-        ? `${pulse.total_indexed.toLocaleString()}+ Results`
-        : '6,130,000+ Results';
+        ? `${(pulse.total_indexed + pulse.verified_sources).toLocaleString()}+ Results`
+        : '11,300,000+ Results';
 
     const todayBadge = pulse?.today_added
         ? `+${pulse.today_added} today`
@@ -46,7 +46,7 @@ export default function IntelligencePulse() {
                     )}
                 </div>
                 <div className="text-xs text-gray-400 font-sans mt-0.5">
-                    Indexed across global strategic databases.
+                    11,300,000+ online sources on India Middle East Europe Economic Corridor
                 </div>
             </div>
         </div>

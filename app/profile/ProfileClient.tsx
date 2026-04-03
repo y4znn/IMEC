@@ -17,9 +17,9 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
     // Read static final content from injected JSON state
     const data = {
         pageTitle: storyData?.pageTitle || "Strategic Dossier",
-        pageSubtitle: storyData?.pageSubtitle || "Principal Investigator Profile & Research Framework",
+        pageSubtitle: storyData?.pageSubtitle || "",
         researcherName: storyData?.researcherName || "Ahmad Ghosn",
-        researcherTitle: storyData?.researcherTitle || "Ph.D. Candidate",
+        researcherTitle: storyData?.researcherTitle || "",
         linkedinText: storyData?.linkedinText || "LinkedIn Profile",
         bioHeading: storyData?.bioHeading || "Executive Bio",
         executive_bio: storyData?.executive_bio || "Ahmad Ghosn is a doctoral researcher specializing...",
@@ -69,7 +69,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                     </div>
 
                     <div className="mb-6 text-[11px] text-gray-600 tracking-widest uppercase font-mono truncate w-full">
-                        {data.researcherTitle}
+                        
                     </div>
 
                     <a
