@@ -25,7 +25,12 @@ async function readData(): Promise<SubscribersData> {
 }
 
 async function writeData(data: SubscribersData): Promise<void> {
-  await fs.writeFile(SUBSCRIBERS_PATH, JSON.stringify(data, null, 2));
+  try {
+    await fs.writeFile(SUBSCRIBERS_PATH, JSON.stringify(data, null, 2));
+  } catch (err) {
+    // Resilience: If disk is read-only (e.g. Vercel), log to console and continue.
+    console.warn(`[Subscribers] Disk write blocked (expected in serverless): ${err}`);
+  }
 }
 
 /**

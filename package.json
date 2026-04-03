@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-email/components": "^1.0.11",
+    "@react-email/render": "^2.0.5",
     "@tanstack/react-virtual": "^3.13.19",
     "@types/topojson-client": "^3.1.5",
     "axios": "^1.13.6",
