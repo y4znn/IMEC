@@ -16,7 +16,7 @@ type AcademicSource = {
 };
 
 export default function SourcesPage() {
-    const [activeCategory, setActiveCategory] = useState<string>('Foundations & Architecture');
+    const [activeCategory, setActiveCategory] = useState<string | null>(null);
     const [sources, setSources] = useState<AcademicSource[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -31,6 +31,20 @@ export default function SourcesPage() {
             });
     }, []);
 
+    // Global Click Reset: Clicking outside the sidebar navigation or search resets state to null (show all)
+    useEffect(() => {
+        const handleGlobalClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            // Target the nav element specifically as defined in the sidebar
+            if (!target.closest('nav') && !target.closest('input') && activeCategory !== null) {
+                setActiveCategory(null);
+            }
+        };
+
+        window.addEventListener('mousedown', handleGlobalClick);
+        return () => window.removeEventListener('mousedown', handleGlobalClick);
+    }, [activeCategory]);
+
     // Get unique categories sorted to preserve a logical read order
     const categories = useMemo(() => {
         const cats = Array.from(new Set(sources.map(s => s.category)));
@@ -44,12 +58,12 @@ export default function SourcesPage() {
         return cats.sort((a, b) => order.indexOf(a) - order.indexOf(b));
     }, [sources]);
 
-    // Remove the redundant generic useEffect trying to patch state.
-    // Instead merely fallback in the activeSources computation:
-    const finalCategory = (!categories.includes(activeCategory) && categories.length > 0) ? categories[0] : activeCategory;
+    const finalCategory = activeCategory;
 
     const activeSources = useMemo(() => {
-        let filtered = sources.filter(s => s.category === finalCategory);
+        let filtered = finalCategory 
+            ? sources.filter(s => s.category === finalCategory)
+            : sources;
         
         if (searchQuery.trim()) {
             const query = searchQuery.toLowerCase();
@@ -68,7 +82,7 @@ export default function SourcesPage() {
 
             {/* ── LEFT SIDEBAR: Syllabus Modules ── */}
             <div className="w-full md:w-[380px] shrink-0 border-b md:border-b-0 md:border-r border-gray-300 md:h-full overflow-y-auto custom-scrollbar flex flex-col">
-                <div className="px-4 md:px-8 py-6 md:py-10 border-b border-gray-300 bg-gray-50 sticky top-0 z-10 rounded-none">
+                <div className="px-4 md:px-8 py-4 md:py-6 border-b border-gray-300 bg-gray-50 sticky top-0 z-10 rounded-none">
                     <h1 className="text-2xl md:text-3xl font-sans font-bold tracking-tight uppercase leading-none mb-3 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
                         Sources
                     </h1>
@@ -115,12 +129,8 @@ export default function SourcesPage() {
                     {/* Header for Category */}
                     <div className="mb-8 md:mb-12 flex flex-col md:flex-row md:items-start justify-between gap-6">
                         <div>
-                            <div className="text-[10px] text-gray-900/50 tracking-[0.3em] font-mono uppercase mb-3 md:mb-4 flex items-center gap-3">
-                                <BookOpen className="w-3 h-3" />
-                                Active Sources Module
-                            </div>
                             <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-none">
-                                {activeCategory}
+                                {activeCategory || "Global Intelligence"}
                             </h2>
                         </div>
                         <div className="shrink-0">
