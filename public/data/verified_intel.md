@@ -1499,3 +1499,1377 @@ _Generated: 2026-04-03T09:49:37.066342+00:00_
 - **Decision:** HARVEST-AUTO-DEPLOY: Score 9.55 exceeds 7.5 threshold
 - **Snippet:** _IMEEC: Boon for Logistics Sector Find us on Google Scholar Peer Review Policy Article Processing Charges Publication Procedure Research Topics FAQ Copyright Infringement Refund and Cancellation Policy..._
 
+
+---
+
+## Daily Harvest — 2026-04-03
+
+**151** new sources auto-deployed (score > 4.0)
+
+### [unknown] No IMF and World Bank spring meetings without a global crisis
+- **Score:** 4.6/10.0 (harvest-fast)
+- **Geographic:** 0.0/4.0 — VETO: Belgian/semiconductor markers (1) without corridor context (geo=2)
+- **Pillars:** 3.6/4.0 — All three pillars covered: 6 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.6 exceeds 4.0 threshold
+- **Snippet:** _Once again, the spring meetings of the International Monetary Fund (IMF) and the World Bank Group—scheduled for April 13 through 18—will take place against the backdrop of a global economic and financ..._
+
+### [unknown] Ukraine’s heating system resilience offers lessons for European neighbors
+- **Score:** 5.95/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.95 exceeds 4.0 threshold
+- **Snippet:** _Ukraine recently survived the fourth winter of Russia’s full-scale invasion. That is not a figure of speech. During the winter months, Moscow’s clear intention was to freeze millions of Ukrainians int..._
+
+### [unknown] The Maritime Action Plan could be a platform for nuclear innovation at sea
+- **Score:** 5.0/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.5/4.0 — Two pillars covered: 9 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.0 exceeds 4.0 threshold
+- **Snippet:** _The United States’ ability to sustain commercial and military operations in infrastructure-scarce environments such as the Arctic and Indo-Pacific is becoming increasingly important as receding sea ic..._
+
+### [unknown] Matchett for War on the Rocks on threats to desalination plants and preparedness for attacks in the Gulf
+- **Score:** 4.1/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.1/4.0 — Single pillar (Energy): 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.1 exceeds 4.0 threshold
+- **Snippet:** _Original Source On March 31, GeoStrategy Initiative assistant director Ginger Matchett wrote a feature for “Holding water hostage” for War on Rocks on the threat to desalination plants in the Gulf and..._
+
+### [unknown] Europe has the resources to contain Russia but lacks the political will
+- **Score:** 6.85/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.85 exceeds 4.0 threshold
+- **Snippet:** _With Vladimir Putin’s full-scale invasion of Ukraine now in a fifth year, questions remain over Europe’s ability to contain the Kremlin. The evidence since 2022 is troubling. Europe has the resources ..._
+
+### [unknown] Ukraine’s military success is exposing the myth of inevitable Russian victory
+- **Score:** 7.0/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.25/4.0 — Two pillars covered: 5 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.0 exceeds 4.0 threshold
+- **Snippet:** _As the full-scale invasion of Ukraine enters a fifth year with no end in sight, Kremlin officials continue to push the idea of inevitable Russian victory. By convincing the outside world that Ukraine ..._
+
+### [unknown] So, what was President Biden’s grand strategy?
+- **Score:** 4.2/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 0.5/2.0 — Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.2 exceeds 4.0 threshold
+- **Snippet:** _Host Matthew Kroenig is joined by Rebecca Lissner, a senior fellow for US Foreign Policy at the Council on Foreign Relations, to discuss President Joe Biden’s grand strategy while in office. Did his a..._
+
+### [unknown] Iran-backed militias are destroying Iraq. Baghdad must take them on.
+- **Score:** 7.5/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.5 exceeds 4.0 threshold
+- **Snippet:** _A protester holds a Kata’ib Hizballah flag as supporters of Iraqi Shi'ite armed groups attempt to move toward the US embassy in Baghdad, Iraq, in March 1, 2026. (REUTERS/File Photo) WASHINGTON—A house..._
+
+### [unknown] Global payment systems are fragmenting. Here’s what the G20 can do.
+- **Score:** 9.25/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 7 nodes matched
+- **Pillars:** 3.25/4.0 — Two pillars covered: 5 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 6 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.25 exceeds 4.0 threshold
+- **Snippet:** _Bottom lines up front Global payment systems are fragmenting due to market, technological, regulatory, and geopolitical forces, leaving end users with slower, costlier, and less transparent cross-bord..._
+
+### [unknown] Trump’s path forward on Iran will determine US-Israeli war alignment
+- **Score:** 6.75/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 4 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.75 exceeds 4.0 threshold
+- **Snippet:** _US President Donald Trump points his finger towards Israeli Prime Minister Benjamin Netanyahu as they shake hands during a press conference at Trump’s Mar-a-Lago club in Palm Beach, Florida, on Decemb..._
+
+### [unknown] Jordan’s regional connectivity begins in Riyadh
+- **Score:** 9.75/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 12 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 16 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.75 exceeds 4.0 threshold
+- **Snippet:** _As the economic consequences of the Iran war spread across the Middle East, Jordan will be both a casualty and a potential source of resilience. Jordan’s strategic geography positions it as a natural ..._
+
+### [unknown] Can France and Algeria get their relationship back on track?
+- **Score:** 7.35/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.35 exceeds 4.0 threshold
+- **Snippet:** _This article was originally published with the Institute for Global Studies and has been adapted and republished with permission. There are signs of a thaw between Algeria and France, nearly two years..._
+
+### [unknown] Could Turkey help mediate an end to the Iran war?
+- **Score:** 6.7/10.0 (harvest-fast)
+- **Geographic:** 3.5999999999999996/4.0 — Strong geographic grounding: 6 nodes matched
+- **Pillars:** 2.1/4.0 — Single pillar (Transport): 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.7 exceeds 4.0 threshold
+- **Snippet:** _While the Middle East is embroiled in its most perilous crisis in decades, Turkey is trying to position itself as an indispensable stabilizer in a region that cannot afford Iran’s total collapse. At f..._
+
+### [unknown] Zelenskyy’s Gulf region tour was a masterclass in wartime diplomacy
+- **Score:** 7.55/10.0 (harvest-fast)
+- **Geographic:** 3.5999999999999996/4.0 — Strong geographic grounding: 6 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.55 exceeds 4.0 threshold
+- **Snippet:** _As the Iran War focuses international attention on the Middle East, Ukrainian President Volodymyr Zelenskyy traveled to the Gulf region in late March on a whirlwind tour that showcased wartime Ukraine..._
+
+### [unknown] The US should rethink Iran as a Southwest Asia challenge
+- **Score:** 6.6/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.6 exceeds 4.0 threshold
+- **Snippet:** _For decades, US policymakers have treated Iran as a Middle East problem. This made sense when Iran’s most consequential behaviors—sponsoring Hezbollah, arming the Houthis, backing Shia militias in Ira..._
+
+### [unknown] What the Iran war means for Europe’s energy
+- **Score:** 4.8/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _What the Iran war means for Europe’s energy Mark Leonard is joined by Szymon Kardaś to discuss how the war in Iran is affecting energy prices and supplies in Europe Infrastructure: Digital & Energy EC..._
+
+### [unknown] Fast energy: How Europe can power the AI revolution and stay competitive
+- **Score:** 4.8/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Fast energy: How Europe can power the AI revolution and stay competitive Europeans must urgently implement a “fast energy” programme to speed up access to energy to power AI—and remain competitive in ..._
+
+### [unknown] EV endgame: Stalling China’s export surge in Europe’s southern neighbourhood
+- **Score:** 4.7/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.7 exceeds 4.0 threshold
+- **Snippet:** _EV endgame: Stalling China’s export surge in Europe’s southern neighbourhood Chinese electric vehicle brands are adapting to Western trade barriers by increasing their presence in the Middle East and ..._
+
+### [unknown] Lebanon on the brink: Europe must act now if it wants to prevent a refugee wave
+- **Score:** 4.05/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 0.5/4.0 — No pillar alignment detected
+- **Comparative:** 1.75/2.0 — Comparative framing present: 2 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.05 exceeds 4.0 threshold
+- **Snippet:** _Lebanon on the brink: Europe must act now if it wants to prevent a refugee wave With over a thousand dead and a million displaced, Lebanon is edging towards state collapse. Europe must go beyond human..._
+
+### [unknown] Love Actually? Washington’s current relationship with Britain is more like Contempt Actually
+- **Score:** 4.25/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 0.5/4.0 — No pillar alignment detected
+- **Comparative:** 1.75/2.0 — Comparative framing present: 2 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.25 exceeds 4.0 threshold
+- **Snippet:** _Love Actually? Washington’s current relationship with Britain is more like Contempt Actually If the UK wants to regain serious respect in the world, it needs its European leg as well as its transatlan..._
+
+### [unknown] "The big problem regarding the war in Iran, is the impact on the US ability to support European deterrence and Ukraine."
+- **Score:** 4.7/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.7 exceeds 4.0 threshold
+- **Snippet:** _"The big problem regarding the war in Iran, is the impact on the US ability to support European deterrence and Ukraine." While the Pentagon and NATO maintain that arms deliveries to Ukraine through th..._
+
+### [unknown] Africa's power choice: The renewables market and its implications for the EU
+- **Score:** 5.7/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.7 exceeds 4.0 threshold
+- **Snippet:** _Beyond summits: The Africa-EU partnership as a priority Africa's demographic dynamism, growth and strategic resources make it central to Europe's economic resilience, security and autonomy amid intens..._
+
+### [unknown] Giuseppe Spatafora's Brief cited in Sestry
+- **Score:** 5.45/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 2 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.45 exceeds 4.0 threshold
+- **Snippet:** _Giuseppe Spatafora's Brief cited in Sestry Giuseppe Spatafora's Brief, The Union, the Star and the Eagle: EU-NATO cooperation under Trump 2.0 , was highlighted in Sestry (in Polish) in an article anal..._
+
+### [unknown] Contestation, crisis and choice: The EU’s opportunity on energy
+- **Score:** 6.1/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold
+- **Snippet:** _War in the Middle East: What implications for the EU and the world? The US and Israeli strikes on Iran have triggered a dangerous spiral of escalation. The war is having an immediate impact on Europe’..._
+
+### [unknown] THE NEW ROUTE OF GEOECONOMIC COMPETITION: COMPARISON OF THE BELT AND ROAD INITIATIVE AND THE IMEC PROJECT WITHIN THE FRA
+- **Score:** 9.1/10.0 (harvest-fast)
+- **Geographic:** 3.5999999999999996/4.0 — Strong geographic grounding: 6 nodes matched
+- **Pillars:** 3.5/4.0 — Two pillars covered: 10 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 2 corridors in 4 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.1 exceeds 4.0 threshold
+- **Snippet:** _Dicle Akademi Dergisi Research Article TR EN PDF Add To My Library Create Research Close BibTex RIS Cite Add To My Library Create Research Close JEOEKONOMİK REKABETİN YENİ ROTASI: KUŞAK VE YOL GİRİŞİM..._
+
+### [unknown] The Road to Iraq
+- **Score:** 4.85/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.1/4.0 — Single pillar (Transport): 3 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 3 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.85 exceeds 4.0 threshold
+- **Snippet:** _The Road to Iraq Record type Edited book Published 30 July 2014 Authors Muhammad Idrees Ahmad DOI https://doi.org/10.3366/edinburgh/9780748693023.001.0001 The publisher of this work supports co-access..._
+
+### [unknown] 8. 9/11 and the Road to Iraq
+- **Score:** 4.65/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 0.5/4.0 — No pillar alignment detected
+- **Comparative:** 1.75/2.0 — Comparative framing present: 3 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.65 exceeds 4.0 threshold
+- **Snippet:** _Presented to you through Paradigm Publishing Services University of Pennsylvania Press Visit our Partner Page See all our books Chapter Licensed Unlicensed Requires Authentication Cite this 8. 9/11 an..._
+
+### [unknown] A NEW DIMENSION OF STRATEGIC RIVALRY IN THE MIDDLE EAST: A COMPARATIVE ANALYSIS OF THE DEVELOPMENT ROAD AND THE INDIA-MI
+- **Score:** 8.7/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 7 nodes matched
+- **Pillars:** 2.7/4.0 — Single pillar (Transport): 6 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 5 corridors in 6 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.7 exceeds 4.0 threshold
+- **Snippet:** _Anadolu Üniversitesi İktisadi ve İdari Bilimler Fakültesi Dergisi Research Article EN PDF Add To My Library Create Research Close BibTex RIS Cite Add To My Library Create Research Close A NEW DIMENSIO..._
+
+### [unknown] Highlighting the Route: The Road to the Iraq War
+- **Score:** 6.1/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold
+- **Snippet:** _Abstract This chapter charts the history of US and UK relations with Iraq, putting the invasion of Iraq in its historical context. From this historical context, the chapter commences with a brief over..._
+
+### [unknown] Road user charging demonstration project
+- **Score:** 4.6/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.6 exceeds 4.0 threshold
+- **Snippet:** _Road user charging demonstration project Publication IEE Seminar on Road User Charging: Technical and Operational Development Record type Proceedings article Published 2004 Authors D.W. Tindall DOI ht..._
+
+### [unknown] Neo-conservatism after Iraq Fukuyama vs Kristol. (c2010)
+- **Score:** 5.7/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.7 exceeds 4.0 threshold
+- **Snippet:** _. Neo-conservatism after Iraq Fukuyama vs Kristol. (c2010) LAUR Repository Login | Help LAUR Home → School of Arts and Sciences → SoAS - Theses and Dissertations → View Item JavaScript is disabled for..._
+
+### [unknown] The Roles of the Organization of Turkic States (OTS) in International Trade, Logistics and European Union’s (EU) Energy 
+- **Score:** 9.0/10.0 (harvest-fast)
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 12 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 4 corridors in 3 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.0 exceeds 4.0 threshold
+- **Snippet:** _The Roles of the Organization of Turkic States (OTS) in International Trade, Logistics and European Union’s (EU) Energy Supply Security Authors Yavuz Toraman Nisantasi University DOI: https://doi.org/..._
+
+### [unknown] The Iraq–Türkiye Corridor and China: Strategic Connectivity and Geoeconomic Shifts
+- **Score:** 4.65/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Transport): 2 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 3 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.65 exceeds 4.0 threshold
+- **Snippet:** _doi Fil / ﻿Faculty of Philology, University of Belgrade Issues: Vol. 5 (2025) » • Book metadata • Contents Vol. 4/2 (2024) » • Book metadata • Contents Vol. 4/1 (2024) » • Book metadata • Contents The..._
+
+### [unknown] MULTILATERAL STRATEGIC COMPETITIONS: ASSESSING CHINA'S BRI AND INDIA'S IMEC
+- **Score:** 8.5/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 7 nodes matched
+- **Pillars:** 2.5/4.0 — Single pillar (Transport): 5 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 5 corridors in 6 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.5 exceeds 4.0 threshold
+- **Snippet:** _Pamukkale University Journal of Social Sciences Institute Research Article TR EN PDF Add To My Library Create Research Close BibTex RIS Cite Add To My Library Create Research Close Year 2025 , Issue: ..._
+
+### [unknown] ABD’nin Ortadoğu’ya Jeopolitik Yöneliminde İsrail’in Çok Boyutlu İşlevselliği
+- **Score:** 9.5/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 8 nodes matched
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 3 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.5 exceeds 4.0 threshold
+- **Snippet:** _Abant Sosyal Bilimler Dergisi Araştırma Makalesi TR EN PDF Kütüphaneme Ekle Araştırma Oluştur Kapat BibTex RIS Kaynak Göster Kütüphaneme Ekle Araştırma Oluştur Kapat ABD’nin Ortadoğu’ya Jeopolitik Yön..._
+
+### [unknown] Contemporary Challenges of India’s Foreign Policy
+- **Score:** 4.2/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 0.5/2.0 — Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.2 exceeds 4.0 threshold
+- **Snippet:** _Vol. 4 No. 2 (2025) , Articles Vol. 4 No. 2 (2025) Contemporary Challenges of India’s Foreign Policy Articles https://doi.org/10.62754/joe.v4i2.6812 Published 2025-01-16 Stuti Pandey + − Stuti Pandey ..._
+
+### [unknown] Contemporary Challenges of India’s Foreign Policy
+- **Score:** 4.2/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 0.5/2.0 — Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.2 exceeds 4.0 threshold
+- **Snippet:** _Vol. 4 No. 2 (2025) , Articles Vol. 4 No. 2 (2025) Contemporary Challenges of India’s Foreign Policy Articles https://doi.org/10.62754/joe.v4i2.6812 Published 2025-01-16 Stuti Pandey + − Stuti Pandey ..._
+
+### [unknown] PERSIAN GULF SECURITY: THE EU PERSPCTIVE
+- **Score:** 5.55/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.55 exceeds 4.0 threshold
+- **Snippet:** _%PDF-1.7 %���� 1 0 obj <>/Metadata 5975 0 R/ViewerPreferences 5976 0 R>> endobj 2 0 obj <> endobj 3 0 obj <>/ExtGState<>/ProcSet[/PDF/Text/ImageB/ImageC/ImageI] >>/Annots[ 15 0 R 18 0 R] /MediaBox[ 0 ..._
+
+### [unknown] INSTC and Central Asia: Unlocking Economic Potential Through Strategic Engagement
+- **Score:** 7.8/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 11 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 5 corridors in 4 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.8 exceeds 4.0 threshold
+- **Snippet:** _Abstract The International North–South Transport Corridor (INSTC), launched by Russia, India, and Iran in 2000, is a strategic 7,200-kilometer route connecting Asia and Europe. It gained renewed signi..._
+
+### [unknown] The Reorganization of Eurasian Logistics Networks and Geopolitics Due to the Ukrainian War: Focusing on the Internationa
+- **Score:** 4.65/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Transport): 2 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 3 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.65 exceeds 4.0 threshold
+- **Snippet:** _The Reorganization of Eurasian Logistics Networks and Geopolitics Due to the Ukrainian War: Focusing on the International South-North Transport Corridor (INSTC)  Geopolitics & Rival Corridors (BRI) Cr..._
+
+### [unknown] India's Rise in the Global South and INSTC
+- **Score:** 4.25/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 0.5/4.0 — No pillar alignment detected
+- **Comparative:** 1.75/2.0 — Comparative framing present: 3 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.25 exceeds 4.0 threshold
+- **Snippet:** _India's Rise in the Global South and INSTC  Geopolitics & Rival Corridors (BRI) CrossRef https://doi.org/10.4324/9781003454540-14..._
+
+### [unknown] The War in Gaza and the Future of IMEC
+- **Score:** 9.25/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 9 nodes matched
+- **Pillars:** 3.25/4.0 — Two pillars covered: 5 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.25 exceeds 4.0 threshold
+- **Snippet:** _Abstract More than 70 years of Israeli occupation and the resulting humiliation of Palestinians have given rise to various resistance groups, including Hamas within Palestine. Since October 7, 2023, w..._
+
+### [unknown] Transit Rivalry Or Partnership? INSTC Vs. Middle Corridor In Central Asia
+- **Score:** 6.4/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.4/4.0 — Two pillars covered: 6 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 4 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.4 exceeds 4.0 threshold
+- **Snippet:** _%PDF-1.7 %���� 1 0 obj <>/Metadata 455 0 R/ViewerPreferences 456 0 R>> endobj 2 0 obj <> endobj 3 0 obj <>/ExtGState<>/ProcSet[/PDF/Text/ImageB/ImageC/ImageI] >>/MediaBox[ 0 0 595.32 841.92] /Contents..._
+
+### [unknown] ‘INSTC and Chabahar Port’: An Introduction
+- **Score:** 4.45/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 3 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold
+- **Snippet:** _‘INSTC and Chabahar Port’: An Introduction  Geopolitics & Rival Corridors (BRI) CrossRef https://doi.org/10.4324/9781003454540-2..._
+
+### [unknown] Bridging the Governance Gap: The Impact of Economic Corridors like INSTC on Trade and Institutional Disparities
+- **Score:** 6.9/10.0 (harvest-fast)
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Transport): 2 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.9 exceeds 4.0 threshold
+- **Snippet:** _Abstract This research examines the role of economic corridors, specifically the International North–South Transport Corridor (INSTC), in addressing governance disparities between nations with differi..._
+
+### [unknown] Digital democracy vs. digital imperialism
+- **Score:** 4.3/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _Digital democracy vs. digital imperialism  Infrastructure: Digital & Energy CrossRef https://doi.org/10.4324/9781315271699-4..._
+
+### [unknown] India–Afghanistan Relations and the Geopolitics of Water Scarcity
+- **Score:** 6.55/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.55 exceeds 4.0 threshold
+- **Snippet:** _Abstract India and Afghanistan share deep historical and cultural ties dating back to the Indus Valley Civilization. Despite being separated by Pakistan since the partition of India, the two nations h..._
+
+### [unknown] The Red Sea Crisis: ramifications for vessel operations, shipping networks, and maritime supply chains
+- **Score:** 9.5/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 15 nodes matched
+- **Pillars:** 3.5/4.0 — Two pillars covered: 14 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 7 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.5 exceeds 4.0 threshold
+- **Snippet:** _The Red Sea Crisis: ramifications for vessel operations, shipping networks, and maritime supply chains Editorial Published: 20 February 2024 Volume 26 , pages 1–20, ( 2024 ) Cite this article Download..._
+
+### [unknown] Gwadar-Chahbahar Connectivity Politics: Pakistan's Emerging Grand Strategy in the Middle East and Central Asia
+- **Score:** 6.1/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.1/4.0 — Single pillar (Transport): 3 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold
+- **Snippet:** _Gwadar-Chahbahar Connectivity Politics: Pakistan's Emerging Grand Strategy in the Middle East and Central Asia Authors Dr. Shahid Hameed Assistant Professor IR, Department of International Relations, ..._
+
+### [unknown] AI-Driven Approach to Subsea Cable Lay Operability: An LSTM Neural Network for Predicting Cable Dynamic Responses
+- **Score:** 4.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _AI-Driven Approach to Subsea Cable Lay Operability: An LSTM Neural Network for Predicting Cable Dynamic Responses Abstract
+               This paper presents a novel approach to evaluating the operabi..._
+
+### [unknown] Subsea Cable Systems Developed For Subsea Completions
+- **Score:** 4.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _Subsea Cable Systems Developed For Subsea Completions Abstract
+                  During the 70's demand for subsea electrical cables for connection to subsea devices increased and introduced the indus..._
+
+### [unknown] Enforcement of Corporate Governance Against Financial Statement Fraud: A SEBI and Companies Act 2013 Perspective
+- **Score:** 5.1/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 0.5/2.0 — Competing corridor mentioned (2) WITHOUT comparative framing — possible thematic drift
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _Article Sidebar PDF Published: Apr 1, 2025 DOI: https://doi.org/10.52783/eel.v15i2.2809 Main Article Content Sourabh Yadav, Ravi Dass Abstract The evolving India-EU partnership is emerging as a crucia..._
+
+### [unknown] Sensor Analytics for Subsea Pipeline and Cable Inspection: A Review
+- **Score:** 4.45/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold
+- **Snippet:** _Sensor Analytics for Subsea Pipeline and Cable Inspection: A Review  Infrastructure: Digital & Energy CrossRef https://doi.org/10.31390/gradschool_theses.5914..._
+
+### [unknown] Modern Subsea Cable Systems Towards Ultimate Cable Capacity
+- **Score:** 5.4/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.4/4.0 — All three pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.4 exceeds 4.0 threshold
+- **Snippet:** _Expand this Topic clickable element to expand a topic Conferences > OFC > 2022 > M1F > M1F.1 Optical Fiber Communication Conference (OFC) 2022 Technical Digest Series (Optica Publishing Group, 2022), ..._
+
+### [unknown] Economic Impacts of Subsea Cable Deployment
+- **Score:** 4.45/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold
+- **Snippet:** _Economic Impacts of Subsea Cable Deployment This paper provides a comprehensive empirical analysis of the economic impact of submarine cable (SMC) infrastructure, which is critical for global digital ..._
+
+### [unknown] Safeguarding the digital lifelines: India’s strategic imperative for subsea cable security
+- **Score:** 4.8/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Safeguarding the digital lifelines: India’s strategic imperative for subsea cable security  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1080/19480881.2026.2617040..._
+
+### [unknown] An Instrumentation and Control System for SubSea Cable Burial
+- **Score:** 4.8/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _An Instrumentation and Control System for SubSea Cable Burial | IEEE Conference Publication | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payment Options Order Hi..._
+
+### [unknown] Improved current rating methods of subsea HVAC cable systems for renewable energy applications
+- **Score:** 4.45/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold
+- **Snippet:** _Improved current rating methods of subsea HVAC cable systems for renewable energy applications Το πλήθος και το μέγεθος των έργων Ανανεώσιμων Πηγών Ενέργειας (ΑΠΕ), όπως είναι τα Υπεράκτια Αιολικά Πάρ..._
+
+### [unknown] Bending Mechanics of Cable Cores and Fillers in a Dynamic Submarine Cable
+- **Score:** 5.1/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.6/4.0 — All three pillars covered: 6 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _Bending Mechanics of Cable Cores and Fillers in a Dynamic Submarine Cable Dynamic submarine cables are used to provide electrical power to floating oil/gas production platforms and to export power fro..._
+
+### [unknown] Should Aluminum Conductors be Considered for my Subsea Power Cable Application?
+- **Score:** 4.45/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold
+- **Snippet:** _Should Aluminum Conductors be Considered for my Subsea Power Cable Application? Abstract
+               Most baby-boomers have some familiarity with the classical stigma surrounding aluminum conductor..._
+
+### [unknown] First Impact Movement Characterization of Shallow Buried Live Subsea-Cable
+- **Score:** 4.8/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Expand this Topic clickable element to expand a topic Conferences > OFC > 2024 > M4E > M4E.4 Optical Fiber Communication Conference (OFC) 2024 Technical Digest Series (Optica Publishing Group, 2024), ..._
+
+### [unknown] 1975 subsea cable route studies between Grand Manan island and New Brunswick
+- **Score:** 4.3/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _NRCAN Open Science and Technology Repository (OSTR) / Le Dépôt ouvert des sciences et technologie (DOST) de RNCan..._
+
+### [unknown] The use of ROVS for subsea cable maintenance
+- **Score:** 4.8/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _The use of ROVS for subsea cable maintenance | IEEE Conference Publication | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payment Options Order History View Purcha..._
+
+### [unknown] Integrated condition monitoring for subsea power cable systems
+- **Score:** 4.45/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold
+- **Snippet:** _Integrated condition monitoring for subsea power cable systems  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1049/cp.2009.1113..._
+
+### [unknown] Investment and Usage of the Subsea Internet Cable Network
+- **Score:** 4.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _Investment and Usage of the Subsea Internet Cable Network  Infrastructure: Digital & Energy CrossRef https://doi.org/10.2139/ssrn.4925783..._
+
+### [unknown] Subsea cable management: Failure trending for offshore wind
+- **Score:** 4.9/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.4/4.0 — All three pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.9 exceeds 4.0 threshold
+- **Snippet:** _Subsea cable management: Failure trending for offshore wind Abstract. Subsea power cable failure is an issue which is detrimental to both export cables for Offshore Transmission Owners (OFTO) and inte..._
+
+### [unknown] Network protection system for TAT-12/13 subsea cable network
+- **Score:** 5.0/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.0 exceeds 4.0 threshold
+- **Snippet:** _Network protection system for TAT-12/13 subsea cable network Publication IEE Colloquium on Transoceanic Cable Communications - TAT 12 and 13 Herald a New Era Record type Proceedings article Published ..._
+
+### [unknown] 1976 subsea cable route studies, Grand Manan Channel and Head Harbour Passage, New Brunswick, Canada
+- **Score:** 4.45/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold
+- **Snippet:** _NRCAN Open Science and Technology Repository (OSTR) / Le Dépôt ouvert des sciences et technologie (DOST) de RNCan..._
+
+### [unknown] Utilisation of Inflatable Buoyancy for Efficient and Safer Subsea Cable Laying over Traditional Methods
+- **Score:** 4.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _Utilisation of Inflatable Buoyancy for Efficient and Safer Subsea Cable Laying over Traditional Methods Abstract
+               The subsea and offshore industries pose significant challenges due to th..._
+
+### [unknown] Choice of cable for subsea power links
+- **Score:** 4.8/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Choice of cable for subsea power links | IEEE Conference Publication | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payment Options Order History View Purchased Do..._
+
+### [unknown] Dynamic analysis of the subsea power cable pull-in operation through J-tube for hydrocarbon applications
+- **Score:** 5.2/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.7/4.0 — All three pillars covered: 7 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.2 exceeds 4.0 threshold
+- **Snippet:** _Dynamic analysis of the subsea power cable pull-in operation through J-tube for hydrocarbon applications Pipelines and cables are extensively utilized for the transportation of oil resources in offsho..._
+
+### [unknown] Subsea cable tracking by a 5-DOF AUV
+- **Score:** 4.8/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Subsea cable tracking by a 5-DOF AUV | IEEE Conference Publication | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payment Options Order History View Purchased Docu..._
+
+### [unknown] Subsea Cable Health Monitoring System
+- **Score:** 4.8/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Subsea Cable Health Monitoring System | IEEE Conference Publication | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payment Options Order History View Purchased Doc..._
+
+### [unknown] Design and Experimental Validation of a Novel Subsea Power Cable Protector for Aquaculture Applications
+- **Score:** 4.45/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold
+- **Snippet:** _Design and Experimental Validation of a Novel Subsea Power Cable Protector for Aquaculture Applications  Infrastructure: Digital & Energy CrossRef https://doi.org/10.2139/ssrn.5396192..._
+
+### [unknown] Hybrid Subsea Power Cable Emulator
+- **Score:** 5.55/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 2 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.55 exceeds 4.0 threshold
+- **Snippet:** _Hybrid Subsea Power Cable Emulator | IEEE Conference Publication | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payment Options Order History View Purchased Docume..._
+
+### [unknown] Automatic inspection of subsea optical cable by an autonomous underwater vehicle
+- **Score:** 4.8/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Automatic inspection of subsea optical cable by an autonomous underwater vehicle | IEEE Conference Publication | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payme..._
+
+### [unknown] Subsea cable projects - minimising risks
+- **Score:** 5.0/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.0 exceeds 4.0 threshold
+- **Snippet:** _Subsea cable projects - minimising risks Publication 10th IET International Conference on AC and DC Power Transmission (ACDC 2012) Record type Proceedings article Published 2012 Authors R. Goldring | ..._
+
+### [unknown] Directions for future subsea cable systems
+- **Score:** 4.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _Directions for future subsea cable systems  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1016/b978-0-443-29886-8.00006-2..._
+
+### [unknown] Sustainability assessment of a conceptual multipurpose offshore platform in the South China Sea
+- **Score:** 6.0/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.5/4.0 — Two pillars covered: 8 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.0 exceeds 4.0 threshold
+- **Snippet:** _Sustainability assessment of a conceptual multipurpose offshore platform in the South China Sea Open access Published: 10 July 2023 Volume 26 , pages 22449–22471, ( 2024 ) Cite this article You have f..._
+
+### [unknown] Applications of optical fiber sensors in marine observation: a review
+- **Score:** 6.0/10.0 (harvest-fast)
+- **Geographic:** 0.0/4.0 — VETO: Belgian/semiconductor markers (1) without corridor context (geo=2)
+- **Pillars:** 4.0/4.0 — All three pillars covered: 11 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.0 exceeds 4.0 threshold
+- **Snippet:** _Applications of optical fiber sensors in marine observation: a review Review Open access Published: 26 November 2025 Volume 3 , article number 38 , ( 2025 ) Cite this article You have full access to t..._
+
+### [unknown] Distributed acoustic sensing/distributed strain sensing technology and its applications for block cave progress monitori
+- **Score:** 7.4/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.4/4.0 — All three pillars covered: 4 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 3 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.4 exceeds 4.0 threshold
+- **Snippet:** _Distributed acoustic sensing/distributed strain sensing technology and its applications for block cave progress monitoring, rock mass preconditioning, and imagining Authors: Furlong, J ; Anderson, Z D..._
+
+### [unknown] The India-Middle East-Europe Economic Corridor: A “Game Changer” to the Middle East
+- **Score:** 10.0/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 8 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 10 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 5 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 10.0 exceeds 4.0 threshold
+- **Snippet:** _Abstract This chapter explores the potential of the India-Middle East-Europe Economic Corridor (IMEC) to transform the geopolitical dynamics of the Middle East. Positioned as a Western alternative to ..._
+
+### [unknown] Mapping the Digital Middle East
+- **Score:** 4.8/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Mapping the Digital Middle East Over the past decade or so, the digital landscape in the Middle East has changed dramatically. Technological adoption, advanced IT infrastructures, communication change..._
+
+### [unknown] Women’s Digital Activism
+- **Score:** 4.8/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Women’s Digital Activism One of the many transformations that is taking place across the Middle East and North Africa region is women's engagement with new communications technologies and their increa..._
+
+### [unknown] Digital Routes and Borders in the Middle-East: the geopolitical underpinnings of Internet Connectivity
+- **Score:** 4.8/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Digital Routes and Borders in the Middle-East: the geopolitical underpinnings of Internet Connectivity In the second half of the 2010s, the Arabian Peninsula experienced major foreign policy changes t..._
+
+### [unknown] Glossary 145
+- **Score:** 4.5/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold
+- **Snippet:** _Loading... × Preview Citation Zitatvorschau in APA MLA Chicago Harvard Copy to clipboard Export Citation ProCite RefWorks Reference Manager .ris BibTeX Zotero .bib EndNote .enw Europe and the Middle E..._
+
+### [unknown] Who teaches the Middle East in Europe? A gender perspective
+- **Score:** 5.1/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.1/4.0 — Single pillar (Transport): 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _Who teaches the Middle East in Europe? A gender perspective Publication Knowledge production in higher education Record type Book chapter Published 14 February 2023 Authors Merve Özdemirkıran-Embel DO..._
+
+### [unknown] Table of contents
+- **Score:** 4.5/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold
+- **Snippet:** _Loading... × Preview Citation Zitatvorschau in APA MLA Chicago Harvard Copy to clipboard Export Citation ProCite RefWorks Reference Manager .ris BibTeX Zotero .bib EndNote .enw Europe and the Middle E..._
+
+### [unknown] Digital economy connectivity in China and Europe
+- **Score:** 4.8/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Digital economy connectivity in China and Europe  Infrastructure: Digital & Energy CrossRef https://doi.org/10.4324/b22839-11..._
+
+### [unknown] Teaching Europe and the Middle East at universities in Turkey
+- **Score:** 5.1/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.1/4.0 — Single pillar (Transport): 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _Teaching Europe and the Middle East at universities in Turkey Publication Knowledge production in higher education Record type Book chapter Published 14 February 2023 Authors Aylin Güney | Emre İşeri ..._
+
+### [unknown] Youth and Citizenship in the Digital Age: A View from Egypt
+- **Score:** 6.3/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.3 exceeds 4.0 threshold
+- **Snippet:** _Skip to main content Research Article Youth and Citizenship in the Digital Age: A View from Egypt Linda Herrera Harvard Educational Review September 2012, 82 (3) 333-352; DOI: https://doi.org/10.17763..._
+
+### [unknown] New fossils from Jebel Irhoud, Morocco and the pan-African origin of Homo sapiens
+- **Score:** 6.1/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold
+- **Snippet:** _Subjects Archaeology Biological anthropology A Correction to this article was published on 13 June 2018 This article has been updated Abstract Fossil evidence points to an African origin of Homo sapie..._
+
+### [unknown] COVID-19: 20 countries’ higher education intra-period digital pedagogy responses
+- **Score:** 4.3/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _COVID-19: 20 countries’ higher education intra-period digital pedagogy responses  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.37074/jalt.2020.3.1.7..._
+
+### [unknown] A review of the global climate change impacts, adaptation, and sustainable mitigation measures
+- **Score:** 8.85/10.0 (harvest-fast)
+- **Geographic:** 3.5999999999999996/4.0 — Strong geographic grounding: 6 nodes matched
+- **Pillars:** 3.25/4.0 — Two pillars covered: 5 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 2 corridors in 3 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.85 exceeds 4.0 threshold
+- **Snippet:** _A review of the global climate change impacts, adaptation, and sustainable mitigation measures Review Article Published: 04 April 2022 Volume 29 , pages 42539–42559, ( 2022 ) Cite this article Save ar..._
+
+### [unknown] Blockchain technology in the energy sector: A systematic review of challenges and opportunities
+- **Score:** 4.8/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Blockchain technology in the energy sector: A systematic review of challenges and opportunities  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.1016/j.rser.2018.10.014..._
+
+### [unknown] World Development Report 2019: The Changing Nature of Work
+- **Score:** 5.9/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.4/4.0 — All three pillars covered: 4 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 3 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.9 exceeds 4.0 threshold
+- **Snippet:** _Publication: World Development Report 2019: The Changing Nature of Work c b Post Like Share Loading... Files in English English PDF (17.1 MB) 377,642 downloads English Overview (2.66 MB) 3,089 downloa..._
+
+### [unknown] Reskilling and Upskilling the Future-ready Workforce for Industry 4.0 and Beyond
+- **Score:** 7.7/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.7/4.0 — All three pillars covered: 7 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 3 comparative contexts
+- **Dialectical:** 1.0/2.0 — Pro-connectivity framing: 1 markers [pro]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.7 exceeds 4.0 threshold
+- **Snippet:** _Reskilling and Upskilling the Future-ready Workforce for Industry 4.0 and Beyond Published: 13 July 2022 Volume 26 , pages 1697–1712, ( 2024 ) Cite this article Save article View saved research Inform..._
+
+### [unknown] A Comprehensive Review of the COVID-19 Pandemic and the Role of IoT, Drones, AI, Blockchain, and 5G in Managing its Impa
+- **Score:** 4.3/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _A Comprehensive Review of the COVID-19 Pandemic and the Role of IoT, Drones, AI, Blockchain, and 5G in Managing its Impact | IEEE Journals & Magazine | IEEE Xplore IEEE Account Change Username/Passwor..._
+
+### [unknown] Global value chains: A review of the multi-disciplinary literature
+- **Score:** 5.5/10.0 (harvest-fast)
+- **Geographic:** 0.0/4.0 — VETO: Belgian/semiconductor markers (1) without corridor context (geo=2)
+- **Pillars:** 3.5/4.0 — Two pillars covered: 7 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 8 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.5 exceeds 4.0 threshold
+- **Snippet:** _Global value chains: A review of the multi-disciplinary literature Review Article Open access Published: 25 February 2020 Volume 51 , pages 577–622, ( 2020 ) Cite this article You have full access to ..._
+
+### [unknown] The Digital Divide: Current and Future Research Directions
+- **Score:** 4.3/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _The Digital Divide: Current and Future Research Directions  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.17705/1jais.00074..._
+
+### [unknown] Green Hydrogen in Saudi Arabia's NEOM
+- **Score:** 6.4/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.4/4.0 — Two pillars covered: 6 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.4 exceeds 4.0 threshold
+- **Snippet:** _Breadcrumbs Section. Click here to navigate to respective pages. Chapter Chapter Green Hydrogen in Saudi Arabia's NEOM DOI link for Green Hydrogen in Saudi Arabia's NEOM Green Hydrogen in Saudi Arabia..._
+
+### [unknown] Two-Stage Optimization of a DC Microgrid with Green Hydrogen for 1 MW Data Center Operation in NEOM, Saudi Arabia
+- **Score:** 6.6/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.6/4.0 — All three pillars covered: 6 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.6 exceeds 4.0 threshold
+- **Snippet:** _Two-Stage Optimization of a DC Microgrid with Green Hydrogen for 1 MW Data Center Operation in NEOM, Saudi Arabia | IEEE Conference Publication | IEEE Xplore IEEE Account Change Username/Password Upda..._
+
+### [unknown] Prospects for the IMEC Against the Backdrop of Security Threats in the Middle East and the Existence of the Competing BR
+- **Score:** 6.8/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 2 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.8 exceeds 4.0 threshold
+- **Snippet:** _%PDF-1.7 4 0 obj (Identity) endobj 5 0 obj (Adobe) endobj 8 0 obj << /Filter /FlateDecode /Length 47733 /Length1 85320 /Type /Stream >> stream x�� `Tս?~ι��e�;�L��d2�ɾH2��0$��%��a �a�M�p)*VE��Z..._
+
+### [unknown] A novel energy storage and demand side management for entire green smart grid system for <scp>NEOM</scp> city in Saudi A
+- **Score:** 5.6/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 0.5/2.0 — Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.6 exceeds 4.0 threshold
+- **Snippet:** _A novel energy storage and demand side management for entire green smart grid system for <scp>NEOM</scp> city in Saudi Arabia AbstractHybrid renewable energy systems (HRES) are gaining high interest i..._
+
+### [unknown] Destination Image and Tourist Intention to Recommend Visiting NEOM City in Saudi Arabia
+- **Score:** 5.8/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.8 exceeds 4.0 threshold
+- **Snippet:** _Destination Image and Tourist Intention to Recommend Visiting NEOM City in Saudi Arabia  Infrastructure: Digital & Energy CrossRef https://doi.org/10.7176/jths/33-03..._
+
+### [unknown] Green hydrogen electrolyzer and hydrogen-methane CCGT power plant in NEOM City
+- **Score:** 4.6/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.6 exceeds 4.0 threshold
+- **Snippet:** _Green hydrogen electrolyzer and hydrogen-methane CCGT power plant in NEOM City  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1016/j.ijhydene.2023.11.337..._
+
+### [unknown] Techno-economic assessment of stand–alone renewable energy powered desalination and hydrogen production in NEOM, Saudi A
+- **Score:** 6.1/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold
+- **Snippet:** _Techno-economic assessment of stand–alone renewable energy powered desalination and hydrogen production in NEOM, Saudi Arabia  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1016/j.renen..._
+
+### [unknown] Performance analysis and optimization of a hybrid renewable energy system for sustainable NEOM city in Saudi Arabia
+- **Score:** 5.45/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Energy): 2 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 2 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.45 exceeds 4.0 threshold
+- **Snippet:** _Performance analysis and optimization of a hybrid renewable energy system for sustainable NEOM city in Saudi Arabia This work aims to design and evaluate the performance of a Hybrid Renewable Energy S..._
+
+### [unknown] Wind energy assessment for NEOM city, Saudi Arabia
+- **Score:** 5.95/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.95 exceeds 4.0 threshold
+- **Snippet:** _Wind energy assessment for NEOM city, Saudi Arabia AbstractThis paper provides an analytical assessment of the feasibility of wind energy for Saudi Arabia's envisioned NEOM city, which plans to use on..._
+
+### [unknown] Morpho-Hydrological Analysis and Preliminary Flash Flood Hazard Mapping of Neom City, Northwestern Saudi Arabia, Using G
+- **Score:** 6.1/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold
+- **Snippet:** _Morpho-Hydrological Analysis and Preliminary Flash Flood Hazard Mapping of Neom City, Northwestern Saudi Arabia, Using Geospatial Techniques Neom city is a unique cross-border city connecting Saudi Ar..._
+
+### [unknown] Potential of solar hydrogen production by water electrolysis in the NEOM green city of Saudi Arabia
+- **Score:** 7.45/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.7/4.0 — All three pillars covered: 7 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.45 exceeds 4.0 threshold
+- **Snippet:** _A. Balabel * , Munner s. Aloaimi, Marwan S. Alrehaili, Abdullah Omar Alharbi, Mohammed M, Alshareef and Hisham Alharbi Department of Mechanical Engineering, College of Engineering, Taif University, P...._
+
+### [unknown] Solar-hydrogen energy system for Saudi Arabia
+- **Score:** 6.1/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold
+- **Snippet:** _Solar-hydrogen energy system for Saudi Arabia  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1016/j.ijhydene.2003.11.010..._
+
+### [unknown] Innovative Strategies for the Control of Leishmaniasis, Locust Infestations, and Dengue Virus in NEOM, Saudi Arabia
+- **Score:** 5.8/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.8 exceeds 4.0 threshold
+- **Snippet:** _Innovative Strategies for the Control of Leishmaniasis, Locust Infestations, and Dengue Virus in NEOM, Saudi Arabia Abstract
+                
+                  Background
+Vector-borne diseases, such a..._
+
+### [unknown] Hydrogen Opportunities in Saudi Arabia
+- **Score:** 7.35/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 3.8/4.0 — All three pillars covered: 8 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.35 exceeds 4.0 threshold
+- **Snippet:** _Abstract A source of hydrogen is the methane in the well-head gas from the oil fields of Saudi Arabia. 2.5 billion cubic feet per day are available and it is possible to design a plant using one billi..._
+
+### [unknown] Geoheritage and Geotourism Potential of NEOM, Saudi Arabia: Linking Geoethics, Geoconservation, and Geotourism
+- **Score:** 9.4/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 9 nodes matched
+- **Pillars:** 3.4/4.0 — All three pillars covered: 4 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.4 exceeds 4.0 threshold
+- **Snippet:** _Geoheritage and Geotourism Potential of NEOM, Saudi Arabia: Linking Geoethics, Geoconservation, and Geotourism Original Article Published: 15 February 2024 Volume 16 , article number 27 , ( 2024 ) Cit..._
+
+### [unknown] Hybrid Solar Wind Storage Microgrids for Remote Regions in Saudi Arabia: Enabling NEOM and Red Sea Energy Goals
+- **Score:** 5.9/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 3.6/4.0 — All three pillars covered: 6 keywords
+- **Comparative:** 0.5/2.0 — Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.9 exceeds 4.0 threshold
+- **Snippet:** _Share us Journal of Emerging Technologies and Innovative Research ( An International Scholarly Open Access Journal, Peer-reviewed, Refereed, Crossref DOI Journal ) Impact factor 7.95 Calculate by Goog..._
+
+### [unknown] NEOM Smart City  the urban oasis in Saudi desert (green energy technologies, policies and strategies)
+- **Score:** 4.8/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _NEOM Smart City  the urban oasis in Saudi desert (green energy technologies, policies and strategies)  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1504/ijetp.2026.10075557..._
+
+### [unknown] Mapping of Groundwater, Flood, and Drought Potential Zones in Neom, Saudi Arabia, Using GIS and Remote Sensing Technique
+- **Score:** 5.8/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.8 exceeds 4.0 threshold
+- **Snippet:** _Mapping of Groundwater, Flood, and Drought Potential Zones in Neom, Saudi Arabia, Using GIS and Remote Sensing Techniques Neom is expected to face climate and environmental challenges, including the p..._
+
+### [unknown] Design and Simulation of a Photovoltaic Power Plant for Green Hydrogen Production in Saudi Arabia
+- **Score:** 6.8/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.8/4.0 — All three pillars covered: 8 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.8 exceeds 4.0 threshold
+- **Snippet:** _Design and Simulation of a Photovoltaic Power Plant for Green Hydrogen Production in Saudi Arabia Abstract
+        With the growing need for clean energy, it is critical to efficiently utilize renewab..._
+
+### [unknown] Neom/Nature: Regreening and Sociotechnical Imaginaries in Saudi Arabia
+- **Score:** 5.8/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.8 exceeds 4.0 threshold
+- **Snippet:** _Neom/Nature: Regreening and Sociotechnical Imaginaries in Saudi Arabia  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1080/19436149.2026.2630127..._
+
+### [unknown] The Economics of Low-Carbon Hydrogen Energy Production in Saudi Arabia
+- **Score:** 5.95/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.95 exceeds 4.0 threshold
+- **Snippet:** _The Economics of Low-Carbon Hydrogen Energy Production in Saudi Arabia  Infrastructure: Digital & Energy CrossRef https://doi.org/10.2139/ssrn.4408603..._
+
+### [unknown] Simulated co-optimization of renewable energy and desalination systems in Neom, Saudi Arabia
+- **Score:** 9.0/10.0 (harvest-fast)
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 10 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 4 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.0 exceeds 4.0 threshold
+- **Snippet:** _Download PDF Subjects Energy modelling Environmental sciences Abstract The interdependence between the water and power sectors is a growing concern as the need for desalination increases globally. The..._
+
+### [unknown] Green hydrogen and e-fuels
+- **Score:** 6.6/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.6/4.0 — All three pillars covered: 6 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.6 exceeds 4.0 threshold
+- **Snippet:** _Breadcrumbs Section. Click here to navigate to respective pages. Chapter Chapter Green hydrogen and e-fuels DOI link for Green hydrogen and e-fuels Green hydrogen and e-fuels A Saudi Arabian perspecti..._
+
+### [unknown] Risks and Challenges Associated with NEOM Project in Saudi Arabia: A Marketing Perspective
+- **Score:** 5.8/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.8 exceeds 4.0 threshold
+- **Snippet:** _Risks and Challenges Associated with NEOM Project in Saudi Arabia: A Marketing Perspective Saudi Arabia has proposed a new project, NEOM city, planned on the coast of the Red Sea with various unique a..._
+
+### [unknown] Factors Influencing Saudi Young Female Consumers’ Luxury Fashion in Saudi Arabia: Predeterminants of Culture and Lifesty
+- **Score:** 6.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.3/4.0 — All three pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.3 exceeds 4.0 threshold
+- **Snippet:** _Factors Influencing Saudi Young Female Consumers’ Luxury Fashion in Saudi Arabia: Predeterminants of Culture and Lifestyles in Neom City Saudi Arabia has been taking various initiatives (such as impro..._
+
+### [unknown] Hydrogen Energy Prospectus and Challenges in Kingdom of Saudi Arabia
+- **Score:** 6.9/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.9/4.0 — All three pillars covered: 9 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.9 exceeds 4.0 threshold
+- **Snippet:** _Abstract This paper provides a comprehensive analysis of the potential for hydrogen energy to become the leading energy source in the Kingdom of Saudi Arabia (KSA). As hydrogen emerges as a viable ene..._
+
+### [unknown] Optimizing islanded green ammonia and hydrogen production and export from Saudi Arabia
+- **Score:** 6.4/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.4/4.0 — All three pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.4 exceeds 4.0 threshold
+- **Snippet:** _Optimizing islanded green ammonia and hydrogen production and export from Saudi Arabia  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1016/j.ijhydene.2023.12.075..._
+
+### [unknown] The Role of Green and Blue Hydrogen in the Energy Transition—A Technological and Geopolitical Perspective
+- **Score:** 4.9/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.4/4.0 — All three pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.9 exceeds 4.0 threshold
+- **Snippet:** _The Role of Green and Blue Hydrogen in the Energy Transition—A Technological and Geopolitical Perspective  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.3390/su13010298..._
+
+### [unknown] A Decarbonization Roadmap for Singapore and Its Energy Policy Implications
+- **Score:** 4.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _A Decarbonization Roadmap for Singapore and Its Energy Policy Implications  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.3390/en14206455..._
+
+### [unknown] RETRACTED: Saudi Arabia energy transition: Assessing the future of green hydrogen in climate change mitigation
+- **Score:** 6.5/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.5 exceeds 4.0 threshold
+- **Snippet:** _RETRACTED: Saudi Arabia energy transition: Assessing the future of green hydrogen in climate change mitigation  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1016/j.ijhydene.2025.06.095..._
+
+### [unknown] RETRACTED: Saudi Arabia energy transition: Assessing the future of green hydrogen in climate change mitigation
+- **Score:** 6.5/10.0 (harvest-metadata (Connection error: HTTPSConnectionPool(host='www.sciencedirect.com', port=443): Read timed out.))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.5 exceeds 4.0 threshold
+- **Snippet:** _RETRACTED: Saudi Arabia energy transition: Assessing the future of green hydrogen in climate change mitigation  Infrastructure: Digital & Energy CrossRef https://doi.org/10.1016/j.ijhydene.2023.11.117..._
+
+### [unknown] Second Saudi symposium on energy, utilization &amp; conservation, King Fahd University of petroleum &amp; minerals, Dahr
+- **Score:** 5.8/10.0 (harvest-metadata (Connection error: HTTPSConnectionPool(host='www.sciencedirect.com', port=443): Read timed out.))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.8 exceeds 4.0 threshold
+- **Snippet:** _Second Saudi symposium on energy, utilization &amp; conservation, King Fahd University of petroleum &amp; minerals, Dahran, Saudi Arabia, 27–30 November 1994  Infrastructure: Digital & Energy CrossRef..._
+
+### [unknown] Development of the Hydrogen Market and Local Green Hydrogen Offtake in Africa
+- **Score:** 4.6/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.6 exceeds 4.0 threshold
+- **Snippet:** _Development of the Hydrogen Market and Local Green Hydrogen Offtake in Africa  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.3390/hydrogen6030043..._
+
+### [unknown] Hydrogen investment
+- **Score:** 6.3/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.3 exceeds 4.0 threshold
+- **Snippet:** _Breadcrumbs Section. Click here to navigate to respective pages. Chapter Chapter Hydrogen investment DOI link for Hydrogen investment Hydrogen investment Carving out a competitive position for the MEN..._
+
+### [unknown] Green tides: the Suez Canal as key hub and green corridor for a hydrogen future between the Middle East and Europe
+- **Score:** 4.5/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Energy): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold
+- **Snippet:** _Green tides: the Suez Canal as key hub and green corridor for a hydrogen future between the Middle East and Europe  Regional Shocks & Conflicts OpenAlex https://doi.org/10.3389/fenrg.2025.1538792..._
+
+### [unknown] Green hydrogen production and deployment: opportunities and challenges
+- **Score:** 10.0/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 11 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 17 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 6 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 10.0 exceeds 4.0 threshold
+- **Snippet:** _Green hydrogen production and deployment: opportunities and challenges Perspective Open access Published: 25 August 2025 Volume 2 , article number 32 , ( 2025 ) Cite this article You have full access ..._
+
+### [unknown] Advancing Smart Zero-Carbon Cities: High-Resolution Wind Energy Forecasting to 36 Hours Ahead
+- **Score:** 4.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _Advancing Smart Zero-Carbon Cities: High-Resolution Wind Energy Forecasting to 36 Hours Ahead  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.3390/app142411918..._
+
+### [unknown] Europe's Hydrogen Pathways
+- **Score:** 6.5/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 3.7/4.0 — All three pillars covered: 7 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.5 exceeds 4.0 threshold
+- **Snippet:** _Breadcrumbs Section. Click here to navigate to respective pages. Chapter Chapter Europe's Hydrogen Pathways DOI link for Europe's Hydrogen Pathways Europe's Hydrogen Pathways Toward a balanced partner..._
+
+### [unknown] The Digital Silk Road: “Tech-Diplomacy” as a Paradigm for Understanding Technological Adoption and Emerging Digital Regu
+- **Score:** 4.3/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _The Digital Silk Road: “Tech-Diplomacy” as a Paradigm for Understanding Technological Adoption and Emerging Digital Regulations in MENA  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.10..._
+
+### [unknown] TRENDS AND PROSPECTS IN INTERNATIONAL HYDROGEN TRADE IN THE FACE OF NEW BARRIERS AND CHALLENGES TO GLOBAL COOPERATION
+- **Score:** 6.6/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.6/4.0 — All three pillars covered: 6 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.6 exceeds 4.0 threshold
+- **Snippet:** _TRENDS AND PROSPECTS IN INTERNATIONAL HYDROGEN TRADE IN THE FACE OF NEW BARRIERS AND CHALLENGES TO GLOBAL COOPERATION Authors Olha Yatsenko Oleksandr Iatsenko DOI: https://doi.org/10.17721/apmv.2024.1..._
+
+### [unknown] Trends, Challenges, and Viability in Green Hydrogen Initiatives
+- **Score:** 4.6/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.6 exceeds 4.0 threshold
+- **Snippet:** _Trends, Challenges, and Viability in Green Hydrogen Initiatives  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.3390/en18174476..._
+
+### [unknown] Trends, Challenges and Viability in Green Hydrogen Initiatives
+- **Score:** 4.6/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.6 exceeds 4.0 threshold
+- **Snippet:** _Trends, Challenges and Viability in Green Hydrogen Initiatives  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.20944/preprints202506.0460.v1..._
+
+### [unknown] Achieving sustainable housing in smart cities: the role of model-based engineering in developing complex systems in line
+- **Score:** 10.0/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 8 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 15 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 6 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 10.0 exceeds 4.0 threshold
+- **Snippet:** _Achieving sustainable housing in smart cities: the role of model-based engineering in developing complex systems in line with vision 2030 Research Open access Published: 22 October 2025 Volume 3 , art..._
+
+### [unknown] Evaluation of New Opportunities for Marine Energy To Power the Blue Economy: Green Hydrogen and Marine Carbon Dioxide Re
+- **Score:** 5.1/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.6/4.0 — All three pillars covered: 6 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _%PDF-1.7 %���� 880 0 obj <> endobj 898 0 obj <>/Filter/FlateDecode/ID[<049772B6DB4F324A85AAB923432C4EF0><68E8FD5B6673644197C1DFE902270B33>]/Index[880 67]/Info 879 0 R/Length 106/Prev 552388/Root 881 0..._
+
+### [unknown] Offshore Energy Island for Sustainable Water Desalination—Case Study of KSA
+- **Score:** 4.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _Offshore Energy Island for Sustainable Water Desalination—Case Study of KSA  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.3390/su17146498..._
+
+### [unknown] Green Hydrogen in Europe: Where are We Now?
+- **Score:** 5.1/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _Green Hydrogen in Europe: Where are We Now?  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.20944/preprints202510.0508.v1..._
+
+### [unknown] China and the Geopolitics of Hydrogen: An Awakening Giant?
+- **Score:** 10.0/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 9 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 16 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 6 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 10.0 exceeds 4.0 threshold
+- **Snippet:** _Abstract Over the past decade, China has emerged as a pivotal player in the energy transition, leading the global deployment of renewable energy and assuming an increasingly dominant role in clean ene..._
+
+### [unknown] Ammonia from Hydrogen: A Viable Pathway to Sustainable Transportation?
+- **Score:** 5.0/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.0 exceeds 4.0 threshold
+- **Snippet:** _Ammonia from Hydrogen: A Viable Pathway to Sustainable Transportation?  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.3390/su17188172..._
+
+### [unknown] IMEEC: Boon for Logistics Sector
+- **Score:** 9.55/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 18 nodes matched
+- **Pillars:** 3.8/4.0 — All three pillars covered: 8 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 2 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.55 exceeds 4.0 threshold
+- **Snippet:** _IMEEC: Boon for Logistics Sector Find us on Google Scholar Peer Review Policy Article Processing Charges Publication Procedure Research Topics FAQ Copyright Infringement Refund and Cancellation Policy..._
+
+### [unknown] Advancing Sustainable Construction Through 5D Digital EIA and Ecosystem Restoration
+- **Score:** 4.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _Advancing Sustainable Construction Through 5D Digital EIA and Ecosystem Restoration  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.3390/su17209062..._
+
+### [unknown] Biogeochemical Interactions and Their Role in European Underground Hydrogen Storage
+- **Score:** 4.95/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.95 exceeds 4.0 threshold
+- **Snippet:** _Biogeochemical Interactions and Their Role in European Underground Hydrogen Storage  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.3390/min15090929..._
+
