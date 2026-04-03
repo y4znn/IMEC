@@ -9,6 +9,7 @@ import { Menu, X } from 'lucide-react';
 import './globals.css';
 import { DefenseProvider } from '@/components/DefenseContext';
 import CRTOverlay from '@/components/CRTOverlay';
+import { NewsletterForm } from '@/components/NewsletterForm';
 
 const fraunces = Fraunces({
     subsets: ['latin'],
@@ -106,6 +107,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                     {/* ── Footer ── */}
                     <footer className={`relative z-10 border-t border-gray-300 bg-gray-50 ${isMapPage ? 'md:hidden' : ''}`}>
+                        {/* Newsletter Section */}
+                        <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8 border-b border-gray-200">
+                            <div className="max-w-md">
+                                <NewsletterForm />
+                            </div>
+                        </div>
+                        {/* Footer Info */}
                         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500 font-mono text-center sm:text-left">
                             <span>Ahmad Ghosn · PhD Research Platform</span>
                             <span className="text-[10px] sm:text-xs">Sources: Atlantic Council · ECFR · CSIS · Brookings</span>

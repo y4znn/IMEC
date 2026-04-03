@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-email/components": "^1.0.11",
     "@tanstack/react-virtual": "^3.13.19",
     "@types/topojson-client": "^3.1.5",
     "axios": "^1.13.6",
@@ -24,6 +25,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-intersection-observer": "^10.0.3",
+    "resend": "^6.10.0",
     "tailwind-merge": "^3.5.0",
     "topojson-client": "^3.1.0"
   },
