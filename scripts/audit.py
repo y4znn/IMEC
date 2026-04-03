@@ -438,7 +438,7 @@ def audit_source(source: dict, deep_text: str = "", snippet: str = "",
     if is_protected:
         action = "KEEP"
         decision = "Protected by safety guardrail (contains protected string)"
-    elif total > 7.5:
+    elif total > 8.5:
         action = "KEEP"
         decision = "AUTO-KEEP: High confidence IMEC relevance"
     elif total >= 4.0:

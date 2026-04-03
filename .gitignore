@@ -42,3 +42,8 @@ next-env.d.ts
 
 # newsletter subscribers (contains email addresses)
 /data/subscribers.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class

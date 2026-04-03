@@ -34,9 +34,11 @@ from urllib.parse import urlparse, quote_plus
 
 try:
     import requests
+    from dotenv import load_dotenv
+    load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env.local"))
 except ImportError:
     print("Missing dependencies. Install with:")
-    print("   python3 -m pip install requests beautifulsoup4 lxml --user")
+    print("   python3 -m pip install requests beautifulsoup4 lxml python-dotenv --user")
     sys.exit(1)
 
 # ── Import shared infrastructure from audit.py ──────────────────
@@ -78,6 +80,9 @@ THINK_TANK_FEEDS = {
     "Chatham House":         "https://www.chathamhouse.org/rss",
     "Middle East Institute": "https://www.mei.edu/rss.xml",
     "EUISS":                 "https://www.iss.europa.eu/rss.xml",
+    "EuroMeSCo":             "https://www.euromesco.net/feed/",
+    "INSS":                  "https://www.inss.org.il/feed/",
+    "Middle East Council":   "https://mecouncil.org/feed/",
 }
 
 # ─── GNews Search Queries ───────────────────────────────────────
@@ -86,6 +91,10 @@ GNEWS_QUERIES = [
     "India Middle East Europe trade",
     "Suez Canal shipping disruption",
     "Belt Road Initiative infrastructure",
+    "IMEC corridor progress 2025-2026",
+    "Blue-Raman cable status",
+    "Haifa Port Adani trade volume",
+    "India-UAE Virtual Trade Corridor",
 ]
 
 # ─── Spider-Web Perspective Targets ─────────────────────────────

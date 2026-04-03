@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
-import { ExternalLink, BookOpen, Search } from 'lucide-react';
+import { ExternalLink, Search } from 'lucide-react';
 import fallbackSources from '@/public/data/sources.json';
 import IntelligencePulse from '@/components/IntelligencePulse';
 
@@ -16,7 +16,6 @@ type AcademicSource = {
 };
 
 export default function SourcesPage() {
-    const [activeCategory, setActiveCategory] = useState<string | null>(null);
     const [sources, setSources] = useState<AcademicSource[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -36,39 +35,8 @@ export default function SourcesPage() {
             });
     }, []);
 
-    // Global Click Reset: Clicking outside the sidebar navigation or search resets state to null (show all)
-    useEffect(() => {
-        const handleGlobalClick = (e: MouseEvent) => {
-            const target = e.target as HTMLElement;
-            // Target the nav element specifically as defined in the sidebar
-            if (!target.closest('nav') && !target.closest('input') && activeCategory !== null) {
-                setActiveCategory(null);
-            }
-        };
-
-        window.addEventListener('mousedown', handleGlobalClick);
-        return () => window.removeEventListener('mousedown', handleGlobalClick);
-    }, [activeCategory]);
-
-    // Get unique categories sorted to preserve a logical read order
-    const categories = useMemo(() => {
-        const cats = Array.from(new Set(sources.map(s => s.category)));
-        // Hardcode order based on script to maintain narrative flow
-        const order = [
-            'Foundations & Architecture',
-            'Geopolitics & Rival Corridors (BRI)',
-            'Infrastructure: Digital & Energy',
-            'Regional Shocks & Conflicts'
-        ];
-        return cats.sort((a, b) => order.indexOf(a) - order.indexOf(b));
-    }, [sources]);
-
-    const finalCategory = activeCategory;
-
     const activeSources = useMemo(() => {
-        let filtered = finalCategory 
-            ? sources.filter(s => s.category === finalCategory)
-            : sources;
+        let filtered = sources;
         
         if (searchQuery.trim()) {
             const query = searchQuery.toLowerCase();
@@ -80,145 +48,90 @@ export default function SourcesPage() {
         }
         
         return filtered;
-    }, [sources, finalCategory, searchQuery]);
+    }, [sources, searchQuery]);
 
     return (
-        <div className="flex flex-col md:flex-row w-full min-h-[calc(100vh-64px)] md:h-[calc(100vh-64px)] pt-16 bg-gray-50 font-serif text-gray-900">
-
-            {/* ── LEFT SIDEBAR: Syllabus Modules ── */}
-            <div className="w-full md:w-[380px] shrink-0 border-b md:border-b-0 md:border-r border-gray-300 md:h-full overflow-y-auto custom-scrollbar flex flex-col">
-                <div className="px-4 md:px-8 py-4 md:py-6 border-b border-gray-300 bg-gray-50 sticky top-0 z-10 rounded-none">
-                    <h1 className="text-2xl md:text-3xl font-sans font-bold tracking-tight uppercase leading-none mb-3 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
+        <div className="w-full min-h-screen bg-gray-50 font-serif text-gray-900 pt-32 pb-20">
+            <div className="max-w-4xl mx-auto px-4 md:px-12 flex flex-col items-center">
+                
+                {/* ── Task A: Section Title Update ── */}
+                <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
+                    <h1 className="text-4xl md:text-5xl font-sans font-bold tracking-tighter uppercase leading-none mb-4">
                         Sources
                     </h1>
-                    <p className="text-[10px] text-gray-900/50 tracking-[0.2em] font-mono uppercase animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 fill-mode-forwards">
+                    <p className="text-[11px] text-gray-900/40 tracking-[0.3em] font-mono uppercase">
                         [{sources.length}] Verified References
                     </p>
                 </div>
 
-                <nav className="flex flex-row md:flex-col flex-1 p-3 md:p-4 gap-2 overflow-x-auto md:overflow-x-visible">
-                    {categories.map((cat, idx) => {
-                        const isActive = activeCategory === cat;
-                        const catSourcesCount = sources.filter(s => s.category === cat).length;
-                        return (
-                            <button
-                                key={cat}
-                                onClick={() => setActiveCategory(cat)}
-                                className={`flex flex-col items-start px-3 md:px-5 py-3 md:py-4 text-left transition-colors cursor-pointer border rounded-none min-w-[160px] md:min-w-0 shrink-0 md:shrink ${isActive
-                                    ? 'bg-white text-black border-gray-300'
-                                    : 'bg-gray-50 text-gray-900/60 border-transparent hover:bg-gray-200 hover:text-gray-900'
-                                    }`}
-                            >
-                                <div className="flex items-center gap-2 mb-2 w-full">
-                                    <span className={`text-[10px] tracking-widest font-mono font-bold ${isActive ? 'text-black/50' : 'text-gray-900/30'}`}>
-                                        MODULE 0{idx + 1}
-                                    </span>
-                                    <div className={`h-[1px] flex-1 ${isActive ? 'bg-gray-50/10' : 'bg-white/10'} hidden md:block`} />
-                                    <span className={`text-[10px] tracking-widest font-mono ${isActive ? 'text-black' : 'text-gray-900'}`}>
-                                        {catSourcesCount}
-                                    </span>
-                                </div>
-                                <span className={`text-xs md:text-sm tracking-tight font-bold leading-snug ${isActive ? 'text-black' : 'text-gray-900'}`}>
-                                    {cat}
-                                </span>
-                            </button>
-                        );
-                    })}
-                </nav>
-            </div>
+                {/* ── Task C: Centered "Box" Optimization ── */}
+                <div className="mb-16 flex justify-center w-full animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 fill-mode-forwards">
+                    <IntelligencePulse />
+                </div>
 
-            {/* ── RIGHT PANEL: Source Content (Scrollable) ── */}
-            <div className="flex-1 md:h-full overflow-y-auto custom-scrollbar bg-gray-50 relative">
-                <div className="max-w-4xl mx-auto px-4 md:px-12 py-6 md:py-10">
-
-                    {/* Header for Category */}
-                    {activeCategory && (
-                        <div className="mb-8 md:mb-12 flex flex-col md:flex-row md:items-start justify-between gap-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
-                            <div>
-                                <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-none text-gray-900 uppercase">
-                                    {activeCategory}
-                                </h2>
-                            </div>
-                            <div className="shrink-0">
-                                <IntelligencePulse />
-                            </div>
+                {/* ── Search Bar ── */}
+                <div className="w-full mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300 fill-mode-forwards">
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <Search className="h-4 w-4 text-gray-400" />
                         </div>
-                    )}
-
-                    {!activeCategory && (
-                        <div className="mb-8 md:mb-12 flex justify-end">
-                            <IntelligencePulse />
-                        </div>
-                    )}
-
-                    {/* Search Bar */}
-                    <div className="mb-8">
-                        <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Search className="h-4 w-4 text-gray-400" />
-                            </div>
-                            <input
-                                type="text"
-                                placeholder="Search specific intelligence, publisher, or keywords..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-gray-900 sm:text-sm font-sans"
-                            />
-                        </div>
+                        <input
+                            type="text"
+                            placeholder="Filter documentation, publishers, or infrastructure keywords..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="block w-full pl-11 pr-4 py-4 border border-gray-200 bg-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-gray-900 sm:text-sm font-sans"
+                        />
                     </div>
+                </div>
 
-                    {/* Source List */}
-                    <div className="flex flex-col gap-4 md:gap-6">
-                        {activeSources.map(src => (
-                            <div
-                                key={src.id}
-                                className="group relative border border-gray-300 bg-white p-4 md:p-6 hover:bg-gray-50 transition-colors cursor-default"
-                            >
-                                <div className="pr-0 md:pr-32">
-                                    {src.publisher && (
-                                        <p className="font-serif text-sm md:text-base text-gray-800 mb-2">
-                                            {src.publisher}
-                                        </p>
-                                    )}
-                                    <h3 className="text-xs md:text-sm font-mono text-gray-900 mb-3 leading-relaxed">
-                                        {src.title}
-                                    </h3>
-                                    <p className="text-xs md:text-sm font-serif text-gray-600 leading-relaxed mb-4 line-clamp-3">
-                                        {src.summary}
+                {/* ── Source List ── */}
+                <div className="w-full flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-400 fill-mode-forwards">
+                    {activeSources.map(src => (
+                        <div
+                            key={src.id}
+                            className="group relative border border-gray-200 bg-white p-6 md:p-8 hover:bg-gray-50 transition-all cursor-default"
+                        >
+                            <div className="md:pr-40">
+                                {src.publisher && (
+                                    <p className="font-serif text-base text-gray-800 mb-3">
+                                        {src.publisher}
                                     </p>
-                                    <div className="flex flex-wrap items-center gap-2 md:gap-3 text-[9px] md:text-[10px] text-gray-500 font-mono tracking-widest uppercase mb-4 md:mb-0">
-                                        <span>REF: {src.id}</span>
-                                        <span className="w-1 h-1 bg-gray-300" />
-                                        <span>CY {src.date}</span>
-                                    </div>
-                                </div>
-
-                                {/* Access button - static on mobile, absolute on desktop */}
-                                <div className="md:absolute md:top-6 md:right-6">
-                                    <a
-                                        href={src.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 bg-white text-gray-900 font-mono text-[10px] tracking-widest uppercase hover:bg-gray-100 hover:border-black transition-all w-full md:w-auto"
-                                    >
-                                        [ ACCESS ]
-                                        <ExternalLink className="w-3 h-3" />
-                                    </a>
+                                )}
+                                <h3 className="text-sm font-mono text-gray-900 mb-4 leading-relaxed font-bold">
+                                    {src.title}
+                                </h3>
+                                <p className="text-sm font-serif text-gray-600 leading-relaxed mb-6">
+                                    {src.summary}
+                                </p>
+                                <div className="flex items-center gap-3 text-[10px] text-gray-400 font-mono tracking-widest uppercase">
+                                    <span>REF: {src.id}</span>
+                                    <span className="w-1 h-1 bg-gray-200" />
+                                    <span>CY {src.date}</span>
                                 </div>
                             </div>
-                        ))}
 
-                        {activeSources.length === 0 && (
-                            <div className="text-sm text-gray-900/40 font-mono uppercase tracking-widest p-6 md:p-8 border border-gray-400/5">
-                                Loading repository records...
+                            <div className="mt-6 md:mt-0 md:absolute md:top-8 md:right-8">
+                                <a
+                                    href={src.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 border border-gray-200 bg-white text-gray-900 font-mono text-[10px] tracking-widest uppercase hover:bg-black hover:text-white hover:border-black transition-all w-full md:w-auto"
+                                >
+                                    ACCESS
+                                    <ExternalLink className="w-3.5 h-3.5" />
+                                </a>
                             </div>
-                        )}
-                    </div>
+                        </div>
+                    ))}
 
-                    <div className="h-10 md:h-20" /> {/* Bottom padding */}
+                    {activeSources.length === 0 && sources.length > 0 && (
+                        <div className="text-center py-20 text-sm text-gray-400 font-mono uppercase tracking-[0.2em]">
+                            No matching intelligence found.
+                        </div>
+                    )}
                 </div>
             </div>
-
         </div>
     );
 }
