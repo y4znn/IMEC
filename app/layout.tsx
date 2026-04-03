@@ -9,7 +9,6 @@ import { Menu, X } from 'lucide-react';
 import './globals.css';
 import { DefenseProvider } from '@/components/DefenseContext';
 import CRTOverlay from '@/components/CRTOverlay';
-import { NewsletterForm } from '@/components/NewsletterForm';
 
 const fraunces = Fraunces({
     subsets: ['latin'],
