@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <title>IMEC Radar</title>
-                <meta name="description" content="PhD Research Platform — India-Middle East-Europe Economic Corridor Analysis" />
+                <meta name="description" content="IMEC Radar Intelligence Platform — India-Middle East-Europe Economic Corridor Analysis" />
             </head>
             <body className={`min-h-screen bg-gray-50 text-gray-900 ${fraunces.variable} ${jetbrainsMono.variable} font-serif antialiased overflow-x-hidden`}>
                 <DefenseProvider>
@@ -64,8 +64,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                     </h1>
                                 </Link>
                                 <div className="mt-4 hidden sm:block">
-                                    <span className="text-[10px] font-mono text-gray-600 tracking-widest uppercase opacity-80">
-                                        <a href="https://www.linkedin.com/in/ahmadghsnn" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">A Phd Project by Ahmad Ghosn</a>
+                                    <span className="text-[11px] font-sans text-gray-600 tracking-widest uppercase opacity-80 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
+                                        <a href="https://www.linkedin.com/in/ahmadghsnn" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">a project by ahmad ghosn</a>
                                     </span>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         </div>
                         {/* Footer Info */}
                         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500 font-mono text-center sm:text-left">
-                            <span>Ahmad Ghosn · PhD Research Platform</span>
+                            <span>Ahmad Ghosn · IMEC Radar Intelligence Platform</span>
                             <span className="text-[10px] sm:text-xs">Sources: Atlantic Council · ECFR · CSIS · Brookings</span>
                         </div>
                     </footer>

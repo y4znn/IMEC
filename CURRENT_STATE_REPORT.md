@@ -1,4 +1,4 @@
-# IMEC Research Platform: System State & UI Architecture Report
+# IMEC Radar Intelligence Platform: System State & UI Architecture Report
 
 This report provides a comprehensive audit of the current architecture, design system, and technical implementations across the next.js application.
 
@@ -13,7 +13,7 @@ The application enforces a strict, deep "Enterprise Minimalism" aesthetic utiliz
 
 **Typography:**
 - UI and System Elements: **Inter** (sans-serif) driven by `font-sans` with `tracking-tight` modifications.
-- Academic/Thesis Elements: **Playfair Display** (serif) utilized for sophisticated headers (e.g., dossier profile, globe title overlay).
+- Academic/Professional Elements: **Playfair Display** (serif) utilized for sophisticated headers (e.g., dossier profile, globe title overlay).
 
 **Glassmorphism Formulation:**
 Calculated combinations achieve the "photorealistic" enterprise blur:
@@ -41,7 +41,7 @@ Calculated combinations achieve the "photorealistic" enterprise blur:
 **Page 3: The Executive Bento Box CV (`app/dossier/page.tsx`)**
 - A sophisticated 3-column "Bento Grid" mapped with CSS Grid.
 - Employs `framer-motion` for stagger-delayed loading (`initial={{ opacity: 0, scale: 0.98 }}`, etc.).
-- Composed of modular profile data: Thesis Synthesis card, Profile Card, Education, Publications, and Research Focus tags layered on glassmorphic plates.
+- Composed of modular profile data: Research Synthesis card, Profile Card, Education, Publications, and Research Focus tags layered on glassmorphic plates.
 
 ---
 
