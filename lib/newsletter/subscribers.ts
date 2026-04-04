@@ -12,16 +12,26 @@ async function ensureFile(): Promise<void> {
   try {
     await fs.access(SUBSCRIBERS_PATH);
   } catch {
-    // File doesn't exist, create it
-    await fs.mkdir(path.dirname(SUBSCRIBERS_PATH), { recursive: true });
-    await fs.writeFile(SUBSCRIBERS_PATH, JSON.stringify({ subscribers: [] }, null, 2));
+    // File doesn't exist, try to create it (may fail on read-only FS like Vercel)
+    try {
+      await fs.mkdir(path.dirname(SUBSCRIBERS_PATH), { recursive: true });
+      await fs.writeFile(SUBSCRIBERS_PATH, JSON.stringify({ subscribers: [] }, null, 2));
+    } catch (writeErr) {
+      console.warn(`[Subscribers] Cannot create file (expected in serverless): ${writeErr}`);
+      // Continue without file - readData will handle this gracefully
+    }
   }
 }
 
 async function readData(): Promise<SubscribersData> {
   await ensureFile();
-  const content = await fs.readFile(SUBSCRIBERS_PATH, 'utf-8');
-  return JSON.parse(content);
+  try {
+    const content = await fs.readFile(SUBSCRIBERS_PATH, 'utf-8');
+    return JSON.parse(content);
+  } catch {
+    // File doesn't exist or can't be read (serverless) - return empty data
+    return { subscribers: [] };
+  }
 }
 
 async function writeData(data: SubscribersData): Promise<void> {
