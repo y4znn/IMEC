@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { Fraunces, JetBrains_Mono } from 'next/font/google';
 import { Menu, X } from 'lucide-react';
@@ -20,13 +19,10 @@ const jetbrainsMono = JetBrains_Mono({
     variable: '--font-jetbrains-mono',
 });
 
-const PersistentMap = dynamic(() => import('@/components/NarrativeMap'), {
-    ssr: false,
-});
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
-    const isMapPage = pathname === '/maps';
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
@@ -48,11 +44,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </head>
             <body className={`min-h-screen bg-gray-50 text-gray-900 ${fraunces.variable} ${jetbrainsMono.variable} font-serif antialiased overflow-x-hidden`}>
                 <DefenseProvider>
-                    {/* ── Persistent 2D Map Background ── */}
-                    <div className="fixed inset-0 z-0 pointer-events-auto bg-gray-50">
-                        <PersistentMap />
-                    </div>
-
                     {/* ── Navigation Bar ── */}
                     <header className="relative z-50 bg-gray-50 border-b border-gray-300">
                         <div className="max-w-7xl mx-auto px-4 md:px-6 pt-1.5 pb-1 flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -72,7 +63,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             {/* Desktop Navigation */}
                             <nav className="hidden md:flex items-center gap-2 mb-0.5" aria-label="Primary navigation">
                                 <NavLink href="/sources" label="Sources" current={pathname} />
-                                <NavLink href="/maps" label="Corridors map" current={pathname} />
                                 <NavLink href="/profile" label="Researcher Profile" current={pathname} />
                             </nav>
 
@@ -90,7 +80,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         {mobileMenuOpen && (
                             <nav className="md:hidden border-t border-gray-300 bg-gray-50 px-4 py-3 flex flex-col gap-1 absolute top-full left-0 right-0 z-50 shadow-xl" aria-label="Mobile navigation">
                                 <MobileNavLink href="/sources" label="Sources" current={pathname} onClick={() => setMobileMenuOpen(false)} />
-                                <MobileNavLink href="/maps" label="Corridors map" current={pathname} onClick={() => setMobileMenuOpen(false)} />
                                 <MobileNavLink href="/profile" label="Researcher Profile" current={pathname} onClick={() => setMobileMenuOpen(false)} />
                             </nav>
                         )}
@@ -98,14 +87,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                     {/* ── Page Content ── */}
                     <CRTOverlay />
-                    <main className={`relative z-10 min-h-screen pt-6 pb-12 md:pb-16 ${isMapPage ? 'pointer-events-none' : ''}`}>
-                        <div className={`max-w-7xl mx-auto px-4 md:px-6 ${isMapPage ? 'pointer-events-none' : ''}`}>
+                    <main className={`relative z-10 min-h-screen pt-6 pb-12 md:pb-16`}>
+                        <div className={`max-w-7xl mx-auto px-4 md:px-6`}>
                             {children}
                         </div>
                     </main>
 
                     {/* ── Footer ── */}
-                    <footer className={`relative z-10 border-t border-gray-300 bg-gray-50 ${isMapPage ? 'md:hidden' : ''}`}>
+                    <footer className={`relative z-10 border-t border-gray-300 bg-gray-50`}>
                         {/* Footer Info */}
                         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500 font-mono text-center sm:text-left">
                             <span className="text-[10px] sm:text-xs">Sources: Atlantic Council · ECFR · CSIS · Brookings</span>

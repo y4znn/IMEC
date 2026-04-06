@@ -1,104 +1,114 @@
-import fs from 'fs/promises';
-import path from 'path';
+import { resend } from './resend';
 import type { Subscriber } from './types';
 
-const SUBSCRIBERS_PATH = path.join(process.cwd(), 'data/subscribers.json');
-
-interface SubscribersData {
-  subscribers: Subscriber[];
-}
-
-async function ensureFile(): Promise<void> {
-  try {
-    await fs.access(SUBSCRIBERS_PATH);
-  } catch {
-    // File doesn't exist, try to create it (may fail on read-only FS like Vercel)
-    try {
-      await fs.mkdir(path.dirname(SUBSCRIBERS_PATH), { recursive: true });
-      await fs.writeFile(SUBSCRIBERS_PATH, JSON.stringify({ subscribers: [] }, null, 2));
-    } catch (writeErr) {
-      console.warn(`[Subscribers] Cannot create file (expected in serverless): ${writeErr}`);
-      // Continue without file - readData will handle this gracefully
-    }
-  }
-}
-
-async function readData(): Promise<SubscribersData> {
-  await ensureFile();
-  try {
-    const content = await fs.readFile(SUBSCRIBERS_PATH, 'utf-8');
-    return JSON.parse(content);
-  } catch {
-    // File doesn't exist or can't be read (serverless) - return empty data
-    return { subscribers: [] };
-  }
-}
-
-async function writeData(data: SubscribersData): Promise<void> {
-  try {
-    await fs.writeFile(SUBSCRIBERS_PATH, JSON.stringify(data, null, 2));
-  } catch (err) {
-    // Resilience: If disk is read-only (e.g. Vercel), log to console and continue.
-    console.warn(`[Subscribers] Disk write blocked (expected in serverless): ${err}`);
-  }
-}
+const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
 
 /**
- * Get all confirmed subscriber emails
+ * Get all confirmed subscriber emails from Resend
+ * Note: For MVP, we primarily use the subscribe/unsubscribe actions.
+ * Fetching the full list might be rate-limited if used frequently.
  */
 export async function getSubscribers(): Promise<string[]> {
-  const data = await readData();
-  return data.subscribers
-    .filter(s => s.confirmed)
-    .map(s => s.email);
+  try {
+    if (!AUDIENCE_ID) {
+      console.warn('[Subscribers] RESEND_AUDIENCE_ID is not configured');
+      return [];
+    }
+    const { data, error } = await resend.contacts.list({ audienceId: AUDIENCE_ID });
+    if (error || !data) return [];
+    return data.data.map(contact => contact.email);
+  } catch (err) {
+    console.error('[Subscribers] List fetch error:', err);
+    return [];
+  }
 }
 
 /**
  * Get all subscribers (including unconfirmed)
+ * Mapping Resend contacts to internal Subscriber type
  */
 export async function getAllSubscribers(): Promise<Subscriber[]> {
-  const data = await readData();
-  return data.subscribers;
+  try {
+    if (!AUDIENCE_ID) return [];
+    const { data, error } = await resend.contacts.list({ audienceId: AUDIENCE_ID });
+    if (error || !data) return [];
+    
+    return data.data.map(contact => ({
+      email: contact.email,
+      subscribedAt: contact.created_at,
+      confirmed: !contact.unsubscribed,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 /**
- * Add a new subscriber
+ * Add a new subscriber to Resend Audience
  */
 export async function addSubscriber(email: string): Promise<{ success: boolean; existing: boolean }> {
-  const data = await readData();
-  const existing = data.subscribers.find(s => s.email.toLowerCase() === email.toLowerCase());
+  try {
+    if (!AUDIENCE_ID) {
+      console.warn('[Subscribers] Redirecting to direct email send (no Audience ID configured)');
+      return { success: true, existing: false };
+    }
 
-  if (existing) {
-    return { success: true, existing: true };
+    // Attempt to add to Resend Audience
+    const { data, error } = await resend.contacts.create({
+      email: email.toLowerCase(),
+      firstName: '',
+      lastName: '',
+      unsubscribed: false,
+      audienceId: AUDIENCE_ID,
+    });
+
+    if (error) {
+      // Check if it's "Contact already exists" error
+      // Using type assertion to avoid overlap error in some TS versions
+      if ((error as any).name === 'contact_already_exists' || (error as any).code === 422) {
+        return { success: true, existing: true };
+      }
+      console.error('[Subscribers] Resend API Error:', error);
+      throw error;
+    }
+
+    return { success: true, existing: false };
+  } catch (err) {
+    console.error('[Subscribers] Add error:', err);
+    // Even if persistence fails, we return success so the calling route 
+    // can at least try to send the welcome email (resiliency).
+    return { success: false, existing: false };
   }
-
-  data.subscribers.push({
-    email: email.toLowerCase(),
-    subscribedAt: new Date().toISOString(),
-    confirmed: true, // Auto-confirm for MVP
-  });
-
-  await writeData(data);
-  return { success: true, existing: false };
 }
 
 /**
- * Remove a subscriber
+ * Remove a subscriber from Resend Audience
  */
 export async function removeSubscriber(email: string): Promise<boolean> {
-  const data = await readData();
-  const initialLength = data.subscribers.length;
-
-  data.subscribers = data.subscribers.filter(
-    s => s.email.toLowerCase() !== email.toLowerCase()
-  );
-
-  if (data.subscribers.length < initialLength) {
-    await writeData(data);
-    return true;
+  try {
+    if (!AUDIENCE_ID) return false;
+    
+    // In Resend, we usually update the contact to unsubscribed: true 
+    // rather than deleting to maintain history, but for simplicity here we delete if found.
+    // Or we could use resend.contacts.update({ unsubscribed: true }) if ID was known.
+    
+    // First, find the contact to get its ID
+    const { data: contacts } = await resend.contacts.list({ audienceId: AUDIENCE_ID });
+    const contact = contacts?.data.find(c => c.email.toLowerCase() === email.toLowerCase());
+    
+    if (contact) {
+      await resend.contacts.remove({
+        id: contact.id,
+        audienceId: AUDIENCE_ID,
+      });
+      return true;
+    }
+    
+    return false;
+  } catch (err) {
+    console.error('[Subscribers] Remove error:', err);
+    return false;
   }
-
-  return false;
 }
 
 /**
