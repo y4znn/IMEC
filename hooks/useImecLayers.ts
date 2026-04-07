@@ -99,10 +99,12 @@ export function useImecLayers({ layers, intelArticles, calculateVeracity, setToo
         getWidth: (d: RailwayPath) => layers.railways ? 3 : 0,
         updateTriggers: {
           getColor: [layers.railways],
+          getLineColor: [layers.railways],
           getWidth: [layers.railways],
         },
         transitions: {
           getColor: { duration: 500 },
+          getLineColor: { duration: 500 },
           getWidth: { duration: 500 },
         },
         widthMinPixels: 0,
@@ -135,10 +137,12 @@ export function useImecLayers({ layers, intelArticles, calculateVeracity, setToo
         getWidth: (d: RailwayPath) => layers.railways ? 3 : 0,
         updateTriggers: {
           getColor: [layers.railways],
+          getLineColor: [layers.railways],
           getWidth: [layers.railways],
         },
         transitions: {
           getColor: { duration: 500 },
+          getLineColor: { duration: 500 },
           getWidth: { duration: 500 },
         },
         widthMinPixels: 0,
@@ -174,10 +178,12 @@ export function useImecLayers({ layers, intelArticles, calculateVeracity, setToo
         getWidth: (d: RailwayPath) => layers.railways ? 3 : 0,
         updateTriggers: {
           getColor: [layers.railways],
+          getLineColor: [layers.railways],
           getWidth: [layers.railways],
         },
         transitions: {
           getColor: { duration: 500 },
+          getLineColor: { duration: 500 },
           getWidth: { duration: 500 },
         },
         widthMinPixels: 0,

@@ -350,6 +350,7 @@ function ImecMapInner() {
         mapboxAccessToken={MAPBOX_TOKEN}
         style={{ width: '100%', height: '100%' }}
         attributionControl={false}
+        projection="mercator"
         onLoad={() => setMapLoaded(true)}
         terrain={{ source: 'mapbox-dem', exaggeration: 1.2 }}
         maxPitch={60}
