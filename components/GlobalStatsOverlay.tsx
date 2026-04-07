@@ -24,27 +24,27 @@ function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProp
     <div className="absolute top-4 left-4 z-[400] flex flex-col gap-3 pointer-events-none max-h-[calc(100vh-2rem)] overflow-y-auto imec-scrollbar">
 
       {/* ── Global Impact HUD ── */}
-      <div className="bg-black border border-neutral-800 p-3 w-64 pointer-events-auto">
-        <h3 className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-cyan-400/80 mb-3 border-b border-white/10 pb-2 flex items-center gap-2">
+      <div className="bg-white border border-neutral-200 p-3 w-64 pointer-events-auto">
+        <h3 className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-cyan-600 mb-3 border-b border-neutral-200 pb-2 flex items-center gap-2">
           <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
           IMEC Intelligence Feed
         </h3>
 
         <div className="flex flex-col gap-3">
           <div>
-            <div className="text-3xl font-sans font-bold tracking-tighter text-white leading-none">
+            <div className="text-3xl font-sans font-bold tracking-tighter text-neutral-900 leading-none">
               40%
             </div>
-            <div className="text-[11px] font-sans text-gray-400 mt-0.5">
+            <div className="text-[11px] font-sans text-neutral-500 mt-0.5">
               of the global population
             </div>
           </div>
 
           <div>
-            <div className="text-3xl font-sans font-bold tracking-tighter text-white leading-none">
+            <div className="text-3xl font-sans font-bold tracking-tighter text-neutral-900 leading-none">
               $47T
             </div>
-            <div className="text-[11px] font-sans text-gray-400 mt-0.5">
+            <div className="text-[11px] font-sans text-neutral-500 mt-0.5">
               USD — half of global GDP
             </div>
           </div>
@@ -52,8 +52,8 @@ function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProp
       </div>
 
       {/* ── Infrastructure Layers ── */}
-      <div className="bg-black border border-neutral-800 p-3 w-64 pointer-events-auto">
-        <h3 className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-3 border-b border-white/10 pb-2">
+      <div className="bg-white border border-neutral-200 p-3 w-64 pointer-events-auto">
+        <h3 className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-3 border-b border-neutral-200 pb-2">
           Infrastructure Layers
         </h3>
 
@@ -90,8 +90,8 @@ function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProp
       </div>
 
       {/* ── Geopolitical Layers ── */}
-      <div className="bg-black border border-neutral-800 p-3 w-64 pointer-events-auto">
-        <h3 className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-3 border-b border-white/10 pb-2">
+      <div className="bg-white border border-neutral-200 p-3 w-64 pointer-events-auto">
+        <h3 className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-3 border-b border-neutral-200 pb-2">
           Geopolitical Overlays
         </h3>
 
@@ -130,8 +130,8 @@ function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProp
 
       {/* ── Legend (when FTA active) ── */}
       {layers.ftas && (
-      <div className="bg-black border border-neutral-800 p-3 w-64 pointer-events-auto">
-          <h4 className="font-mono text-[8px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">
+      <div className="bg-white border border-neutral-200 p-3 w-64 pointer-events-auto">
+          <h4 className="font-mono text-[8px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-2">
             FTA Legend
           </h4>
           <div className="flex flex-col gap-1">
@@ -145,7 +145,7 @@ function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProp
                   href={fta.ref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-[10px] text-gray-300 hover:text-white transition-colors truncate"
+                  className="font-sans text-[10px] text-neutral-700 hover:text-black transition-colors truncate"
                 >
                   {fta.name}
                 </a>
@@ -162,8 +162,8 @@ function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProp
 
       {/* ── Defence Legend ── */}
       {layers.defence && (
-        <div className="bg-black border border-neutral-800 p-3 w-64 pointer-events-auto">
-          <h4 className="font-mono text-[8px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">
+      <div className="bg-white border border-neutral-200 p-3 w-64 pointer-events-auto">
+          <h4 className="font-mono text-[8px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-2">
             Defence Pacts
           </h4>
           <div className="flex flex-col gap-1">
@@ -181,7 +181,7 @@ function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProp
                     backgroundColor: `rgba(${dp.color[0]}, ${dp.color[1]}, ${dp.color[2]}, 0.9)`,
                   }}
                 />
-                <span className="font-sans text-[10px] text-gray-300 group-hover:text-white transition-colors">
+                <span className="font-sans text-[10px] text-neutral-700 group-hover:text-black transition-colors">
                   {dp.name}
                 </span>
               </a>
@@ -191,7 +191,7 @@ function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProp
       )}
 
       {/* ── References ── */}
-      <div className="bg-black border border-neutral-800 p-2.5 w-64 pointer-events-auto">
+      <div className="bg-white border border-neutral-200 p-2.5 w-64 pointer-events-auto">
         <div className="flex flex-wrap gap-x-3 gap-y-1">
           {[
             { label: 'Cable Map', href: REFERENCE_LINKS.blueCable },
@@ -204,7 +204,7 @@ function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProp
               href={ref.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[8px] text-gray-500 hover:text-cyan-400 transition-colors uppercase tracking-wider"
+              className="font-mono text-[8px] text-neutral-500 hover:text-cyan-700 transition-colors uppercase tracking-wider"
             >
               {ref.label} ↗
             </a>
@@ -237,25 +237,25 @@ function LayerToggle({
       onClick={onClick}
       className={`flex items-center gap-2.5 w-full text-left py-1.5 px-2 group transition-all duration-200 ${
         active
-          ? 'bg-white/5 border border-white/10'
-          : 'border border-transparent hover:bg-white/5'
+          ? 'bg-neutral-50 border border-neutral-200'
+          : 'border border-transparent hover:bg-neutral-50'
       }`}
     >
       <div
         className={`w-2 h-2 flex-shrink-0 transition-all duration-300 ${
-          active ? `${color}` : 'bg-gray-600'
+          active ? `${color}` : 'bg-neutral-300'
         }`}
       />
       <div className="flex flex-col min-w-0">
         <span
           className={`font-sans text-[11px] tracking-wide transition-colors ${
-            active ? 'text-white font-medium' : 'text-gray-400 group-hover:text-gray-200'
-          } ${warning && active ? 'text-orange-300' : ''}`}
+            active ? 'text-neutral-900 font-medium' : 'text-neutral-500 group-hover:text-neutral-700'
+          } ${warning && active ? 'text-orange-600' : ''}`}
         >
           {label}
         </span>
         {sublabel && active && (
-          <span className="font-mono text-[8px] text-gray-500 uppercase tracking-wider mt-0.5">
+          <span className="font-mono text-[8px] text-neutral-500 uppercase tracking-wider mt-0.5">
             {sublabel}
           </span>
         )}

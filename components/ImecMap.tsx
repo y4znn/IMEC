@@ -488,13 +488,13 @@ function ImecMapInner() {
       {/* Tooltip */}
       {tooltip && (
         <div
-          className="absolute z-50 pointer-events-none p-2 bg-black border border-neutral-700 max-w-[260px]"
+          className="absolute z-50 pointer-events-none p-2 bg-white border border-neutral-200 max-w-[260px]"
           style={{ left: tooltip.x + 12, top: tooltip.y - 12 }}
         >
           <div className="font-sans font-bold uppercase tracking-widest text-[#EF4444] text-[9px] mb-1.5 leading-tight">
             G20 MANDATE: {tooltip.mandate}
           </div>
-          <div className="font-sans font-bold uppercase tracking-widest text-neutral-400 text-[10px] mb-1.5">
+          <div className="font-sans font-bold uppercase tracking-widest text-neutral-600 text-[10px] mb-1.5">
             ENTITY: {tooltip.entity}
           </div>
           <div 
@@ -512,9 +512,9 @@ function ImecMapInner() {
           href={REFERENCE_LINKS.gccRailway}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-black border border-neutral-800 text-[9px] font-mono text-gray-400 hover:text-white transition-all uppercase tracking-widest"
+          className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white border border-neutral-200 text-[9px] font-mono text-neutral-500 hover:text-black transition-all uppercase tracking-widest"
         >
-          <span className="w-1.5 h-1.5 bg-neutral-500" />
+          <span className="w-1.5 h-1.5 bg-neutral-300" />
           GCC Railway Ref
         </a>
       </div>
@@ -523,7 +523,7 @@ function ImecMapInner() {
         ref={mapRef}
         {...viewState}
         onMove={evt => setViewState(evt.viewState)}
-        mapStyle="mapbox://styles/mapbox/dark-v11"
+        mapStyle="mapbox://styles/mapbox/light-v11"
         mapboxAccessToken={MAPBOX_TOKEN}
         style={{ width: '100%', height: '100%' }}
         attributionControl={false}
@@ -532,11 +532,11 @@ function ImecMapInner() {
         maxPitch={60}
         fog={{
           range: [1, 10],
-          color: '#0f172a',
+          color: '#f8fafc',
           'horizon-blend': 0.08,
-          'high-color': '#1e293b',
-          'space-color': '#0f172a',
-          'star-intensity': 0.15,
+          'high-color': '#f1f5f9',
+          'space-color': '#f8fafc',
+          'star-intensity': 0.0,
         }}
       >
         <DeckGLOverlay layers={deckLayers} />
