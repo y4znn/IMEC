@@ -3,11 +3,11 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import Map, { useControl, MapRef } from 'react-map-gl/mapbox';
 import { MapboxOverlay } from '@deck.gl/mapbox';
-import { ArcLayer, PathLayer, ScatterplotLayer } from '@deck.gl/layers';
-import { PathStyleExtension } from '@deck.gl/extensions';
 import { HexagonLayer } from '@deck.gl/aggregation-layers';
+import { LightingEffect, AmbientLight, DirectionalLight } from '@deck.gl/core';
 import type { MapboxOverlayProps } from '@deck.gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { useImecLayers } from '@/hooks/useImecLayers';
 
 import {
   SUBSEA_CABLES,
@@ -39,6 +39,20 @@ function DeckGLOverlay(props: MapboxOverlayProps & { interleaved?: boolean }) {
   overlay.setProps(props);
   return null;
 }
+
+// ── Lighting Configuration ────────────────────────────────
+const ambientLight = new AmbientLight({
+  color: [255, 255, 255],
+  intensity: 1.0
+});
+
+const dirLight = new DirectionalLight({
+  color: [255, 255, 255],
+  intensity: 2.0,
+  direction: [-3, -4, -1]
+});
+
+const lightingEffect = new LightingEffect({ ambientLight, dirLight });
 
 // ── Tooltip Type ───────────────────────────────────────────
 
@@ -276,201 +290,7 @@ function ImecMapInner() {
 
 
 
-  // ── deck.gl Layers ───────────────────────────────────────
-
-  const deckLayers = useMemo(() => {
-    return [
-      // HexagonLayer — 3D demographic density
-      new HexagonLayer<DemographicPoint>({
-        id: 'hex-demographic',
-        data: DEMOGRAPHIC_POINTS,
-        visible: false,
-        getPosition: (d: DemographicPoint) => [d[0], d[1]],
-        getElevationWeight: (d: DemographicPoint) => d[2],
-        getColorWeight: (d: DemographicPoint) => d[2],
-        elevationScale: 1500,
-        radius: 30000,
-        extruded: true,
-        pickable: true,
-        coverage: 0.85,
-        upperPercentile: 95,
-        material: {
-          ambient: 0.6,
-          diffuse: 0.7,
-          shininess: 40,
-          specularColor: [51, 100, 170],
-        },
-        colorRange: [
-          [1, 152, 189],
-          [73, 227, 206],
-          [216, 254, 181],
-          [254, 237, 177],
-          [254, 173, 84],
-          [209, 55, 78],
-        ],
-        opacity: 0.7,
-      }),
-
-      // ArcLayer — Subsea cables
-      new ArcLayer<SubseaCable>({
-        id: 'arc-cables',
-        data: SUBSEA_CABLES.filter(c => (layers.blueCable && c.name.includes('Blue')) || (layers.ramanCable && c.name.includes('Raman'))),
-        visible: layers.subseaTelecom,
-        getSourcePosition: (d: SubseaCable) => d.source,
-        getTargetPosition: (d: SubseaCable) => d.target,
-        getSourceColor: (d: SubseaCable) => d.sourceColor,
-        getTargetColor: (d: SubseaCable) => d.targetColor,
-        getWidth: 3,
-        getHeight: 0.4,
-        greatCircle: true,
-        pickable: true,
-        autoHighlight: true,
-        highlightColor: [255, 255, 255, 100],
-        onHover: (info: any) => {
-          if (info.object) {
-            let tooltipText = '';
-            let isBlue = info.object.name.includes('Blue');
-            if (isBlue) {
-              tooltipText = "Route: Italy/France/Greece to Israel | Capacity: 218 Tbps | Fiber Pairs: 16 | Strategic Role: Bypasses Egypt/Suez chokepoint.";
-            } else {
-              tooltipText = "Route: Jordan/Saudi Arabia/Oman to India | Capacity: 218 Tbps | Length: ~11,700 km | Partners: Google, Omantel, Sparkle.";
-            }
-            setTooltip({
-              x: info.x,
-              y: info.y,
-              mandate: info.object.mandate || 'N/A',
-              entity: info.object.entity || info.object.owner || 'UNKNOWN',
-              veracity: 10.0,
-              customBody: tooltipText,
-            });
-          } else {
-            setTooltip(null);
-          }
-        },
-      }),
-
-      // PathLayer — Existing Railways (solid)
-      new PathLayer<RailwayPath>({
-        id: 'path-railways-existing',
-        data: EXISTING_RAILWAYS,
-        visible: layers.railways,
-        getPath: (d: RailwayPath) => d.path,
-        getColor: (d: RailwayPath) => d.color,
-        getWidth: 3,
-        widthMinPixels: 2,
-        widthMaxPixels: 6,
-        pickable: true,
-        jointRounded: true,
-        capRounded: true,
-        onHover: (info: any) => {
-          if (info.object) {
-            setTooltip({
-              x: info.x,
-              y: info.y,
-              mandate: info.object.mandate || 'N/A',
-              entity: info.object.entity || 'UNKNOWN',
-              veracity: calculateVeracity(info.object.entity, info.object.name),
-            });
-          } else {
-            setTooltip(null);
-          }
-        },
-      }),
-
-      // PathLayer — Proposed Railways (dashed via PathStyleExtension)
-      new (PathLayer as any)({
-        id: 'path-railways-proposed',
-        data: PROPOSED_RAILWAYS,
-        visible: layers.railways,
-        getPath: (d: RailwayPath) => d.path,
-        getColor: (d: RailwayPath) => [...d.color, 180] as [number, number, number, number],
-        getWidth: 3,
-        widthMinPixels: 2,
-        widthMaxPixels: 5,
-        getDashArray: [8, 4],
-        dashJustified: true,
-        pickable: true,
-        jointRounded: true,
-        extensions: [new PathStyleExtension({ dash: true })],
-        onHover: (info: any) => {
-          if (info.object) {
-            setTooltip({
-              x: info.x,
-              y: info.y,
-              mandate: info.object.mandate || 'N/A',
-              entity: info.object.entity || 'UNKNOWN',
-              veracity: calculateVeracity(info.object.entity, info.object.name),
-            });
-          } else {
-            setTooltip(null);
-          }
-        },
-      }),
-
-      // PathLayer — Missing Railways (Ghost Gray Dash)
-      new (PathLayer as any)({
-        id: 'path-railways-missing',
-        data: MISSING_RAILWAYS,
-        visible: layers.railways,
-        getPath: (d: RailwayPath) => d.path,
-        getColor: (d: RailwayPath) => [...d.color, 255] as [number, number, number, number],
-        getWidth: 3,
-        widthMinPixels: 2,
-        widthMaxPixels: 5,
-        getDashArray: [6, 6],
-        dashJustified: true,
-        pickable: true,
-        jointRounded: true,
-        extensions: [new PathStyleExtension({ dash: true })],
-        onHover: (info: any) => {
-          if (info.object) {
-            setTooltip({
-              x: info.x,
-              y: info.y,
-              mandate: info.object.mandate || 'N/A',
-              entity: info.object.entity || 'UNKNOWN',
-              veracity: calculateVeracity(info.object.entity, info.object.name),
-            });
-          } else {
-            setTooltip(null);
-          }
-        },
-      }),
-
-      // ScatterplotLayer — Data Centers
-      new ScatterplotLayer<DataCenterPoint>({
-        id: 'scatter-datacenters',
-        data: DATA_CENTERS,
-        visible: layers.geopolitical,
-        getPosition: (d: DataCenterPoint) => d.position,
-        getFillColor: [0, 255, 200, 200],
-        getLineColor: [0, 255, 200, 80],
-        getRadius: 12000,
-        radiusMinPixels: 4,
-        radiusMaxPixels: 16,
-        lineWidthMinPixels: 2,
-        stroked: true,
-        filled: true,
-        pickable: true,
-        autoHighlight: true,
-        highlightColor: [0, 255, 200, 120],
-        onHover: (info: any) => {
-          if (info.object) {
-            setTooltip({
-              x: info.x,
-              y: info.y,
-              mandate: info.object.mandate || 'N/A',
-              entity: info.object.entity || info.object.facility || 'UNKNOWN',
-              veracity: calculateVeracity(info.object.entity || info.object.facility, info.object.facility),
-            });
-          } else {
-            setTooltip(null);
-          }
-        },
-      }),
-
-    ];
-  }, [layers, intelArticles]);
+  const deckLayers = useImecLayers({ layers, intelArticles, calculateVeracity, setTooltip });
 
   // ── Render ───────────────────────────────────────────────
 
@@ -542,7 +362,7 @@ function ImecMapInner() {
           'star-intensity': 0.0,
         }}
       >
-        <DeckGLOverlay layers={deckLayers} />
+        <DeckGLOverlay layers={deckLayers} effects={[lightingEffect]} />
       </Map>
     </div>
   );
