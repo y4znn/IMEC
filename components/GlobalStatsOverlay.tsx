@@ -11,14 +11,16 @@ export type LayerConfig = {
   ramanCable: boolean;
   briCompetitor: boolean;
   geopolitical: boolean;
+  veracityFilter: number;
 };
 
 interface GlobalStatsOverlayProps {
   layers: LayerConfig;
   toggleLayer: (key: keyof LayerConfig) => void;
+  setLayerValue: (key: keyof LayerConfig, value: any) => void;
 }
 
-function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProps) {
+function GlobalStatsOverlayInner({ layers, toggleLayer, setLayerValue }: GlobalStatsOverlayProps) {
   return (
     <div className="absolute top-4 right-4 z-[400] flex flex-col gap-3 pointer-events-none max-h-[calc(100vh-2rem)] overflow-y-auto imec-scrollbar">
       
@@ -84,6 +86,26 @@ function GlobalStatsOverlayInner({ layers, toggleLayer }: GlobalStatsOverlayProp
             active={layers.geopolitical}
             onClick={() => toggleLayer('geopolitical')}
             color="bg-[#000000]"
+          />
+        </div>
+
+        <div className="mt-4 pt-3 border-t border-neutral-200">
+          <div className="flex justify-between items-center mb-2">
+            <span className="font-sans font-bold text-[10px] text-neutral-900 uppercase tracking-wider">
+              Veracity Filter
+            </span>
+            <span className="font-mono text-[10px] font-bold text-[#000000]">
+              {layers.veracityFilter.toFixed(1)} / 10.0
+            </span>
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="10"
+            step="0.1"
+            value={layers.veracityFilter}
+            onChange={(e) => setLayerValue('veracityFilter', parseFloat(e.target.value))}
+            className="w-full h-1.5 bg-neutral-200 appearance-none rounded-none accent-[#000000] outline-none"
           />
         </div>
       </div>

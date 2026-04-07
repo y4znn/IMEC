@@ -25,6 +25,7 @@ import {
   REFERENCE_LINKS,
 } from '@/data/imec-geo-constants';
 import type { SubseaCable, RailwayPath, DataCenterPoint, DemographicPoint } from '@/data/imec-geo-constants';
+import granularData from '@/data/imec-granular-data.json';
 import GlobalStatsOverlay from './GlobalStatsOverlay';
 import type { LayerConfig } from './GlobalStatsOverlay';
 
@@ -92,11 +93,25 @@ function ImecMapInner() {
     ramanCable: true,
     briCompetitor: false,
     geopolitical: false,
+    veracityFilter: 0,
   });
 
   const [tooltip, setTooltip] = useState<TooltipInfo | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [intelArticles, setIntelArticles] = useState<ParsedIntel[]>([]);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  useEffect(() => {
+    let animationId: number;
+    let t = 0;
+    const animate = () => {
+      t = (t + 5) % 1500;
+      setCurrentTime(t);
+      animationId = requestAnimationFrame(animate);
+    };
+    animate();
+    return () => cancelAnimationFrame(animationId);
+  }, []);
 
   useEffect(() => {
     fetch('/data/verified_intel.md')
@@ -134,6 +149,89 @@ function ImecMapInner() {
   const toggleLayer = useCallback((key: keyof LayerConfig) => {
     setLayers(prev => ({ ...prev, [key]: !prev[key] }));
   }, []);
+
+  const setLayerValue = useCallback((key: keyof LayerConfig, val: any) => {
+    setLayers(prev => ({ ...prev, [key]: val }));
+  }, []);
+
+  const telecomTrips = useMemo(() => {
+    return SUBSEA_CABLES.map(cable => {
+      const numPoints = 100;
+      const path: [number, number][] = [];
+      const timestamps: number[] = [];
+      for (let i = 0; i <= numPoints; i++) {
+         const t = i / numPoints;
+         const lng = cable.source[0] + (cable.target[0] - cable.source[0]) * t;
+         const lat = cable.source[1] + (cable.target[1] - cable.source[1]) * t + Math.sin(t * Math.PI) * 2; 
+         path.push([lng, lat]);
+         timestamps.push(t * 1500);
+      }
+      return {
+        ...cable,
+        path,
+        timestamps,
+        coordinates: path
+      };
+    });
+  }, []);
+
+  const { hydratedRailways, hydratedProposed, hydratedMissing, hydratedDataCenters } = useMemo(() => {
+    const newDCs = granularData.data_centers.map((dc: any) => ({
+      coordinates: dc.coordinates,
+      entity: dc.city + ' Data Center',
+      facility: dc.city + ' Node',
+      mandate: 'Tech Transfer',
+      veracityScore: 10.0
+    }));
+
+    const mappedExisting = EXISTING_RAILWAYS.map(r => ({ ...r, veracityScore: calculateVeracity(r.entity, r.name) }));
+    
+    mappedExisting.push({
+      name: 'UAE Etihad Rail segment',
+      entity: 'Etihad Rail',
+      mandate: 'Freight Backbone',
+      color: [6, 95, 70],
+      path: [granularData.uae_etihad_rail.fujairah, granularData.uae_etihad_rail.al_ghuwaifat],
+      veracityScore: calculateVeracity('Etihad Rail', 'UAE')
+    } as any);
+
+    mappedExisting.push({
+      name: 'Saudi Rail Nodes',
+      entity: 'SAR',
+      mandate: 'Freight Backbone',
+      color: [6, 95, 70],
+      path: [granularData.saudi_trains.dammam, granularData.saudi_trains.haradh, granularData.saudi_trains.riyadh, granularData.saudi_trains.qurayyat],
+      veracityScore: calculateVeracity('SAR', 'Saudi')
+    } as any);
+
+    mappedExisting.push({
+      name: 'Coastal Link',
+      entity: 'Israel Railways',
+      mandate: 'Freight',
+      color: [6, 95, 70],
+      path: [granularData.coastal_link.haifa, granularData.coastal_link.ashdod],
+      veracityScore: calculateVeracity('Israel Railways', 'Israel')
+    } as any);
+
+    const mappedProposed = PROPOSED_RAILWAYS.map(r => ({ ...r, veracityScore: calculateVeracity(r.entity, r.name) }));
+
+    const mappedMissing = MISSING_RAILWAYS.map(r => ({ ...r, veracityScore: calculateVeracity(r.entity, r.name) }));
+    mappedMissing.push({
+      name: 'The Missing Link',
+      entity: 'Multiple Jurisdictions',
+      mandate: 'Financing Gap',
+      color: [71, 85, 105],
+      path: [granularData.the_missing_link.al_haditha, granularData.the_missing_link.sheikh_hussein_bridge, granularData.the_missing_link.beit_shean],
+      veracityScore: calculateVeracity('Jordan', 'Missing Link')
+    } as any);
+
+    return {
+      hydratedRailways: mappedExisting,
+      hydratedProposed: mappedProposed,
+      hydratedMissing: mappedMissing,
+      hydratedDataCenters: newDCs
+    };
+  }, [intelArticles, calculateVeracity]);
 
   // ── Mapbox Country Fill Layers ───────────────────────────
 
@@ -290,14 +388,23 @@ function ImecMapInner() {
 
 
 
-  const deckLayers = useImecLayers({ layers, intelArticles, calculateVeracity, setTooltip });
+  const deckLayers = useImecLayers({
+    layers,
+    hydratedRailways,
+    hydratedProposed,
+    hydratedMissing,
+    hydratedDataCenters,
+    telecomTrips,
+    currentTime,
+    setTooltip
+  });
 
   // ── Render ───────────────────────────────────────────────
 
   return (
     <div className="relative w-full h-full">
       {/* Layer Controls */}
-      <GlobalStatsOverlay layers={layers} toggleLayer={toggleLayer} />
+      <GlobalStatsOverlay layers={layers} toggleLayer={toggleLayer} setLayerValue={setLayerValue} />
 
       <div className="absolute z-10 bottom-4 left-4 pointer-events-none">
           <div className="font-sans font-bold text-[#000000] text-[40px] uppercase tracking-tighter opacity-10">IMEC</div>

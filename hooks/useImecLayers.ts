@@ -1,75 +1,141 @@
 import { useMemo } from 'react';
-import { ArcLayer, PathLayer, ScatterplotLayer } from '@deck.gl/layers';
-import { PathStyleExtension } from '@deck.gl/extensions';
+import { PathLayer, ScatterplotLayer } from '@deck.gl/layers';
+import { HexagonLayer } from '@deck.gl/aggregation-layers';
+// @ts-ignore
+import { TripsLayer } from '@deck.gl/geo-layers';
+import { PathStyleExtension, DataFilterExtension } from '@deck.gl/extensions';
 
-import {
-  SUBSEA_CABLES,
-  EXISTING_RAILWAYS,
-  PROPOSED_RAILWAYS,
-  MISSING_RAILWAYS,
-  DATA_CENTERS,
-} from '@/data/imec-geo-constants';
-
-import type { SubseaCable, RailwayPath, DataCenterPoint } from '@/data/imec-geo-constants';
 import type { LayerConfig } from '@/components/GlobalStatsOverlay';
 
 interface UseImecLayersProps {
   layers: LayerConfig;
-  intelArticles: any[];
-  calculateVeracity: (entity: string, name: string) => number;
+  hydratedRailways: any[];
+  hydratedProposed: any[];
+  hydratedMissing: any[];
+  hydratedDataCenters: any[];
+  telecomTrips: any[];
+  currentTime: number;
   setTooltip: (tooltip: any | null) => void;
 }
 
-export function useImecLayers({ layers, intelArticles, calculateVeracity, setTooltip }: UseImecLayersProps) {
+export function useImecLayers({
+  layers,
+  hydratedRailways,
+  hydratedProposed,
+  hydratedMissing,
+  hydratedDataCenters,
+  telecomTrips,
+  currentTime,
+  setTooltip,
+}: UseImecLayersProps) {
   return useMemo(() => {
     return [
-      // ArcLayer — Subsea cables
-      new ArcLayer<SubseaCable>({
-        id: 'arc-cables',
-        // Instead of filtering, render all and animate via updates:
-        data: SUBSEA_CABLES,
+      // HexagonLayer — Data Centers (3D)
+      new HexagonLayer<any>({
+        id: 'hex-datacenters',
+        data: hydratedDataCenters,
+        getPosition: (d: any) => d.coordinates,
         visible: true,
-        getSourcePosition: (d: SubseaCable) => d.source,
-        getTargetPosition: (d: SubseaCable) => d.target,
-        
-        // Triggers and Transitions mapped
-        getSourceColor: (d: SubseaCable) => {
-          let isBlue = d.name.includes('Blue');
-          let isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
-          return isActive ? d.sourceColor : [...d.sourceColor.slice(0, 3), 0] as [number, number, number, number];
-        },
-        getTargetColor: (d: SubseaCable) => {
-          let isBlue = d.name.includes('Blue');
-          let isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
-          return isActive ? d.targetColor : [...d.targetColor.slice(0, 3), 0] as [number, number, number, number];
-        },
-        getWidth: (d: SubseaCable) => {
-          let isBlue = d.name.includes('Blue');
-          let isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
-          return isActive ? 3 : 0;
-        },
+        extruded: true,
+        gpuAggregation: true,
+        elevationScale: 50,
+        radius: 20000,
+        // Deep Ink Theme:
+        colorRange: [
+          [20, 20, 20],
+          [40, 40, 40],
+          [60, 60, 60],
+          [80, 80, 80],
+          [100, 100, 100],
+          [120, 120, 120]
+        ],
+        getColorWeight: () => 1,
+        getElevationWeight: () => 1,
+        coverage: 0.8,
+        pickable: true,
+        autoHighlight: true,
+        highlightColor: [0, 0, 0, 255],
+        opacity: layers.geopolitical ? 1.0 : 0.0,
         updateTriggers: {
-          getSourceColor: [layers.subseaTelecom, layers.blueCable, layers.ramanCable],
-          getTargetColor: [layers.subseaTelecom, layers.blueCable, layers.ramanCable],
+          opacity: [layers.geopolitical]
+        },
+        transitions: {
+          opacity: { duration: 500 }
+        },
+        onHover: (info: any) => {
+          if (info.object && layers.geopolitical) {
+            setTooltip({
+              x: info.x,
+              y: info.y,
+              mandate: 'DATA CENTER',
+              entity: info.object.points[0].source.city || 'UNKNOWN',
+              veracity: 10.0,
+            });
+          } else {
+            setTooltip(null);
+          }
+          return true;
+        },
+      }),
+
+      // TripsLayer — Telecom Cables (Packets Flowing)
+      new TripsLayer<any>({
+        id: 'trips-telecom',
+        data: telecomTrips,
+        getPath: (d: any) => d.path,
+        getTimestamps: (d: any) => d.timestamps,
+        getColor: (d: any) => {
+          let isBlue = d.name.includes('Blue');
+          let isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
+          return isActive ? d.color : [0, 0, 0, 0];
+        },
+        opacity: layers.subseaTelecom ? 1.0 : 0.0,
+        widthMinPixels: 2,
+        rounded: true,
+        trailLength: 500, // length of the animated packet trail
+        currentTime: currentTime,
+        shadowEnabled: false,
+        updateTriggers: {
+          getColor: [layers.subseaTelecom, layers.blueCable, layers.ramanCable],
+          opacity: [layers.subseaTelecom]
+        },
+        transitions: {
+          getColor: { duration: 500 },
+          opacity: { duration: 500 }
+        },
+      }),
+
+      // STATIC PATHLAYER FOR TELECOM BACKBONE (Under the trips)
+      new PathLayer<any>({
+        id: 'path-telecom-backbone',
+        data: telecomTrips,
+        getPath: (d: any) => d.coordinates, // Just the flat array
+        getColor: (d: any) => {
+          let isBlue = d.name.includes('Blue');
+          let isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
+          return isActive ? [...d.color, 40] as [number, number, number, number] : [0, 0, 0, 0];
+        },
+        getWidth: (d: any) => layers.subseaTelecom ? 1 : 0,
+        widthMinPixels: 1,
+        pickable: true,
+        autoHighlight: true,
+        highlightColor: [0, 0, 0, 255],
+        updateTriggers: {
+          getColor: [layers.subseaTelecom, layers.blueCable, layers.ramanCable],
+          getLineColor: [layers.subseaTelecom, layers.blueCable, layers.ramanCable],
           getWidth: [layers.subseaTelecom, layers.blueCable, layers.ramanCable],
         },
         transitions: {
-          getSourceColor: { duration: 500 },
-          getTargetColor: { duration: 500 },
+          getColor: { duration: 500 },
           getWidth: { duration: 500 },
         },
-        getHeight: 0.4,
-        greatCircle: true,
-        pickable: true,
-        autoHighlight: true,
-        highlightColor: [0, 0, 0, 50],
         onHover: (info: any) => {
           if (info.object) {
             let isBlue = info.object.name.includes('Blue');
             let isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
             if (!isActive) {
               setTooltip(null);
-              return;
+              return true;
             }
             let tooltipText = isBlue
               ? "Route: Italy/France/Greece to Israel | Capacity: 218 Tbps | Fiber Pairs: 16 | Strategic Role: Bypasses Egypt/Suez chokepoint."
@@ -86,31 +152,37 @@ export function useImecLayers({ layers, intelArticles, calculateVeracity, setToo
           } else {
             setTooltip(null);
           }
+          return true;
         },
       }),
 
-      // PathLayer — Existing Railways (solid)
-      new PathLayer<RailwayPath>({
+      // PathLayer — Existing Railways
+      new (PathLayer as any)({
         id: 'path-railways-existing',
-        data: EXISTING_RAILWAYS,
+        data: hydratedRailways,
         visible: true,
-        getPath: (d: RailwayPath) => d.path,
-        getColor: (d: RailwayPath) => layers.railways ? [...d.color, 255] as [number, number, number, number] : [...d.color, 0] as [number, number, number, number],
-        getWidth: (d: RailwayPath) => layers.railways ? 3 : 0,
+        getPath: (d: any) => d.path,
+        getColor: (d: any) => layers.railways ? [...d.color, 255] as [number, number, number, number] : [0, 0, 0, 0],
+        getWidth: (d: any) => layers.railways ? 3 : 0,
+        getFilterValue: (d: any) => d.veracityScore,
+        filterRange: [layers.veracityFilter, 10],
+        extensions: [new DataFilterExtension({ filterSize: 1 })],
         updateTriggers: {
           getColor: [layers.railways],
           getLineColor: [layers.railways],
           getWidth: [layers.railways],
+          getFilterValue: [layers.veracityFilter],
         },
         transitions: {
           getColor: { duration: 500 },
-          getLineColor: { duration: 500 },
           getWidth: { duration: 500 },
         },
         widthMinPixels: 0,
         widthMaxPixels: 6,
         pickable: true,
-        jointRounded: false, // strictly 0px flat joins
+        autoHighlight: true,
+        highlightColor: [0, 0, 0, 255],
+        jointRounded: false,
         capRounded: false,
         onHover: (info: any) => {
           if (info.object && layers.railways) {
@@ -119,7 +191,7 @@ export function useImecLayers({ layers, intelArticles, calculateVeracity, setToo
               y: info.y,
               mandate: info.object.mandate || 'N/A',
               entity: info.object.entity || 'UNKNOWN',
-              veracity: calculateVeracity(info.object.entity, info.object.name),
+              veracity: info.object.veracityScore,
             });
           } else {
             setTooltip(null);
@@ -127,73 +199,36 @@ export function useImecLayers({ layers, intelArticles, calculateVeracity, setToo
         },
       }),
 
-      // PathLayer — Proposed Railways (dashed)
+      // PathLayer — Proposed Railways
       new (PathLayer as any)({
         id: 'path-railways-proposed',
-        data: PROPOSED_RAILWAYS,
+        data: hydratedProposed,
         visible: true,
-        getPath: (d: RailwayPath) => d.path,
-        getColor: (d: RailwayPath) => layers.railways ? [...d.color, 180] as [number, number, number, number] : [...d.color, 0] as [number, number, number, number],
-        getWidth: (d: RailwayPath) => layers.railways ? 3 : 0,
-        updateTriggers: {
-          getColor: [layers.railways],
-          getLineColor: [layers.railways],
-          getWidth: [layers.railways],
-        },
-        transitions: {
-          getColor: { duration: 500 },
-          getLineColor: { duration: 500 },
-          getWidth: { duration: 500 },
-        },
-        widthMinPixels: 0,
-        widthMaxPixels: 5,
+        getPath: (d: any) => d.path,
+        getColor: (d: any) => layers.railways ? [...d.color, 180] as [number, number, number, number] : [0, 0, 0, 0],
+        getWidth: (d: any) => layers.railways ? 3 : 0,
+        getFilterValue: (d: any) => d.veracityScore,
+        filterRange: [layers.veracityFilter, 10],
         getDashArray: [8, 4],
         dashJustified: true,
-        pickable: true,
-        jointRounded: false,
-        capRounded: false,
-        extensions: [new PathStyleExtension({ dash: true })],
-        onHover: (info: any) => {
-          if (info.object && layers.railways) {
-            setTooltip({
-              x: info.x,
-              y: info.y,
-              mandate: info.object.mandate || 'N/A',
-              entity: info.object.entity || 'UNKNOWN',
-              veracity: calculateVeracity(info.object.entity, info.object.name),
-            });
-          } else {
-            setTooltip(null);
-          }
-        },
-      }),
-
-      // PathLayer — Missing Railways (Ghost Gray Dash)
-      new (PathLayer as any)({
-        id: 'path-railways-missing',
-        data: MISSING_RAILWAYS,
-        visible: true,
-        getPath: (d: RailwayPath) => d.path,
-        getColor: (d: RailwayPath) => layers.railways ? [...d.color, 255] as [number, number, number, number] : [...d.color, 0] as [number, number, number, number],
-        getWidth: (d: RailwayPath) => layers.railways ? 3 : 0,
+        extensions: [new PathStyleExtension({ dash: true }), new DataFilterExtension({ filterSize: 1 })],
         updateTriggers: {
           getColor: [layers.railways],
           getLineColor: [layers.railways],
           getWidth: [layers.railways],
+          getFilterValue: [layers.veracityFilter],
         },
         transitions: {
           getColor: { duration: 500 },
-          getLineColor: { duration: 500 },
           getWidth: { duration: 500 },
         },
         widthMinPixels: 0,
         widthMaxPixels: 5,
-        getDashArray: [6, 6],
-        dashJustified: true,
         pickable: true,
+        autoHighlight: true,
+        highlightColor: [0, 0, 0, 255],
         jointRounded: false,
         capRounded: false,
-        extensions: [new PathStyleExtension({ dash: true })],
         onHover: (info: any) => {
           if (info.object && layers.railways) {
             setTooltip({
@@ -201,7 +236,7 @@ export function useImecLayers({ layers, intelArticles, calculateVeracity, setToo
               y: info.y,
               mandate: info.object.mandate || 'N/A',
               entity: info.object.entity || 'UNKNOWN',
-              veracity: calculateVeracity(info.object.entity, info.object.name),
+              veracity: info.object.veracityScore,
             });
           } else {
             setTooltip(null);
@@ -209,41 +244,44 @@ export function useImecLayers({ layers, intelArticles, calculateVeracity, setToo
         },
       }),
 
-      // ScatterplotLayer — Data Centers
-      new ScatterplotLayer<DataCenterPoint>({
-        id: 'scatter-datacenters',
-        data: DATA_CENTERS,
+      // PathLayer — Missing Railways
+      new (PathLayer as any)({
+        id: 'path-railways-missing',
+        data: hydratedMissing,
         visible: true,
-        getPosition: (d: DataCenterPoint) => d.position,
-        getFillColor: (d: DataCenterPoint) => layers.geopolitical ? [0, 0, 0, 200] : [0, 0, 0, 0],
-        getLineColor: (d: DataCenterPoint) => layers.geopolitical ? [0, 0, 0, 255] : [0, 0, 0, 0],
-        getRadius: (d: DataCenterPoint) => layers.geopolitical ? 12000 : 0,
+        getPath: (d: any) => d.path,
+        getColor: (d: any) => layers.railways ? [71, 85, 105, 255] as [number, number, number, number] : [0, 0, 0, 0],
+        getWidth: (d: any) => layers.railways ? 3 : 0,
+        getFilterValue: (d: any) => d.veracityScore,
+        filterRange: [layers.veracityFilter, 10],
+        getDashArray: [6, 6],
+        dashJustified: true,
+        extensions: [new PathStyleExtension({ dash: true }), new DataFilterExtension({ filterSize: 1 })],
         updateTriggers: {
-          getFillColor: [layers.geopolitical],
-          getLineColor: [layers.geopolitical],
-          getRadius: [layers.geopolitical],
+          getColor: [layers.railways],
+          getLineColor: [layers.railways],
+          getWidth: [layers.railways],
+          getFilterValue: [layers.veracityFilter],
         },
         transitions: {
-          getFillColor: { duration: 500 },
-          getLineColor: { duration: 500 },
-          getRadius: { duration: 500 },
+          getColor: { duration: 500 },
+          getWidth: { duration: 500 },
         },
-        radiusMinPixels: 0,
-        radiusMaxPixels: 16,
-        lineWidthMinPixels: 1,
-        stroked: true,
-        filled: true,
+        widthMinPixels: 0,
+        widthMaxPixels: 5,
         pickable: true,
         autoHighlight: true,
-        highlightColor: [0, 0, 0, 120],
+        highlightColor: [0, 0, 0, 255],
+        jointRounded: false,
+        capRounded: false,
         onHover: (info: any) => {
-          if (info.object && layers.geopolitical) {
+          if (info.object && layers.railways) {
             setTooltip({
               x: info.x,
               y: info.y,
               mandate: info.object.mandate || 'N/A',
-              entity: info.object.entity || info.object.facility || 'UNKNOWN',
-              veracity: calculateVeracity(info.object.entity || info.object.facility, info.object.facility),
+              entity: info.object.entity || 'UNKNOWN',
+              veracity: info.object.veracityScore,
             });
           } else {
             setTooltip(null);
@@ -252,5 +290,5 @@ export function useImecLayers({ layers, intelArticles, calculateVeracity, setToo
       }),
 
     ];
-  }, [layers, intelArticles, calculateVeracity, setTooltip]);
+  }, [layers, hydratedDataCenters, hydratedRailways, hydratedProposed, hydratedMissing, telecomTrips, currentTime, setTooltip]);
 }

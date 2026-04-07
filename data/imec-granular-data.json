@@ -1,0 +1,31 @@
+{
+  "uae_etihad_rail": {
+    "fujairah": [56.3462, 25.1442],
+    "al_ghuwaifat": [51.63199, 24.13279]
+  },
+  "saudi_trains": {
+    "dammam": [50.055164, 26.425699],
+    "haradh": [49.0817124, 24.1353686],
+    "riyadh": [46.72413, 24.69497],
+    "qurayyat": [37.34282, 31.33176]
+  },
+  "the_missing_link": {
+    "al_haditha": [37.1597, 31.4553],
+    "sheikh_hussein_bridge": [35.575556, 32.496944],
+    "beit_shean": [35.5003, 32.4975]
+  },
+  "coastal_link": {
+    "haifa": [34.998, 32.819],
+    "ashdod": [34.6432, 31.7878]
+  },
+  "data_centers": [
+    { "city": "Mumbai", "coordinates": [72.8774, 19.0760] },
+    { "city": "Dubai", "coordinates": [55.30472, 25.25847] },
+    { "city": "Riyadh", "coordinates": [46.7218, 24.6877] },
+    { "city": "Amman", "coordinates": [35.9458, 31.9566] },
+    { "city": "Petah Tikva", "coordinates": [34.8850, 32.0917] },
+    { "city": "Athens", "coordinates": [23.71625, 37.97945] },
+    { "city": "Rome", "coordinates": [12.496366, 41.902782] },
+    { "city": "Marseille", "coordinates": [5.36978, 43.296482] }
+  ]
+}
