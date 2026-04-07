@@ -48,6 +48,7 @@ interface TooltipInfo {
   mandate: string;
   entity: string;
   veracity: number;
+  customBody?: string;
 }
 
 interface ParsedIntel {
@@ -70,14 +71,13 @@ function ImecMapInner() {
   });
 
   const [layers, setLayers] = useState<LayerConfig>({
-    cables: true,
+    imecCorridor: true,
     railways: true,
-    dataCenters: true,
-    hexagons: true,
-    ftas: false,
-    defence: false,
-    competitors: false,
-    weaknesses: false,
+    subseaTelecom: true,
+    blueCable: true,
+    ramanCable: true,
+    briCompetitor: false,
+    geopolitical: false,
   });
 
   const [tooltip, setTooltip] = useState<TooltipInfo | null>(null);
@@ -228,7 +228,7 @@ function ImecMapInner() {
     const map = mapRef.current.getMap();
     if (!map.getLayer('fta-fill')) return;
 
-    if (layers.ftas) {
+    if (layers.geopolitical) {
       const allFtaCountries = [...new Set(FTA_AGREEMENTS.flatMap(f => f.countries))];
       map.setFilter('fta-fill', ['in', 'iso_3166_1_alpha_3', ...allFtaCountries]);
       map.setFilter('fta-outline', ['in', 'iso_3166_1_alpha_3', ...allFtaCountries]);
@@ -238,28 +238,28 @@ function ImecMapInner() {
       map.setPaintProperty('fta-fill', 'fill-opacity', 0);
       map.setPaintProperty('fta-outline', 'line-opacity', 0);
     }
-  }, [layers.ftas, mapLoaded]);
+  }, [layers.geopolitical, mapLoaded]);
 
   useEffect(() => {
     if (!mapLoaded || !mapRef.current) return;
     const map = mapRef.current.getMap();
     if (!map.getLayer('defence-fill')) return;
 
-    if (layers.defence) {
+    if (layers.geopolitical) {
       const allDefenceCountries = [...new Set(DEFENCE_PARTNERSHIPS.flatMap(d => d.countries))];
       map.setFilter('defence-fill', ['in', 'iso_3166_1_alpha_3', ...allDefenceCountries]);
       map.setPaintProperty('defence-fill', 'fill-opacity', 0.2);
     } else {
       map.setPaintProperty('defence-fill', 'fill-opacity', 0);
     }
-  }, [layers.defence, mapLoaded]);
+  }, [layers.geopolitical, mapLoaded]);
 
   useEffect(() => {
     if (!mapLoaded || !mapRef.current) return;
     const map = mapRef.current.getMap();
     if (!map.getLayer('competitors-fill')) return;
 
-    if (layers.competitors) {
+    if (layers.briCompetitor) {
       const allCompetitorCountries = [...new Set([...BRI_COUNTRIES, ...BRICS_MEMBERS, ...BRICS_PARTNERS])];
       map.setFilter('competitors-fill', ['in', 'iso_3166_1_alpha_3', ...allCompetitorCountries]);
       map.setPaintProperty('competitors-fill', 'fill-opacity', 0.2);
@@ -267,28 +267,14 @@ function ImecMapInner() {
         'case',
         ['in', ['get', 'iso_3166_1_alpha_3'], ['literal', BRICS_MEMBERS]],
         '#DC2626',
-        '#525252',
+        '#475569',
       ]);
     } else {
       map.setPaintProperty('competitors-fill', 'fill-opacity', 0);
     }
-  }, [layers.competitors, mapLoaded]);
+  }, [layers.briCompetitor, mapLoaded]);
 
-  useEffect(() => {
-    if (!mapLoaded || !mapRef.current) return;
-    const map = mapRef.current.getMap();
-    if (!map.getLayer('weakness-fill')) return;
 
-    if (layers.weaknesses) {
-      map.setFilter('weakness-fill', ['in', 'iso_3166_1_alpha_3', ...WEAKNESS_COUNTRIES]);
-      map.setFilter('weakness-outline', ['in', 'iso_3166_1_alpha_3', ...WEAKNESS_COUNTRIES]);
-      map.setPaintProperty('weakness-fill', 'fill-opacity', 0.3);
-      map.setPaintProperty('weakness-outline', 'line-opacity', 0.8);
-    } else {
-      map.setPaintProperty('weakness-fill', 'fill-opacity', 0);
-      map.setPaintProperty('weakness-outline', 'line-opacity', 0);
-    }
-  }, [layers.weaknesses, mapLoaded]);
 
   // ── deck.gl Layers ───────────────────────────────────────
 
@@ -298,14 +284,14 @@ function ImecMapInner() {
       new HexagonLayer<DemographicPoint>({
         id: 'hex-demographic',
         data: DEMOGRAPHIC_POINTS,
-        visible: layers.hexagons,
+        visible: false,
         getPosition: (d: DemographicPoint) => [d[0], d[1]],
         getElevationWeight: (d: DemographicPoint) => d[2],
         getColorWeight: (d: DemographicPoint) => d[2],
         elevationScale: 1500,
         radius: 30000,
         extruded: true,
-        pickable: false,
+        pickable: true,
         coverage: 0.85,
         upperPercentile: 95,
         material: {
@@ -328,8 +314,8 @@ function ImecMapInner() {
       // ArcLayer — Subsea cables
       new ArcLayer<SubseaCable>({
         id: 'arc-cables',
-        data: SUBSEA_CABLES,
-        visible: layers.cables,
+        data: SUBSEA_CABLES.filter(c => (layers.blueCable && c.name.includes('Blue')) || (layers.ramanCable && c.name.includes('Raman'))),
+        visible: layers.subseaTelecom,
         getSourcePosition: (d: SubseaCable) => d.source,
         getTargetPosition: (d: SubseaCable) => d.target,
         getSourceColor: (d: SubseaCable) => d.sourceColor,
@@ -342,12 +328,20 @@ function ImecMapInner() {
         highlightColor: [255, 255, 255, 100],
         onHover: (info: any) => {
           if (info.object) {
+            let tooltipText = '';
+            let isBlue = info.object.name.includes('Blue');
+            if (isBlue) {
+              tooltipText = "Route: Italy/France/Greece to Israel | Capacity: 218 Tbps | Fiber Pairs: 16 | Strategic Role: Bypasses Egypt/Suez chokepoint.";
+            } else {
+              tooltipText = "Route: Jordan/Saudi Arabia/Oman to India | Capacity: 218 Tbps | Length: ~11,700 km | Partners: Google, Omantel, Sparkle.";
+            }
             setTooltip({
               x: info.x,
               y: info.y,
               mandate: info.object.mandate || 'N/A',
               entity: info.object.entity || info.object.owner || 'UNKNOWN',
-              veracity: calculateVeracity(info.object.entity || info.object.owner, info.object.name),
+              veracity: 10.0,
+              customBody: tooltipText,
             });
           } else {
             setTooltip(null);
@@ -447,7 +441,7 @@ function ImecMapInner() {
       new ScatterplotLayer<DataCenterPoint>({
         id: 'scatter-datacenters',
         data: DATA_CENTERS,
-        visible: layers.dataCenters,
+        visible: layers.geopolitical,
         getPosition: (d: DataCenterPoint) => d.position,
         getFillColor: [0, 255, 200, 200],
         getLineColor: [0, 255, 200, 80],
@@ -476,7 +470,7 @@ function ImecMapInner() {
       }),
 
     ];
-  }, [layers.cables, layers.railways, layers.dataCenters, layers.hexagons]);
+  }, [layers, intelArticles]);
 
   // ── Render ───────────────────────────────────────────────
 
@@ -485,24 +479,33 @@ function ImecMapInner() {
       {/* Layer Controls */}
       <GlobalStatsOverlay layers={layers} toggleLayer={toggleLayer} />
 
+      <div className="absolute z-10 bottom-4 left-4 pointer-events-none">
+          <div className="font-sans font-bold text-[#000000] text-[40px] uppercase tracking-tighter opacity-10">IMEC</div>
+      </div>
+
       {/* Tooltip */}
       {tooltip && (
         <div
-          className="absolute z-50 pointer-events-none p-2 bg-white border border-neutral-200 max-w-[260px]"
-          style={{ left: tooltip.x + 12, top: tooltip.y - 12 }}
+          className="absolute z-50 pointer-events-none p-3 bg-white border border-[#000000] max-w-[280px]"
+          style={{ left: tooltip.x + 15, top: tooltip.y - 15 }}
         >
-          <div className="font-sans font-bold uppercase tracking-widest text-[#EF4444] text-[9px] mb-1.5 leading-tight">
+          <div className="font-sans font-bold uppercase tracking-widest text-[#000000] text-[9px] mb-1.5 leading-tight">
             G20 MANDATE: {tooltip.mandate}
           </div>
-          <div className="font-sans font-bold uppercase tracking-widest text-neutral-600 text-[10px] mb-1.5">
+          <div className="font-sans font-bold uppercase tracking-widest text-neutral-800 text-[10px] mb-1.5">
             ENTITY: {tooltip.entity}
           </div>
           <div 
-            className="font-sans font-bold uppercase tracking-widest text-[10px]"
-            style={{ color: tooltip.veracity > 7.5 ? '#10B981' : (tooltip.veracity > 4.0 ? '#0EA5E9' : '#9CA3AF') }}
+            className="font-sans font-bold uppercase tracking-widest text-[10px] mb-2"
+            style={{ color: tooltip.veracity > 7.5 ? '#065F46' : (tooltip.veracity > 4.0 ? '#C2410C' : '#475569') }}
           >
             VERACITY: {tooltip.veracity.toFixed(1)} / 10.0
           </div>
+          {(tooltip as any).customBody && (
+            <div className="font-sans font-bold text-[10px] text-[#000000] border-t border-neutral-300 pt-2 leading-relaxed">
+              {(tooltip as any).customBody}
+            </div>
+          )}
         </div>
       )}
 

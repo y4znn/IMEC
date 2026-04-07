@@ -1,0 +1,236 @@
+{
+  "statusUpdates": {
+    "railway": "GCC states keen on completing railway. Israel pursuing land/rail connections but facing logistical/regional challenges.",
+    "timestamp": "2026-04-07T11:45:26.115Z"
+  },
+  "geojson": {
+    "cables": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Blue Submarine Cable"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              8.93,
+              44.41
+            ],
+            [
+              13.18,
+              38.11
+            ],
+            [
+              24.01,
+              35.51
+            ],
+            [
+              32.88,
+              34.68
+            ],
+            [
+              34.78,
+              32.08
+            ],
+            [
+              35,
+              29.55
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Raman Submarine Cable"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              35,
+              29.55
+            ],
+            [
+              39.19,
+              21.48
+            ],
+            [
+              43.14,
+              12.63
+            ],
+            [
+              58.54,
+              23.61
+            ],
+            [
+              72.87,
+              19.07
+            ]
+          ]
+        }
+      }
+    ],
+    "railways": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "GCC Railway"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              47.97,
+              29.37
+            ],
+            [
+              49.97,
+              26.43
+            ],
+            [
+              50.55,
+              26.22
+            ],
+            [
+              51.52,
+              25.28
+            ],
+            [
+              54.37,
+              24.45
+            ],
+            [
+              58.4,
+              23.58
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Saudi-Jordan-Haifa Link"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              49.97,
+              26.43
+            ],
+            [
+              46.71,
+              24.71
+            ],
+            [
+              35.92,
+              31.95
+            ],
+            [
+              34.98,
+              32.79
+            ]
+          ]
+        }
+      }
+    ],
+    "dataCenters": [
+      {
+        "name": "Mumbai Hub",
+        "coordinates": [
+          72.87,
+          19.07
+        ]
+      },
+      {
+        "name": "Dubai Hub",
+        "coordinates": [
+          55.27,
+          25.2
+        ]
+      },
+      {
+        "name": "Riyadh Hub",
+        "coordinates": [
+          46.71,
+          24.71
+        ]
+      },
+      {
+        "name": "Amman Hub",
+        "coordinates": [
+          35.92,
+          31.95
+        ]
+      },
+      {
+        "name": "Tel Aviv Hub",
+        "coordinates": [
+          34.78,
+          32.08
+        ]
+      },
+      {
+        "name": "Cyprus Hub",
+        "coordinates": [
+          33.38,
+          35.18
+        ]
+      },
+      {
+        "name": "Athens Hub",
+        "coordinates": [
+          23.72,
+          37.98
+        ]
+      },
+      {
+        "name": "Marseille Hub",
+        "coordinates": [
+          5.36,
+          43.29
+        ]
+      },
+      {
+        "name": "Milan Hub",
+        "coordinates": [
+          9.19,
+          45.46
+        ]
+      }
+    ],
+    "bottlenecks": [
+      {
+        "name": "Suez Canal / Egypt",
+        "coordinates": [
+          32.28,
+          30.58
+        ]
+      },
+      {
+        "name": "Turkey Exclusion",
+        "coordinates": [
+          35.24,
+          38.96
+        ]
+      }
+    ],
+    "ftas": {
+      "active": [
+        "FRA",
+        "ITA",
+        "GRC",
+        "CYP",
+        "ISR",
+        "JOR",
+        "ARE",
+        "IND"
+      ],
+      "proposed": [
+        "SAU"
+      ]
+    }
+  }
+}

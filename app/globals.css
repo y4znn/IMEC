@@ -212,3 +212,53 @@ input[type='range']::-moz-range-thumb {
         box-shadow: 0 0 0 10px rgba(17, 24, 39, 0);
     }
 }
+
+/* ── Dark Map Scrollbar ── */
+.imec-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.imec-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.imec-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 0;
+}
+
+.imec-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Data Center Pulse ── */
+@keyframes dc-pulse {
+    0% {
+        box-shadow: 0 0 0 0px rgba(0, 255, 200, 0.5);
+    }
+
+    100% {
+        box-shadow: 0 0 0 12px rgba(0, 255, 200, 0);
+    }
+}
+
+.animate-dc-pulse {
+    animation: dc-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ── Mapbox Dark Overrides ── */
+.mapboxgl-ctrl-attrib-inner,
+.mapboxgl-ctrl-logo {
+    display: none !important;
+}
+
+.mapboxgl-popup-content {
+    background: rgba(15, 23, 42, 0.9) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    font-family: var(--font-mono) !important;
+    font-size: 10px !important;
+    border-radius: 0 !important;
+    padding: 8px 12px !important;
+}
