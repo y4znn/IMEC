@@ -61,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <nav className="hidden md:flex items-center gap-2 mb-0.5" aria-label="Primary navigation">
                                 <NavLink href="/sources" label="Sources" current={pathname} />
                                 <NavLink href="/map" label="Corridor Map" current={pathname} />
+                                <NavLink href="/profile" label="Researcher Profile" current={pathname} />
                             </nav>
 
                             {/* Mobile Menu Button */}
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <nav className="md:hidden border-t border-gray-300 bg-gray-50 px-4 py-3 flex flex-col gap-1 absolute top-full left-0 right-0 z-50 shadow-xl" aria-label="Mobile navigation">
                                 <MobileNavLink href="/sources" label="Sources" current={pathname} onClick={() => setMobileMenuOpen(false)} />
                                 <MobileNavLink href="/map" label="Corridor Map" current={pathname} onClick={() => setMobileMenuOpen(false)} />
+                                <MobileNavLink href="/profile" label="Researcher Profile" current={pathname} onClick={() => setMobileMenuOpen(false)} />
                             </nav>
                         )}
                     </header>
