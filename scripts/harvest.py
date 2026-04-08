@@ -59,6 +59,7 @@ from audit import (
     BATCH_SIZE,
     VETO_MARKERS,
 )
+from vector_store import embed_and_store
 
 # ─── Harvester Configuration ────────────────────────────────────
 HARVEST_THRESHOLD = 4.0
@@ -87,34 +88,27 @@ THINK_TANK_FEEDS = {
 
 # ─── GNews Search Queries ───────────────────────────────────────
 GNEWS_QUERIES = [
-    "IMEC corridor India Middle East",
-    "India Middle East Europe trade",
-    "Suez Canal shipping disruption",
-    "Belt Road Initiative infrastructure",
-    "IMEC corridor progress 2025-2026",
-    "Blue-Raman cable status",
-    "Haifa Port Adani trade volume",
-    "India-UAE Virtual Trade Corridor",
+    "IMEC corridor UAE Saudi Jordan Israel rail link",
+    "G7 PGII funding framework infrastructure",
+    "Blue-Raman subsea cable Google bypassing Suez",
+    "PGII green infrastructure commitments multilateral",
+    "Mumbai Mundra to Jebel Ali maritime transit",
+    "Blue-Raman Red Sea security delays 218 Tbps"
 ]
 
 # ─── Spider-Web Perspective Targets ─────────────────────────────
 SPIDER_WEB_QUERIES = [
-    "Blue-Raman submarine cable IMEC",
-    "Jordan railway gap Aqaba Haifa rail",
-    "Saudi East Cargo Train Al-Ghuwaifat",
-    "NEOM hydrogen pipeline corridor",
-    "GCC electricity interconnector grid",
-    "Hafeet Rail Oman Strait Hormuz bypass",
-    "Vadhavan port India transshipment",
+    "Blue-Raman submarine cable Google capacity",
+    "Jordan railway gap Aqaba Haifa rail Israel",
+    "PGII investments Middle East Europe",
+    "IMEC European integration Piraeus Marseille",
 ]
 
 # ─── CrossRef / OpenAlex Queries ────────────────────────────────
 ACADEMIC_QUERIES = [
-    "Iraq Development Road Project vs IMEC",
-    "INSTC vs IMEC geopolitics",
-    "Blue-Raman subsea cable strategic impact",
-    "digital connectivity Middle East Europe",
-    "Green Hydrogen NEOM Saudi Arabia energy corridor",
+    "PGII G7 funding geopolitics",
+    "Blue-Raman cable strategic impact Red Sea",
+    "IMEC rail links Saudi Arabia Jordan Israel",
 ]
 
 # ─── Dialectical Keywords ───────────────────────────────────────
@@ -759,6 +753,11 @@ def main():
     if new_source_dicts:
         updated = deploy_to_sources(new_source_dicts, existing_sources, date_str)
         print(f"   sources.json: +{len(new_source_dicts)} -> {len(updated)} total")
+        
+        # Deploy to Vector DB
+        print("   vector_db: chunking and embedding verified sources...")
+        embed_and_store(new_source_dicts)
+        print("   vector_db: successfully updated FAISS index")
     else:
         updated = existing_sources
 

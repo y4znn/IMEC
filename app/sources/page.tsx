@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
-import { ExternalLink, Search } from 'lucide-react';
+import { useState, useMemo, useEffect, FormEvent, useRef } from 'react';
+import { ExternalLink, Search, Terminal } from 'lucide-react';
 import fallbackSources from '@/public/data/sources.json';
 import IntelligencePulse from '@/components/IntelligencePulse';
 
@@ -18,6 +18,49 @@ type AcademicSource = {
 export default function SourcesPage() {
     const [sources, setSources] = useState<AcademicSource[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
+    
+    // Chat State
+    const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string}[]>([]);
+    const [inputQuery, setInputQuery] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
+    const handleChatSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        if (!inputQuery.trim() || isLoading) return;
+
+        const userMsg = inputQuery.trim();
+        setInputQuery('');
+        setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
+        setIsLoading(true);
+
+        try {
+            const res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: userMsg })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                setMessages(prev => [...prev, { role: 'assistant', content: data.answer }]);
+            } else {
+                setMessages(prev => [...prev, { role: 'assistant', content: `ERROR: ${data.error}` }]);
+            }
+        } catch (error) {
+            setMessages(prev => [...prev, { role: 'assistant', content: 'ERROR: Communication with intelligence server failed.' }]);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     // Fetch data safely
     useEffect(() => {
@@ -131,6 +174,53 @@ export default function SourcesPage() {
                         </div>
                     )}
                 </div>
+            </div>
+
+            {/* ── Brutalist Command Terminal Chat ── */}
+            <div className="fixed bottom-0 right-0 w-full md:w-[400px] border-t md:border-l border-black p-0 flex flex-col z-50 bg-white shadow-none rounded-none">
+                <div className="bg-black text-white font-mono text-[10px] uppercase tracking-widest px-4 py-3 flex items-center gap-2 border-b border-black rounded-none">
+                    <Terminal className="w-4 h-4" />
+                    INTELLIGENCE TERMINAL
+                </div>
+                
+                {messages.length > 0 && (
+                    <div className="max-h-[40vh] overflow-y-auto w-full p-6 flex flex-col gap-6 font-mono text-sm border-b border-black">
+                        {messages.map((msg, i) => (
+                            <div key={i} className="flex flex-col gap-1.5">
+                                <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">
+                                    {msg.role === 'user' ? 'USER_QUERY:' : 'TERMINAL_RESPONSE:'}
+                                </span>
+                                <div className={`p-4 border border-black bg-white text-black whitespace-pre-wrap leading-relaxed rounded-none ${msg.role === 'user' ? 'ml-6' : 'mr-6 bg-gray-50'}`}>
+                                    {msg.content}
+                                </div>
+                            </div>
+                        ))}
+                        {isLoading && (
+                            <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest animate-pulse mt-2">
+                                [ PROCESSING INTELLIGENCE... ]
+                            </div>
+                        )}
+                        <div ref={messagesEndRef} />
+                    </div>
+                )}
+
+                <form onSubmit={handleChatSubmit} className="flex w-full bg-white rounded-none">
+                    <input
+                        type="text"
+                        placeholder="Awaiting directive..."
+                        value={inputQuery}
+                        onChange={(e) => setInputQuery(e.target.value)}
+                        disabled={isLoading}
+                        className="flex-1 px-4 py-4 bg-white text-black font-mono text-xs placeholder-gray-400 focus:outline-none rounded-none border-none"
+                    />
+                    <button 
+                        type="submit" 
+                        disabled={isLoading || !inputQuery.trim()}
+                        className="bg-black text-white px-6 py-4 font-mono text-[10px] uppercase tracking-widest font-bold hover:bg-gray-800 disabled:bg-gray-400 transition-none rounded-none border-l border-black"
+                    >
+                        EXECUTE
+                    </button>
+                </form>
             </div>
         </div>
     );
