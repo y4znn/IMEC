@@ -54,9 +54,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                     </h1>
                                 </Link>
                                 <div className="mt-0 hidden sm:block">
-                                    <span className="text-[11px] font-sans text-gray-600 tracking-widest uppercase opacity-80 animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
-                                        <a href="https://www.linkedin.com/in/ahmadghsnn" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">a project by ahmad ghosn</a>
-                                    </span>
                                 </div>
                             </div>
 
@@ -64,7 +61,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <nav className="hidden md:flex items-center gap-2 mb-0.5" aria-label="Primary navigation">
                                 <NavLink href="/sources" label="Sources" current={pathname} />
                                 <NavLink href="/map" label="Corridor Map" current={pathname} />
-                                <NavLink href="/profile" label="Researcher Profile" current={pathname} />
                             </nav>
 
                             {/* Mobile Menu Button */}
@@ -82,7 +78,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <nav className="md:hidden border-t border-gray-300 bg-gray-50 px-4 py-3 flex flex-col gap-1 absolute top-full left-0 right-0 z-50 shadow-xl" aria-label="Mobile navigation">
                                 <MobileNavLink href="/sources" label="Sources" current={pathname} onClick={() => setMobileMenuOpen(false)} />
                                 <MobileNavLink href="/map" label="Corridor Map" current={pathname} onClick={() => setMobileMenuOpen(false)} />
-                                <MobileNavLink href="/profile" label="Researcher Profile" current={pathname} onClick={() => setMobileMenuOpen(false)} />
                             </nav>
                         )}
                     </header>

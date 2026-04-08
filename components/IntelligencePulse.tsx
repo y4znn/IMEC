@@ -52,25 +52,10 @@ export default function IntelligencePulse() {
         }
     };
 
-    const displayCount = pulse
-        ? `${(pulse.total_indexed + pulse.verified_sources).toLocaleString()}+ online sources`
-        : '11,300,000+ online sources';
-
     return (
         <div className="relative z-50 w-full max-w-[420px] mx-auto bg-white border border-gray-200 rounded-none p-8 shadow-sm hover:shadow-md transition-all text-left animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
-            {/* ── Intelligence Pulse Section ── */}
-            <div className="flex flex-col gap-2 mb-8">
-                <div className="flex items-center justify-between w-full text-lg font-sans font-bold text-gray-900 tracking-tight leading-none uppercase">
-                    {displayCount}
-                    <span className="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_12px_rgba(34,197,94,0.8)]" />
-                </div>
-                <div className="text-[11px] text-gray-400 font-sans tracking-widest leading-tight uppercase font-medium">
-                    on India Middle East Europe Economic Corridor
-                </div>
-            </div>
-
             {/* ── Subscription Module Section ── */}
-            <div className="pt-8 border-t border-gray-100">
+            <div>
                 <h3 className="text-sm font-sans font-bold text-gray-900 tracking-tight uppercase mb-4">
                     Daily Intelligence Briefing
                 </h3>

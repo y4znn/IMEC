@@ -3,8 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Quote } from 'lucide-react';
-import NarrativeOverlay from '@/components/NarrativeOverlay';
+import { ArrowLeft } from 'lucide-react';
 
 // Dynamically import the map component — no SSR (WebGL)
 const ImecMap = dynamic(() => import('@/components/ImecMap'), {
@@ -20,7 +19,6 @@ const ImecMap = dynamic(() => import('@/components/ImecMap'), {
 });
 
 export default function MapPage() {
-  const [narrativeOpen, setNarrativeOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -31,14 +29,6 @@ export default function MapPage() {
     <div className="fixed inset-0 z-[9999] bg-slate-950 overflow-hidden">
       {/* ── Floating Navigation ── */}
       <div className="absolute top-4 right-4 z-[500] flex items-center gap-2">
-        <button
-          onClick={() => setNarrativeOpen(true)}
-          className="flex items-center gap-1.5 bg-slate-900/70 backdrop-blur-md border border-white/10 text-gray-300 hover:text-white font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-2 hover:border-cyan-400/30 transition-all"
-          id="narrative-open-btn"
-        >
-          <Quote size={12} />
-          Narratives
-        </button>
         <Link
           href="/"
           className="flex items-center gap-1.5 bg-slate-900/70 backdrop-blur-md border border-white/10 text-gray-300 hover:text-white font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-2 hover:border-white/20 transition-all"
@@ -63,14 +53,6 @@ export default function MapPage() {
 
       {/* ── Full-Screen Map ── */}
       <ImecMap />
-
-      {/* ── Narrative Overlay ── */}
-      {mounted && (
-        <NarrativeOverlay
-          isOpen={narrativeOpen}
-          onClose={() => setNarrativeOpen(false)}
-        />
-      )}
     </div>
   );
 }
