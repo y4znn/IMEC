@@ -1,28 +1,17 @@
 import os
 import json
-import faiss
-import numpy as np
-
-class MockEmbedder:
-    def get_sentence_embedding_dimension(self):
-        return 384
-    def encode(self, sentences, convert_to_numpy=True):
-        return np.random.rand(len(sentences), 384).astype(np.float32)
-
-embedder = MockEmbedder()
+import re
 
 # ─── Configuration ──────────────────────────────────────────────
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 DATA_DIR = os.path.join(PROJECT_ROOT, "public", "data")
 
-INDEX_PATH = os.path.join(DATA_DIR, "vector_index.faiss")
 META_PATH = os.path.join(DATA_DIR, "vector_meta.json")
 
 # Chunking Config
 CHUNK_SIZE = 500
 CHUNK_OVERLAP = 100
-
 
 def chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) -> list[str]:
     """Splits text into overlapping chunks to preserve complex context."""
@@ -35,27 +24,16 @@ def chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OVE
         i += (chunk_size - overlap)
     return chunks
 
-
-def load_index():
-    if os.path.exists(INDEX_PATH) and os.path.exists(META_PATH):
-        index = faiss.read_index(INDEX_PATH)
-        with open(META_PATH, "r", encoding="utf-8") as f:
-            meta = json.load(f)
-        return index, meta
-    else:
-        dimension = embedder.get_sentence_embedding_dimension()
-        return faiss.IndexFlatL2(dimension), []
-
-
 def embed_and_store(documents: list[dict]):
     """
-    Takes a list of document dicts (with 'title', 'summary', 'url', 'id'),
-    chunks them, embeds them, and adds to the local FAISS index.
+    Simulates semantic storage by building a JSON metadata store for keyword search.
+    This bypasses semantic model downloads for zero-dependency reliability.
     """
-    index, meta = load_index()
-    
-    new_chunks = []
-    new_meta = []
+    if os.path.exists(META_PATH):
+        with open(META_PATH, "r", encoding="utf-8") as f:
+            meta = json.load(f)
+    else:
+        meta = []
     
     for doc in documents:
         text = f"{doc.get('title', '')} {doc.get('summary', '')}"
@@ -64,8 +42,7 @@ def embed_and_store(documents: list[dict]):
             
         chunks = chunk_text(text)
         for i, snippet in enumerate(chunks):
-            new_chunks.append(snippet)
-            new_meta.append({
+            meta.append({
                 "id": doc.get('id', 'unknown'),
                 "title": doc.get('title', ''),
                 "url": doc.get('url', ''),
@@ -73,28 +50,52 @@ def embed_and_store(documents: list[dict]):
                 "text": snippet
             })
             
-    if new_chunks:
-        embeddings = embedder.encode(new_chunks, convert_to_numpy=True)
-        index.add(embeddings)
-        meta.extend(new_meta)
-        
-        faiss.write_index(index, INDEX_PATH)
-        with open(META_PATH, "w", encoding="utf-8") as f:
-            json.dump(meta, f, indent=2, ensure_ascii=False)
-
+    with open(META_PATH, "w", encoding="utf-8") as f:
+        json.dump(meta, f, indent=2, ensure_ascii=False)
 
 def retrieve_context(query: str, k: int = 4) -> list[dict]:
-    """Retrieves the top k chunks closing to the query."""
-    index, meta = load_index()
-    if index.ntotal == 0:
+    """
+    Retrieves the top k chunks using keyword frequency analysis.
+    Implements a robust local TF-IDF style ranking without external models.
+    """
+    if not os.path.exists(META_PATH):
         return []
 
-    q_embed = embedder.encode([query], convert_to_numpy=True)
-    distances, indices = index.search(q_embed, k)
+    with open(META_PATH, "r", encoding="utf-8") as f:
+        meta = json.load(f)
+
+    if not meta:
+        return []
+
+    # Simple Keyword Scoring
+    keywords = re.findall(r'\w+', query.lower())
+    scored_meta = []
+
+    for chunk in meta:
+        score = 0
+        text_lower = chunk["text"].lower()
+        title_lower = chunk["title"].lower()
+        
+        for kw in keywords:
+            if kw in text_lower:
+                score += text_lower.count(kw)
+            if kw in title_lower:
+                score += (title_lower.count(kw) * 2) # Weighted boost for title matches
+                
+        if score > 0:
+            scored_meta.append((score, chunk))
+
+    # Sort by score descending
+    scored_meta.sort(key=lambda x: x[0], reverse=True)
     
-    results = []
-    for idx in indices[0]:
-        if idx < len(meta) and idx != -1:
-            results.append(meta[idx])
-            
-    return results
+    # Return top k unique documents
+    unique_docs = []
+    seen_ids = set()
+    for _, chunk in scored_meta:
+        if chunk["id"] not in seen_ids:
+            unique_docs.append(chunk)
+            seen_ids.add(chunk["id"])
+            if len(unique_docs) >= k:
+                break
+                
+    return unique_docs
