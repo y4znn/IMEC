@@ -54,7 +54,7 @@ export async function addSubscriber(email: string): Promise<{ success: boolean; 
     }
 
     // Attempt to add to Resend Audience
-    const { data, error } = await resend.contacts.create({
+    const { error } = await resend.contacts.create({
       email: email.toLowerCase(),
       firstName: '',
       lastName: '',
@@ -64,8 +64,8 @@ export async function addSubscriber(email: string): Promise<{ success: boolean; 
 
     if (error) {
       // Check if it's "Contact already exists" error
-      // Using type assertion to avoid overlap error in some TS versions
-      if ((error as any).name === 'contact_already_exists' || (error as any).code === 422) {
+      const errObj = error as Record<string, unknown>;
+      if (errObj.name === 'contact_already_exists' || errObj.code === 422) {
         return { success: true, existing: true };
       }
       console.error('[Subscribers] Resend API Error:', error);

@@ -46,14 +46,18 @@ export default function NarrativeOverlay({
   useEffect(() => {
     const hasSeen = sessionStorage.getItem('hasSeenNarrativeMap');
     if (!hasSeen && !isOpen) {
-      setShouldRender(true);
-      // Stagger animation start
-      requestAnimationFrame(() => setIsAnimating(true));
+      // Defer state updates to avoid synchronous setState in effect
+      queueMicrotask(() => {
+        setShouldRender(true);
+        requestAnimationFrame(() => setIsAnimating(true));
+      });
     } else if (isOpen) {
-      setShouldRender(true);
-      requestAnimationFrame(() => setIsAnimating(true));
+      queueMicrotask(() => {
+        setShouldRender(true);
+        requestAnimationFrame(() => setIsAnimating(true));
+      });
     } else {
-      setIsAnimating(false);
+      queueMicrotask(() => setIsAnimating(false));
       const timer = setTimeout(() => setShouldRender(false), 300);
       return () => clearTimeout(timer);
     }

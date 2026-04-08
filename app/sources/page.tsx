@@ -30,8 +30,8 @@ export default function SourcesPage() {
             })
             .catch(() => {
                 console.warn("Failed to fetch sources.json, using fallback.");
-                const sortedFallback = [...fallbackSources].sort((a: any, b: any) => b.date.localeCompare(a.date));
-                setSources(sortedFallback as any as AcademicSource[]);
+                const sortedFallback = [...fallbackSources].sort((a: AcademicSource, b: AcademicSource) => b.date.localeCompare(a.date));
+                setSources(sortedFallback);
             });
     }, []);
 

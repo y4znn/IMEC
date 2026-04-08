@@ -163,7 +163,7 @@ export function DailyNewsletter({
           {/* Content */}
           <Section style={styles.content}>
             {/* Lead Story */}
-            <Text style={styles.sectionLabel}>Today's Lead Story</Text>
+            <Text style={styles.sectionLabel}>Today&apos;s Lead Story</Text>
             <Link href={leadStory.url} style={{ textDecoration: 'none' }}>
               <Text style={styles.leadHeadline}>{leadStory.title}</Text>
             </Link>

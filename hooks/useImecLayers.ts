@@ -1,21 +1,73 @@
 import { useMemo } from 'react';
-import { PathLayer, ScatterplotLayer } from '@deck.gl/layers';
+import { PathLayer } from '@deck.gl/layers';
 import { HexagonLayer } from '@deck.gl/aggregation-layers';
-// @ts-ignore
 import { TripsLayer } from '@deck.gl/geo-layers';
 import { PathStyleExtension, DataFilterExtension } from '@deck.gl/extensions';
 
 import type { LayerConfig } from '@/components/GlobalStatsOverlay';
 
+interface TooltipPayload {
+  x: number;
+  y: number;
+  mandate: string;
+  entity: string;
+  veracity: number;
+  customBody?: string;
+}
+
+interface RailwayData {
+  name: string;
+  entity: string;
+  mandate: string;
+  color: number[];
+  path: [number, number][];
+  veracityScore: number;
+}
+
+interface DataCenterData {
+  coordinates: [number, number];
+  entity: string;
+  facility: string;
+  mandate: string;
+  veracityScore: number;
+}
+
+interface TelecomTripData {
+  name: string;
+  entity: string;
+  owner?: string;
+  mandate: string;
+  color: [number, number, number] | [number, number, number, number];
+  sourceColor: [number, number, number, number];
+  targetColor: [number, number, number, number];
+  path: [number, number][];
+  timestamps: number[];
+  coordinates: [number, number][];
+}
+
+interface PickingInfo<T = unknown> {
+  object?: T;
+  x: number;
+  y: number;
+}
+
+interface HexPickingInfo {
+  object?: {
+    points: { source: { city?: string } }[];
+  };
+  x: number;
+  y: number;
+}
+
 interface UseImecLayersProps {
   layers: LayerConfig;
-  hydratedRailways: any[];
-  hydratedProposed: any[];
-  hydratedMissing: any[];
-  hydratedDataCenters: any[];
-  telecomTrips: any[];
+  hydratedRailways: RailwayData[];
+  hydratedProposed: RailwayData[];
+  hydratedMissing: RailwayData[];
+  hydratedDataCenters: DataCenterData[];
+  telecomTrips: TelecomTripData[];
   currentTime: number;
-  setTooltip: (tooltip: any | null) => void;
+  setTooltip: (tooltip: TooltipPayload | null) => void;
 }
 
 export function useImecLayers({
@@ -31,10 +83,10 @@ export function useImecLayers({
   return useMemo(() => {
     return [
       // HexagonLayer — Data Centers (3D)
-      new HexagonLayer<any>({
+      new HexagonLayer<DataCenterData>({
         id: 'hex-datacenters',
         data: hydratedDataCenters,
-        getPosition: (d: any) => d.coordinates,
+        getPosition: (d: DataCenterData) => d.coordinates,
         visible: true,
         extruded: true,
         gpuAggregation: true,
@@ -62,7 +114,7 @@ export function useImecLayers({
         transitions: {
           opacity: { duration: 500 }
         },
-        onHover: (info: any) => {
+        onHover: (info: HexPickingInfo) => {
           if (info.object && layers.geopolitical) {
             setTooltip({
               x: info.x,
@@ -79,22 +131,21 @@ export function useImecLayers({
       }),
 
       // TripsLayer — Telecom Cables (Packets Flowing)
-      new TripsLayer<any>({
+      new TripsLayer<TelecomTripData>({
         id: 'trips-telecom',
         data: telecomTrips,
-        getPath: (d: any) => d.path,
-        getTimestamps: (d: any) => d.timestamps,
-        getColor: (d: any) => {
-          let isBlue = d.name.includes('Blue');
-          let isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
-          return isActive ? d.color : [0, 0, 0, 0];
+        getPath: (d: TelecomTripData) => d.path,
+        getTimestamps: (d: TelecomTripData) => d.timestamps,
+        getColor: (d: TelecomTripData) => {
+          const isBlue = d.name.includes('Blue');
+          const isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
+          return isActive ? d.color as [number, number, number] : [0, 0, 0, 0] as [number, number, number, number];
         },
         opacity: layers.subseaTelecom ? 1.0 : 0.0,
         widthMinPixels: 2,
         rounded: true,
         trailLength: 500, // length of the animated packet trail
         currentTime: currentTime,
-        shadowEnabled: false,
         updateTriggers: {
           getColor: [layers.subseaTelecom, layers.blueCable, layers.ramanCable],
           opacity: [layers.subseaTelecom]
@@ -106,16 +157,16 @@ export function useImecLayers({
       }),
 
       // STATIC PATHLAYER FOR TELECOM BACKBONE (Under the trips)
-      new PathLayer<any>({
+      new PathLayer<TelecomTripData>({
         id: 'path-telecom-backbone',
         data: telecomTrips,
-        getPath: (d: any) => d.coordinates, // Just the flat array
-        getColor: (d: any) => {
-          let isBlue = d.name.includes('Blue');
-          let isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
+        getPath: (d: TelecomTripData) => d.coordinates, // Just the flat array
+        getColor: (d: TelecomTripData) => {
+          const isBlue = d.name.includes('Blue');
+          const isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
           return isActive ? [...d.color, 40] as [number, number, number, number] : [0, 0, 0, 0];
         },
-        getWidth: (d: any) => layers.subseaTelecom ? 1 : 0,
+        getWidth: () => layers.subseaTelecom ? 1 : 0,
         widthMinPixels: 1,
         pickable: true,
         autoHighlight: true,
@@ -129,15 +180,15 @@ export function useImecLayers({
           getColor: { duration: 500 },
           getWidth: { duration: 500 },
         },
-        onHover: (info: any) => {
+        onHover: (info: PickingInfo<TelecomTripData>) => {
           if (info.object) {
-            let isBlue = info.object.name.includes('Blue');
-            let isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
+            const isBlue = info.object.name.includes('Blue');
+            const isActive = layers.subseaTelecom && (isBlue ? layers.blueCable : layers.ramanCable);
             if (!isActive) {
               setTooltip(null);
               return true;
             }
-            let tooltipText = isBlue
+            const tooltipText = isBlue
               ? "Route: Italy/France/Greece to Israel | Capacity: 218 Tbps | Fiber Pairs: 16 | Strategic Role: Bypasses Egypt/Suez chokepoint."
               : "Route: Jordan/Saudi Arabia/Oman to India | Capacity: 218 Tbps | Length: ~11,700 km | Partners: Google, Omantel, Sparkle.";
             
@@ -157,14 +208,15 @@ export function useImecLayers({
       }),
 
       // PathLayer — Existing Railways
-      new (PathLayer as any)({
+      new PathLayer<RailwayData>({
         id: 'path-railways-existing',
         data: hydratedRailways,
         visible: true,
-        getPath: (d: any) => d.path,
-        getColor: (d: any) => layers.railways ? [...d.color, 255] as [number, number, number, number] : [0, 0, 0, 0],
-        getWidth: (d: any) => layers.railways ? 3 : 0,
-        getFilterValue: (d: any) => d.veracityScore,
+        getPath: (d: RailwayData) => d.path,
+        getColor: (d: RailwayData) => layers.railways ? [...d.color, 255] as [number, number, number, number] : [0, 0, 0, 0],
+        getWidth: () => layers.railways ? 3 : 0,
+        // @ts-expect-error DataFilterExtension accessor
+        getFilterValue: (d: RailwayData) => d.veracityScore,
         filterRange: [layers.veracityFilter, 10],
         extensions: [new DataFilterExtension({ filterSize: 1 })],
         updateTriggers: {
@@ -184,7 +236,7 @@ export function useImecLayers({
         highlightColor: [0, 0, 0, 255],
         jointRounded: false,
         capRounded: false,
-        onHover: (info: any) => {
+        onHover: (info: PickingInfo<RailwayData>) => {
           if (info.object && layers.railways) {
             setTooltip({
               x: info.x,
@@ -200,14 +252,15 @@ export function useImecLayers({
       }),
 
       // PathLayer — Proposed Railways
-      new (PathLayer as any)({
+      new PathLayer<RailwayData>({
         id: 'path-railways-proposed',
         data: hydratedProposed,
         visible: true,
-        getPath: (d: any) => d.path,
-        getColor: (d: any) => layers.railways ? [...d.color, 180] as [number, number, number, number] : [0, 0, 0, 0],
-        getWidth: (d: any) => layers.railways ? 3 : 0,
-        getFilterValue: (d: any) => d.veracityScore,
+        getPath: (d: RailwayData) => d.path,
+        getColor: (d: RailwayData) => layers.railways ? [...d.color, 180] as [number, number, number, number] : [0, 0, 0, 0],
+        getWidth: () => layers.railways ? 3 : 0,
+        // @ts-expect-error DataFilterExtension accessor
+        getFilterValue: (d: RailwayData) => d.veracityScore,
         filterRange: [layers.veracityFilter, 10],
         getDashArray: [8, 4],
         dashJustified: true,
@@ -229,7 +282,7 @@ export function useImecLayers({
         highlightColor: [0, 0, 0, 255],
         jointRounded: false,
         capRounded: false,
-        onHover: (info: any) => {
+        onHover: (info: PickingInfo<RailwayData>) => {
           if (info.object && layers.railways) {
             setTooltip({
               x: info.x,
@@ -245,14 +298,15 @@ export function useImecLayers({
       }),
 
       // PathLayer — Missing Railways
-      new (PathLayer as any)({
+      new PathLayer<RailwayData>({
         id: 'path-railways-missing',
         data: hydratedMissing,
         visible: true,
-        getPath: (d: any) => d.path,
-        getColor: (d: any) => layers.railways ? [71, 85, 105, 255] as [number, number, number, number] : [0, 0, 0, 0],
-        getWidth: (d: any) => layers.railways ? 3 : 0,
-        getFilterValue: (d: any) => d.veracityScore,
+        getPath: (d: RailwayData) => d.path,
+        getColor: () => layers.railways ? [71, 85, 105, 255] as [number, number, number, number] : [0, 0, 0, 0],
+        getWidth: () => layers.railways ? 3 : 0,
+        // @ts-expect-error DataFilterExtension accessor
+        getFilterValue: (d: RailwayData) => d.veracityScore,
         filterRange: [layers.veracityFilter, 10],
         getDashArray: [6, 6],
         dashJustified: true,
@@ -274,7 +328,7 @@ export function useImecLayers({
         highlightColor: [0, 0, 0, 255],
         jointRounded: false,
         capRounded: false,
-        onHover: (info: any) => {
+        onHover: (info: PickingInfo<RailwayData>) => {
           if (info.object && layers.railways) {
             setTooltip({
               x: info.x,

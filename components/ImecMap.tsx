@@ -3,7 +3,6 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import Map, { useControl, MapRef } from 'react-map-gl/mapbox';
 import { MapboxOverlay } from '@deck.gl/mapbox';
-import { HexagonLayer } from '@deck.gl/aggregation-layers';
 import { LightingEffect, AmbientLight, DirectionalLight } from '@deck.gl/core';
 import type { MapboxOverlayProps } from '@deck.gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -14,17 +13,13 @@ import {
   EXISTING_RAILWAYS,
   PROPOSED_RAILWAYS,
   MISSING_RAILWAYS,
-  DATA_CENTERS,
-  DEMOGRAPHIC_POINTS,
   FTA_AGREEMENTS,
   DEFENCE_PARTNERSHIPS,
   BRI_COUNTRIES,
   BRICS_MEMBERS,
   BRICS_PARTNERS,
-  WEAKNESS_COUNTRIES,
   REFERENCE_LINKS,
 } from '@/data/imec-geo-constants';
-import type { SubseaCable, RailwayPath, DataCenterPoint, DemographicPoint } from '@/data/imec-geo-constants';
 import granularData from '@/data/imec-granular-data.json';
 import GlobalStatsOverlay from './GlobalStatsOverlay';
 import type { LayerConfig } from './GlobalStatsOverlay';
@@ -150,7 +145,7 @@ function ImecMapInner() {
     setLayers(prev => ({ ...prev, [key]: !prev[key] }));
   }, []);
 
-  const setLayerValue = useCallback((key: keyof LayerConfig, val: any) => {
+  const setLayerValue = useCallback((key: keyof LayerConfig, val: boolean | number) => {
     setLayers(prev => ({ ...prev, [key]: val }));
   }, []);
 
@@ -168,6 +163,7 @@ function ImecMapInner() {
       }
       return {
         ...cable,
+        color: cable.sourceColor.slice(0, 3) as [number, number, number],
         path,
         timestamps,
         coordinates: path
@@ -176,8 +172,8 @@ function ImecMapInner() {
   }, []);
 
   const { hydratedRailways, hydratedProposed, hydratedMissing, hydratedDataCenters } = useMemo(() => {
-    const newDCs = granularData.data_centers.map((dc: any) => ({
-      coordinates: dc.coordinates,
+    const newDCs = granularData.data_centers.map((dc) => ({
+      coordinates: dc.coordinates as [number, number],
       entity: dc.city + ' Data Center',
       facility: dc.city + ' Node',
       mandate: 'Tech Transfer',
@@ -190,28 +186,31 @@ function ImecMapInner() {
       name: 'UAE Etihad Rail segment',
       entity: 'Etihad Rail',
       mandate: 'Freight Backbone',
-      color: [6, 95, 70],
-      path: [granularData.uae_etihad_rail.fujairah, granularData.uae_etihad_rail.al_ghuwaifat],
+      status: 'operational' as const,
+      color: [6, 95, 70] as [number, number, number],
+      path: [granularData.uae_etihad_rail.fujairah as [number, number], granularData.uae_etihad_rail.al_ghuwaifat as [number, number]],
       veracityScore: calculateVeracity('Etihad Rail', 'UAE')
-    } as any);
+    });
 
     mappedExisting.push({
       name: 'Saudi Rail Nodes',
       entity: 'SAR',
       mandate: 'Freight Backbone',
-      color: [6, 95, 70],
-      path: [granularData.saudi_trains.dammam, granularData.saudi_trains.haradh, granularData.saudi_trains.riyadh, granularData.saudi_trains.qurayyat],
+      status: 'operational' as const,
+      color: [6, 95, 70] as [number, number, number],
+      path: [granularData.saudi_trains.dammam as [number, number], granularData.saudi_trains.haradh as [number, number], granularData.saudi_trains.riyadh as [number, number], granularData.saudi_trains.qurayyat as [number, number]],
       veracityScore: calculateVeracity('SAR', 'Saudi')
-    } as any);
+    });
 
     mappedExisting.push({
       name: 'Coastal Link',
       entity: 'Israel Railways',
       mandate: 'Freight',
-      color: [6, 95, 70],
-      path: [granularData.coastal_link.haifa, granularData.coastal_link.ashdod],
+      status: 'operational' as const,
+      color: [6, 95, 70] as [number, number, number],
+      path: [granularData.coastal_link.haifa as [number, number], granularData.coastal_link.ashdod as [number, number]],
       veracityScore: calculateVeracity('Israel Railways', 'Israel')
-    } as any);
+    });
 
     const mappedProposed = PROPOSED_RAILWAYS.map(r => ({ ...r, veracityScore: calculateVeracity(r.entity, r.name) }));
 
@@ -220,10 +219,11 @@ function ImecMapInner() {
       name: 'The Missing Link',
       entity: 'Multiple Jurisdictions',
       mandate: 'Financing Gap',
-      color: [71, 85, 105],
-      path: [granularData.the_missing_link.al_haditha, granularData.the_missing_link.sheikh_hussein_bridge, granularData.the_missing_link.beit_shean],
+      status: 'missing' as const,
+      color: [71, 85, 105] as [number, number, number],
+      path: [granularData.the_missing_link.al_haditha as [number, number], granularData.the_missing_link.sheikh_hussein_bridge as [number, number], granularData.the_missing_link.beit_shean as [number, number]],
       veracityScore: calculateVeracity('Jordan', 'Missing Link')
-    } as any);
+    });
 
     return {
       hydratedRailways: mappedExisting,
@@ -231,7 +231,7 @@ function ImecMapInner() {
       hydratedMissing: mappedMissing,
       hydratedDataCenters: newDCs
     };
-  }, [intelArticles, calculateVeracity]);
+  }, [calculateVeracity]);
 
   // ── Mapbox Country Fill Layers ───────────────────────────
 
@@ -428,9 +428,9 @@ function ImecMapInner() {
           >
             VERACITY: {tooltip.veracity.toFixed(1)} / 10.0
           </div>
-          {(tooltip as any).customBody && (
+          {tooltip.customBody && (
             <div className="font-sans font-bold text-[10px] text-[#000000] border-t border-neutral-300 pt-2 leading-relaxed">
-              {(tooltip as any).customBody}
+              {tooltip.customBody}
             </div>
           )}
         </div>

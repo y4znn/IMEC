@@ -17,7 +17,7 @@ export type LayerConfig = {
 interface GlobalStatsOverlayProps {
   layers: LayerConfig;
   toggleLayer: (key: keyof LayerConfig) => void;
-  setLayerValue: (key: keyof LayerConfig, value: any) => void;
+  setLayerValue: (key: keyof LayerConfig, value: boolean | number) => void;
 }
 
 function GlobalStatsOverlayInner({ layers, toggleLayer, setLayerValue }: GlobalStatsOverlayProps) {
