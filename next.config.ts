@@ -1,8 +1,10 @@
 import type { NextConfig } from "next";
 
+import path from "path";
+
 const nextConfig: NextConfig = {
   turbopack: {
-    root: '/Users/ahmadghosn/IMEC Web',
+    root: path.resolve(process.cwd()),
   },
 };
 
