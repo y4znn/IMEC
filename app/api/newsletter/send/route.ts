@@ -26,7 +26,10 @@ export async function POST(request: NextRequest) {
   }
 
   // Initialize Resend client (lazy initialization to avoid build-time errors)
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+  if (!resend) {
+    return NextResponse.json({ error: 'Resend not initialized' }, { status: 500 });
+  }
 
   try {
     // Get newsletter content

@@ -16,7 +16,7 @@ export async function getSubscribers(): Promise<string[]> {
     }
     const { data, error } = await resend.contacts.list({ audienceId: AUDIENCE_ID });
     if (error || !data) return [];
-    return data.data.map(contact => contact.email);
+    return data.data.map((contact: any) => contact.email);
   } catch (err) {
     console.error('[Subscribers] List fetch error:', err);
     return [];
@@ -33,7 +33,7 @@ export async function getAllSubscribers(): Promise<Subscriber[]> {
     const { data, error } = await resend.contacts.list({ audienceId: AUDIENCE_ID });
     if (error || !data) return [];
     
-    return data.data.map(contact => ({
+    return data.data.map((contact: any) => ({
       email: contact.email,
       subscribedAt: contact.created_at,
       confirmed: !contact.unsubscribed,
@@ -94,7 +94,7 @@ export async function removeSubscriber(email: string): Promise<boolean> {
     
     // First, find the contact to get its ID
     const { data: contacts } = await resend.contacts.list({ audienceId: AUDIENCE_ID });
-    const contact = contacts?.data.find(c => c.email.toLowerCase() === email.toLowerCase());
+    const contact = contacts?.data.find((c: any) => c.email.toLowerCase() === email.toLowerCase());
     
     if (contact) {
       await resend.contacts.remove({
