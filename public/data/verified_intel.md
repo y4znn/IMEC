@@ -3597,3 +3597,37 @@ The post Washington Post cites GeoEconomics research on China&#8217;s c..._
 - **Decision:** HARVEST-AUTO-DEPLOY: Score 6.9 exceeds 4.0 threshold
 - **Snippet:** _Ahi Evran Üniversitesi Sosyal Bilimler Enstitüsü Dergisi Araştırma Makalesi TR EN PDF Kütüphaneme Ekle Araştırma Oluştur Kapat BibTex RIS Kaynak Göster Kütüphaneme Ekle Araştırma Oluştur Kapat Jeopoli..._
 
+
+---
+
+## Daily Harvest — 2026-04-08
+
+**3** new sources auto-deployed (score > 4.0)
+
+### [unknown] Making aid work in the new geopolitical era will be an uphill battle
+- **Score:** 7.1/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.1/4.0 — Single pillar (Transport): 3 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 5 comparative contexts
+- **Dialectical:** 1.0/2.0 — Pro-connectivity framing: 1 markers [pro]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.1 exceeds 4.0 threshold
+- **Snippet:** _Bottom lines up front Short-term wins for aid can weaken state capacity and entrench dependency. Aid works where governments are committed, not just where poverty is highest. The technocratic era is o..._
+
+### [unknown] Sanctions waivers on Russian and Iranian oil are set to expire. Here’s what Trump should do next.
+- **Score:** 7.55/10.0 (harvest-fast)
+- **Geographic:** 3.5999999999999996/4.0 — Strong geographic grounding: 6 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.55 exceeds 4.0 threshold
+- **Snippet:** _The oil tanker Deyna, flying the Mozambican flag and suspected of belonging to the secret Russian fleet, was spotted at sunset off the coast of the port of Fos-sur-Mer, near the Lavera oil field close..._
+
+### [unknown] What’s behind Tehran’s tollbooth?
+- **Score:** 6.1/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold
+- **Snippet:** _Last month, when Iran effectively closed the Strait of Hormuz, reports emerged that it was charging some tankers massive fees to transit. Though a ceasefire has now been brokered, Tehran’s “tollbooth”..._
+

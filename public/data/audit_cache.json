@@ -17726,5 +17726,165 @@
     },
     "snippet": "Main news Call for Submissions-Caucasus Strategic Perspectives, Volume 7, Issue 1, Summer 2026 New issue of CSP Journal: “Sovereignty, Strategic Choices and Survival in the 21st Century” The journal of Caucasus Strategic Perspectives is pleased to announce the release of its special issue. The new issue is titled “Sovereignty, Strategic Choices and Survival in the 21st Century”. Download PDF View the archive Subscribe View the issue Highlights Call for Submissions-Caucasus Strategic Perspectives",
     "cached_at": "2026-04-08T14:10:40.107324+00:00"
+  },
+  "94f9c166661628d7": {
+    "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/kroenig-interviewed-on-bbc-on-trump-and-iran/",
+    "record": {
+      "id": "unknown",
+      "title": "Kroenig interviewed on BBC on Trump and Iran",
+      "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/kroenig-interviewed-on-bbc-on-trump-and-iran/",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Original Source On April 7, Atlantic Council vice president and Scowcroft Center senior director Matthew Kroenig was interviewed on BBC on the Trump administration’s policy in Iran. Staff Matthew Kroenig Vice President, Geostrategy and Fellows and Senior Director, Scowcroft Center for Strategy and Security Scowcroft Center for Strategy and Security China Defense Policy Related Experts: Matthew Kroenig Iran Security & Defense",
+      "timestamp": "2026-04-08T17:39:36.871613+00:00",
+      "harvest_timestamp": "2026-04-08T17:39:36.871700+00:00"
+    },
+    "snippet": "Original Source On April 7, Atlantic Council vice president and Scowcroft Center senior director Matthew Kroenig was interviewed on BBC on the Trump administration’s policy in Iran. Staff Matthew Kroenig Vice President, Geostrategy and Fellows and Senior Director, Scowcroft Center for Strategy and Security Scowcroft Center for Strategy and Security China Defense Policy Related Experts: Matthew Kroenig Iran Security & Defense",
+    "cached_at": "2026-04-08T17:39:36.871725+00:00"
+  },
+  "3e8d515d0523ec21": {
+    "url": "https://www.atlanticcouncil.org/content-series/freedom-and-prosperity-around-the-world/making-aid-work-in-the-new-geopolitical-era-will-be-an-uphill-battle/",
+    "record": {
+      "id": "unknown",
+      "title": "Making aid work in the new geopolitical era will be an uphill battle",
+      "url": "https://www.atlanticcouncil.org/content-series/freedom-and-prosperity-around-the-world/making-aid-work-in-the-new-geopolitical-era-will-be-an-uphill-battle/",
+      "total_score": 7.1,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 2.1,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 3 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 5 comparative contexts"
+        },
+        "dialectical": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "Pro-connectivity framing: 1 markers",
+          "stance": "pro"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 7.1 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Bottom lines up front Short-term wins for aid can weaken state capacity and entrench dependency. Aid works where governments are committed, not just where poverty is highest. The technocratic era is over; aid is reverting to a geopolitical tool, not a neutral development instrument. This paper expands on ideas first developed in Stefan Dercon, “ Rethinking Aid in a Contested World ,” Working Paper No. 2301 (Kiel Institute, October 2025). The recent shift in the traditional donors’ approach to de",
+      "timestamp": "2026-04-08T17:39:37.162496+00:00",
+      "harvest_timestamp": "2026-04-08T17:39:37.163055+00:00"
+    },
+    "snippet": "Bottom lines up front Short-term wins for aid can weaken state capacity and entrench dependency. Aid works where governments are committed, not just where poverty is highest. The technocratic era is over; aid is reverting to a geopolitical tool, not a neutral development instrument. This paper expands on ideas first developed in Stefan Dercon, “ Rethinking Aid in a Contested World ,” Working Paper No. 2301 (Kiel Institute, October 2025). The recent shift in the traditional donors’ approach to de",
+    "cached_at": "2026-04-08T17:39:37.163063+00:00"
+  },
+  "2782cbc90c3237c9": {
+    "url": "https://www.atlanticcouncil.org/dispatches/sanctions-waivers-on-russian-and-iranian-oil-are-set-to-expire/",
+    "record": {
+      "id": "unknown",
+      "title": "Sanctions waivers on Russian and Iranian oil are set to expire. Here’s what Trump should do next.",
+      "url": "https://www.atlanticcouncil.org/dispatches/sanctions-waivers-on-russian-and-iranian-oil-are-set-to-expire/",
+      "total_score": 7.55,
+      "breakdown": {
+        "geographic": {
+          "score": 3.5999999999999996,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 6 nodes matched"
+        },
+        "pillars": {
+          "score": 2.95,
+          "max": 4.0,
+          "reason": "Two pillars covered: 3 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 7.55 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "The oil tanker Deyna, flying the Mozambican flag and suspected of belonging to the secret Russian fleet, was spotted at sunset off the coast of the port of Fos-sur-Mer, near the Lavera oil field close to Martigues, in south-eastern France on March, 26 2026. (Laurent Coust/ABACAPRESS.COM via Reuters Connect). WASHINGTON—On April 11, the general license allowing Russia to sell the oil loaded onto tankers as of March 12 is set to expire. Just over a week later, on April 19, a similar license for Ir",
+      "timestamp": "2026-04-08T17:39:38.468669+00:00",
+      "harvest_timestamp": "2026-04-08T17:39:38.468940+00:00"
+    },
+    "snippet": "The oil tanker Deyna, flying the Mozambican flag and suspected of belonging to the secret Russian fleet, was spotted at sunset off the coast of the port of Fos-sur-Mer, near the Lavera oil field close to Martigues, in south-eastern France on March, 26 2026. (Laurent Coust/ABACAPRESS.COM via Reuters Connect). WASHINGTON—On April 11, the general license allowing Russia to sell the oil loaded onto tankers as of March 12 is set to expire. Just over a week later, on April 19, a similar license for Ir",
+    "cached_at": "2026-04-08T17:39:38.468960+00:00"
+  },
+  "0b16569cb6a6cf96": {
+    "url": "https://www.atlanticcouncil.org/commentary/podcast/whats-behind-tehrans-tollbooth/",
+    "record": {
+      "id": "unknown",
+      "title": "What’s behind Tehran’s tollbooth?",
+      "url": "https://www.atlanticcouncil.org/commentary/podcast/whats-behind-tehrans-tollbooth/",
+      "total_score": 6.1,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 3.1,
+          "max": 4.0,
+          "reason": "Two pillars covered: 4 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Last month, when Iran effectively closed the Strait of Hormuz, reports emerged that it was charging some tankers massive fees to transit. Though a ceasefire has now been brokered, Tehran’s “tollbooth” is still open for business. Alisha Chhangani, associate director of the Future of Money at the GeoEconomics Center, joins Josh and Jessie to break down the Iranian strategy—and why China’s renminbi payment system may be central to it. Listen to The Guide to the Global Economy wherever you get podca",
+      "timestamp": "2026-04-08T17:39:39.528020+00:00",
+      "harvest_timestamp": "2026-04-08T17:39:39.528106+00:00"
+    },
+    "snippet": "Last month, when Iran effectively closed the Strait of Hormuz, reports emerged that it was charging some tankers massive fees to transit. Though a ceasefire has now been brokered, Tehran’s “tollbooth” is still open for business. Alisha Chhangani, associate director of the Future of Money at the GeoEconomics Center, joins Josh and Jessie to break down the Iranian strategy—and why China’s renminbi payment system may be central to it. Listen to The Guide to the Global Economy wherever you get podca",
+    "cached_at": "2026-04-08T17:39:39.528119+00:00"
   }
 }
