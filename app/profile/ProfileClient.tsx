@@ -16,7 +16,7 @@ interface ProfileClientProps {
 export default function ProfileClient({ storyData }: ProfileClientProps) {
     // Read static final content from injected JSON state
     const data = {
-        pageTitle: storyData?.pageTitle || "Strategic Dossier",
+        pageTitle: storyData?.pageTitle || "RESEARCHER PROFILE",
         pageSubtitle: storyData?.pageSubtitle || "",
         researcherName: storyData?.researcherName || "Ahmad Ghosn",
         researcherTitle: storyData?.researcherTitle || "",
@@ -46,7 +46,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                 >
                     {data.pageTitle}
                 </div>
-                <div className="mt-2 text-xs md:text-sm text-gray-500 font-light tracking-wide font-mono">
+                <div className="mt-2 text-xs md:text-sm text-gray-400 font-light tracking-widest font-mono uppercase">
                     {data.pageSubtitle}
                 </div>
             </div>
@@ -56,7 +56,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
 
                 {/* Box 1: Profile (col-span-1) */}
                 <div
-                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 flex flex-col items-center justify-center text-center shadow-sm group h-auto md:h-96"
+                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 flex flex-col items-center justify-center text-center shadow-sm group min-h-[400px]"
                 >
                     <img
                         src="/ahmad-profile.jpg"
@@ -64,12 +64,12 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                         className="w-24 h-24 rounded-none border border-gray-300 mb-5 object-cover grayscale group-hover:grayscale-0 group-hover:border-gray-400 transition-all duration-500"
                     />
 
-                    <div className="text-xl font-medium text-gray-900 tracking-tight font-serif mb-1 truncate w-full">
+                    <div className="text-xl font-medium text-gray-900 tracking-tight font-serif mb-1 truncate w-full uppercase">
                         {data.researcherName}
                     </div>
 
-                    <div className="mb-6 text-[11px] text-gray-600 tracking-widest uppercase font-mono truncate w-full">
-                        
+                    <div className="mb-6 text-[10px] text-gray-400 tracking-widest uppercase font-mono truncate w-full">
+                        {data.researcherTitle || "VERIFIED_RESEARCHER"}
                     </div>
 
                     <a
@@ -87,7 +87,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
 
                 {/* Box 2: Executive Bio (col-span-3) */}
                 <div
-                    className="md:col-span-3 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm h-auto md:h-96"
+                    className="md:col-span-3 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm min-h-[400px]"
                 >
                     <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-gray-300 pb-4">
                         <Focus className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
@@ -102,17 +102,17 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
 
                 {/* Box 3: The Thesis (col-span-2) */}
                 <div
-                    className="md:col-span-2 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm relative overflow-hidden h-auto md:h-96 group"
+                    className="md:col-span-2 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm relative overflow-hidden min-h-[400px] group"
                 >
                     <div className="absolute top-0 right-0 p-32 bg-[radial-gradient(circle,rgba(0,0,0,0.03)_0%,transparent_70%)] pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-50" />
 
                     <div className="mb-6 shrink-0 z-10 border-b border-gray-300 pb-4">
-                        <div className="text-[10px] text-gray-600 uppercase tracking-widest font-mono">
+                        <div className="text-[10px] text-gray-400 uppercase tracking-widest font-mono">
                             {data.thesisHeading}
                         </div>
                     </div>
                     <div
-                        className="text-lg md:text-2xl text-gray-900 leading-tight font-medium font-serif z-10 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                        className="text-lg md:text-2xl text-gray-900 leading-tight font-medium font-serif z-10 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] uppercase tracking-tight"
                         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                     >
                         {data.thesis_synthesis}
@@ -121,7 +121,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
 
                 {/* Box 4: Education (col-span-1) */}
                 <div
-                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col h-auto md:h-96"
+                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col min-h-[400px]"
                 >
                     <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-gray-300 pb-4">
                         <GraduationCap className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
@@ -148,7 +148,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
 
                 {/* Box 5: Publications Section (col-span-1) */}
                 <div
-                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col h-auto md:h-96"
+                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col min-h-[400px]"
                 >
                     <div className="flex items-center gap-2 mb-4 shrink-0 border-b border-gray-300 pb-4">
                         <Library className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
