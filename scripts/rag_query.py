@@ -21,7 +21,7 @@ def query_gemini(prompt):
     if not GEMINI_KEY:
         return None
     genai.configure(api_key=GEMINI_KEY)
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('models/gemini-flash-latest')
     try:
         response = model.generate_content(prompt)
         return response.text

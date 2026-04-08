@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 
         const scriptPath = path.join(process.cwd(), 'scripts', 'rag_query.py');
 
-        return new Promise((resolve) => {
+        return new Promise<NextResponse>((resolve) => {
             const pythonProcess = spawn('python3', [scriptPath, query]);
 
             let outputData = '';

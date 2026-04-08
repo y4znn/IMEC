@@ -2,26 +2,10 @@
 
 import { useState, useEffect } from 'react';
 
-type PulseConfig = {
-    total_indexed: number;
-    verified_sources: number;
-    today_added: number;
-    last_harvest: string;
-    status: string;
-};
-
 export default function IntelligencePulse() {
-    const [pulse, setPulse] = useState<PulseConfig | null>(null);
     const [email, setEmail] = useState('');
     const [subStatus, setSubStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [subMessage, setSubMessage] = useState('');
-
-    useEffect(() => {
-        fetch('/data/pulse_config.json')
-            .then(res => res.json())
-            .then(setPulse)
-            .catch(() => {}); // fall back to hardcoded
-    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

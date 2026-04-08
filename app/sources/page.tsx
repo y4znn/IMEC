@@ -55,7 +55,7 @@ export default function SourcesPage() {
             } else {
                 setMessages(prev => [...prev, { role: 'assistant', content: `ERROR: ${data.error}` }]);
             }
-        } catch (error) {
+        } catch (_error) {
             setMessages(prev => [...prev, { role: 'assistant', content: 'ERROR: Communication with intelligence server failed.' }]);
         } finally {
             setIsLoading(false);
