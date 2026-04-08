@@ -2977,3 +2977,623 @@ Vector-borne diseases, such a..._
 - **Decision:** HARVEST-AUTO-DEPLOY: Score 7.25 exceeds 4.0 threshold
 - **Snippet:** _Abstract Labour migration has played a significant role in contributing to overseas employment and remittances, thus driving Bangladesh's economic success over the past few decades. This phenomenon ha..._
 
+
+---
+
+## Daily Harvest — 2026-04-08
+
+**68** new sources auto-deployed (score > 4.0)
+
+### [unknown] What Ukraine’s wartime tech ecosystem can teach the rest of the world
+- **Score:** 5.45/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 3 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.45 exceeds 4.0 threshold
+- **Snippet:** _A UAV hovers during a training session of FPV pilots from the 13th Khartiia Operational Brigade of Ukraine’s National Guard held to practice flight tactics in conditions simulating combat and maximise..._
+
+### [unknown] American AI leadership can open a new chapter for Middle East integration
+- **Score:** 8.3/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 13 nodes matched
+- **Pillars:** 3.8/4.0 — All three pillars covered: 8 keywords
+- **Comparative:** 0.5/2.0 — Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.3 exceeds 4.0 threshold
+- **Snippet:** _In an industrial zone on the outskirts of Abu Dhabi, Emirati state-backed artificial intelligence (AI) company G42 has poured 100,000 cubic meters of concrete to build a cluster of data centers the si..._
+
+### [unknown] The World Bank Group’s Ajay Banga: Expect higher inflation, lower growth from this global crisis
+- **Score:** 9.7/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 8 nodes matched
+- **Pillars:** 3.7/4.0 — All three pillars covered: 7 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 4 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.7 exceeds 4.0 threshold
+- **Snippet:** _Watch the event Public Event Tue, April 7, 2026 • 11:30 am ET Ajay Banga on the World Bank Group’s jobs agenda and global development AN AC FRONT PAGE EVENT—Ajay Banga, president of the World Bank Gro..._
+
+### [unknown] Hungarian election could have implications for EU, US, Russia, and Ukraine
+- **Score:** 6.1/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold
+- **Snippet:** _The Hungarian parliamentary elections on April 12 are being billed as the most important in the country’s modern history. With Hungary a key focus in the escalating confrontation between Russia and th..._
+
+### [unknown] Iraq’s oil export vulnerability exposes the cost of unresolved disputes
+- **Score:** 5.55/10.0 (harvest-metadata (Timeout after 10s))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 3 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.55 exceeds 4.0 threshold
+- **Snippet:** _Iraq’s oil export vulnerability exposes the cost of unresolved disputes The closure of the Strait of Hormuz shows how Iraq’s energy security depends as much on political coordination as on infrastruct..._
+
+### [unknown] Fusion on paper or in practice? Making the cloud work for ISR and NATO
+- **Score:** 6.0/10.0 (harvest-fast)
+- **Geographic:** 0.0/4.0 — VETO: Belgian/semiconductor markers (1) without corridor context (geo=2)
+- **Pillars:** 4.0/4.0 — All three pillars covered: 11 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 4 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.0 exceeds 4.0 threshold
+- **Snippet:** _Executive summary NATO’s eastern flank faces a transformed operational environment defined by persistent hybrid threats that expose critical gaps in intelligence fusion and response timelines. Airspac..._
+
+### [unknown] How a deeper US-Burundi partnership could unlock mineral and security gains
+- **Score:** 5.1/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _This article is part of a series published by the Atlantic Council’s Africa Center and the GeoStrategy Initiative of the Scowcroft Center for Strategy and Security exploring the nexus between US secur..._
+
+### [unknown] Your primer on the Hungarian National Assembly elections
+- **Score:** 6.25/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 3.25/4.0 — Two pillars covered: 5 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.25 exceeds 4.0 threshold
+- **Snippet:** _Hungarians head to the polls on April 12 to elect their next National Assembly in what is shaping up to be the country’s most competitive national election in over a decade. The rise of opposition fig..._
+
+### [unknown] Washington Post cites GeoEconomics research on China’s cross-border digital currency platform mBridge
+- **Score:** 4.45/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Digital): 1 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 2 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold
+- **Snippet:** _Washington Post cites GeoEconomics research on China’s cross-border digital currency platform mBridge Read the full article here
+The post Washington Post cites GeoEconomics research on China&#8217;s c..._
+
+### [unknown] TEST – Accordion block
+- **Score:** 6.7/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.7 exceeds 4.0 threshold
+- **Snippet:** _2:00–2:45 p.m. | Winning hearts and markets? China’s reach in the Global South Speakers Joseph Asunka CEO, Afrobarometer Melanie Hart Senior Director, Global China Hub, Atlantic Council Ho-fung Hung H..._
+
+### [unknown] Sri Lanka needs a development plan, not just a recovery narrative
+- **Score:** 6.1/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 3 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold
+- **Snippet:** _Bottom lines up front Sri Lanka’s gains over the past thirty years have been episodic and reversible, because governance has been neglected. The impact of Sri Lanka’s 2022 debt crisis on real wages, e..._
+
+### [unknown] From alignment to action: Building a durable US-Argentina critical minerals partnership
+- **Score:** 5.1/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 0.5/2.0 — Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift
+- **Dialectical:** 1.0/2.0 — Pro-connectivity framing: 1 markers [pro]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _download pdf For decades, Argentina has been viewed as a mining opportunity that never quite materialized. Now, Argentina’s mining sector is evolving from a speculative frontier to an active, conteste..._
+
+### [unknown] ‘China could severely restrict the supply of critical raw materials’
+- **Score:** 5.1/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _‘China could severely restrict the supply of critical raw materials’ Metadata 20 December 2025 How is this possible? The Dutch Minister for Economic Affairs is trying to prevent the Chinese owner of N..._
+
+### [unknown] A krill aquarium, climate research, and geopolitics: how Australia’s $800 million Antarctic funding will be spent
+- **Score:** 5.7/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Transport): 2 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.7 exceeds 4.0 threshold
+- **Snippet:** _Shutterstock The federal government’s major package of new funding for Australia’s Antarctic program, announced on Tuesday, promises an additional A$804.4 million over the next decade. The government ..._
+
+### [unknown] Geopolitics and geoeconomics in funding humanitarian mine action - the case of Angola
+- **Score:** 4.4/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Transport): 2 keywords
+- **Comparative:** 0.5/2.0 — Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.4 exceeds 4.0 threshold
+- **Snippet:** _Research Commons Insights into Regional Development Enter to SUSTAINABILITY FOR REGIONS page Navigation Publisher Aims & Scope of Research ISSN, Copyright & Licensing International Editorial Board Bec..._
+
+### [unknown] The Second Cold War: US-China Competition for Centrality in Infrastructure, Digital, Production, and Finance Networks
+- **Score:** 4.3/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _The Second Cold War: US-China Competition for Centrality in Infrastructure, Digital, Production, and Finance Networks  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.1080/14650045.2023.2..._
+
+### [unknown] European Norms Trap? EU Connectivity Policies and the Case of the Global Gateway
+- **Score:** 9.3/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 3.9/4.0 — All three pillars covered: 9 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 2 corridors in 7 comparative contexts
+- **Dialectical:** 1.0/2.0 — Pro-connectivity framing: 1 markers [pro]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.3 exceeds 4.0 threshold
+- **Snippet:** _European Norms Trap? EU Connectivity Policies and the Case of the Global Gateway Open access Published: 20 March 2023 Volume 40 , pages 293–316, ( 2023 ) Cite this article You have full access to this..._
+
+### [unknown] The economy-security conundrum in American grand strategy: foreign economic policy toward China from Obama to Biden
+- **Score:** 9.05/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 3.25/4.0 — Two pillars covered: 5 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 6 comparative contexts
+- **Dialectical:** 2.0/2.0 — Dialectical framing: 1 pro + 2 contra markers [dialectical]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.05 exceeds 4.0 threshold
+- **Snippet:** _The economy-security conundrum in American grand strategy: foreign economic policy toward China from Obama to Biden Original Paper Open access Published: 28 November 2022 Volume 4 , pages 320–334, ( 2..._
+
+### [unknown] Contentious Connectivity—the USA, Japan, and the Free and Open Indo-Pacific
+- **Score:** 10.0/10.0 (harvest-fast)
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 13 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 9 comparative contexts
+- **Dialectical:** 1.5/2.0 — Critical/contra framing: 1 markers (valuable dissent) [contra]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 10.0 exceeds 4.0 threshold
+- **Snippet:** _Contentious Connectivity—the USA, Japan, and the Free and Open Indo-Pacific Manuscript Open access Published: 01 May 2023 Volume 40 , pages 265–291, ( 2023 ) Cite this article You have full access to ..._
+
+### [unknown] Building global prosperity: Proposals for sustainable growth
+- **Score:** 4.3/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _New Search Back Opened Current opened records Hide Current Record Actions Download Email Print Request Enquiry Add to Selection Remove from Selection Research paper Building global prosperity : Propos..._
+
+### [unknown] G20 at the Critical Juncture. Indonesia’s 2022 Presidency: Internal and External Shocks, Risks of Power Rebalancing and 
+- **Score:** 4.9/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 0.5/4.0 — No pillar alignment detected
+- **Comparative:** 2.0/2.0 — Comparative framing present: 2 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.9 exceeds 4.0 threshold
+- **Snippet:** _Hide HSE About HSE Study Research News & Events Раскрыть INTERNATIONAL ORGANISATIONS RESEARCH JOURNAL About Editorial Board Contents Аrchive Call for papers Authors’ Guidelines Peer Reviewing Publishi..._
+
+### [unknown] The Global Gateway: Connectivity and Competition in the Global Race for Infrastructures
+- **Score:** 9.9/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 14 nodes matched
+- **Pillars:** 3.9/4.0 — All three pillars covered: 9 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 2 corridors in 7 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.9 exceeds 4.0 threshold
+- **Snippet:** _Abstract In the nexus of great power competition and global connectivity, infrastructures have become more strategic. Following the example set by China’s Belt and Road Initiative (BRI), major global ..._
+
+### [unknown] G7’s Plan for Partnership for Global Infrastructure and Investment: An Alternative to the BRI?
+- **Score:** 8.4/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 12 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 8 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.4 exceeds 4.0 threshold
+- **Snippet:** _Abstract Sino-U.S. strategic competition presents a major obstacle to China’s BRI implementation. US-China rivalry is intensifying and the world appears to be on a path to great power confrontation. Y..._
+
+### [unknown] Impact of US-China Rivalry on the G20 Leadership: Possibilities and Problems
+- **Score:** 4.3/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 0.5/4.0 — No pillar alignment detected
+- **Comparative:** 2.0/2.0 — Comparative framing present: 2 corridors in 3 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _Hide HSE About HSE Study Research News & Events Раскрыть INTERNATIONAL ORGANISATIONS RESEARCH JOURNAL About Editorial Board Contents Аrchive Call for papers Authors’ Guidelines Peer Reviewing Publishi..._
+
+### [unknown] Conflict Between Great Powers Is Back with Vengeance: The New Cold War Between the US and China Plus Russia
+- **Score:** 5.95/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 4 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.95 exceeds 4.0 threshold
+- **Snippet:** _Abstract China’s emergence as a powerful challenger to the US’s and the west’s well-crystallized position atop the global hierarchy poses the question of how to co-exist peacefully. This essay discuss..._
+
+### [unknown] THE WEAPONIZATION OF ECONOMIC INTERDEPENDENCE: SANCTIONS, FINANCIAL STATECRAFT, AND THE FRAGMENTATION OF THE GLOBAL ECON
+- **Score:** 5.3/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 1.0/2.0 — Pro-connectivity framing: 1 markers [pro]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.3 exceeds 4.0 threshold
+- **Snippet:** _%PDF-1.7 %���� 1 0 obj <>/Metadata 287 0 R/ViewerPreferences 288 0 R>> endobj 2 0 obj <> endobj 3 0 obj <>/ExtGState<>/ProcSet[/PDF/Text/ImageB/ImageC/ImageI] >>/Annots[ 15 0 R 18 0 R] /MediaBox[ 0 0 ..._
+
+### [unknown] India - The New Global Green Hydrogen Powerhouse?
+- **Score:** 5.1/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.1/4.0 — Two pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _India - The New Global Green Hydrogen Powerhouse?  Infrastructure: Digital & Energy OpenAlex https://openalex.org/W7112076608..._
+
+### [unknown] THE EU-JAPAN CONNECTIVITY PARTNERSHIP – ROADWAYS AND ROADBLOCKS
+- **Score:** 8.1/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.6/4.0 — All three pillars covered: 6 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 2 corridors in 3 comparative contexts
+- **Dialectical:** 1.5/2.0 — Critical/contra framing: 1 markers (valuable dissent) [contra]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.1 exceeds 4.0 threshold
+- **Snippet:** _ESTONIAN ACADEMY PUBLISHERS eesti teaduste akadeemia kirjastus About Journals Archive Subscription Books Contact Eesti keeles About Journals Archive Subscription Books Contact Eesti keeles PUBLISHED S..._
+
+### [unknown] US-CHINA DIGITAL INFRASTRUCTURE COMPETITION IN SOUTHEAST ASIA: STRATEGIES AND IMPLICATIONS FOR ASEAN'S 5G FUTURE
+- **Score:** 5.0/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.0 exceeds 4.0 threshold
+- **Snippet:** _US-CHINA DIGITAL INFRASTRUCTURE COMPETITION IN SOUTHEAST ASIA: STRATEGIES AND IMPLICATIONS FOR ASEAN'S 5G FUTURE Authors Qing Lu Ravichandran Moorthy DOI: https://doi.org/10.32890/jis2025.21.2.3 Abstr..._
+
+### [unknown] The US and Indian Response towards the China Pakistan Economic Corridor (CPEC) and the Gwadar Port: Intensifying Geopoli
+- **Score:** 5.9/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Transport): 2 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 5 corridors in 5 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.9 exceeds 4.0 threshold
+- **Snippet:** _The US and Indian Response towards the China Pakistan Economic Corridor (CPEC) and the Gwadar Port: Intensifying Geopolitical Competition in the Gwadar region and the Indo-Pacific Region Authors Muzaf..._
+
+### [unknown] Red Sea undersea cable disruptions: internet vulnerabilities and emerging geopolitical risks in a strategic maritime cor
+- **Score:** 4.8/10.0 (harvest-escalation (HTTP 403 Forbidden — likely requires JS or auth))
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _Red Sea undersea cable disruptions: internet vulnerabilities and emerging geopolitical risks in a strategic maritime corridor  Regional Shocks & Conflicts CrossRef https://doi.org/10.1080/00358533.202..._
+
+### [unknown] Interactive response to "Biogeochemical Impact of Cable Bacteria on Coastal Black Sea Sediment"
+- **Score:** 4.9/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.4/4.0 — All three pillars covered: 4 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.9 exceeds 4.0 threshold
+- **Snippet:** _%PDF-1.4 %���� 5 0 obj << /S /GoTo /D [6 0 R /Fit ] >> endobj 15 0 obj << /Length 1672 /Filter /FlateDecode >> stream x��XKs�6 ��Wp��LV&)R��'m�L;m ���� K�]�Zi�G\���ծ�Ԏ�N{d��������� ����q���..._
+
+### [unknown] Interactive comment on "Biogeochemical Impact of Cable Bacteria on Coastal Black Sea Sediment"
+- **Score:** 5.75/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.75 exceeds 4.0 threshold
+- **Snippet:** _%PDF-1.4 %���� 5 0 obj << /S /GoTo /D [6 0 R /Fit ] >> endobj 15 0 obj << /Length 1758 /Filter /FlateDecode >> stream x��X�s�6 �_�G�.VH��G���]���ۚ��-367Kr%yY�� HYv�,i����lA|��B�]z�.^��;��O8�L..._
+
+### [unknown] Robotics cyber security: vulnerabilities, attacks, countermeasures, and recommendations
+- **Score:** 9.6/10.0 (harvest-fast)
+- **Geographic:** 3.5999999999999996/4.0 — Strong geographic grounding: 6 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 10 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 5 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.6 exceeds 4.0 threshold
+- **Snippet:** _Robotics cyber security: vulnerabilities, attacks, countermeasures, and recommendations Regular Contribution Published: 19 March 2021 Volume 21 , pages 115–158, ( 2022 ) Cite this article Save article..._
+
+### [unknown] Species-independent analytical tools for next-generation agriculture
+- **Score:** 6.5/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 3 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.5 exceeds 4.0 threshold
+- **Snippet:** _Subjects Plant biotechnology Plant sciences Abstract Innovative approaches are urgently required to alleviate the growing pressure on agriculture to meet the rising demand for food. A key challenge fo..._
+
+### [unknown] Current scenario and challenges of plastic pollution in Bangladesh: a focus on farmlands and terrestrial ecosystems
+- **Score:** 5.9/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 2.1/4.0 — Single pillar (Transport): 3 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.9 exceeds 4.0 threshold
+- **Snippet:** _Current scenario and challenges of plastic pollution in Bangladesh: a focus on farmlands and terrestrial ecosystems Review Article Published: 15 December 2022 Volume 17 , article number 66 , ( 2023 ) ..._
+
+### [unknown] Science Overview of the Europa Clipper Mission
+- **Score:** 7.8/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 11 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 7 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.8 exceeds 4.0 threshold
+- **Snippet:** _Science Overview of the Europa Clipper Mission Open access Published: 23 May 2024 Volume 220 , article number 40 , ( 2024 ) Cite this article You have full access to this open access article Download ..._
+
+### [unknown] The German Case Study: Pioneer Projects of Aquaculture-Wind Farm Multi-Uses
+- **Score:** 8.4/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 10 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 7 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.4 exceeds 4.0 threshold
+- **Snippet:** _Abstract Most studies on multi-use concepts of aquaculture and wind farms explored cultivation feasibility of extractive species, such as seaweed or bivalves. However, recent studies also included the..._
+
+### [unknown] Flame-retardant fiber composites: synergistic effects of additives on mechanical, thermal, chemical, and structural prop
+- **Score:** 6.4/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.4/4.0 — Two pillars covered: 6 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 4 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.4 exceeds 4.0 threshold
+- **Snippet:** _Flame-retardant fiber composites: synergistic effects of additives on mechanical, thermal, chemical, and structural properties Review Open access Published: 10 December 2024 Volume 8 , article number ..._
+
+### [unknown] Izaña Atmospheric Research Center. Activity Report 2019-2020
+- **Score:** 4.45/10.0 (harvest-fast)
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold
+- **Snippet:** _Aceptar cookies Información sobre uso de cookies Este sitio web utiliza cookies propias y de terceros para mejorar la experiencia de navegación, y ofrecer contenidos y funcionalidades de interés. Para..._
+
+### [unknown] Terrestrial Very-Long-Baseline Atom Interferometry: summary of the second workshop
+- **Score:** 10.0/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 13 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 12 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 6 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 10.0 exceeds 4.0 threshold
+- **Snippet:** _Terrestrial Very-Long-Baseline Atom Interferometry: summary of the second workshop Review Open access Published: 03 April 2025 Volume 12 , article number 42 , ( 2025 ) Cite this article You have full ..._
+
+### [unknown] Corals in a Changing World
+- **Score:** 4.65/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Transport): 2 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.65 exceeds 4.0 threshold
+- **Snippet:** _Home > Books > Aquatic Ecosystem Open access peer-reviewed Edited Volume Corals in a Changing World View Chapters Share Cite Corals in a Changing World Edited by Carmenza Duque and Edisson Tello Camac..._
+
+### [unknown] Smart Cities Technologies
+- **Score:** 5.0/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 3.5/4.0 — All three pillars covered: 5 keywords
+- **Comparative:** 0.5/2.0 — Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.0 exceeds 4.0 threshold
+- **Snippet:** _Home > Books > Wireless Communication System Open access peer-reviewed Edited Volume Smart Cities Technologies View Chapters Share Cite Smart Cities Technologies Edited by Ivan Nunes Da Silva and Rogé..._
+
+### [unknown] Applications of Raman spectroscopy for microplastic detection and characterization: a comprehensive spectral reference
+- **Score:** 8.2/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 3.8/4.0 — All three pillars covered: 8 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 4 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.2 exceeds 4.0 threshold
+- **Snippet:** _Applications of Raman spectroscopy for microplastic detection and characterization: a comprehensive spectral reference Review Article Open access Published: 27 November 2025 Volume 32 , pages 28630–28..._
+
+### [unknown] Dielectric Relaxation Analysis to Assess the Integrity of High Voltage DC Cables of the Mass Impregnated Type
+- **Score:** 4.3/10.0 (harvest-escalation (Empty or near-empty body — likely JS-rendered))
+- **Geographic:** 0.5/4.0 — No geographic anchors found; generic reference only
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold
+- **Snippet:** _Dielectric Relaxation Analysis to Assess the Integrity of High Voltage DC Cables of the Mass Impregnated Type  Infrastructure: Digital & Energy OpenAlex https://openalex.org/W639726559..._
+
+### [unknown] Jordan-Saudi Arabia [Report Number 8-23]
+- **Score:** 4.5/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold
+- **Snippet:** _Jordan-Saudi Arabia [Report Number 8-23]  Foundations & Architecture CrossRef https://doi.org/10.1163/2214-8388_rwimbo_imbo_book_8_36..._
+
+### [unknown] Jordan-Saudi Arabia [Report Number 8-23]
+- **Score:** 4.5/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold
+- **Snippet:** _Jordan-Saudi Arabia [Report Number 8-23]  Foundations & Architecture CrossRef https://doi.org/10.1163/2214-8388_rwimbo_imbo-book_8_36..._
+
+### [unknown] Jordan-Saudi Arabia [Report Number 8-23]
+- **Score:** 4.5/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold
+- **Snippet:** _Jordan-Saudi Arabia [Report Number 8-23]  Foundations & Architecture CrossRef https://doi.org/10.1163/imbo-book-8_36..._
+
+### [unknown] News engagement patterns in Jordan and Saudi Arabia: a comparative study of news repertoires
+- **Score:** 4.5/10.0 (harvest-fast)
+- **Geographic:** 1.7999999999999998/4.0 — Strong geographic grounding: 3 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold
+- **Snippet:** _Tesis de Ruba Mohd.pdf Download 3.47 MB Export Author(s) Mohd, R. M. A. (Ruba Mustafa Ahmad) Directors Serrano-Puche, J. (Javier) Keywords Comunicaciones sociales Date of the defense 2023-09-07 Abstra..._
+
+### [unknown] The crisis in Yemen demands an independent review of NZ’s military links with Saudi Arabia
+- **Score:** 4.9/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Transport): 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.9 exceeds 4.0 threshold
+- **Snippet:** _www.shutterstock.com The revelation that Air New Zealand had been silently contracting services to the Saudi Arabian navy was apparently not the only instance of New Zealand’s connection to the murder..._
+
+### [unknown] Smart detection of denial of service (DoS) attacks in internet of vehicles (IoV) networks
+- **Score:** 8.6/10.0 (harvest-fast)
+- **Geographic:** 3.5999999999999996/4.0 — Strong geographic grounding: 6 nodes matched
+- **Pillars:** 3.25/4.0 — Two pillars covered: 5 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 8.6 exceeds 4.0 threshold
+- **Snippet:** _IJAAS International Journal of ADVANCED AND APPLIED SCIENCES EISSN: 2313-3724, Print ISSN: 2313-626X Frequency: 12 Volume 11, Issue 11 (November 2024), Pages: 28-36 -----------------------------------..._
+
+### [unknown] Migration: Environment Displacement: Jordan, Syria, Saudi Arabia, and Northern United Arab Emirates (UAE)
+- **Score:** 4.5/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 0.5/4.0 — No pillar alignment detected
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold
+- **Snippet:** _Migration: Environment Displacement: Jordan, Syria, Saudi Arabia, and Northern United Arab Emirates (UAE)  Foundations & Architecture CrossRef https://doi.org/10.1163/1872-5309_ewic_ewiccom_0264b..._
+
+### [unknown] Behavioral determinants of hand hygiene compliance among nurses in intensive care units in Hai’l, Saudi Arabia
+- **Score:** 7.95/10.0 (harvest-fast)
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 2.95/4.0 — Two pillars covered: 3 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.95 exceeds 4.0 threshold
+- **Snippet:** _IJAAS International Journal of ADVANCED AND APPLIED SCIENCES EISSN: 2313-3724, Print ISSN: 2313-626X Frequency: 12 Volume 10, Issue 3 (March 2023), Pages: 46-55 ---------------------------------------..._
+
+### [unknown] Middle East tensions: what Lebanese border strikes mean for Israel, Iran and Saudi Arabia
+- **Score:** 5.9/10.0 (harvest-fast)
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 1.9/4.0 — Single pillar (Transport): 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.9 exceeds 4.0 threshold
+- **Snippet:** _Israeli soldiers in the Hula Valley in the north of Israel, near the Lebanese border. Atef Safadi/EPA Recent clashes between Israel and Hezbollah on the Lebanese border have caused much speculation of..._
+
+### [unknown] Analysis of Personal and Cultural Beliefs Related to Organ Donation in Saudi Arabia
+- **Score:** 6.55/10.0 (harvest-fast)
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.75/2.0 — Comparative framing present: 1 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.55 exceeds 4.0 threshold
+- **Snippet:** _%PDF-1.5 %���� 1 0 obj << /Type /Catalog /Pages 2 0 R /Lang (ar-SA) /Metadata 141 0 R >> endobj 2 0 obj << /Type /Pages /Count 14 /Kids [ 3 0 R 44 0 R 47 0 R 62 0 R 65 0 R 68 0 R 73 0 R 76 0 R 79 0 R ..._
+
+### [unknown] Iraq and its Neighbors: Saudi Arabia, Syria, Jordan, Iran, Kuwait, and Turkey
+- **Score:** 4.65/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 0.5/4.0 — No pillar alignment detected
+- **Comparative:** 1.75/2.0 — Comparative framing present: 3 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.65 exceeds 4.0 threshold
+- **Snippet:** _Iraq and its Neighbors: Saudi Arabia, Syria, Jordan, Iran, Kuwait, and Turkey  Geopolitics & Rival Corridors (BRI) CrossRef https://doi.org/10.5040/9780755609475.ch-007..._
+
+### [unknown] Engineering a Lasting Peace for Gaza and the Middle East
+- **Score:** 10.0/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 16 nodes matched
+- **Pillars:** 4.0/4.0 — All three pillars covered: 21 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 6 corridors in 5 comparative contexts
+- **Dialectical:** 1.0/2.0 — Pro-connectivity framing: 1 markers [pro]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 10.0 exceeds 4.0 threshold
+- **Snippet:** _Skip to content Engineering a Lasting Peace for Gaza and the Middle East VOLUME 6 ISSUE 5 Abdul Malek Al Jaber and Jatin Nathwani January 24, 2025 As the world nervously watches the rollout of a cease..._
+
+### [unknown] India-Middle East-Europe Economic Corridor: A Strategic Energy Alternative
+- **Score:** 6.2/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.2 exceeds 4.0 threshold
+- **Snippet:** _India-Middle East-Europe Economic Corridor: A Strategic Energy Alternative  Infrastructure: Digital & Energy OpenAlex https://doi.org/10.46557/001c.123649..._
+
+### [unknown] On the Change in International System: Prospects and Pitfalls of Saudi Arabia-Israel Relations
+- **Score:** 5.7/10.0 (harvest-fast)
+- **Geographic:** 3.0/4.0 — Strong geographic grounding: 5 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.7 exceeds 4.0 threshold
+- **Snippet:** _Abstract After the 1938 Munich Agreement, Neville Chamberlain described it as “Peace for our time” borrowing from Benjamin Disraeli’s declaration that he made on culmination of the Congress of Berlin ..._
+
+### [unknown] Multilateral Connectivity Projects and Geopolitical Implications Through Transport Corridors in the Middle East
+- **Score:** 4.7/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.7 exceeds 4.0 threshold
+- **Snippet:** _Multilateral Connectivity Projects and Geopolitical Implications Through Transport Corridors in the Middle East  Foundations & Architecture OpenAlex https://doi.org/10.36348/sjhss.2025.v10i12.001..._
+
+### [unknown] INDIA MIDDLE EAST EUROPE ECONOMIC CORRIDOR: A STRATEGIC STUDY
+- **Score:** 9.6/10.0 (harvest-fast)
+- **Geographic:** 4.0/4.0 — Strong geographic grounding: 9 nodes matched
+- **Pillars:** 3.6/4.0 — All three pillars covered: 6 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 1 corridors in 2 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 9.6 exceeds 4.0 threshold
+- **Snippet:** _INDIA MIDDLE EAST EUROPE ECONOMIC CORRIDOR: A STRATEGIC STUDY Authors Dibya Bonia Guest Faculty, Dept. of Political Science, Madhabdev University Dipankar Borah Ex-Student, Dibrugarh University. DOI: ..._
+
+### [unknown] India, Middle East and Europe Economic Corridor; Opportunities and Challenges
+- **Score:** 5.1/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _India, Middle East and Europe Economic Corridor; Opportunities and Challenges  Foundations & Architecture OpenAlex https://doi.org/10.55544/ijrah.4.6.15..._
+
+### [unknown] Geopolitical Rebalancing in the Middle East: A Comparative Analysis of India’s IMEC Engagement and China’s BRI Strategy
+- **Score:** 7.1/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 2.7/4.0 — Single pillar (Transport): 6 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 3 corridors in 4 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 7.1 exceeds 4.0 threshold
+- **Snippet:** _International Journal For Multidisciplinary Research E-ISSN: 2582-2160 • Impact Factor: 9.24 A Widely Indexed Open Access Peer Reviewed Multidisciplinary Bi-monthly Scholarly International Journal Cal..._
+
+### [unknown] Competing visions for international order: Responses to US power in a fracturing world
+- **Score:** 5.1/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 1.7/4.0 — Single pillar (Transport): 1 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold
+- **Snippet:** _New Search Back Opened Current opened records Hide Current Record Actions Download Email Print Request Enquiry Add to Selection Remove from Selection Research paper Competing visions of international ..._
+
+### [unknown] India's trade corridors: A shopping time model analysis for IMEEC and INSTC
+- **Score:** 4.25/10.0 (harvest-escalation (Cloudflare challenge or JS-only gate detected))
+- **Geographic:** 2.0/4.0 — Partial geo anchors: 2 nodes matched
+- **Pillars:** 0.5/4.0 — No pillar alignment detected
+- **Comparative:** 1.75/2.0 — Comparative framing present: 3 corridors in 1 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.25 exceeds 4.0 threshold
+- **Snippet:** _India's trade corridors: A shopping time model analysis for IMEEC and INSTC  Geopolitics & Rival Corridors (BRI) OpenAlex https://doi.org/10.55493/5002.v14i12.5241..._
+
+### [unknown] Shifting Dynamics in West Asia: Navigating the Strategic Implications for the IndiaMiddle East-Europe Economic Corridor
+- **Score:** 6.2/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.2 exceeds 4.0 threshold
+- **Snippet:** _%PDF-1.5 %���� 1 0 obj <>>> endobj 2 0 obj <> endobj 3 0 obj <>/ExtGState<>/ProcSet[/PDF/Text/ImageB/ImageC/ImageI] >>/MediaBox[ 0 0 595.32 841.92] /Contents 4 0 R/Group<>/Tabs/S/StructParents 0>> end..._
+
+### [unknown] India and the Non-Western Space: Mapping India’s Potential and Possibilities in South Asia and beyond
+- **Score:** 4.8/10.0 (harvest-fast)
+- **Geographic:** 1.0/4.0 — Partial geo anchors: 1 nodes matched
+- **Pillars:** 2.8/4.0 — Two pillars covered: 2 keywords
+- **Comparative:** 1.0/2.0 — No competing corridor mentioned; standalone IMEC analysis
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold
+- **Snippet:** _%PDF-2.0 %���� 1 0 obj<> endobj 2 0 obj<> endobj 3 0 obj<>stream amarq endstream endobj 4 0 obj<> endobj 5 0 obj<> endobj 6 0 obj<>/XObject<>>>/Contents 34 0 R/Parent 4 0 R>> endobj 7 0 obj<>/XObject<..._
+
+### [unknown] Geopolitics and Corridors: The BRI Example
+- **Score:** 6.9/10.0 (harvest-fast)
+- **Geographic:** 2.4/4.0 — Strong geographic grounding: 4 nodes matched
+- **Pillars:** 2.5/4.0 — Single pillar (Transport): 5 keywords
+- **Comparative:** 2.0/2.0 — Comparative framing present: 4 corridors in 6 comparative contexts
+- **Dialectical:** 0.0/2.0 — No dialectical framing detected [neutral]
+- **Decision:** HARVEST-AUTO-DEPLOY: Score 6.9 exceeds 4.0 threshold
+- **Snippet:** _Ahi Evran Üniversitesi Sosyal Bilimler Enstitüsü Dergisi Araştırma Makalesi TR EN PDF Kütüphaneme Ekle Araştırma Oluştur Kapat BibTex RIS Kaynak Göster Kütüphaneme Ekle Araştırma Oluştur Kapat Jeopoli..._
+

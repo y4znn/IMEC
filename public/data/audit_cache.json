@@ -10727,86 +10727,6 @@
     "snippet": "War in the Middle East: What implications for the EU and the world? The US and Israeli strikes on Iran have triggered a dangerous spiral of escalation. The war is having an immediate impact on Europe’s security and is sending shockwaves across the Middle East and around the globe, as well as unsettling global oil markets. Commentary 2 March, 2026 By: Lizza Bomassi , Ondrej Ditrych , Steven Everts , Caspar Hobhouse , Rossella Marangio , Tim Rühlig , Katarzyna Sidło , Giuseppe Spatafora",
     "cached_at": "2026-04-03T11:06:43.815459+00:00"
   },
-  "57b5271eb1a6e8d8": {
-    "url": "https://www.iss.europa.eu/about-us/opportunities/establishment-pool-experts-scope-project",
-    "record": {
-      "id": "unknown",
-      "title": "Establishment of a pool of experts – SCOPE project",
-      "url": "https://www.iss.europa.eu/about-us/opportunities/establishment-pool-experts-scope-project",
-      "total_score": 3.4,
-      "breakdown": {
-        "geographic": {
-          "score": 0.5,
-          "max": 4.0,
-          "reason": "No geographic anchors found; generic reference only"
-        },
-        "pillars": {
-          "score": 1.9,
-          "max": 4.0,
-          "reason": "Single pillar (Transport): 2 keywords"
-        },
-        "comparative": {
-          "score": 1.0,
-          "max": 2.0,
-          "reason": "No competing corridor mentioned; standalone IMEC analysis"
-        },
-        "dialectical": {
-          "score": 0.0,
-          "max": 2.0,
-          "reason": "No dialectical framing detected",
-          "stance": "neutral"
-        }
-      },
-      "action": "REJECT",
-      "decision": "HARVEST-REJECT: Below threshold",
-      "fetch_method": "harvest-fast",
-      "snippet_of_proof": "Establishment of a pool of experts – SCOPE project Deadline Deadline: 30 September 2028 00:00 CEST The Security Coordination and Programme Enhancement (SCOPE) project implemented by the EUISS, was launched in 2024 to ensure the coherence, visibility and impact of the actions under the EU Global Threats Programme . It does so by monitoring and evaluating ongoing initiatives, improving coordination between projects, and enhancing the visibility of the EU’s responses to global and transregional sec",
-      "timestamp": "2026-04-03T11:06:44.326135+00:00",
-      "harvest_timestamp": "2026-04-03T11:06:44.326363+00:00"
-    },
-    "snippet": "Establishment of a pool of experts – SCOPE project Deadline Deadline: 30 September 2028 00:00 CEST The Security Coordination and Programme Enhancement (SCOPE) project implemented by the EUISS, was launched in 2024 to ensure the coherence, visibility and impact of the actions under the EU Global Threats Programme . It does so by monitoring and evaluating ongoing initiatives, improving coordination between projects, and enhancing the visibility of the EU’s responses to global and transregional sec",
-    "cached_at": "2026-04-03T11:06:44.326389+00:00"
-  },
-  "6a084e579df07f64": {
-    "url": "https://www.iss.europa.eu/activities/events/hybrid-threats-roundtable-taipei",
-    "record": {
-      "id": "unknown",
-      "title": "Hybrid threats roundtable in Taipei",
-      "url": "https://www.iss.europa.eu/activities/events/hybrid-threats-roundtable-taipei",
-      "total_score": 3.5,
-      "breakdown": {
-        "geographic": {
-          "score": 1.0,
-          "max": 4.0,
-          "reason": "Partial geo anchors: 1 nodes matched"
-        },
-        "pillars": {
-          "score": 0.5,
-          "max": 4.0,
-          "reason": "No pillar alignment detected"
-        },
-        "comparative": {
-          "score": 2.0,
-          "max": 2.0,
-          "reason": "Comparative framing present: 2 corridors in 2 comparative contexts"
-        },
-        "dialectical": {
-          "score": 0.0,
-          "max": 2.0,
-          "reason": "No dialectical framing detected",
-          "stance": "neutral"
-        }
-      },
-      "action": "REJECT",
-      "decision": "HARVEST-REJECT: Below threshold",
-      "fetch_method": "harvest-fast",
-      "snippet_of_proof": "Smoke and mirrors: Building EU resilience against manipulation through cognitive security Cognitive security calls for more than traditional defence measures. It requires a direct response to the strategic targeting of perception and knowledge in covert political warfare. Briefs 7 October, 2025 By: Beatrice Catena , Ondrej Ditrych , Nad’a Kovalčíková",
-      "timestamp": "2026-04-03T11:06:44.681029+00:00",
-      "harvest_timestamp": "2026-04-03T11:06:44.681120+00:00"
-    },
-    "snippet": "Smoke and mirrors: Building EU resilience against manipulation through cognitive security Cognitive security calls for more than traditional defence measures. It requires a direct response to the strategic targeting of perception and knowledge in covert political warfare. Briefs 7 October, 2025 By: Beatrice Catena , Ondrej Ditrych , Nad’a Kovalčíková",
-    "cached_at": "2026-04-03T11:06:44.681134+00:00"
-  },
   "f9b4869cb15a7a51": {
     "url": "https://www.iss.europa.eu/press/steven-everts-interviewed-france-24",
     "record": {
@@ -10886,46 +10806,6 @@
     },
     "snippet": "Katarzyna Sidło quoted in Slawa TV The risk of a prolonged conflict in the Middle East is very real, said Katarzyna Sidło to Slawa TV (in Ukrainian). \"The US administration has not yet set out specific end goals, Israel is preparing for at least several more weeks of fighting, and Iran currently has no incentive to end the conflict,\" she explained.",
     "cached_at": "2026-04-03T11:06:45.193266+00:00"
-  },
-  "4df0099f6632d7d0": {
-    "url": "https://www.iss.europa.eu/publications/commentary/europe-and-gulf-strategic-turning-point",
-    "record": {
-      "id": "unknown",
-      "title": "Europe and the Gulf at a strategic turning point",
-      "url": "https://www.iss.europa.eu/publications/commentary/europe-and-gulf-strategic-turning-point",
-      "total_score": 2.8,
-      "breakdown": {
-        "geographic": {
-          "score": 1.7999999999999998,
-          "max": 4.0,
-          "reason": "Strong geographic grounding: 3 nodes matched"
-        },
-        "pillars": {
-          "score": 0.5,
-          "max": 4.0,
-          "reason": "No pillar alignment detected"
-        },
-        "comparative": {
-          "score": 0.5,
-          "max": 2.0,
-          "reason": "Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift"
-        },
-        "dialectical": {
-          "score": 0.0,
-          "max": 2.0,
-          "reason": "No dialectical framing detected",
-          "stance": "neutral"
-        }
-      },
-      "action": "REJECT",
-      "decision": "HARVEST-REJECT: Below threshold",
-      "fetch_method": "harvest-fast",
-      "snippet_of_proof": "War in the Middle East: What implications for the EU and the world? The US and Israeli strikes on Iran have triggered a dangerous spiral of escalation. The war is having an immediate impact on Europe’s security and is sending shockwaves across the Middle East and around the globe, as well as unsettling global oil markets. Commentary 2 March, 2026 By: Lizza Bomassi , Ondrej Ditrych , Steven Everts , Caspar Hobhouse , Rossella Marangio , Tim Rühlig , Katarzyna Sidło , Giuseppe Spatafora",
-      "timestamp": "2026-04-03T11:06:45.199670+00:00",
-      "harvest_timestamp": "2026-04-03T11:06:45.199728+00:00"
-    },
-    "snippet": "War in the Middle East: What implications for the EU and the world? The US and Israeli strikes on Iran have triggered a dangerous spiral of escalation. The war is having an immediate impact on Europe’s security and is sending shockwaves across the Middle East and around the globe, as well as unsettling global oil markets. Commentary 2 March, 2026 By: Lizza Bomassi , Ondrej Ditrych , Steven Everts , Caspar Hobhouse , Rossella Marangio , Tim Rühlig , Katarzyna Sidło , Giuseppe Spatafora",
-    "cached_at": "2026-04-03T11:06:45.199735+00:00"
   },
   "a5c41a648987b35a": {
     "url": "https://www.iss.europa.eu/activities/events/eu-singapore-think-tank-dialogue-2026",
@@ -12606,46 +12486,6 @@
     },
     "snippet": "Subsea cable projects - minimising risks Publication 10th IET International Conference on AC and DC Power Transmission (ACDC 2012) Record type Proceedings article Published 2012 Authors R. Goldring | R. Svoma DOI https://doi.org/10.1049/cp.2012.1949 The publisher of this work supports multiple resolution . The work is available from the following locations: theiet.org ieee.org debug {'doi': '10.1049/cp.2012.1949', 'member_id': '265', 'member': 'Institution of Engineering and Technology', 'contai",
     "cached_at": "2026-04-03T11:08:51.807472+00:00"
-  },
-  "98697f910a1b68a0": {
-    "url": "https://doi.org/10.1088/2040-8986/ad261f",
-    "record": {
-      "id": "unknown",
-      "title": "Roadmap on optical communications",
-      "url": "https://doi.org/10.1088/2040-8986/ad261f",
-      "total_score": 2.0,
-      "breakdown": {
-        "geographic": {
-          "score": 0.5,
-          "max": 4.0,
-          "reason": "No geographic anchors found; generic reference only"
-        },
-        "pillars": {
-          "score": 0.5,
-          "max": 4.0,
-          "reason": "No pillar alignment detected"
-        },
-        "comparative": {
-          "score": 1.0,
-          "max": 2.0,
-          "reason": "No competing corridor mentioned; standalone IMEC analysis"
-        },
-        "dialectical": {
-          "score": 0.0,
-          "max": 2.0,
-          "reason": "No dialectical framing detected",
-          "stance": "neutral"
-        }
-      },
-      "action": "REJECT",
-      "decision": "HARVEST-REJECT: Below threshold",
-      "fetch_method": "harvest-fast",
-      "snippet_of_proof": "We apologize for the inconvenience... To ensure we keep this website safe, please can you confirm you are a human by ticking the box below. If you are unable to complete the above request please contact us using the below link, providing a screenshot of your experience. https://ioppublishing.org/contacts/ Incident ID: cf73c28c-cnvj-40a6-a7d6-353f582d2e96",
-      "timestamp": "2026-04-03T11:08:53.704765+00:00",
-      "harvest_timestamp": "2026-04-03T11:08:53.704870+00:00"
-    },
-    "snippet": "We apologize for the inconvenience... To ensure we keep this website safe, please can you confirm you are a human by ticking the box below. If you are unable to complete the above request please contact us using the below link, providing a screenshot of your experience. https://ioppublishing.org/contacts/ Incident ID: cf73c28c-cnvj-40a6-a7d6-353f582d2e96",
-    "cached_at": "2026-04-03T11:08:53.704885+00:00"
   },
   "5f7306a387e1b71e": {
     "url": "https://doi.org/10.1007/s10668-023-03559-5",
@@ -14726,5 +14566,3165 @@
     },
     "snippet": "Abstract Labour migration has played a significant role in contributing to overseas employment and remittances, thus driving Bangladesh's economic success over the past few decades. This phenomenon has effectively alleviated unemployment pressure and provided a substantial boost to the economy. Annually, a considerable number of Bangladeshi labourers seek opportunities for overseas employment, making it a viable option for millions of workers. This is a preview of subscription content, log in vi",
     "cached_at": "2026-04-03T18:44:46.039931+00:00"
+  },
+  "220453aca52a3f93": {
+    "url": "https://www.atlanticcouncil.org/dispatches/what-ukraines-wartime-tech-ecosystem-can-teach-the-rest-of-the-world/",
+    "record": {
+      "id": "unknown",
+      "title": "What Ukraine’s wartime tech ecosystem can teach the rest of the world",
+      "url": "https://www.atlanticcouncil.org/dispatches/what-ukraines-wartime-tech-ecosystem-can-teach-the-rest-of-the-world/",
+      "total_score": 5.45,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 2.95,
+          "max": 4.0,
+          "reason": "Two pillars covered: 3 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 3 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.45 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "A UAV hovers during a training session of FPV pilots from the 13th Khartiia Operational Brigade of Ukraine’s National Guard held to practice flight tactics in conditions simulating combat and maximise the effectiveness of strikes against infantry and fortified positions on November 5, 2025. (Viacheslav Madiievskyi/Ukrinform via Reuters Connect) KYIV—Ukraine did not choose to become a testing ground for the future of warfare and governance, but that is exactly what it has become. I’ve seen what i",
+      "timestamp": "2026-04-08T14:07:41.894593+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:41.895212+00:00"
+    },
+    "snippet": "A UAV hovers during a training session of FPV pilots from the 13th Khartiia Operational Brigade of Ukraine’s National Guard held to practice flight tactics in conditions simulating combat and maximise the effectiveness of strikes against infantry and fortified positions on November 5, 2025. (Viacheslav Madiievskyi/Ukrinform via Reuters Connect) KYIV—Ukraine did not choose to become a testing ground for the future of warfare and governance, but that is exactly what it has become. I’ve seen what i",
+    "cached_at": "2026-04-08T14:07:41.895239+00:00"
+  },
+  "e68a55ec34e9105c": {
+    "url": "https://www.atlanticcouncil.org/blogs/menasource/american-ai-leadership-can-open-a-new-chapter-for-middle-east-integration/",
+    "record": {
+      "id": "unknown",
+      "title": "American AI leadership can open a new chapter for Middle East integration",
+      "url": "https://www.atlanticcouncil.org/blogs/menasource/american-ai-leadership-can-open-a-new-chapter-for-middle-east-integration/",
+      "total_score": 8.3,
+      "breakdown": {
+        "geographic": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 13 nodes matched"
+        },
+        "pillars": {
+          "score": 3.8,
+          "max": 4.0,
+          "reason": "All three pillars covered: 8 keywords"
+        },
+        "comparative": {
+          "score": 0.5,
+          "max": 2.0,
+          "reason": "Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 8.3 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "In an industrial zone on the outskirts of Abu Dhabi, Emirati state-backed artificial intelligence (AI) company G42 has poured 100,000 cubic meters of concrete to build a cluster of data centers the size of Berkeley, California. The campus will use NVIDIA chips and Oracle cloud services. It will deploy a region-specific version of ChatGPT across the government and vital sectors. It is the largest AI infrastructure project outside the United States, and it’s built on US technology. Five hundred mi",
+      "timestamp": "2026-04-08T14:07:41.929720+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:41.929882+00:00"
+    },
+    "snippet": "In an industrial zone on the outskirts of Abu Dhabi, Emirati state-backed artificial intelligence (AI) company G42 has poured 100,000 cubic meters of concrete to build a cluster of data centers the size of Berkeley, California. The campus will use NVIDIA chips and Oracle cloud services. It will deploy a region-specific version of ChatGPT across the government and vital sectors. It is the largest AI infrastructure project outside the United States, and it’s built on US technology. Five hundred mi",
+    "cached_at": "2026-04-08T14:07:41.929893+00:00"
+  },
+  "b1e89182a722fdf2": {
+    "url": "https://www.atlanticcouncil.org/news/transcripts/the-world-bank-groups-ajay-banga-expect-higher-inflation-lower-growth-from-this-global-crisis/",
+    "record": {
+      "id": "unknown",
+      "title": "The World Bank Group’s Ajay Banga: Expect higher inflation, lower growth from this global crisis",
+      "url": "https://www.atlanticcouncil.org/news/transcripts/the-world-bank-groups-ajay-banga-expect-higher-inflation-lower-growth-from-this-global-crisis/",
+      "total_score": 9.7,
+      "breakdown": {
+        "geographic": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 8 nodes matched"
+        },
+        "pillars": {
+          "score": 3.7,
+          "max": 4.0,
+          "reason": "All three pillars covered: 7 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 4 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 9.7 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Watch the event Public Event Tue, April 7, 2026 • 11:30 am ET Ajay Banga on the World Bank Group’s jobs agenda and global development AN AC FRONT PAGE EVENT—Ajay Banga, president of the World Bank Group, discusses the World Bank Group’s role in supporting job creation and economic development in a fast-changing global economy. Economy & Business International Financial Institutions Event transcript Uncorrected transcript: Check against delivery FREDERICK KEMPE: I don’t have to tell you what a co",
+      "timestamp": "2026-04-08T14:07:41.937608+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:41.938174+00:00"
+    },
+    "snippet": "Watch the event Public Event Tue, April 7, 2026 • 11:30 am ET Ajay Banga on the World Bank Group’s jobs agenda and global development AN AC FRONT PAGE EVENT—Ajay Banga, president of the World Bank Group, discusses the World Bank Group’s role in supporting job creation and economic development in a fast-changing global economy. Economy & Business International Financial Institutions Event transcript Uncorrected transcript: Check against delivery FREDERICK KEMPE: I don’t have to tell you what a co",
+    "cached_at": "2026-04-08T14:07:41.938183+00:00"
+  },
+  "879aea99dcedc5f2": {
+    "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/hungarian-election-could-have-implications-for-eu-us-russia-and-ukraine/",
+    "record": {
+      "id": "unknown",
+      "title": "Hungarian election could have implications for EU, US, Russia, and Ukraine",
+      "url": "https://www.atlanticcouncil.org/blogs/ukrainealert/hungarian-election-could-have-implications-for-eu-us-russia-and-ukraine/",
+      "total_score": 6.1,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 3.1,
+          "max": 4.0,
+          "reason": "Two pillars covered: 4 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "The Hungarian parliamentary elections on April 12 are being billed as the most important in the country’s modern history. With Hungary a key focus in the escalating confrontation between Russia and the West, this weekend’s vote could also have geopolitical implications that will be felt in Kyiv, Moscow, Brussels, and Washington. Current Hungarian Prime Minister Viktor Orbán has been in office for the past sixteen years, making him the European Union’s longest-serving leader. This dominance is no",
+      "timestamp": "2026-04-08T14:07:41.941912+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:41.942050+00:00"
+    },
+    "snippet": "The Hungarian parliamentary elections on April 12 are being billed as the most important in the country’s modern history. With Hungary a key focus in the escalating confrontation between Russia and the West, this weekend’s vote could also have geopolitical implications that will be felt in Kyiv, Moscow, Brussels, and Washington. Current Hungarian Prime Minister Viktor Orbán has been in office for the past sixteen years, making him the European Union’s longest-serving leader. This dominance is no",
+    "cached_at": "2026-04-08T14:07:41.942055+00:00"
+  },
+  "bceba59b8c610730": {
+    "url": "https://www.atlanticcouncil.org/in-depth-research-reports/issue-brief/fusion-on-paper-or-in-practice-making-the-cloud-work-for-isr-and-nato/",
+    "record": {
+      "id": "unknown",
+      "title": "Fusion on paper or in practice? Making the cloud work for ISR and NATO",
+      "url": "https://www.atlanticcouncil.org/in-depth-research-reports/issue-brief/fusion-on-paper-or-in-practice-making-the-cloud-work-for-isr-and-nato/",
+      "total_score": 6.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.0,
+          "max": 4.0,
+          "reason": "VETO: Belgian/semiconductor markers (1) without corridor context (geo=2)"
+        },
+        "pillars": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "All three pillars covered: 11 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 4 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.0 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Executive summary NATO’s eastern flank faces a transformed operational environment defined by persistent hybrid threats that expose critical gaps in intelligence fusion and response timelines. Airspace incursions, undersea-cable sabotage, cyber intrusions, information campaigns, and targeted GPS jamming are not just isolated events, but elements of a sustained Russian strategy to probe defenses, test resolve, and impose continuous strain on a NATO systems architecture designed for episodic crise",
+      "timestamp": "2026-04-08T14:07:51.634006+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:51.634665+00:00"
+    },
+    "snippet": "Executive summary NATO’s eastern flank faces a transformed operational environment defined by persistent hybrid threats that expose critical gaps in intelligence fusion and response timelines. Airspace incursions, undersea-cable sabotage, cyber intrusions, information campaigns, and targeted GPS jamming are not just isolated events, but elements of a sustained Russian strategy to probe defenses, test resolve, and impose continuous strain on a NATO systems architecture designed for episodic crise",
+    "cached_at": "2026-04-08T14:07:51.634685+00:00"
+  },
+  "2d2cae5f85e7523d": {
+    "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/charai-for-the-jerusalem-post-trump-and-the-end-of-tehrans-illusion/",
+    "record": {
+      "id": "unknown",
+      "title": "Charai for The Jerusalem Post: Trump and the end of Tehran’s illusion",
+      "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/charai-for-the-jerusalem-post-trump-and-the-end-of-tehrans-illusion/",
+      "total_score": 2.5,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Original Source Related Experts: Ahmed Charai Iran Middle East Security & Defense",
+      "timestamp": "2026-04-08T14:07:51.956587+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:51.956632+00:00"
+    },
+    "snippet": "Original Source Related Experts: Ahmed Charai Iran Middle East Security & Defense",
+    "cached_at": "2026-04-08T14:07:51.956643+00:00"
+  },
+  "4f81092b4835c008": {
+    "url": "https://www.atlanticcouncil.org/blogs/africasource/how-a-deeper-us-burundi-partnership-could-unlock-mineral-and-security-gains/",
+    "record": {
+      "id": "unknown",
+      "title": "How a deeper US-Burundi partnership could unlock mineral and security gains",
+      "url": "https://www.atlanticcouncil.org/blogs/africasource/how-a-deeper-us-burundi-partnership-could-unlock-mineral-and-security-gains/",
+      "total_score": 5.1,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 3.1,
+          "max": 4.0,
+          "reason": "Two pillars covered: 4 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "This article is part of a series published by the Atlantic Council’s Africa Center and the GeoStrategy Initiative of the Scowcroft Center for Strategy and Security exploring the nexus between US security and economic interests across Africa. The previous edition can be read here . Fraught with ethnic conflict, political turbulence, and economic constraints—and facing an ongoing conflict just across its border—Burundi remains highly fragile. At the same time, the Central African nation holds grow",
+      "timestamp": "2026-04-08T14:07:51.971444+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:51.971634+00:00"
+    },
+    "snippet": "This article is part of a series published by the Atlantic Council’s Africa Center and the GeoStrategy Initiative of the Scowcroft Center for Strategy and Security exploring the nexus between US security and economic interests across Africa. The previous edition can be read here . Fraught with ethnic conflict, political turbulence, and economic constraints—and facing an ongoing conflict just across its border—Burundi remains highly fragile. At the same time, the Central African nation holds grow",
+    "cached_at": "2026-04-08T14:07:51.971646+00:00"
+  },
+  "fa5e829630337c94": {
+    "url": "https://www.atlanticcouncil.org/content-series/eye-on-europes-elections/your-primer-on-the-hungarian-national-assembly-elections/",
+    "record": {
+      "id": "unknown",
+      "title": "Your primer on the Hungarian National Assembly elections",
+      "url": "https://www.atlanticcouncil.org/content-series/eye-on-europes-elections/your-primer-on-the-hungarian-national-assembly-elections/",
+      "total_score": 6.25,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 3.25,
+          "max": 4.0,
+          "reason": "Two pillars covered: 5 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.25 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Hungarians head to the polls on April 12 to elect their next National Assembly in what is shaping up to be the country’s most competitive national election in over a decade. The rise of opposition figure Péter Magyar in this campaign poses the most significant challenge to Prime Minister Viktor Orbán and his Fidesz party since Orbán assumed office in 2010. An electoral defeat for Orbán could reshape Hungary’s domestic political trajectory and the country’s relations with the rest of Europe. Ahea",
+      "timestamp": "2026-04-08T14:07:51.977669+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:51.978001+00:00"
+    },
+    "snippet": "Hungarians head to the polls on April 12 to elect their next National Assembly in what is shaping up to be the country’s most competitive national election in over a decade. The rise of opposition figure Péter Magyar in this campaign poses the most significant challenge to Prime Minister Viktor Orbán and his Fidesz party since Orbán assumed office in 2010. An electoral defeat for Orbán could reshape Hungary’s domestic political trajectory and the country’s relations with the rest of Europe. Ahea",
+    "cached_at": "2026-04-08T14:07:51.978018+00:00"
+  },
+  "05325a5a355aee07": {
+    "url": "https://www.atlanticcouncil.org/dispatches/why-perus-upcoming-election-matters-for-us-strategy-in-latin-america/",
+    "record": {
+      "id": "unknown",
+      "title": "Why Peru’s upcoming election matters for US strategy in Latin America",
+      "url": "https://www.atlanticcouncil.org/dispatches/why-perus-upcoming-election-matters-for-us-strategy-in-latin-america/",
+      "total_score": 3.8,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 2.3,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 4 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Peruvian presidential candidates gather on the day they face off in a televised debate ahead of the general election on April 12, in Lima, Peru, on March 25, 2026. (REUTERS/Sebastian Castaneda) WASHINGTON—Anyone looking for a sure bet on Polymarket should steer clear of Peru’s 2026 election . On April 12, Peruvians will head to the polls to pick their next president, and the field is wide open. Thirty-five candidates are competing in the race. The frontrunner is Keiko Fujimori of the right-wing ",
+      "timestamp": "2026-04-08T14:07:51.985496+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:51.985704+00:00"
+    },
+    "snippet": "Peruvian presidential candidates gather on the day they face off in a televised debate ahead of the general election on April 12, in Lima, Peru, on March 25, 2026. (REUTERS/Sebastian Castaneda) WASHINGTON—Anyone looking for a sure bet on Polymarket should steer clear of Peru’s 2026 election . On April 12, Peruvians will head to the polls to pick their next president, and the field is wide open. Thirty-five candidates are competing in the race. The frontrunner is Keiko Fujimori of the right-wing ",
+    "cached_at": "2026-04-08T14:07:51.985718+00:00"
+  },
+  "22d9c1b1f5e3468c": {
+    "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/nikoladze-joins-the-embassy-of-the-republic-of-poland-to-launch-and-discuss-findings-from-the-organizations-new-report/",
+    "record": {
+      "id": "unknown",
+      "title": "Nikoladze joined the Embassy of the Republic of Poland to launch and discuss findings from the organizations’ new report",
+      "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/nikoladze-joins-the-embassy-of-the-republic-of-poland-to-launch-and-discuss-findings-from-the-organizations-new-report/",
+      "total_score": 3.2,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 1.7,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 1 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Watch full panel here Related Experts: Maia Nikoladze",
+      "timestamp": "2026-04-08T14:07:52.380392+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:52.380438+00:00"
+    },
+    "snippet": "Watch full panel here Related Experts: Maia Nikoladze",
+    "cached_at": "2026-04-08T14:07:52.380448+00:00"
+  },
+  "6c2cd7ef252eba78": {
+    "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/lipsky-cited-in-bloomberg-article-detailing-why-the-iran-war-may-impact-trumps-goal-of-lowering-interest-rates/",
+    "record": {
+      "id": "unknown",
+      "title": "Lipsky cited in Bloomberg article detailing why the Iran war may impact Trump’s goal of lowering interest rates",
+      "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/lipsky-cited-in-bloomberg-article-detailing-why-the-iran-war-may-impact-trumps-goal-of-lowering-interest-rates/",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Read full article here Related Experts: Josh Lipsky",
+      "timestamp": "2026-04-08T14:07:52.431569+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:52.431614+00:00"
+    },
+    "snippet": "Read full article here Related Experts: Josh Lipsky",
+    "cached_at": "2026-04-08T14:07:52.431625+00:00"
+  },
+  "fce447f368e110a4": {
+    "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/chhangani-and-kumar-cited-in-2025-eca-report-discussing-advancement-of-regional-integration-in-africa-using-frontier-technologies-and-innovation/",
+    "record": {
+      "id": "unknown",
+      "title": "Chhangani and Kumar cited in 2025 ECA report discussing advancement of regional integration in Africa using frontier tec",
+      "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/chhangani-and-kumar-cited-in-2025-eca-report-discussing-advancement-of-regional-integration-in-africa-using-frontier-technologies-and-innovation/",
+      "total_score": 3.2,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 1.7,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 1 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Read full report here Related Experts: Alisha Chhangani and Ananya Kumar",
+      "timestamp": "2026-04-08T14:07:52.435724+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:52.435763+00:00"
+    },
+    "snippet": "Read full report here Related Experts: Alisha Chhangani and Ananya Kumar",
+    "cached_at": "2026-04-08T14:07:52.435771+00:00"
+  },
+  "00238866be48a0c1": {
+    "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/nikoladze-joined-the-warcast-podcast-to-discuss-the-complications-of-the-u-s-suspension-of-russian-and-iranian-oil-sanctions/",
+    "record": {
+      "id": "unknown",
+      "title": "Nikoladze joined The Warcast podcast to discuss the complications of the U.S. suspension of Russian and Iranian oil sanc",
+      "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/nikoladze-joined-the-warcast-podcast-to-discuss-the-complications-of-the-u-s-suspension-of-russian-and-iranian-oil-sanctions/",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Listen to full podcast here Related Experts: Maia Nikoladze",
+      "timestamp": "2026-04-08T14:07:52.438276+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:52.438324+00:00"
+    },
+    "snippet": "Listen to full podcast here Related Experts: Maia Nikoladze",
+    "cached_at": "2026-04-08T14:07:52.438332+00:00"
+  },
+  "b62a97e816a97b5a": {
+    "url": "https://www.atlanticcouncil.org/uncategorized/test-accordion-block/",
+    "record": {
+      "id": "unknown",
+      "title": "TEST – Accordion block",
+      "url": "https://www.atlanticcouncil.org/uncategorized/test-accordion-block/",
+      "total_score": 6.7,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 2.95,
+          "max": 4.0,
+          "reason": "Two pillars covered: 3 keywords"
+        },
+        "comparative": {
+          "score": 1.75,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 1 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.7 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "2:00–2:45 p.m. | Winning hearts and markets? China’s reach in the Global South Speakers Joseph Asunka CEO, Afrobarometer Melanie Hart Senior Director, Global China Hub, Atlantic Council Ho-fung Hung Henry M. and Elizabeth P. Wiesenfeld Professor in Political Economy, Johns Hopkins University Moderated by Jeremy Mark Nonresident Senior Fellow, GeoEconomics Center, Atlantic Council 2:00–2:45 p.m. | Iran country spotlight: War, human rights, and the path to a better future Featuring Holly Dagres Li",
+      "timestamp": "2026-04-08T14:07:52.870530+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:52.870729+00:00"
+    },
+    "snippet": "2:00–2:45 p.m. | Winning hearts and markets? China’s reach in the Global South Speakers Joseph Asunka CEO, Afrobarometer Melanie Hart Senior Director, Global China Hub, Atlantic Council Ho-fung Hung Henry M. and Elizabeth P. Wiesenfeld Professor in Political Economy, Johns Hopkins University Moderated by Jeremy Mark Nonresident Senior Fellow, GeoEconomics Center, Atlantic Council 2:00–2:45 p.m. | Iran country spotlight: War, human rights, and the path to a better future Featuring Holly Dagres Li",
+    "cached_at": "2026-04-08T14:07:52.870744+00:00"
+  },
+  "4c0c67017a1ffea5": {
+    "url": "https://www.atlanticcouncil.org/in-depth-research-reports/report/sri-lanka-needs-a-development-plan-not-just-a-recovery-narrative/",
+    "record": {
+      "id": "unknown",
+      "title": "Sri Lanka needs a development plan, not just a recovery narrative",
+      "url": "https://www.atlanticcouncil.org/in-depth-research-reports/report/sri-lanka-needs-a-development-plan-not-just-a-recovery-narrative/",
+      "total_score": 6.1,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 3.1,
+          "max": 4.0,
+          "reason": "Two pillars covered: 4 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 3 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.1 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Bottom lines up front Sri Lanka’s gains over the past thirty years have been episodic and reversible, because governance has been neglected. The impact of Sri Lanka’s 2022 debt crisis on real wages, employment, poverty, and pensions, showed how fiscal crises are ultimately social crises. Sri Lanka needs four things working together: macroeconomic discipline, institutional reform, ethnic reconciliation, and an effective export-led growth strategy. This is the eleventh chapter in the Freedom and P",
+      "timestamp": "2026-04-08T14:07:52.891752+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:52.892263+00:00"
+    },
+    "snippet": "Bottom lines up front Sri Lanka’s gains over the past thirty years have been episodic and reversible, because governance has been neglected. The impact of Sri Lanka’s 2022 debt crisis on real wages, employment, poverty, and pensions, showed how fiscal crises are ultimately social crises. Sri Lanka needs four things working together: macroeconomic discipline, institutional reform, ethnic reconciliation, and an effective export-led growth strategy. This is the eleventh chapter in the Freedom and P",
+    "cached_at": "2026-04-08T14:07:52.892274+00:00"
+  },
+  "c20eb863f1e877a3": {
+    "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/lipsky-quoted-in-bloomberg-article-on-the-timing-of-trumps-biggest-gambits/",
+    "record": {
+      "id": "unknown",
+      "title": "Lipsky quoted in Bloomberg article on the timing of Trump’s biggest gambits",
+      "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/lipsky-quoted-in-bloomberg-article-on-the-timing-of-trumps-biggest-gambits/",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Read the full article here Related Experts: Josh Lipsky",
+      "timestamp": "2026-04-08T14:07:52.983332+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:52.983383+00:00"
+    },
+    "snippet": "Read the full article here Related Experts: Josh Lipsky",
+    "cached_at": "2026-04-08T14:07:52.983397+00:00"
+  },
+  "923aa48c3171375c": {
+    "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/charai-for-the-jerusalem-strategic-tribune-the-iran-wars-first-lesson-american-leadership-israeli-resolve/",
+    "record": {
+      "id": "unknown",
+      "title": "Charai for The Jerusalem Strategic Tribune: The Iran War’s First Lesson: American Leadership, Israeli Resolve",
+      "url": "https://www.atlanticcouncil.org/insight-impact/in-the-news/charai-for-the-jerusalem-strategic-tribune-the-iran-wars-first-lesson-american-leadership-israeli-resolve/",
+      "total_score": 3.5,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Original Text Related Experts: Ahmed Charai Iran Israel Middle East Security & Defense",
+      "timestamp": "2026-04-08T14:07:57.751424+00:00",
+      "harvest_timestamp": "2026-04-08T14:07:57.751516+00:00"
+    },
+    "snippet": "Original Text Related Experts: Ahmed Charai Iran Israel Middle East Security & Defense",
+    "cached_at": "2026-04-08T14:07:57.751536+00:00"
+  },
+  "a565619a797749b7": {
+    "url": "https://www.atlanticcouncil.org/in-depth-research-reports/issue-brief/from-alignment-to-action-building-a-durable-us-argentina-critical-minerals-partnership/",
+    "record": {
+      "id": "unknown",
+      "title": "From alignment to action: Building a durable US-Argentina critical minerals partnership",
+      "url": "https://www.atlanticcouncil.org/in-depth-research-reports/issue-brief/from-alignment-to-action-building-a-durable-us-argentina-critical-minerals-partnership/",
+      "total_score": 5.1,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 3.1,
+          "max": 4.0,
+          "reason": "Two pillars covered: 4 keywords"
+        },
+        "comparative": {
+          "score": 0.5,
+          "max": 2.0,
+          "reason": "Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift"
+        },
+        "dialectical": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "Pro-connectivity framing: 1 markers",
+          "stance": "pro"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "download pdf For decades, Argentina has been viewed as a mining opportunity that never quite materialized. Now, Argentina’s mining sector is evolving from a speculative frontier to an active, contested space—one where the United States has a clear opportunity. Both countries are confronting different sides of the same challenge. Argentina must translate its mineral wealth into sustained investment and economic growth, while the United States must secure reliable external sources of the materials",
+      "timestamp": "2026-04-08T14:08:11.788096+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:11.788301+00:00"
+    },
+    "snippet": "download pdf For decades, Argentina has been viewed as a mining opportunity that never quite materialized. Now, Argentina’s mining sector is evolving from a speculative frontier to an active, contested space—one where the United States has a clear opportunity. Both countries are confronting different sides of the same challenge. Argentina must translate its mineral wealth into sustained investment and economic growth, while the United States must secure reliable external sources of the materials",
+    "cached_at": "2026-04-08T14:08:11.788342+00:00"
+  },
+  "4df0099f6632d7d0": {
+    "url": "https://www.iss.europa.eu/publications/commentary/europe-and-gulf-strategic-turning-point",
+    "record": {
+      "id": "unknown",
+      "title": "Europe and the Gulf at a strategic turning point",
+      "url": "https://www.iss.europa.eu/publications/commentary/europe-and-gulf-strategic-turning-point",
+      "total_score": 2.8,
+      "breakdown": {
+        "geographic": {
+          "score": 1.7999999999999998,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 3 nodes matched"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 0.5,
+          "max": 2.0,
+          "reason": "Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "War in the Middle East: What implications for the EU and the world? The US and Israeli strikes on Iran have triggered a dangerous spiral of escalation. The war is having an immediate impact on Europe’s security and is sending shockwaves across the Middle East and around the globe, as well as unsettling global oil markets. Commentary 2 March, 2026 By: Lizza Bomassi , Ondrej Ditrych , Steven Everts , Caspar Hobhouse , Rossella Marangio , Tim Rühlig , Katarzyna Sidło , Giuseppe Spatafora",
+      "timestamp": "2026-04-08T14:08:14.570715+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:14.570839+00:00"
+    },
+    "snippet": "War in the Middle East: What implications for the EU and the world? The US and Israeli strikes on Iran have triggered a dangerous spiral of escalation. The war is having an immediate impact on Europe’s security and is sending shockwaves across the Middle East and around the globe, as well as unsettling global oil markets. Commentary 2 March, 2026 By: Lizza Bomassi , Ondrej Ditrych , Steven Everts , Caspar Hobhouse , Rossella Marangio , Tim Rühlig , Katarzyna Sidło , Giuseppe Spatafora",
+    "cached_at": "2026-04-08T14:08:14.570858+00:00"
+  },
+  "12a40537bbe41f80": {
+    "url": "https://www.iss.europa.eu/press/china-could-severely-restrict-supply-critical-raw-materials",
+    "record": {
+      "id": "unknown",
+      "title": "‘China could severely restrict the supply of critical raw materials’",
+      "url": "https://www.iss.europa.eu/press/china-could-severely-restrict-supply-critical-raw-materials",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "‘China could severely restrict the supply of critical raw materials’ Free trade with players who have a very protectionist mindset doesn’t work, says Joris Teer in an interview for Het Financieele Dagblad. ‘China is building a self-sufficient fortress.’ Read the full interview in English",
+      "timestamp": "2026-04-08T14:08:15.058339+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:15.058387+00:00"
+    },
+    "snippet": "‘China could severely restrict the supply of critical raw materials’ Free trade with players who have a very protectionist mindset doesn’t work, says Joris Teer in an interview for Het Financieele Dagblad. ‘China is building a self-sufficient fortress.’ Read the full interview in English",
+    "cached_at": "2026-04-08T14:08:15.058396+00:00"
+  },
+  "57b5271eb1a6e8d8": {
+    "url": "https://www.iss.europa.eu/about-us/opportunities/establishment-pool-experts-scope-project",
+    "record": {
+      "id": "unknown",
+      "title": "Establishment of a pool of experts – SCOPE project",
+      "url": "https://www.iss.europa.eu/about-us/opportunities/establishment-pool-experts-scope-project",
+      "total_score": 3.4,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 1.9,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 2 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Establishment of a pool of experts – SCOPE project Deadline Deadline: 30 September 2028 00:00 CEST The Security Coordination and Programme Enhancement (SCOPE) project implemented by the EUISS, was launched in 2024 to ensure the coherence, visibility and impact of the actions under the EU Global Threats Programme . It does so by monitoring and evaluating ongoing initiatives, improving coordination between projects, and enhancing the visibility of the EU’s responses to global and transregional sec",
+      "timestamp": "2026-04-08T14:08:15.304657+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:15.304758+00:00"
+    },
+    "snippet": "Establishment of a pool of experts – SCOPE project Deadline Deadline: 30 September 2028 00:00 CEST The Security Coordination and Programme Enhancement (SCOPE) project implemented by the EUISS, was launched in 2024 to ensure the coherence, visibility and impact of the actions under the EU Global Threats Programme . It does so by monitoring and evaluating ongoing initiatives, improving coordination between projects, and enhancing the visibility of the EU’s responses to global and transregional sec",
+    "cached_at": "2026-04-08T14:08:15.304770+00:00"
+  },
+  "04448acbeac5b9b3": {
+    "url": "https://www.iss.europa.eu/activities/news/china-could-severely-restrict-supply-critical-raw-materials",
+    "record": {
+      "id": "unknown",
+      "title": "‘China could severely restrict the supply of critical raw materials’",
+      "url": "https://www.iss.europa.eu/activities/news/china-could-severely-restrict-supply-critical-raw-materials",
+      "total_score": 5.1,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 3.1,
+          "max": 4.0,
+          "reason": "Two pillars covered: 4 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "‘China could severely restrict the supply of critical raw materials’ Metadata 20 December 2025 How is this possible? The Dutch Minister for Economic Affairs is trying to prevent the Chinese owner of Nijmegen-based Nexperia from stripping the company of its assets, to which Beijing responds by restricting the export of chips from the company’s Chinese factories. And within a week, the automotive industry is already complaining that without Nexperia chips, their production lines will grind to a ha",
+      "timestamp": "2026-04-08T14:08:17.336851+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:17.337021+00:00"
+    },
+    "snippet": "‘China could severely restrict the supply of critical raw materials’ Metadata 20 December 2025 How is this possible? The Dutch Minister for Economic Affairs is trying to prevent the Chinese owner of Nijmegen-based Nexperia from stripping the company of its assets, to which Beijing responds by restricting the export of chips from the company’s Chinese factories. And within a week, the automotive industry is already complaining that without Nexperia chips, their production lines will grind to a ha",
+    "cached_at": "2026-04-08T14:08:17.337033+00:00"
+  },
+  "1f063e9eb8bb3c04": {
+    "url": "https://www.iss.europa.eu/press/giuseppe-spatafora-rutte-trump-meeting",
+    "record": {
+      "id": "unknown",
+      "title": "Giuseppe Spatafora on Rutte-Trump meeting",
+      "url": "https://www.iss.europa.eu/press/giuseppe-spatafora-rutte-trump-meeting",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Giuseppe Spatafora on Rutte-Trump meeting Rutte’s personal chemistry with Trump may ease tensions, but it’s unlikely to resolve the fundamental issues, explained Giuseppe Spatafora to Contexte as NATO's Secretary General was heading to Washington amid US threat to leave the Alliance.",
+      "timestamp": "2026-04-08T14:08:17.345610+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:17.345658+00:00"
+    },
+    "snippet": "Giuseppe Spatafora on Rutte-Trump meeting Rutte’s personal chemistry with Trump may ease tensions, but it’s unlikely to resolve the fundamental issues, explained Giuseppe Spatafora to Contexte as NATO's Secretary General was heading to Washington amid US threat to leave the Alliance.",
+    "cached_at": "2026-04-08T14:08:17.345668+00:00"
+  },
+  "6a084e579df07f64": {
+    "url": "https://www.iss.europa.eu/activities/events/hybrid-threats-roundtable-taipei",
+    "record": {
+      "id": "unknown",
+      "title": "Hybrid threats roundtable in Taipei",
+      "url": "https://www.iss.europa.eu/activities/events/hybrid-threats-roundtable-taipei",
+      "total_score": 3.5,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 2 corridors in 2 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Smoke and mirrors: Building EU resilience against manipulation through cognitive security Cognitive security calls for more than traditional defence measures. It requires a direct response to the strategic targeting of perception and knowledge in covert political warfare. Briefs 7 October, 2025 By: Beatrice Catena , Ondrej Ditrych , Nad’a Kovalčíková",
+      "timestamp": "2026-04-08T14:08:17.690418+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:17.690469+00:00"
+    },
+    "snippet": "Smoke and mirrors: Building EU resilience against manipulation through cognitive security Cognitive security calls for more than traditional defence measures. It requires a direct response to the strategic targeting of perception and knowledge in covert political warfare. Briefs 7 October, 2025 By: Beatrice Catena , Ondrej Ditrych , Nad’a Kovalčíková",
+    "cached_at": "2026-04-08T14:08:17.690480+00:00"
+  },
+  "83c8897f8e49e3e8": {
+    "url": "https://doi.org/10.1787/888933554088",
+    "record": {
+      "id": "unknown",
+      "title": "Figure 3.13. Funding of R&amp;D in higher education in the G7 economies, 2013",
+      "url": "https://doi.org/10.1787/888933554088",
+      "total_score": 3.2,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 1.7,
+          "max": 4.0,
+          "reason": "Single pillar (Digital): 1 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "PK\u0003\u0004\u0014�\u0006�\b���!���u1�\u0001���\u0005��\u0013�\b\u0002[Content_Types].xml �\u0004\u0002(��\u0002�����������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������",
+      "timestamp": "2026-04-08T14:08:18.698385+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:18.698581+00:00"
+    },
+    "snippet": "PK\u0003\u0004\u0014�\u0006�\b���!���u1�\u0001���\u0005��\u0013�\b\u0002[Content_Types].xml �\u0004\u0002(��\u0002�����������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������",
+    "cached_at": "2026-04-08T14:08:18.698592+00:00"
+  },
+  "ed836b33747dab11": {
+    "url": "https://doi.org/10.1109/ppc.1997.674595",
+    "record": {
+      "id": "unknown",
+      "title": "Analysis of radial radiography for the liner stability series at Pegasus: PGII-59, PGII-62, and PGII-63",
+      "url": "https://doi.org/10.1109/ppc.1997.674595",
+      "total_score": 3.2,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 1.7,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 1 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Analysis of radial radiography for the liner stability series at Pegasus: PGII-59, PGII-62, and PGII-63 | IEEE Conference Publication | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payment Options Order History View Purchased Documents Profile Information Communications Preferences Profession and Education Technical Interests Need Help? US & Canada: +1 800 678 4333 Worldwide: +1 732 981 0060 Contact & Support About IEEE Xplore Contact Us Help Accessibility Te",
+      "timestamp": "2026-04-08T14:08:23.627008+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:23.627149+00:00"
+    },
+    "snippet": "Analysis of radial radiography for the liner stability series at Pegasus: PGII-59, PGII-62, and PGII-63 | IEEE Conference Publication | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payment Options Order History View Purchased Documents Profile Information Communications Preferences Profession and Education Technical Interests Need Help? US & Canada: +1 800 678 4333 Worldwide: +1 732 981 0060 Contact & Support About IEEE Xplore Contact Us Help Accessibility Te",
+    "cached_at": "2026-04-08T14:08:23.627179+00:00"
+  },
+  "d610450fc141f7ac": {
+    "url": "https://doi.org/10.64628/aa.5xgu4w4jg",
+    "record": {
+      "id": "unknown",
+      "title": "A krill aquarium, climate research, and geopolitics: how Australia’s $800 million Antarctic funding will be spent",
+      "url": "https://doi.org/10.64628/aa.5xgu4w4jg",
+      "total_score": 5.7,
+      "breakdown": {
+        "geographic": {
+          "score": 1.7999999999999998,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 3 nodes matched"
+        },
+        "pillars": {
+          "score": 1.9,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 2 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 2 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.7 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Shutterstock The federal government’s major package of new funding for Australia’s Antarctic program, announced on Tuesday, promises an additional A$804.4 million over the next decade. The government has also released an update to its 2016 Australian Antarctic Strategy and 20-Year Action Plan , which effectively confirmed the existing strategy and outlined specific activities for the next five years. The funds will allow Australia’s Antarctic scientists to continue undertaking significant, world",
+      "timestamp": "2026-04-08T14:08:24.577865+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:24.578030+00:00"
+    },
+    "snippet": "Shutterstock The federal government’s major package of new funding for Australia’s Antarctic program, announced on Tuesday, promises an additional A$804.4 million over the next decade. The government has also released an update to its 2016 Australian Antarctic Strategy and 20-Year Action Plan , which effectively confirmed the existing strategy and outlined specific activities for the next five years. The funds will allow Australia’s Antarctic scientists to continue undertaking significant, world",
+    "cached_at": "2026-04-08T14:08:24.578040+00:00"
+  },
+  "3a17d911ea29ce04": {
+    "url": "https://doi.org/10.1787/647780252077",
+    "record": {
+      "id": "unknown",
+      "title": "2.2. G7 fiscal balances and outlays",
+      "url": "https://doi.org/10.1787/647780252077",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "OECD Economic Surveys: United Kingdom - OECD © 2009 - ISBN: 978-92-64-05437-0 Études économiques de l' OCDE: Royaume-Uni - OCDE © 2009 - ISBN: 978-92-64-05483-7 Title:,\"Figure 2.2. G7 fiscal balances and outlays\" Subtitle:,\"Per cent of GDP\" \"Date\",\"Min\",,\"Max\",,\"Average\",,\"GBR\" 1991,-12.0,,12.8,,-4.8,,-3.8 1992,-10.4,,10.2,,-5.3,,-5.8 1993,-8.6,,6.3,,-5.4,,-7.0 1994,-7.5,,5.7,,-4.8,,-6.3 1995,-9.3,,6.8,,-5.5,,-5.4 1996,-5.7,,4.2,,-3.4,,-3.7 1997,-4.7,,6.0,,-1.7,,-1.9 1998,-10.9,,11.6,,-2.2,,0.0 ",
+      "timestamp": "2026-04-08T14:08:27.252299+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:27.252380+00:00"
+    },
+    "snippet": "OECD Economic Surveys: United Kingdom - OECD © 2009 - ISBN: 978-92-64-05437-0 Études économiques de l' OCDE: Royaume-Uni - OCDE © 2009 - ISBN: 978-92-64-05483-7 Title:,\"Figure 2.2. G7 fiscal balances and outlays\" Subtitle:,\"Per cent of GDP\" \"Date\",\"Min\",,\"Max\",,\"Average\",,\"GBR\" 1991,-12.0,,12.8,,-4.8,,-3.8 1992,-10.4,,10.2,,-5.3,,-5.8 1993,-8.6,,6.3,,-5.4,,-7.0 1994,-7.5,,5.7,,-4.8,,-6.3 1995,-9.3,,6.8,,-5.5,,-5.4 1996,-5.7,,4.2,,-3.4,,-3.7 1997,-4.7,,6.0,,-1.7,,-1.9 1998,-10.9,,11.6,,-2.2,,0.0 ",
+    "cached_at": "2026-04-08T14:08:27.252393+00:00"
+  },
+  "7a8fed98d23cbb59": {
+    "url": "https://doi.org/10.31003/uspnf_r3469_01_01",
+    "record": {
+      "id": "unknown",
+      "title": "G7",
+      "url": "https://doi.org/10.31003/uspnf_r3469_01_01",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "This is a preview of USP-NF/PF content. Subscriber? Access here! Not a subscriber? Learn more! G7 Reagents required in the tests and assay for U.S. Pharmacopeia and National Formulary articles and those required only in determining the quality of other reagents are listed in this section, with specifications appropriate to their intended uses. This is a preview of USP-NF/PF content. Subscriber? Access here! Not a subscriber? Learn more!",
+      "timestamp": "2026-04-08T14:08:27.890774+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:27.890825+00:00"
+    },
+    "snippet": "This is a preview of USP-NF/PF content. Subscriber? Access here! Not a subscriber? Learn more! G7 Reagents required in the tests and assay for U.S. Pharmacopeia and National Formulary articles and those required only in determining the quality of other reagents are listed in this section, with specifications appropriate to their intended uses. This is a preview of USP-NF/PF content. Subscriber? Access here! Not a subscriber? Learn more!",
+    "cached_at": "2026-04-08T14:08:27.890835+00:00"
+  },
+  "2c2b42c5fa71db4a": {
+    "url": "https://doi.org/10.31003/uspnf_r3469_01_02",
+    "record": {
+      "id": "unknown",
+      "title": "G7",
+      "url": "https://doi.org/10.31003/uspnf_r3469_01_02",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Esta es una versiÃ³n preliminar de contenido de USP-NF/PF. Â¿Es suscriptor? Â¡Obtenga acceso total aquÃ­! Â¿No es suscriptor? Â¡Conozca mÃ¡s! G7 Los reactivos requeridos para las pruebas y valoraciones de los artÃ­culos de la Farmacopea de los EE.UU. y del Formulario Nacional , asÃ­ como aquellos requeridos Ãºnicamente para determinar la calidad de otros reactivos, se listan en esta secciÃ³n, incluyendo las especificaciones apropiadas para el uso previsto. Esta es una versiÃ³n preliminar de cont",
+      "timestamp": "2026-04-08T14:08:27.912483+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:27.912537+00:00"
+    },
+    "snippet": "Esta es una versiÃ³n preliminar de contenido de USP-NF/PF. Â¿Es suscriptor? Â¡Obtenga acceso total aquÃ­! Â¿No es suscriptor? Â¡Conozca mÃ¡s! G7 Los reactivos requeridos para las pruebas y valoraciones de los artÃ­culos de la Farmacopea de los EE.UU. y del Formulario Nacional , asÃ­ como aquellos requeridos Ãºnicamente para determinar la calidad de otros reactivos, se listan en esta secciÃ³n, incluyendo las especificaciones apropiadas para el uso previsto. Esta es una versiÃ³n preliminar de cont",
+    "cached_at": "2026-04-08T14:08:27.912546+00:00"
+  },
+  "7426d56e09dbac8f": {
+    "url": "https://doi.org/10.9770/ird.2022.4.4(10)",
+    "record": {
+      "id": "unknown",
+      "title": "Geopolitics and geoeconomics in funding humanitarian mine action - the case of Angola",
+      "url": "https://doi.org/10.9770/ird.2022.4.4(10)",
+      "total_score": 4.4,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 1.9,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 2 keywords"
+        },
+        "comparative": {
+          "score": 0.5,
+          "max": 2.0,
+          "reason": "Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.4 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Research Commons Insights into Regional Development Enter to SUSTAINABILITY FOR REGIONS page Navigation Publisher Aims & Scope of Research ISSN, Copyright & Licensing International Editorial Board Become a Reviewer Peer Review Policy Instructions for Authors Ethics Statement Data Availability Statements Editorial Correspondence Abstracting & Indexing CrossMark Policy Membership: Recommended tools: Get Mendeley Web Importer: Register for an ORCID iD (for authors and reviewers): Join a global comm",
+      "timestamp": "2026-04-08T14:08:28.145852+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:28.146126+00:00"
+    },
+    "snippet": "Research Commons Insights into Regional Development Enter to SUSTAINABILITY FOR REGIONS page Navigation Publisher Aims & Scope of Research ISSN, Copyright & Licensing International Editorial Board Become a Reviewer Peer Review Policy Instructions for Authors Ethics Statement Data Availability Statements Editorial Correspondence Abstracting & Indexing CrossMark Policy Membership: Recommended tools: Get Mendeley Web Importer: Register for an ORCID iD (for authors and reviewers): Join a global comm",
+    "cached_at": "2026-04-08T14:08:28.146209+00:00"
+  },
+  "af925f70e0ce59d1": {
+    "url": "https://doi.org/10.1787/750321638455",
+    "record": {
+      "id": "unknown",
+      "title": "Figure 2.3. G7 GDP and automobile production growth",
+      "url": "https://doi.org/10.1787/750321638455",
+      "total_score": 3.5,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "��\u0011ࡱ\u001a�����������������>�\u0003��� �\u0006�����������\u0001���\u0001��������\u0010��D���\u0001�����������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������",
+      "timestamp": "2026-04-08T14:08:28.701985+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:28.702759+00:00"
+    },
+    "snippet": "��\u0011ࡱ\u001a�����������������>�\u0003��� �\u0006�����������\u0001���\u0001��������\u0010��D���\u0001�����������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������",
+    "cached_at": "2026-04-08T14:08:28.702785+00:00"
+  },
+  "ee4b25b076553fda": {
+    "url": "https://doi.org/10.1787/157561250455",
+    "record": {
+      "id": "unknown",
+      "title": "Table 1.10. Economic Outlook G7 projection errors, 1991-2006",
+      "url": "https://doi.org/10.1787/157561250455",
+      "total_score": 3.5,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "��\u0011ࡱ\u001a�����������������>�\u0003��� �\u0006�����������\u0003���\u0001��������\u0010��#\u0001��\u0002���������������b�������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������",
+      "timestamp": "2026-04-08T14:08:29.366340+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:29.368016+00:00"
+    },
+    "snippet": "��\u0011ࡱ\u001a�����������������>�\u0003��� �\u0006�����������\u0003���\u0001��������\u0010��#\u0001��\u0002���������������b�������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������",
+    "cached_at": "2026-04-08T14:08:29.368058+00:00"
+  },
+  "5dd9c3e8cee0c8af": {
+    "url": "https://doi.org/10.1787/115633335218",
+    "record": {
+      "id": "unknown",
+      "title": "Figure 1.7. Foreign direct investment in the G7 - flows and stocks",
+      "url": "https://doi.org/10.1787/115633335218",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "��\u0011ࡱ\u001a�����������������>�\u0003��� �\u0006�����������\u0001���\u0001��������\u0010��\u000f���\u0001�����������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������",
+      "timestamp": "2026-04-08T14:08:34.678614+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:34.678811+00:00"
+    },
+    "snippet": "��\u0011ࡱ\u001a�����������������>�\u0003��� �\u0006�����������\u0001���\u0001��������\u0010��\u000f���\u0001�����������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������",
+    "cached_at": "2026-04-08T14:08:34.678907+00:00"
+  },
+  "0d106f9a866cd489": {
+    "url": "https://doi.org/10.1007/s12140-023-09403-x",
+    "record": {
+      "id": "unknown",
+      "title": "European Norms Trap? EU Connectivity Policies and the Case of the Global Gateway",
+      "url": "https://doi.org/10.1007/s12140-023-09403-x",
+      "total_score": 9.3,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 3.9,
+          "max": 4.0,
+          "reason": "All three pillars covered: 9 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 2 corridors in 7 comparative contexts"
+        },
+        "dialectical": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "Pro-connectivity framing: 1 markers",
+          "stance": "pro"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 9.3 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "European Norms Trap? EU Connectivity Policies and the Case of the Global Gateway Open access Published: 20 March 2023 Volume 40 , pages 293–316, ( 2023 ) Cite this article You have full access to this open access article Download PDF Save article View saved research East Asia Aims and scope Submit manuscript European Norms Trap? EU Connectivity Policies and the Case of the Global Gateway Download PDF Abstract Data cables, ports, and mobility are a rising theme in geopolitical competition, and th",
+      "timestamp": "2026-04-08T14:08:38.458595+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:38.459901+00:00"
+    },
+    "snippet": "European Norms Trap? EU Connectivity Policies and the Case of the Global Gateway Open access Published: 20 March 2023 Volume 40 , pages 293–316, ( 2023 ) Cite this article You have full access to this open access article Download PDF Save article View saved research East Asia Aims and scope Submit manuscript European Norms Trap? EU Connectivity Policies and the Case of the Global Gateway Download PDF Abstract Data cables, ports, and mobility are a rising theme in geopolitical competition, and th",
+    "cached_at": "2026-04-08T14:08:38.459914+00:00"
+  },
+  "93edc0d01662ee7d": {
+    "url": "https://doi.org/10.1007/s42533-022-00120-3",
+    "record": {
+      "id": "unknown",
+      "title": "The economy-security conundrum in American grand strategy: foreign economic policy toward China from Obama to Biden",
+      "url": "https://doi.org/10.1007/s42533-022-00120-3",
+      "total_score": 9.05,
+      "breakdown": {
+        "geographic": {
+          "score": 1.7999999999999998,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 3 nodes matched"
+        },
+        "pillars": {
+          "score": 3.25,
+          "max": 4.0,
+          "reason": "Two pillars covered: 5 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 6 comparative contexts"
+        },
+        "dialectical": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Dialectical framing: 1 pro + 2 contra markers",
+          "stance": "dialectical"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 9.05 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "The economy-security conundrum in American grand strategy: foreign economic policy toward China from Obama to Biden Original Paper Open access Published: 28 November 2022 Volume 4 , pages 320–334, ( 2022 ) Cite this article You have full access to this open access article Download PDF Save article View saved research China International Strategy Review Aims and scope Submit manuscript The economy-security conundrum in American grand strategy: foreign economic policy toward China from Obama to Bi",
+      "timestamp": "2026-04-08T14:08:38.571044+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:38.571839+00:00"
+    },
+    "snippet": "The economy-security conundrum in American grand strategy: foreign economic policy toward China from Obama to Biden Original Paper Open access Published: 28 November 2022 Volume 4 , pages 320–334, ( 2022 ) Cite this article You have full access to this open access article Download PDF Save article View saved research China International Strategy Review Aims and scope Submit manuscript The economy-security conundrum in American grand strategy: foreign economic policy toward China from Obama to Bi",
+    "cached_at": "2026-04-08T14:08:38.571852+00:00"
+  },
+  "a93846a6bb88e913": {
+    "url": "https://doi.org/10.1007/s12140-023-09407-7",
+    "record": {
+      "id": "unknown",
+      "title": "Contentious Connectivity—the USA, Japan, and the Free and Open Indo-Pacific",
+      "url": "https://doi.org/10.1007/s12140-023-09407-7",
+      "total_score": 10.0,
+      "breakdown": {
+        "geographic": {
+          "score": 3.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 5 nodes matched"
+        },
+        "pillars": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "All three pillars covered: 13 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 3 corridors in 9 comparative contexts"
+        },
+        "dialectical": {
+          "score": 1.5,
+          "max": 2.0,
+          "reason": "Critical/contra framing: 1 markers (valuable dissent)",
+          "stance": "contra"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 10.0 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Contentious Connectivity—the USA, Japan, and the Free and Open Indo-Pacific Manuscript Open access Published: 01 May 2023 Volume 40 , pages 265–291, ( 2023 ) Cite this article You have full access to this open access article Download PDF Save article View saved research East Asia Aims and scope Submit manuscript Contentious Connectivity—the USA, Japan, and the Free and Open Indo-Pacific Download PDF Abstract This article explores how the USA and Japan have aimed to advance connectivity and infra",
+      "timestamp": "2026-04-08T14:08:38.589504+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:38.590959+00:00"
+    },
+    "snippet": "Contentious Connectivity—the USA, Japan, and the Free and Open Indo-Pacific Manuscript Open access Published: 01 May 2023 Volume 40 , pages 265–291, ( 2023 ) Cite this article You have full access to this open access article Download PDF Save article View saved research East Asia Aims and scope Submit manuscript Contentious Connectivity—the USA, Japan, and the Free and Open Indo-Pacific Download PDF Abstract This article explores how the USA and Japan have aimed to advance connectivity and infra",
+    "cached_at": "2026-04-08T14:08:38.590972+00:00"
+  },
+  "213ae72bd9c218cd": {
+    "url": "https://doi.org/10.55317/9781784135508",
+    "record": {
+      "id": "unknown",
+      "title": "Building global prosperity: Proposals for sustainable growth",
+      "url": "https://doi.org/10.55317/9781784135508",
+      "total_score": 4.3,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 2.8,
+          "max": 4.0,
+          "reason": "Two pillars covered: 2 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "New Search Back Opened Current opened records Hide Current Record Actions Download Email Print Request Enquiry Add to Selection Remove from Selection Research paper Building global prosperity : Proposals for sustainable growth Authors: Issuing Bodies: Conference: Published: : , 09 December 2022 . Files: 2022-12-09 Building global prosperity.pdf Online access: Abstract: The G7 has launched a partnership designed to help developing countries ‘build back better’ after COVID-19. This ambition is com",
+      "timestamp": "2026-04-08T14:08:40.330515+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:40.330617+00:00"
+    },
+    "snippet": "New Search Back Opened Current opened records Hide Current Record Actions Download Email Print Request Enquiry Add to Selection Remove from Selection Research paper Building global prosperity : Proposals for sustainable growth Authors: Issuing Bodies: Conference: Published: : , 09 December 2022 . Files: 2022-12-09 Building global prosperity.pdf Online access: Abstract: The G7 has launched a partnership designed to help developing countries ‘build back better’ after COVID-19. This ambition is com",
+    "cached_at": "2026-04-08T14:08:40.330627+00:00"
+  },
+  "6e2ef7710f9c6f5a": {
+    "url": "https://doi.org/10.17323/1996-7845-2023-01-02",
+    "record": {
+      "id": "unknown",
+      "title": "G20 at the Critical Juncture. Indonesia’s 2022 Presidency: Internal and External Shocks, Risks of Power Rebalancing and ",
+      "url": "https://doi.org/10.17323/1996-7845-2023-01-02",
+      "total_score": 4.9,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 2 corridors in 2 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.9 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Hide HSE About HSE Study Research News & Events Раскрыть INTERNATIONAL ORGANISATIONS RESEARCH JOURNAL About Editorial Board Contents Аrchive Call for papers Authors’ Guidelines Peer Reviewing Publishing ethics Subscription News and Announcements Manuscript requirements Contacts Postal address : 11 Pokrovsky Boulevard, Moscow, Russia, 109028 National Research University Higher School of Economics International Organisations Research Journal (IORJ) editors office Actual address : Office 308, 33, P",
+      "timestamp": "2026-04-08T14:08:42.263089+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:42.263188+00:00"
+    },
+    "snippet": "Hide HSE About HSE Study Research News & Events Раскрыть INTERNATIONAL ORGANISATIONS RESEARCH JOURNAL About Editorial Board Contents Аrchive Call for papers Authors’ Guidelines Peer Reviewing Publishing ethics Subscription News and Announcements Manuscript requirements Contacts Postal address : 11 Pokrovsky Boulevard, Moscow, Russia, 109028 National Research University Higher School of Economics International Organisations Research Journal (IORJ) editors office Actual address : Office 308, 33, P",
+    "cached_at": "2026-04-08T14:08:42.263199+00:00"
+  },
+  "5607786c077b0c88": {
+    "url": "https://doi.org/10.1007/978-3-031-64060-5_7",
+    "record": {
+      "id": "unknown",
+      "title": "The Global Gateway: Connectivity and Competition in the Global Race for Infrastructures",
+      "url": "https://doi.org/10.1007/978-3-031-64060-5_7",
+      "total_score": 9.9,
+      "breakdown": {
+        "geographic": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 14 nodes matched"
+        },
+        "pillars": {
+          "score": 3.9,
+          "max": 4.0,
+          "reason": "All three pillars covered: 9 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 2 corridors in 7 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 9.9 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Abstract In the nexus of great power competition and global connectivity, infrastructures have become more strategic. Following the example set by China’s Belt and Road Initiative (BRI), major global powers are increasingly engaged in building and financing infrastructural projects worldwide. This chapter focuses on the European Union’s (EU) contribution to this global trend through the launch of its Global Gateway initiative in 2021. It examines the initiative’s motivations and the array of per",
+      "timestamp": "2026-04-08T14:08:44.247429+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:44.248527+00:00"
+    },
+    "snippet": "Abstract In the nexus of great power competition and global connectivity, infrastructures have become more strategic. Following the example set by China’s Belt and Road Initiative (BRI), major global powers are increasingly engaged in building and financing infrastructural projects worldwide. This chapter focuses on the European Union’s (EU) contribution to this global trend through the launch of its Global Gateway initiative in 2021. It examines the initiative’s motivations and the array of per",
+    "cached_at": "2026-04-08T14:08:44.248546+00:00"
+  },
+  "102bd09aff0266fd": {
+    "url": "https://doi.org/10.1007/978-981-99-9633-9_8",
+    "record": {
+      "id": "unknown",
+      "title": "G7’s Plan for Partnership for Global Infrastructure and Investment: An Alternative to the BRI?",
+      "url": "https://doi.org/10.1007/978-981-99-9633-9_8",
+      "total_score": 8.4,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "All three pillars covered: 12 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 3 corridors in 8 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 8.4 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Abstract Sino-U.S. strategic competition presents a major obstacle to China’s BRI implementation. US-China rivalry is intensifying and the world appears to be on a path to great power confrontation. You have full access to this open access chapter, Download chapter PDF Similar content being viewed by others Final Reflections Chapter © 2018 Global Strike vs. Globalization: The US-China Rivalry and the BRI Chapter © 2020 Reshaping Views on China: A Study on Chinese Soft Power in the Context of BRI",
+      "timestamp": "2026-04-08T14:08:51.031056+00:00",
+      "harvest_timestamp": "2026-04-08T14:08:51.031635+00:00"
+    },
+    "snippet": "Abstract Sino-U.S. strategic competition presents a major obstacle to China’s BRI implementation. US-China rivalry is intensifying and the world appears to be on a path to great power confrontation. You have full access to this open access chapter, Download chapter PDF Similar content being viewed by others Final Reflections Chapter © 2018 Global Strike vs. Globalization: The US-China Rivalry and the BRI Chapter © 2020 Reshaping Views on China: A Study on Chinese Soft Power in the Context of BRI",
+    "cached_at": "2026-04-08T14:08:51.031654+00:00"
+  },
+  "f68344815df49994": {
+    "url": "https://doi.org/10.17323/1996-7845-2024-03-01",
+    "record": {
+      "id": "unknown",
+      "title": "Impact of US-China Rivalry on the G20 Leadership: Possibilities and Problems",
+      "url": "https://doi.org/10.17323/1996-7845-2024-03-01",
+      "total_score": 4.3,
+      "breakdown": {
+        "geographic": {
+          "score": 1.7999999999999998,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 3 nodes matched"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 2 corridors in 3 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.3 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Hide HSE About HSE Study Research News & Events Раскрыть INTERNATIONAL ORGANISATIONS RESEARCH JOURNAL About Editorial Board Contents Аrchive Call for papers Authors’ Guidelines Peer Reviewing Publishing ethics Subscription News and Announcements Manuscript requirements Contacts Postal address : 11 Pokrovsky Boulevard, Moscow, Russia, 109028 National Research University Higher School of Economics International Organisations Research Journal (IORJ) editors office Actual address : Office 308, 33, P",
+      "timestamp": "2026-04-08T14:09:02.923561+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:02.923667+00:00"
+    },
+    "snippet": "Hide HSE About HSE Study Research News & Events Раскрыть INTERNATIONAL ORGANISATIONS RESEARCH JOURNAL About Editorial Board Contents Аrchive Call for papers Authors’ Guidelines Peer Reviewing Publishing ethics Subscription News and Announcements Manuscript requirements Contacts Postal address : 11 Pokrovsky Boulevard, Moscow, Russia, 109028 National Research University Higher School of Economics International Organisations Research Journal (IORJ) editors office Actual address : Office 308, 33, P",
+    "cached_at": "2026-04-08T14:09:02.923683+00:00"
+  },
+  "1243305b3366062f": {
+    "url": "https://doi.org/10.1007/978-3-031-20702-0_2",
+    "record": {
+      "id": "unknown",
+      "title": "Conflict Between Great Powers Is Back with Vengeance: The New Cold War Between the US and China Plus Russia",
+      "url": "https://doi.org/10.1007/978-3-031-20702-0_2",
+      "total_score": 5.95,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 2.95,
+          "max": 4.0,
+          "reason": "Two pillars covered: 3 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 4 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.95 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Abstract China’s emergence as a powerful challenger to the US’s and the west’s well-crystallized position atop the global hierarchy poses the question of how to co-exist peacefully. This essay discusses several economic sectors where the two sides are acting aggressively towards each other; in trade, capital, high-tech, and cyberwar. It argues that the geopolitical class of the US and the west must go against the drift of popular opinion and strengthen interaction and investment in the ‘battle g",
+      "timestamp": "2026-04-08T14:09:03.383645+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:03.384006+00:00"
+    },
+    "snippet": "Abstract China’s emergence as a powerful challenger to the US’s and the west’s well-crystallized position atop the global hierarchy poses the question of how to co-exist peacefully. This essay discusses several economic sectors where the two sides are acting aggressively towards each other; in trade, capital, high-tech, and cyberwar. It argues that the geopolitical class of the US and the west must go against the drift of popular opinion and strengthen interaction and investment in the ‘battle g",
+    "cached_at": "2026-04-08T14:09:03.384024+00:00"
+  },
+  "d2857fce3d074826": {
+    "url": "https://doi.org/10.37602/ijssmr.2025.8417",
+    "record": {
+      "id": "unknown",
+      "title": "THE WEAPONIZATION OF ECONOMIC INTERDEPENDENCE: SANCTIONS, FINANCIAL STATECRAFT, AND THE FRAGMENTATION OF THE GLOBAL ECON",
+      "url": "https://doi.org/10.37602/ijssmr.2025.8417",
+      "total_score": 5.3,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 2.8,
+          "max": 4.0,
+          "reason": "Two pillars covered: 2 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "Pro-connectivity framing: 1 markers",
+          "stance": "pro"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.3 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "%PDF-1.7 %���� 1 0 obj <>/Metadata 287 0 R/ViewerPreferences 288 0 R>> endobj 2 0 obj <> endobj 3 0 obj <>/ExtGState<>/ProcSet[/PDF/Text/ImageB/ImageC/ImageI] >>/Annots[ 15 0 R 18 0 R] /MediaBox[ 0 0 595.32 841.92] /Contents 4 0 R/Group<>/Tabs/S/StructParents 0>> endobj 4 0 obj <> stream x��<�r۸���?�i�:e�\u0004 �fS�� '�L����N��9\u000f�DI<�H�\u0017�x�h�r�\u0002�ԅ9 ��ZWY\"�\u0006��ht7\u001aM���*YLg����ٸ���U<7�8���M 7�ٯ�e�M�$��n� �>��y\\�}k���0��~e[6��a ��\"�r #� ��_���oF����������\u0010�\u0015��d��\u0015Bۆ0\u0002iE�4�HX�5Y\u0003܇��X�0�a[ҍ�3�\\�XRSx�����",
+      "timestamp": "2026-04-08T14:09:04.934867+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:04.937991+00:00"
+    },
+    "snippet": "%PDF-1.7 %���� 1 0 obj <>/Metadata 287 0 R/ViewerPreferences 288 0 R>> endobj 2 0 obj <> endobj 3 0 obj <>/ExtGState<>/ProcSet[/PDF/Text/ImageB/ImageC/ImageI] >>/Annots[ 15 0 R 18 0 R] /MediaBox[ 0 0 595.32 841.92] /Contents 4 0 R/Group<>/Tabs/S/StructParents 0>> endobj 4 0 obj <> stream x��<�r۸���?�i�:e�\u0004 �fS�� '�L����N��9\u000f�DI<�H�\u0017�x�h�r�\u0002�ԅ9 ��ZWY\"�\u0006��ht7\u001aM���*YLg����ٸ���U<7�8���M 7�ٯ�e�M�$��n� �>��y\\�}k���0��~e[6��a ��\"�r #� ��_���oF����������\u0010�\u0015��d��\u0015Bۆ0\u0002iE�4�HX�5Y\u0003܇��X�0�a[ҍ�3�\\�XRSx�����",
+    "cached_at": "2026-04-08T14:09:04.938009+00:00"
+  },
+  "82b5d40d42d566b9": {
+    "url": "https://doi.org/10.3176/tr.2023.3.02",
+    "record": {
+      "id": "unknown",
+      "title": "THE EU-JAPAN CONNECTIVITY PARTNERSHIP – ROADWAYS AND ROADBLOCKS",
+      "url": "https://doi.org/10.3176/tr.2023.3.02",
+      "total_score": 8.1,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 3.6,
+          "max": 4.0,
+          "reason": "All three pillars covered: 6 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 2 corridors in 3 comparative contexts"
+        },
+        "dialectical": {
+          "score": 1.5,
+          "max": 2.0,
+          "reason": "Critical/contra framing: 1 markers (valuable dissent)",
+          "stance": "contra"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 8.1 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "ESTONIAN ACADEMY PUBLISHERS eesti teaduste akadeemia kirjastus About Journals Archive Subscription Books Contact Eesti keeles About Journals Archive Subscription Books Contact Eesti keeles PUBLISHED SINCE 1997 TRAMES. A Journal of the Humanities and Social Sciences ISSN 1736-7514 (Electronic) ISSN 1406-0922 (Print) News Current issue Journal information Editorial board Editorial policies Editorial programme Author guidelines For reviewers Support and contact Special issues Back issues: 1952–1996",
+      "timestamp": "2026-04-08T14:09:06.674858+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:06.675120+00:00"
+    },
+    "snippet": "ESTONIAN ACADEMY PUBLISHERS eesti teaduste akadeemia kirjastus About Journals Archive Subscription Books Contact Eesti keeles About Journals Archive Subscription Books Contact Eesti keeles PUBLISHED SINCE 1997 TRAMES. A Journal of the Humanities and Social Sciences ISSN 1736-7514 (Electronic) ISSN 1406-0922 (Print) News Current issue Journal information Editorial board Editorial policies Editorial programme Author guidelines For reviewers Support and contact Special issues Back issues: 1952–1996",
+    "cached_at": "2026-04-08T14:09:06.675138+00:00"
+  },
+  "321833ae8af7c0d8": {
+    "url": "https://doi.org/10.32890/jis2025.21.2.3",
+    "record": {
+      "id": "unknown",
+      "title": "US-CHINA DIGITAL INFRASTRUCTURE COMPETITION IN SOUTHEAST ASIA: STRATEGIES AND IMPLICATIONS FOR ASEAN'S 5G FUTURE",
+      "url": "https://doi.org/10.32890/jis2025.21.2.3",
+      "total_score": 5.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 3.5,
+          "max": 4.0,
+          "reason": "All three pillars covered: 5 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.0 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "US-CHINA DIGITAL INFRASTRUCTURE COMPETITION IN SOUTHEAST ASIA: STRATEGIES AND IMPLICATIONS FOR ASEAN'S 5G FUTURE Authors Qing Lu Ravichandran Moorthy DOI: https://doi.org/10.32890/jis2025.21.2.3 Abstract The rapid evolution of the digital economy has significantly heightened global competition between the United States and China, especially in the area of digital infrastructure development centred around 5G technology. This competition situates the ASEAN member states (AMS) at a strategic inters",
+      "timestamp": "2026-04-08T14:09:08.390024+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:08.390103+00:00"
+    },
+    "snippet": "US-CHINA DIGITAL INFRASTRUCTURE COMPETITION IN SOUTHEAST ASIA: STRATEGIES AND IMPLICATIONS FOR ASEAN'S 5G FUTURE Authors Qing Lu Ravichandran Moorthy DOI: https://doi.org/10.32890/jis2025.21.2.3 Abstract The rapid evolution of the digital economy has significantly heightened global competition between the United States and China, especially in the area of digital infrastructure development centred around 5G technology. This competition situates the ASEAN member states (AMS) at a strategic inters",
+    "cached_at": "2026-04-08T14:09:08.390114+00:00"
+  },
+  "b34def912427dcf3": {
+    "url": "https://doi.org/10.4324/9781003458357-3",
+    "record": {
+      "id": "unknown",
+      "title": "Enhancing security resilience",
+      "url": "https://doi.org/10.4324/9781003458357-3",
+      "total_score": 2.5,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Breadcrumbs Section. Click here to navigate to respective pages. Chapter Chapter Enhancing security resilience DOI link for Enhancing security resilience Enhancing security resilience New norms and instruments of subregional and transregional cooperation in East Asia By Jerzy Menkes Book Regional Cooperation and Resilience in East Asia Click here to navigate to parent product. Edition 1st Edition First Published 2024 Imprint Routledge Pages 36 Share ABSTRACT The author examined the West’s constr",
+      "timestamp": "2026-04-08T14:09:10.442149+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:10.442249+00:00"
+    },
+    "snippet": "Breadcrumbs Section. Click here to navigate to respective pages. Chapter Chapter Enhancing security resilience DOI link for Enhancing security resilience Enhancing security resilience New norms and instruments of subregional and transregional cooperation in East Asia By Jerzy Menkes Book Regional Cooperation and Resilience in East Asia Click here to navigate to parent product. Edition 1st Edition First Published 2024 Imprint Routledge Pages 36 Share ABSTRACT The author examined the West’s constr",
+    "cached_at": "2026-04-08T14:09:10.442282+00:00"
+  },
+  "ef6668ebd61e6eb8": {
+    "url": "https://doi.org/10.70670/sra.v3i3.1750",
+    "record": {
+      "id": "unknown",
+      "title": "The US and Indian Response towards the China Pakistan Economic Corridor (CPEC) and the Gwadar Port: Intensifying Geopoli",
+      "url": "https://doi.org/10.70670/sra.v3i3.1750",
+      "total_score": 5.9,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 1.9,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 2 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 5 corridors in 5 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.9 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "The US and Indian Response towards the China Pakistan Economic Corridor (CPEC) and the Gwadar Port: Intensifying Geopolitical Competition in the Gwadar region and the Indo-Pacific Region Authors Muzaffir Hussain * Assistant Professor, Department of Political Science, University of Turbat Email: Muzaffir.hussain@uot.edu.pk Dr. Adnan Riaz Assistant Professor, Department of English Literature, University of Turbat Email: Adnan.riaz@uot.edu.pk Changiz Ahmed Assistant Professor, Department of Politic",
+      "timestamp": "2026-04-08T14:09:10.580428+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:10.580508+00:00"
+    },
+    "snippet": "The US and Indian Response towards the China Pakistan Economic Corridor (CPEC) and the Gwadar Port: Intensifying Geopolitical Competition in the Gwadar region and the Indo-Pacific Region Authors Muzaffir Hussain * Assistant Professor, Department of Political Science, University of Turbat Email: Muzaffir.hussain@uot.edu.pk Dr. Adnan Riaz Assistant Professor, Department of English Literature, University of Turbat Email: Adnan.riaz@uot.edu.pk Changiz Ahmed Assistant Professor, Department of Politic",
+    "cached_at": "2026-04-08T14:09:10.580522+00:00"
+  },
+  "6f5f155e4ba37b8a": {
+    "url": "https://doi.org/10.5194/bg-2020-292-ac2",
+    "record": {
+      "id": "unknown",
+      "title": "Interactive response to \"Biogeochemical Impact of Cable Bacteria on Coastal Black Sea Sediment\"",
+      "url": "https://doi.org/10.5194/bg-2020-292-ac2",
+      "total_score": 4.9,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 3.4,
+          "max": 4.0,
+          "reason": "All three pillars covered: 4 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.9 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "%PDF-1.4 %���� 5 0 obj << /S /GoTo /D [6 0 R /Fit ] >> endobj 15 0 obj << /Length 1672 /Filter /FlateDecode >> stream x��XKs�6 ��Wp�\u0017�LV&)R��\u001a'm�L;m ���� K�]�Zi�G\\��\u0002\u0004�ծ�Ԏ�N\u0013{d�\u0004�\u000f�\u0007\u0010�\b����� ����\u0013q���'�q�\u0012 j-�� Ua\"\u0015��$��hr���(��!<��\u0003\bL�\u0004X�3a��8T*aQ�C�\u0012��f0�B� /���B�� 6&C�$[�f�I�h�[� ��{�\u0001 <�\u0004,HX��8Nюw 8+a�5�GYʮ��\u0016�'�*�j�\u0016�:T��\u0019K�\u0010RN\u0007�\u0004�����\u0015�9�4�\u0007P�<�\\f�?|\"��9��\u0010p��z���L\u0004�X\u0012f 'Jp\u0001\\e)\u0010��\u0014�ߺ�R�Bb,W��4e}�X�$ �$]_��\u0017s῔9���T��x\u000f&� ꂆ��\u001a�.�H�%\u0019�� ��C\u0014:L��\u0005�D9.�ϩ8��\br�; ��\u0012����������{(�LrC�u\u0002t�l����ꋱ��",
+      "timestamp": "2026-04-08T14:09:15.035557+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:15.036160+00:00"
+    },
+    "snippet": "%PDF-1.4 %���� 5 0 obj << /S /GoTo /D [6 0 R /Fit ] >> endobj 15 0 obj << /Length 1672 /Filter /FlateDecode >> stream x��XKs�6 ��Wp�\u0017�LV&)R��\u001a'm�L;m ���� K�]�Zi�G\\��\u0002\u0004�ծ�Ԏ�N\u0013{d�\u0004�\u000f�\u0007\u0010�\b����� ����\u0013q���'�q�\u0012 j-�� Ua\"\u0015��$��hr���(��!<��\u0003\bL�\u0004X�3a��8T*aQ�C�\u0012��f0�B� /���B�� 6&C�$[�f�I�h�[� ��{�\u0001 <�\u0004,HX��8Nюw 8+a�5�GYʮ��\u0016�'�*�j�\u0016�:T��\u0019K�\u0010RN\u0007�\u0004�����\u0015�9�4�\u0007P�<�\\f�?|\"��9��\u0010p��z���L\u0004�X\u0012f 'Jp\u0001\\e)\u0010��\u0014�ߺ�R�Bb,W��4e}�X�$ �$]_��\u0017s῔9���T��x\u000f&� ꂆ��\u001a�.�H�%\u0019�� ��C\u0014:L��\u0005�D9.�ϩ8��\br�; ��\u0012����������{(�LrC�u\u0002t�l����ꋱ��",
+    "cached_at": "2026-04-08T14:09:15.036188+00:00"
+  },
+  "ec173c4490e2a6ed": {
+    "url": "https://doi.org/10.5194/bg-2020-292-ac1",
+    "record": {
+      "id": "unknown",
+      "title": "Interactive comment on \"Biogeochemical Impact of Cable Bacteria on Coastal Black Sea Sediment\"",
+      "url": "https://doi.org/10.5194/bg-2020-292-ac1",
+      "total_score": 5.75,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 3.5,
+          "max": 4.0,
+          "reason": "All three pillars covered: 5 keywords"
+        },
+        "comparative": {
+          "score": 1.75,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 1 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.75 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "%PDF-1.4 %���� 5 0 obj << /S /GoTo /D [6 0 R /Fit ] >> endobj 15 0 obj << /Length 1758 /Filter /FlateDecode >> stream x��X�s�6 �_�G�.VH��G���]���ۚ��\u0003-367Kr%yY��\u000f HYv�,i����l\b\u0004A|��B\u0016\u0011\u0013�]z\u0002�.^��;��O8�Lf \u0014}��\u0001��a2��d4[ �sVV�\u0013!E�%�'\u000f:�\u001b�2\u0005��\u001b>�$�=���d�/O�^�9�\u0014%2���\u0015S��dV0��(\u0007�/\u0017�������˷\u000f������\\FY,Y�gQ�$C\bD\u0012%y \b�E\u001a\u0002@�\u0014L���\u0010�\u0018�FRf,IU�r��Mݛv*�D���c\u001a��A�X )\u0019�\u0019hV�$˦�Lݓ�!r����'�A� \u0015�i�~|���\u0002�ނ|R��� V`~��l�ރ[�*�`9�\"V��@�@�W��=6%���)�\u000f9��\" >���~G 8Jp5�\u00138\u0003@ �EE� \u0012\\�VY\u000e��)���v:\u0013jb\u0011\u0018�+�`���f:��|B i;��_���Rf\u000fw",
+      "timestamp": "2026-04-08T14:09:27.095269+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:27.106848+00:00"
+    },
+    "snippet": "%PDF-1.4 %���� 5 0 obj << /S /GoTo /D [6 0 R /Fit ] >> endobj 15 0 obj << /Length 1758 /Filter /FlateDecode >> stream x��X�s�6 �_�G�.VH��G���]���ۚ��\u0003-367Kr%yY��\u000f HYv�,i����l\b\u0004A|��B\u0016\u0011\u0013�]z\u0002�.^��;��O8�Lf \u0014}��\u0001��a2��d4[ �sVV�\u0013!E�%�'\u000f:�\u001b�2\u0005��\u001b>�$�=���d�/O�^�9�\u0014%2���\u0015S��dV0��(\u0007�/\u0017�������˷\u000f������\\FY,Y�gQ�$C\bD\u0012%y \b�E\u001a\u0002@�\u0014L���\u0010�\u0018�FRf,IU�r��Mݛv*�D���c\u001a��A�X )\u0019�\u0019hV�$˦�Lݓ�!r����'�A� \u0015�i�~|���\u0002�ނ|R��� V`~��l�ރ[�*�`9�\"V��@�@�W��=6%���)�\u000f9��\" >���~G 8Jp5�\u00138\u0003@ �EE� \u0012\\�VY\u000e��)���v:\u0013jb\u0011\u0018�+�`���f:��|B i;��_���Rf\u000fw",
+    "cached_at": "2026-04-08T14:09:27.106951+00:00"
+  },
+  "7787f549b0cdab8b": {
+    "url": "https://doi.org/10.1007/978-1-4419-0465-2_617",
+    "record": {
+      "id": "unknown",
+      "title": "Red Sea: Maritime Archaeology",
+      "url": "https://doi.org/10.1007/978-1-4419-0465-2_617",
+      "total_score": 3.8,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 2.3,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 4 keywords"
+        },
+        "comparative": {
+          "score": 0.5,
+          "max": 2.0,
+          "reason": "Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Introduction The Red Sea extends over 1,900 km in length and is one of the youngest seas on the planet (Fig. 1 ). Despite its arid and inhospitable desert coastline, it has been an important highway for maritime trade and shipping since antiquity. The Red Sea has a negligible tidal range (max. 90 cm) but is dominated by fierce and persistent NNW winds, particularly in the northern reaches (Whitewright 2007 ). Red Sea: Maritime Archaeology, Fig. 1 Map of the Red Sea indicating the location of sit",
+      "timestamp": "2026-04-08T14:09:33.430005+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:33.430133+00:00"
+    },
+    "snippet": "Introduction The Red Sea extends over 1,900 km in length and is one of the youngest seas on the planet (Fig. 1 ). Despite its arid and inhospitable desert coastline, it has been an important highway for maritime trade and shipping since antiquity. The Red Sea has a negligible tidal range (max. 90 cm) but is dominated by fierce and persistent NNW winds, particularly in the northern reaches (Whitewright 2007 ). Red Sea: Maritime Archaeology, Fig. 1 Map of the Red Sea indicating the location of sit",
+    "cached_at": "2026-04-08T14:09:33.430153+00:00"
+  },
+  "83bdbbf53a7594eb": {
+    "url": "https://doi.org/10.1007/s10207-021-00545-8",
+    "record": {
+      "id": "unknown",
+      "title": "Robotics cyber security: vulnerabilities, attacks, countermeasures, and recommendations",
+      "url": "https://doi.org/10.1007/s10207-021-00545-8",
+      "total_score": 9.6,
+      "breakdown": {
+        "geographic": {
+          "score": 3.5999999999999996,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 6 nodes matched"
+        },
+        "pillars": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "All three pillars covered: 10 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 5 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 9.6 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Robotics cyber security: vulnerabilities, attacks, countermeasures, and recommendations Regular Contribution Published: 19 March 2021 Volume 21 , pages 115–158, ( 2022 ) Cite this article Save article View saved research International Journal of Information Security Aims and scope Submit manuscript Abstract The recent digital revolution led robots to become integrated more than ever into different domains such as agricultural, medical, industrial, military, police (law enforcement), and logistic",
+      "timestamp": "2026-04-08T14:09:35.316237+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:35.317478+00:00"
+    },
+    "snippet": "Robotics cyber security: vulnerabilities, attacks, countermeasures, and recommendations Regular Contribution Published: 19 March 2021 Volume 21 , pages 115–158, ( 2022 ) Cite this article Save article View saved research International Journal of Information Security Aims and scope Submit manuscript Abstract The recent digital revolution led robots to become integrated more than ever into different domains such as agricultural, medical, industrial, military, police (law enforcement), and logistic",
+    "cached_at": "2026-04-08T14:09:35.317493+00:00"
+  },
+  "98697f910a1b68a0": {
+    "url": "https://doi.org/10.1088/2040-8986/ad261f",
+    "record": {
+      "id": "unknown",
+      "title": "Roadmap on optical communications",
+      "url": "https://doi.org/10.1088/2040-8986/ad261f",
+      "total_score": 2.0,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No pillar alignment detected"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "We apologize for the inconvenience... To ensure we keep this website safe, please can you confirm you are a human by ticking the box below. If you are unable to complete the above request please contact us using the below link, providing a screenshot of your experience. https://ioppublishing.org/contacts/ Incident ID: b6448e5d-cnvj-4a67-9da3-51997f987626",
+      "timestamp": "2026-04-08T14:09:35.880190+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:35.880286+00:00"
+    },
+    "snippet": "We apologize for the inconvenience... To ensure we keep this website safe, please can you confirm you are a human by ticking the box below. If you are unable to complete the above request please contact us using the below link, providing a screenshot of your experience. https://ioppublishing.org/contacts/ Incident ID: b6448e5d-cnvj-4a67-9da3-51997f987626",
+    "cached_at": "2026-04-08T14:09:35.880306+00:00"
+  },
+  "6949fa9047a3f9b6": {
+    "url": "https://doi.org/10.1038/s41477-020-00808-7",
+    "record": {
+      "id": "unknown",
+      "title": "Species-independent analytical tools for next-generation agriculture",
+      "url": "https://doi.org/10.1038/s41477-020-00808-7",
+      "total_score": 6.5,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 3.5,
+          "max": 4.0,
+          "reason": "All three pillars covered: 5 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 3 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.5 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Subjects Plant biotechnology Plant sciences Abstract Innovative approaches are urgently required to alleviate the growing pressure on agriculture to meet the rising demand for food. A key challenge for plant biology is to bridge the notable knowledge gap between our detailed understanding of model plants grown under laboratory conditions and the agriculturally important crops cultivated in fields or production facilities. This Perspective highlights the recent development of new analytical tools",
+      "timestamp": "2026-04-08T14:09:37.030863+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:37.031502+00:00"
+    },
+    "snippet": "Subjects Plant biotechnology Plant sciences Abstract Innovative approaches are urgently required to alleviate the growing pressure on agriculture to meet the rising demand for food. A key challenge for plant biology is to bridge the notable knowledge gap between our detailed understanding of model plants grown under laboratory conditions and the agriculturally important crops cultivated in fields or production facilities. This Perspective highlights the recent development of new analytical tools",
+    "cached_at": "2026-04-08T14:09:37.031517+00:00"
+  },
+  "708d3b5f02ea3ff2": {
+    "url": "https://doi.org/10.1007/s11783-023-1666-4",
+    "record": {
+      "id": "unknown",
+      "title": "Current scenario and challenges of plastic pollution in Bangladesh: a focus on farmlands and terrestrial ecosystems",
+      "url": "https://doi.org/10.1007/s11783-023-1666-4",
+      "total_score": 5.9,
+      "breakdown": {
+        "geographic": {
+          "score": 1.7999999999999998,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 3 nodes matched"
+        },
+        "pillars": {
+          "score": 2.1,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 3 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 2 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.9 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Current scenario and challenges of plastic pollution in Bangladesh: a focus on farmlands and terrestrial ecosystems Review Article Published: 15 December 2022 Volume 17 , article number 66 , ( 2023 ) Cite this article Save article View saved research Frontiers of Environmental Science & Engineering Aims and scope Submit manuscript Abstract Plastic is considered one of the most indispensable commodities in our daily life. At the end of life, the huge ever-growing pile of plastic waste (PW) causes",
+      "timestamp": "2026-04-08T14:09:39.579882+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:39.580450+00:00"
+    },
+    "snippet": "Current scenario and challenges of plastic pollution in Bangladesh: a focus on farmlands and terrestrial ecosystems Review Article Published: 15 December 2022 Volume 17 , article number 66 , ( 2023 ) Cite this article Save article View saved research Frontiers of Environmental Science & Engineering Aims and scope Submit manuscript Abstract Plastic is considered one of the most indispensable commodities in our daily life. At the end of life, the huge ever-growing pile of plastic waste (PW) causes",
+    "cached_at": "2026-04-08T14:09:39.580464+00:00"
+  },
+  "1cc602c036f6947a": {
+    "url": "https://doi.org/10.1007/s11214-024-01070-5",
+    "record": {
+      "id": "unknown",
+      "title": "Science Overview of the Europa Clipper Mission",
+      "url": "https://doi.org/10.1007/s11214-024-01070-5",
+      "total_score": 7.8,
+      "breakdown": {
+        "geographic": {
+          "score": 1.7999999999999998,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 3 nodes matched"
+        },
+        "pillars": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "All three pillars covered: 11 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 7 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 7.8 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Science Overview of the Europa Clipper Mission Open access Published: 23 May 2024 Volume 220 , article number 40 , ( 2024 ) Cite this article You have full access to this open access article Download PDF Save article View saved research Space Science Reviews Aims and scope Submit manuscript Science Overview of the Europa Clipper Mission Download PDF Abstract The goal of NASA’s Europa Clipper mission is to assess the habitability of Jupiter’s moon Europa. After entering Jupiter orbit in 2030, the",
+      "timestamp": "2026-04-08T14:09:40.279619+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:40.282551+00:00"
+    },
+    "snippet": "Science Overview of the Europa Clipper Mission Open access Published: 23 May 2024 Volume 220 , article number 40 , ( 2024 ) Cite this article You have full access to this open access article Download PDF Save article View saved research Space Science Reviews Aims and scope Submit manuscript Science Overview of the Europa Clipper Mission Download PDF Abstract The goal of NASA’s Europa Clipper mission is to assess the habitability of Jupiter’s moon Europa. After entering Jupiter orbit in 2030, the",
+    "cached_at": "2026-04-08T14:09:40.282570+00:00"
+  },
+  "5e5580fb43073339": {
+    "url": "https://doi.org/10.1007/978-3-319-51159-7_11",
+    "record": {
+      "id": "unknown",
+      "title": "The German Case Study: Pioneer Projects of Aquaculture-Wind Farm Multi-Uses",
+      "url": "https://doi.org/10.1007/978-3-319-51159-7_11",
+      "total_score": 8.4,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "All three pillars covered: 10 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 7 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 8.4 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Abstract Most studies on multi-use concepts of aquaculture and wind farms explored cultivation feasibility of extractive species, such as seaweed or bivalves. However, recent studies also included the cultivation of crustaceans or fish culture in the vicinity of wind turbines. Consequently, new approaches combine fed and extractive species in integrated multi-trophic aquaculture (IMTA) concepts for offshore multi-use to reduce nutrient output and the overall environmental impact of aquaculture o",
+      "timestamp": "2026-04-08T14:09:43.454066+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:43.457392+00:00"
+    },
+    "snippet": "Abstract Most studies on multi-use concepts of aquaculture and wind farms explored cultivation feasibility of extractive species, such as seaweed or bivalves. However, recent studies also included the cultivation of crustaceans or fish culture in the vicinity of wind turbines. Consequently, new approaches combine fed and extractive species in integrated multi-trophic aquaculture (IMTA) concepts for offshore multi-use to reduce nutrient output and the overall environmental impact of aquaculture o",
+    "cached_at": "2026-04-08T14:09:43.457408+00:00"
+  },
+  "7889a977a75c46fc": {
+    "url": "https://doi.org/10.1109/tte.2023.3345738",
+    "record": {
+      "id": "unknown",
+      "title": "Electric Vehicle-to-Vehicle (V2V) Power Transfer: Electrical and Communication Developments",
+      "url": "https://doi.org/10.1109/tte.2023.3345738",
+      "total_score": 3.2,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 1.7,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 1 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Electric Vehicle-to-Vehicle (V2V) Power Transfer: Electrical and Communication Developments | IEEE Journals & Magazine | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payment Options Order History View Purchased Documents Profile Information Communications Preferences Profession and Education Technical Interests Need Help? US & Canada: +1 800 678 4333 Worldwide: +1 732 981 0060 Contact & Support About IEEE Xplore Contact Us Help Accessibility Terms of Use Nond",
+      "timestamp": "2026-04-08T14:09:45.206837+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:45.206892+00:00"
+    },
+    "snippet": "Electric Vehicle-to-Vehicle (V2V) Power Transfer: Electrical and Communication Developments | IEEE Journals & Magazine | IEEE Xplore IEEE Account Change Username/Password Update Address Purchase Details Payment Options Order History View Purchased Documents Profile Information Communications Preferences Profession and Education Technical Interests Need Help? US & Canada: +1 800 678 4333 Worldwide: +1 732 981 0060 Contact & Support About IEEE Xplore Contact Us Help Accessibility Terms of Use Nond",
+    "cached_at": "2026-04-08T14:09:45.206902+00:00"
+  },
+  "98412a4e4fa7415b": {
+    "url": "https://doi.org/10.1007/s42114-024-01111-1",
+    "record": {
+      "id": "unknown",
+      "title": "Flame-retardant fiber composites: synergistic effects of additives on mechanical, thermal, chemical, and structural prop",
+      "url": "https://doi.org/10.1007/s42114-024-01111-1",
+      "total_score": 6.4,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 3.4,
+          "max": 4.0,
+          "reason": "Two pillars covered: 6 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 4 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.4 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Flame-retardant fiber composites: synergistic effects of additives on mechanical, thermal, chemical, and structural properties Review Open access Published: 10 December 2024 Volume 8 , article number 31 , ( 2025 ) Cite this article You have full access to this open access article Download PDF Save article View saved research Advanced Composites and Hybrid Materials Aims and scope Submit manuscript Flame-retardant fiber composites: synergistic effects of additives on mechanical, thermal, chemical",
+      "timestamp": "2026-04-08T14:09:45.274433+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:45.277011+00:00"
+    },
+    "snippet": "Flame-retardant fiber composites: synergistic effects of additives on mechanical, thermal, chemical, and structural properties Review Open access Published: 10 December 2024 Volume 8 , article number 31 , ( 2025 ) Cite this article You have full access to this open access article Download PDF Save article View saved research Advanced Composites and Hybrid Materials Aims and scope Submit manuscript Flame-retardant fiber composites: synergistic effects of additives on mechanical, thermal, chemical",
+    "cached_at": "2026-04-08T14:09:45.277031+00:00"
+  },
+  "b82e9bd3761a7400": {
+    "url": "https://doi.org/10.31978/666-22-014-0",
+    "record": {
+      "id": "unknown",
+      "title": "Izaña Atmospheric Research Center. Activity Report 2019-2020",
+      "url": "https://doi.org/10.31978/666-22-014-0",
+      "total_score": 4.45,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 2.95,
+          "max": 4.0,
+          "reason": "Two pillars covered: 3 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.45 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Aceptar cookies Información sobre uso de cookies Este sitio web utiliza cookies propias y de terceros para mejorar la experiencia de navegación, y ofrecer contenidos y funcionalidades de interés. Para más información sobre las cookies utilizadas consulta nuestra política de cookies Agencia Estatal de Meteorología C - Ir a contenido 0 - Accesibilidad web 1 - Inicio 2 - Mapa web 3 - Ayuda web 4 - Contactar - Atención al ciudadano 5 - Municipios 6 - Avisos es es ca gl va eu en fr Bienvenido Bienven",
+      "timestamp": "2026-04-08T14:09:45.857086+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:45.857215+00:00"
+    },
+    "snippet": "Aceptar cookies Información sobre uso de cookies Este sitio web utiliza cookies propias y de terceros para mejorar la experiencia de navegación, y ofrecer contenidos y funcionalidades de interés. Para más información sobre las cookies utilizadas consulta nuestra política de cookies Agencia Estatal de Meteorología C - Ir a contenido 0 - Accesibilidad web 1 - Inicio 2 - Mapa web 3 - Ayuda web 4 - Contactar - Atención al ciudadano 5 - Municipios 6 - Avisos es es ca gl va eu en fr Bienvenido Bienven",
+    "cached_at": "2026-04-08T14:09:45.857227+00:00"
+  },
+  "0d7fa7c3849c91ff": {
+    "url": "https://doi.org/10.1140/epjqt/s40507-025-00344-3",
+    "record": {
+      "id": "unknown",
+      "title": "Terrestrial Very-Long-Baseline Atom Interferometry: summary of the second workshop",
+      "url": "https://doi.org/10.1140/epjqt/s40507-025-00344-3",
+      "total_score": 10.0,
+      "breakdown": {
+        "geographic": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 13 nodes matched"
+        },
+        "pillars": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "All three pillars covered: 12 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 6 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 10.0 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Terrestrial Very-Long-Baseline Atom Interferometry: summary of the second workshop Review Open access Published: 03 April 2025 Volume 12 , article number 42 , ( 2025 ) Cite this article You have full access to this open access article Download PDF Save article View saved research EPJ Quantum Technology Aims and scope Submit manuscript Terrestrial Very-Long-Baseline Atom Interferometry: summary of the second workshop Download PDF Abstract This summary of the second Terrestrial Very-Long-Baseline ",
+      "timestamp": "2026-04-08T14:09:48.785218+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:48.789408+00:00"
+    },
+    "snippet": "Terrestrial Very-Long-Baseline Atom Interferometry: summary of the second workshop Review Open access Published: 03 April 2025 Volume 12 , article number 42 , ( 2025 ) Cite this article You have full access to this open access article Download PDF Save article View saved research EPJ Quantum Technology Aims and scope Submit manuscript Terrestrial Very-Long-Baseline Atom Interferometry: summary of the second workshop Download PDF Abstract This summary of the second Terrestrial Very-Long-Baseline ",
+    "cached_at": "2026-04-08T14:09:48.789426+00:00"
+  },
+  "258fc2c43a077bec": {
+    "url": "https://doi.org/10.5772/65203",
+    "record": {
+      "id": "unknown",
+      "title": "Corals in a Changing World",
+      "url": "https://doi.org/10.5772/65203",
+      "total_score": 4.65,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 1.9,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 2 keywords"
+        },
+        "comparative": {
+          "score": 1.75,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 1 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.65 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Home > Books > Aquatic Ecosystem Open access peer-reviewed Edited Volume Corals in a Changing World View Chapters Share Cite Corals in a Changing World Edited by Carmenza Duque and Edisson Tello Camacho Book metrics overview 25,638 Chapter Downloads View Full Metrics Impact of this book and its chapters IntechOpen Downloads 25,638 Total Chapter Downloads on intechopen.com Altmetric score Overall attention for this book and its chapters Citations Book Citations 102 Total Chapter Citations 3 Book ",
+      "timestamp": "2026-04-08T14:09:49.590229+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:49.590394+00:00"
+    },
+    "snippet": "Home > Books > Aquatic Ecosystem Open access peer-reviewed Edited Volume Corals in a Changing World View Chapters Share Cite Corals in a Changing World Edited by Carmenza Duque and Edisson Tello Camacho Book metrics overview 25,638 Chapter Downloads View Full Metrics Impact of this book and its chapters IntechOpen Downloads 25,638 Total Chapter Downloads on intechopen.com Altmetric score Overall attention for this book and its chapters Citations Book Citations 102 Total Chapter Citations 3 Book ",
+    "cached_at": "2026-04-08T14:09:49.590411+00:00"
+  },
+  "cf6a560aa826af60": {
+    "url": "https://doi.org/10.5772/61375",
+    "record": {
+      "id": "unknown",
+      "title": "Smart Cities Technologies",
+      "url": "https://doi.org/10.5772/61375",
+      "total_score": 5.0,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 3.5,
+          "max": 4.0,
+          "reason": "All three pillars covered: 5 keywords"
+        },
+        "comparative": {
+          "score": 0.5,
+          "max": 2.0,
+          "reason": "Competing corridor mentioned (1) WITHOUT comparative framing — possible thematic drift"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.0 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Home > Books > Wireless Communication System Open access peer-reviewed Edited Volume Smart Cities Technologies View Chapters Share Cite Smart Cities Technologies Edited by Ivan Nunes Da Silva and Rogério Andrade Flauzino Book metrics overview 29,408 Chapter Downloads View Full Metrics Impact of this book and its chapters IntechOpen Downloads 29,408 Total Chapter Downloads on intechopen.com Altmetric score Overall attention for this book and its chapters Citations Book Citations 69 Total Chapter ",
+      "timestamp": "2026-04-08T14:09:51.665345+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:51.665666+00:00"
+    },
+    "snippet": "Home > Books > Wireless Communication System Open access peer-reviewed Edited Volume Smart Cities Technologies View Chapters Share Cite Smart Cities Technologies Edited by Ivan Nunes Da Silva and Rogério Andrade Flauzino Book metrics overview 29,408 Chapter Downloads View Full Metrics Impact of this book and its chapters IntechOpen Downloads 29,408 Total Chapter Downloads on intechopen.com Altmetric score Overall attention for this book and its chapters Citations Book Citations 69 Total Chapter ",
+    "cached_at": "2026-04-08T14:09:51.665685+00:00"
+  },
+  "ebe33975f57c1129": {
+    "url": "https://doi.org/10.1007/s11356-025-37224-3",
+    "record": {
+      "id": "unknown",
+      "title": "Applications of Raman spectroscopy for microplastic detection and characterization: a comprehensive spectral reference",
+      "url": "https://doi.org/10.1007/s11356-025-37224-3",
+      "total_score": 8.2,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 3.8,
+          "max": 4.0,
+          "reason": "All three pillars covered: 8 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 4 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 8.2 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Applications of Raman spectroscopy for microplastic detection and characterization: a comprehensive spectral reference Review Article Open access Published: 27 November 2025 Volume 32 , pages 28630–28677, ( 2025 ) Cite this article You have full access to this open access article Download PDF Save article View saved research Environmental Science and Pollution Research Aims and scope Submit manuscript Applications of Raman spectroscopy for microplastic detection and characterization: a comprehen",
+      "timestamp": "2026-04-08T14:09:52.483529+00:00",
+      "harvest_timestamp": "2026-04-08T14:09:52.485391+00:00"
+    },
+    "snippet": "Applications of Raman spectroscopy for microplastic detection and characterization: a comprehensive spectral reference Review Article Open access Published: 27 November 2025 Volume 32 , pages 28630–28677, ( 2025 ) Cite this article You have full access to this open access article Download PDF Save article View saved research Environmental Science and Pollution Research Aims and scope Submit manuscript Applications of Raman spectroscopy for microplastic detection and characterization: a comprehen",
+    "cached_at": "2026-04-08T14:09:52.485418+00:00"
+  },
+  "cc625d2a0e46d9aa": {
+    "url": "https://doi.org/10.15581/10171/115652",
+    "record": {
+      "id": "unknown",
+      "title": "News engagement patterns in Jordan and Saudi Arabia: a comparative study of news repertoires",
+      "url": "https://doi.org/10.15581/10171/115652",
+      "total_score": 4.5,
+      "breakdown": {
+        "geographic": {
+          "score": 1.7999999999999998,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 3 nodes matched"
+        },
+        "pillars": {
+          "score": 1.7,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 1 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.5 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Tesis de Ruba Mohd.pdf Download 3.47 MB Export Author(s) Mohd, R. M. A. (Ruba Mustafa Ahmad) Directors Serrano-Puche, J. (Javier) Keywords Comunicaciones sociales Date of the defense 2023-09-07 Abstract This doctoral dissertation examines news engagement, incidental exposure to news, and news avoidance patterns among the nationals of two Arab countries, Jordan and the Kingdom of Saudi Arabia (KSA). By utilizing a Q methodology approach combined with think-aloud protocols and in-depth interviews,",
+      "timestamp": "2026-04-08T14:10:02.590169+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:02.590302+00:00"
+    },
+    "snippet": "Tesis de Ruba Mohd.pdf Download 3.47 MB Export Author(s) Mohd, R. M. A. (Ruba Mustafa Ahmad) Directors Serrano-Puche, J. (Javier) Keywords Comunicaciones sociales Date of the defense 2023-09-07 Abstract This doctoral dissertation examines news engagement, incidental exposure to news, and news avoidance patterns among the nationals of two Arab countries, Jordan and the Kingdom of Saudi Arabia (KSA). By utilizing a Q methodology approach combined with think-aloud protocols and in-depth interviews,",
+    "cached_at": "2026-04-08T14:10:02.590354+00:00"
+  },
+  "3403ee078f104e80": {
+    "url": "https://doi.org/10.64628/aa.xegrgutnw",
+    "record": {
+      "id": "unknown",
+      "title": "The crisis in Yemen demands an independent review of NZ’s military links with Saudi Arabia",
+      "url": "https://doi.org/10.64628/aa.xegrgutnw",
+      "total_score": 4.9,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 1.9,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 2 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.9 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "www.shutterstock.com The revelation that Air New Zealand had been silently contracting services to the Saudi Arabian navy was apparently not the only instance of New Zealand’s connection to the murderous war in Yemen. A week after Air New Zealand apologised to the government, it emerged the Ministry of Foreign Affairs (MFAT) had approved exports of military equipment to Saudi Arabia in 2016 and 2018. Both cases involved a startling lack of transparency and direct inconsistencies with both corpor",
+      "timestamp": "2026-04-08T14:10:04.001079+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:04.001281+00:00"
+    },
+    "snippet": "www.shutterstock.com The revelation that Air New Zealand had been silently contracting services to the Saudi Arabian navy was apparently not the only instance of New Zealand’s connection to the murderous war in Yemen. A week after Air New Zealand apologised to the government, it emerged the Ministry of Foreign Affairs (MFAT) had approved exports of military equipment to Saudi Arabia in 2016 and 2018. Both cases involved a startling lack of transparency and direct inconsistencies with both corpor",
+    "cached_at": "2026-04-08T14:10:04.001312+00:00"
+  },
+  "d91bf139b329b4ba": {
+    "url": "https://doi.org/10.21833/ijaas.2024.11.004",
+    "record": {
+      "id": "unknown",
+      "title": "Smart detection of denial of service (DoS) attacks in internet of vehicles (IoV) networks",
+      "url": "https://doi.org/10.21833/ijaas.2024.11.004",
+      "total_score": 8.6,
+      "breakdown": {
+        "geographic": {
+          "score": 3.5999999999999996,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 6 nodes matched"
+        },
+        "pillars": {
+          "score": 3.25,
+          "max": 4.0,
+          "reason": "Two pillars covered: 5 keywords"
+        },
+        "comparative": {
+          "score": 1.75,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 1 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 8.6 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "IJAAS International Journal of ADVANCED AND APPLIED SCIENCES EISSN: 2313-3724, Print ISSN: 2313-626X Frequency: 12 Volume 11, Issue 11 (November 2024), Pages: 28-36 ---------------------------------------------- Original Research Paper Smart detection of denial of service (DoS) attacks in internet of vehicles (IoV) networks Author(s): Maha Helal 1, *, Mohammed Bakhamis 1 , Mousa Al-Akhras 2 , Samer Atawneh 1 , Ibrahim Al-Oqily 3 , Tariq Kashmeery 4 Affiliation(s): 1 College of Computing and Info",
+      "timestamp": "2026-04-08T14:10:05.039954+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:05.040304+00:00"
+    },
+    "snippet": "IJAAS International Journal of ADVANCED AND APPLIED SCIENCES EISSN: 2313-3724, Print ISSN: 2313-626X Frequency: 12 Volume 11, Issue 11 (November 2024), Pages: 28-36 ---------------------------------------------- Original Research Paper Smart detection of denial of service (DoS) attacks in internet of vehicles (IoV) networks Author(s): Maha Helal 1, *, Mohammed Bakhamis 1 , Mousa Al-Akhras 2 , Samer Atawneh 1 , Ibrahim Al-Oqily 3 , Tariq Kashmeery 4 Affiliation(s): 1 College of Computing and Info",
+    "cached_at": "2026-04-08T14:10:05.040317+00:00"
+  },
+  "a12365dc988c3fd5": {
+    "url": "https://doi.org/10.21833/ijaas.2023.03.006",
+    "record": {
+      "id": "unknown",
+      "title": "Behavioral determinants of hand hygiene compliance among nurses in intensive care units in Hai’l, Saudi Arabia",
+      "url": "https://doi.org/10.21833/ijaas.2023.03.006",
+      "total_score": 7.95,
+      "breakdown": {
+        "geographic": {
+          "score": 3.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 5 nodes matched"
+        },
+        "pillars": {
+          "score": 2.95,
+          "max": 4.0,
+          "reason": "Two pillars covered: 3 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 2 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 7.95 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "IJAAS International Journal of ADVANCED AND APPLIED SCIENCES EISSN: 2313-3724, Print ISSN: 2313-626X Frequency: 12 Volume 10, Issue 3 (March 2023), Pages: 46-55 ---------------------------------------------- Original Research Paper Behavioral determinants of hand hygiene compliance among nurses in intensive care units in Hai’l, Saudi Arabia Author(s): Afaf Alrimali 1 , Nashi Alreshidi 1, *, Awatif Alenizi 2 , Salwa Alrashidi 1 , Wadida Alshammari 1 , Jordan LLego 3 Affiliation(s): 1 Nursing Exec",
+      "timestamp": "2026-04-08T14:10:06.077234+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:06.077807+00:00"
+    },
+    "snippet": "IJAAS International Journal of ADVANCED AND APPLIED SCIENCES EISSN: 2313-3724, Print ISSN: 2313-626X Frequency: 12 Volume 10, Issue 3 (March 2023), Pages: 46-55 ---------------------------------------------- Original Research Paper Behavioral determinants of hand hygiene compliance among nurses in intensive care units in Hai’l, Saudi Arabia Author(s): Afaf Alrimali 1 , Nashi Alreshidi 1, *, Awatif Alenizi 2 , Salwa Alrashidi 1 , Wadida Alshammari 1 , Jordan LLego 3 Affiliation(s): 1 Nursing Exec",
+    "cached_at": "2026-04-08T14:10:06.077824+00:00"
+  },
+  "54e3832cb1ebd96e": {
+    "url": "https://doi.org/10.64628/ab.nyfftdhxf",
+    "record": {
+      "id": "unknown",
+      "title": "Middle East tensions: what Lebanese border strikes mean for Israel, Iran and Saudi Arabia",
+      "url": "https://doi.org/10.64628/ab.nyfftdhxf",
+      "total_score": 5.9,
+      "breakdown": {
+        "geographic": {
+          "score": 3.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 5 nodes matched"
+        },
+        "pillars": {
+          "score": 1.9,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 2 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.9 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Israeli soldiers in the Hula Valley in the north of Israel, near the Lebanese border. Atef Safadi/EPA Recent clashes between Israel and Hezbollah on the Lebanese border have caused much speculation of a looming military confrontation between Israel, Hezbollah and Iran, which backs the militant group. The exchange of fire in early September followed the crashing of two reportedly Israeli drones in Beirut in late August. A spate of other drone strikes across the region in recent weeks, some agains",
+      "timestamp": "2026-04-08T14:10:09.290205+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:09.290333+00:00"
+    },
+    "snippet": "Israeli soldiers in the Hula Valley in the north of Israel, near the Lebanese border. Atef Safadi/EPA Recent clashes between Israel and Hezbollah on the Lebanese border have caused much speculation of a looming military confrontation between Israel, Hezbollah and Iran, which backs the militant group. The exchange of fire in early September followed the crashing of two reportedly Israeli drones in Beirut in late August. A spate of other drone strikes across the region in recent weeks, some agains",
+    "cached_at": "2026-04-08T14:10:09.290355+00:00"
+  },
+  "a6b375aaf9482ca1": {
+    "url": "https://doi.org/10.52132/ajrsp.e.2024.57.4",
+    "record": {
+      "id": "unknown",
+      "title": "Analysis of Personal and Cultural Beliefs Related to Organ Donation in Saudi Arabia",
+      "url": "https://doi.org/10.52132/ajrsp.e.2024.57.4",
+      "total_score": 6.55,
+      "breakdown": {
+        "geographic": {
+          "score": 2.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 2 nodes matched"
+        },
+        "pillars": {
+          "score": 2.8,
+          "max": 4.0,
+          "reason": "Two pillars covered: 2 keywords"
+        },
+        "comparative": {
+          "score": 1.75,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 1 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.55 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "%PDF-1.5 %���� 1 0 obj << /Type /Catalog /Pages 2 0 R /Lang (ar-SA) /Metadata 141 0 R >> endobj 2 0 obj << /Type /Pages /Count 14 /Kids [ 3 0 R 44 0 R 47 0 R 62 0 R 65 0 R 68 0 R 73 0 R 76 0 R 79 0 R 82 0 R 85 0 R 97 0 R 103 0 R 106 0 R ] >> endobj 3 0 obj << /Type /Page /Parent 2 0 R /Resources << /Font << /F1 5 0 R /F2 8 0 R /F3 10 0 R /F4 15 0 R /F5 18 0 R /F6 25 0 R /F7 27 0 R /F8 29 0 R /F9 32 0 R /F10 37 0 R /F11 42 0 R >> /ExtGState << /GS7 7 0 R >> /XObject << /Image23 23 0 R >> /ProcSet",
+      "timestamp": "2026-04-08T14:10:09.618866+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:09.623333+00:00"
+    },
+    "snippet": "%PDF-1.5 %���� 1 0 obj << /Type /Catalog /Pages 2 0 R /Lang (ar-SA) /Metadata 141 0 R >> endobj 2 0 obj << /Type /Pages /Count 14 /Kids [ 3 0 R 44 0 R 47 0 R 62 0 R 65 0 R 68 0 R 73 0 R 76 0 R 79 0 R 82 0 R 85 0 R 97 0 R 103 0 R 106 0 R ] >> endobj 3 0 obj << /Type /Page /Parent 2 0 R /Resources << /Font << /F1 5 0 R /F2 8 0 R /F3 10 0 R /F4 15 0 R /F5 18 0 R /F6 25 0 R /F7 27 0 R /F8 29 0 R /F9 32 0 R /F10 37 0 R /F11 42 0 R >> /ExtGState << /GS7 7 0 R >> /XObject << /Image23 23 0 R >> /ProcSet",
+    "cached_at": "2026-04-08T14:10:09.623384+00:00"
+  },
+  "3e85aadc4ea8996f": {
+    "url": "https://doi.org/10.51644/bap65",
+    "record": {
+      "id": "unknown",
+      "title": "Engineering a Lasting Peace for Gaza and the Middle East",
+      "url": "https://doi.org/10.51644/bap65",
+      "total_score": 10.0,
+      "breakdown": {
+        "geographic": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 16 nodes matched"
+        },
+        "pillars": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "All three pillars covered: 21 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 6 corridors in 5 comparative contexts"
+        },
+        "dialectical": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "Pro-connectivity framing: 1 markers",
+          "stance": "pro"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 10.0 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Skip to content Engineering a Lasting Peace for Gaza and the Middle East VOLUME 6 ISSUE 5 Abdul Malek Al Jaber and Jatin Nathwani January 24, 2025 As the world nervously watches the rollout of a ceasefire agreement 1 after 15 long months of conflict between Israel and Palestine, hopes of a lasting peace are tentative and fragile. Establishing trust and a sense of mutuality is a goal that has eluded the region and the international community for 75 years. But this long-term goal may have a more p",
+      "timestamp": "2026-04-08T14:10:11.656418+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:11.657035+00:00"
+    },
+    "snippet": "Skip to content Engineering a Lasting Peace for Gaza and the Middle East VOLUME 6 ISSUE 5 Abdul Malek Al Jaber and Jatin Nathwani January 24, 2025 As the world nervously watches the rollout of a ceasefire agreement 1 after 15 long months of conflict between Israel and Palestine, hopes of a lasting peace are tentative and fragile. Establishing trust and a sense of mutuality is a goal that has eluded the region and the international community for 75 years. But this long-term goal may have a more p",
+    "cached_at": "2026-04-08T14:10:11.657053+00:00"
+  },
+  "3b2829402fe010db": {
+    "url": "https://doi.org/10.1007/978-981-99-7765-9_2",
+    "record": {
+      "id": "unknown",
+      "title": "On the Change in International System: Prospects and Pitfalls of Saudi Arabia-Israel Relations",
+      "url": "https://doi.org/10.1007/978-981-99-7765-9_2",
+      "total_score": 5.7,
+      "breakdown": {
+        "geographic": {
+          "score": 3.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 5 nodes matched"
+        },
+        "pillars": {
+          "score": 1.7,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 1 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.7 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Abstract After the 1938 Munich Agreement, Neville Chamberlain described it as “Peace for our time” borrowing from Benjamin Disraeli’s declaration that he made on culmination of the Congress of Berlin in 1878 that “I have returned from Germany with peace for our time.” The views expressed are author’s own. This is a preview of subscription content, log in via an institution to check access. Access this chapter Log in via an institution Subscribe and save Springer+ from €37.37 /Month Starting from",
+      "timestamp": "2026-04-08T14:10:16.012084+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:16.012286+00:00"
+    },
+    "snippet": "Abstract After the 1938 Munich Agreement, Neville Chamberlain described it as “Peace for our time” borrowing from Benjamin Disraeli’s declaration that he made on culmination of the Congress of Berlin in 1878 that “I have returned from Germany with peace for our time.” The views expressed are author’s own. This is a preview of subscription content, log in via an institution to check access. Access this chapter Log in via an institution Subscribe and save Springer+ from €37.37 /Month Starting from",
+    "cached_at": "2026-04-08T14:10:16.012337+00:00"
+  },
+  "2628ba20dc5f2791": {
+    "url": "https://doi.org/10.29121/shodhkosh.v5.i6.2024.3661",
+    "record": {
+      "id": "unknown",
+      "title": "INDIA MIDDLE EAST EUROPE ECONOMIC CORRIDOR: A STRATEGIC STUDY",
+      "url": "https://doi.org/10.29121/shodhkosh.v5.i6.2024.3661",
+      "total_score": 9.6,
+      "breakdown": {
+        "geographic": {
+          "score": 4.0,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 9 nodes matched"
+        },
+        "pillars": {
+          "score": 3.6,
+          "max": 4.0,
+          "reason": "All three pillars covered: 6 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 1 corridors in 2 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 9.6 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "INDIA MIDDLE EAST EUROPE ECONOMIC CORRIDOR: A STRATEGIC STUDY Authors Dibya Bonia Guest Faculty, Dept. of Political Science, Madhabdev University Dipankar Borah Ex-Student, Dibrugarh University. DOI: https://doi.org/10.29121/shodhkosh.v5.i6.2024.3661 Keywords: IMEC, BRI, Collaboration, Economic, Corridor Abstract [English] India Middle East Economic Corridor was a project to counter China’s BRI and strengthening the India Middle East, Europe’s collaboration in the sector of Economic, Energy, Inf",
+      "timestamp": "2026-04-08T14:10:19.223793+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:19.223896+00:00"
+    },
+    "snippet": "INDIA MIDDLE EAST EUROPE ECONOMIC CORRIDOR: A STRATEGIC STUDY Authors Dibya Bonia Guest Faculty, Dept. of Political Science, Madhabdev University Dipankar Borah Ex-Student, Dibrugarh University. DOI: https://doi.org/10.29121/shodhkosh.v5.i6.2024.3661 Keywords: IMEC, BRI, Collaboration, Economic, Corridor Abstract [English] India Middle East Economic Corridor was a project to counter China’s BRI and strengthening the India Middle East, Europe’s collaboration in the sector of Economic, Energy, Inf",
+    "cached_at": "2026-04-08T14:10:19.223918+00:00"
+  },
+  "281d0b26ad1a5009": {
+    "url": "https://doi.org/10.36948/ijfmr.2025.v07i06.59736",
+    "record": {
+      "id": "unknown",
+      "title": "Geopolitical Rebalancing in the Middle East: A Comparative Analysis of India’s IMEC Engagement and China’s BRI Strategy",
+      "url": "https://doi.org/10.36948/ijfmr.2025.v07i06.59736",
+      "total_score": 7.1,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 2.7,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 6 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 3 corridors in 4 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 7.1 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "International Journal For Multidisciplinary Research E-ISSN: 2582-2160 • Impact Factor: 9.24 A Widely Indexed Open Access Peer Reviewed Multidisciplinary Bi-monthly Scholarly International Journal Call for Paper Volume 8, Issue 2 (March-April 2026) Submit your research before last 3 days of April to publish your research paper in the issue of March-April. Home Research Paper Submit Research Paper Publication Guidelines Publication Charges Upload Documents Track Status / Pay Fees / Download Publi",
+      "timestamp": "2026-04-08T14:10:23.897395+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:23.897575+00:00"
+    },
+    "snippet": "International Journal For Multidisciplinary Research E-ISSN: 2582-2160 • Impact Factor: 9.24 A Widely Indexed Open Access Peer Reviewed Multidisciplinary Bi-monthly Scholarly International Journal Call for Paper Volume 8, Issue 2 (March-April 2026) Submit your research before last 3 days of April to publish your research paper in the issue of March-April. Home Research Paper Submit Research Paper Publication Guidelines Publication Charges Upload Documents Track Status / Pay Fees / Download Publi",
+    "cached_at": "2026-04-08T14:10:23.897595+00:00"
+  },
+  "c15f3183d17070d6": {
+    "url": "https://doi.org/10.55317/9781784136383",
+    "record": {
+      "id": "unknown",
+      "title": "Competing visions for international order: Responses to US power in a fracturing world",
+      "url": "https://doi.org/10.55317/9781784136383",
+      "total_score": 5.1,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 1.7,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 1 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 5.1 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "New Search Back Opened Current opened records Hide Current Record Actions Download Email Print Request Enquiry Add to Selection Remove from Selection Research paper Competing visions of international order : Responses to US power in a fracturing world Authors: Issuing Bodies: Conference: Editors: Published: : , 27 March 2025 . Files: 2025-03-27-competing-visions-international-order-vinjamuri-et-al.pdf Online access: Physical Description: 1 PDF (127 p.) : charts Abstract: The ‘liberal internation",
+      "timestamp": "2026-04-08T14:10:23.971890+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:23.972047+00:00"
+    },
+    "snippet": "New Search Back Opened Current opened records Hide Current Record Actions Download Email Print Request Enquiry Add to Selection Remove from Selection Research paper Competing visions of international order : Responses to US power in a fracturing world Authors: Issuing Bodies: Conference: Editors: Published: : , 27 March 2025 . Files: 2025-03-27-competing-visions-international-order-vinjamuri-et-al.pdf Online access: Physical Description: 1 PDF (127 p.) : charts Abstract: The ‘liberal internation",
+    "cached_at": "2026-04-08T14:10:23.972061+00:00"
+  },
+  "3ea16310f46a0952": {
+    "url": "https://doi.org/10.47362/ejsss.2025.6207",
+    "record": {
+      "id": "unknown",
+      "title": "Shifting Dynamics in West Asia: Navigating the Strategic Implications for the IndiaMiddle East-Europe Economic Corridor",
+      "url": "https://doi.org/10.47362/ejsss.2025.6207",
+      "total_score": 6.2,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 2.8,
+          "max": 4.0,
+          "reason": "Two pillars covered: 2 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.2 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "%PDF-1.5 %���� 1 0 obj <>>> endobj 2 0 obj <> endobj 3 0 obj <>/ExtGState<>/ProcSet[/PDF/Text/ImageB/ImageC/ImageI] >>/MediaBox[ 0 0 595.32 841.92] /Contents 4 0 R/Group<>/Tabs/S/StructParents 0>> endobj 4 0 obj <> stream x��<ˎ$�q�\u0001� �+���&\u0013h\u0014P]�%۰� ;�\u000e ƫ�� 4#��\u0007��\u0019�\b2�|t�h!?$�VW\u0016\u0019�\b�;�|����� �������p����\u000f���ϧ� �}�� ���_?<���O?|���O ���� �����?��r9==�NO�޾y��֓r�w?�}�O*�_����q�������_޾Q�����~�� �\u0001_�����J���~9�G��K�� �W����}~\u0016�/��\u0019.���W�X�)e/g�A��E\u00071���g\u0005\u0011�2\u0017\u0018\u0006�e\u00100}\u0016�L�GJ��K\u0014���h%\u0016n@b�Q�8���\u0016b\b",
+      "timestamp": "2026-04-08T14:10:28.254313+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:28.260599+00:00"
+    },
+    "snippet": "%PDF-1.5 %���� 1 0 obj <>>> endobj 2 0 obj <> endobj 3 0 obj <>/ExtGState<>/ProcSet[/PDF/Text/ImageB/ImageC/ImageI] >>/MediaBox[ 0 0 595.32 841.92] /Contents 4 0 R/Group<>/Tabs/S/StructParents 0>> endobj 4 0 obj <> stream x��<ˎ$�q�\u0001� �+���&\u0013h\u0014P]�%۰� ;�\u000e ƫ�� 4#��\u0007��\u0019�\b2�|t�h!?$�VW\u0016\u0019�\b�;�|����� �������p����\u000f���ϧ� �}�� ���_?<���O?|���O ���� �����?��r9==�NO�޾y��֓r�w?�}�O*�_����q�������_޾Q�����~�� �\u0001_�����J���~9�G��K�� �W����}~\u0016�/��\u0019.���W�X�)e/g�A��E\u00071���g\u0005\u0011�2\u0017\u0018\u0006�e\u00100}\u0016�L�GJ��K\u0014���h%\u0016n@b�Q�8���\u0016b\b",
+    "cached_at": "2026-04-08T14:10:28.260649+00:00"
+  },
+  "e2141c9b7b18c83b": {
+    "url": "https://doi.org/10.31439/unisci-263",
+    "record": {
+      "id": "unknown",
+      "title": "India and the Non-Western Space: Mapping India’s Potential and Possibilities in South Asia and beyond",
+      "url": "https://doi.org/10.31439/unisci-263",
+      "total_score": 4.8,
+      "breakdown": {
+        "geographic": {
+          "score": 1.0,
+          "max": 4.0,
+          "reason": "Partial geo anchors: 1 nodes matched"
+        },
+        "pillars": {
+          "score": 2.8,
+          "max": 4.0,
+          "reason": "Two pillars covered: 2 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 4.8 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "%PDF-2.0 %���� 1 0 obj<> endobj 2 0 obj<> endobj 3 0 obj<>stream amarq endstream endobj 4 0 obj<> endobj 5 0 obj<> endobj 6 0 obj<>/XObject<>>>/Contents 34 0 R/Parent 4 0 R>> endobj 7 0 obj<>/XObject<>>>/Contents 35 0 R/Parent 4 0 R>> endobj 8 0 obj<>/XObject<>>>/Contents 36 0 R/Parent 4 0 R>> endobj 9 0 obj<>/XObject<>>>/Contents 37 0 R/Parent 4 0 R>> endobj 10 0 obj<>/XObject<>>>/Contents 38 0 R/Parent 4 0 R>> endobj 11 0 obj<>/XObject<>>>/Contents 39 0 R/Parent 4 0 R>> endobj 12 0 obj<>/XObje",
+      "timestamp": "2026-04-08T14:10:32.722971+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:32.725542+00:00"
+    },
+    "snippet": "%PDF-2.0 %���� 1 0 obj<> endobj 2 0 obj<> endobj 3 0 obj<>stream amarq endstream endobj 4 0 obj<> endobj 5 0 obj<> endobj 6 0 obj<>/XObject<>>>/Contents 34 0 R/Parent 4 0 R>> endobj 7 0 obj<>/XObject<>>>/Contents 35 0 R/Parent 4 0 R>> endobj 8 0 obj<>/XObject<>>>/Contents 36 0 R/Parent 4 0 R>> endobj 9 0 obj<>/XObject<>>>/Contents 37 0 R/Parent 4 0 R>> endobj 10 0 obj<>/XObject<>>>/Contents 38 0 R/Parent 4 0 R>> endobj 11 0 obj<>/XObject<>>>/Contents 39 0 R/Parent 4 0 R>> endobj 12 0 obj<>/XObje",
+    "cached_at": "2026-04-08T14:10:32.725580+00:00"
+  },
+  "72d3e2c1ac571926": {
+    "url": "https://doi.org/10.31592/aeusbed.1759369",
+    "record": {
+      "id": "unknown",
+      "title": "Geopolitics and Corridors: The BRI Example",
+      "url": "https://doi.org/10.31592/aeusbed.1759369",
+      "total_score": 6.9,
+      "breakdown": {
+        "geographic": {
+          "score": 2.4,
+          "max": 4.0,
+          "reason": "Strong geographic grounding: 4 nodes matched"
+        },
+        "pillars": {
+          "score": 2.5,
+          "max": 4.0,
+          "reason": "Single pillar (Transport): 5 keywords"
+        },
+        "comparative": {
+          "score": 2.0,
+          "max": 2.0,
+          "reason": "Comparative framing present: 4 corridors in 6 comparative contexts"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "KEEP",
+      "decision": "HARVEST-AUTO-DEPLOY: Score 6.9 exceeds 4.0 threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Ahi Evran Üniversitesi Sosyal Bilimler Enstitüsü Dergisi Araştırma Makalesi TR EN PDF Kütüphaneme Ekle Araştırma Oluştur Kapat BibTex RIS Kaynak Göster Kütüphaneme Ekle Araştırma Oluştur Kapat Jeopolitik ve Koridorlar: Kuşak Yol Girişimi (BRI) Örneği Yıl 2026 , Cilt: 12 Sayı: 1 , 18 - 35 , 31.03.2026 Ferruh Özder https://doi.org/10.31592/aeusbed.1759369 https://izlik.org/JA48JS76MA Öz Koridorlar, jeoekonomi ve genel olarak ticaretin yanı sıra, jeopolitikle de yakından ilişkilidir ve bir kuvvet ç",
+      "timestamp": "2026-04-08T14:10:35.957207+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:35.957518+00:00"
+    },
+    "snippet": "Ahi Evran Üniversitesi Sosyal Bilimler Enstitüsü Dergisi Araştırma Makalesi TR EN PDF Kütüphaneme Ekle Araştırma Oluştur Kapat BibTex RIS Kaynak Göster Kütüphaneme Ekle Araştırma Oluştur Kapat Jeopolitik ve Koridorlar: Kuşak Yol Girişimi (BRI) Örneği Yıl 2026 , Cilt: 12 Sayı: 1 , 18 - 35 , 31.03.2026 Ferruh Özder https://doi.org/10.31592/aeusbed.1759369 https://izlik.org/JA48JS76MA Öz Koridorlar, jeoekonomi ve genel olarak ticaretin yanı sıra, jeopolitikle de yakından ilişkilidir ve bir kuvvet ç",
+    "cached_at": "2026-04-08T14:10:35.957532+00:00"
+  },
+  "17b5e52f76049fca": {
+    "url": "https://doi.org/10.65580/cspj",
+    "record": {
+      "id": "unknown",
+      "title": "Caucasus Strategic Perspectives",
+      "url": "https://doi.org/10.65580/cspj",
+      "total_score": 3.2,
+      "breakdown": {
+        "geographic": {
+          "score": 0.5,
+          "max": 4.0,
+          "reason": "No geographic anchors found; generic reference only"
+        },
+        "pillars": {
+          "score": 1.7,
+          "max": 4.0,
+          "reason": "Single pillar (Energy): 1 keywords"
+        },
+        "comparative": {
+          "score": 1.0,
+          "max": 2.0,
+          "reason": "No competing corridor mentioned; standalone IMEC analysis"
+        },
+        "dialectical": {
+          "score": 0.0,
+          "max": 2.0,
+          "reason": "No dialectical framing detected",
+          "stance": "neutral"
+        }
+      },
+      "action": "REJECT",
+      "decision": "HARVEST-REJECT: Below threshold",
+      "fetch_method": "harvest-fast",
+      "snippet_of_proof": "Main news Call for Submissions-Caucasus Strategic Perspectives, Volume 7, Issue 1, Summer 2026 New issue of CSP Journal: “Sovereignty, Strategic Choices and Survival in the 21st Century” The journal of Caucasus Strategic Perspectives is pleased to announce the release of its special issue. The new issue is titled “Sovereignty, Strategic Choices and Survival in the 21st Century”. Download PDF View the archive Subscribe View the issue Highlights Call for Submissions-Caucasus Strategic Perspectives",
+      "timestamp": "2026-04-08T14:10:40.107251+00:00",
+      "harvest_timestamp": "2026-04-08T14:10:40.107313+00:00"
+    },
+    "snippet": "Main news Call for Submissions-Caucasus Strategic Perspectives, Volume 7, Issue 1, Summer 2026 New issue of CSP Journal: “Sovereignty, Strategic Choices and Survival in the 21st Century” The journal of Caucasus Strategic Perspectives is pleased to announce the release of its special issue. The new issue is titled “Sovereignty, Strategic Choices and Survival in the 21st Century”. Download PDF View the archive Subscribe View the issue Highlights Call for Submissions-Caucasus Strategic Perspectives",
+    "cached_at": "2026-04-08T14:10:40.107324+00:00"
   }
 }
