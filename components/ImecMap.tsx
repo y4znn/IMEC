@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -15,787 +15,1236 @@ import {
   Sun,
   Moon,
   BarChart3,
-  Cpu
+  Cpu,
+  Zap,
+  Shield,
+  Anchor,
+  Globe,
+  Database,
+  Search,
+  Users,
+  Menu,
+  ActivitySquare
 } from 'lucide-react';
-import {
-  SUBSEA_CABLES,
-  DATA_CENTERS,
-  DEMOGRAPHIC_POINTS
-} from '@/data/imec-geo-constants';
 
 // Set Mapbox token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
 
-// ── Types ──────────────────────────────────────────────────
-interface ImecNode {
+// ── Data Schemas ───────────────────────────────────────────
+
+interface PortAsset {
   id: string;
   name: string;
-  type: 'port' | 'rail-hub' | 'dry-port';
   country: string;
   coordinates: [number, number];
-  role: string;
+  unLocode: string;
+  teu: number;
+  capacityText: string;
+  draft: string;
+  turnaround: string;
+  ownership: string;
+  congestion: 'Low' | 'Moderate' | 'High';
+  vesselsTracked: number;
+  status: 'Active' | 'Under Expansion' | 'Inactive';
+  headlines: string[];
+}
+
+interface RailwayAsset {
+  id: string;
+  name: string;
+  status: 'Built' | 'Proposed';
+  length: string;
+  gauge: string;
+  provisions: string;
+  country: string;
+  coordinates: [number, number][];
+  headlines: string[];
+}
+
+interface DataCenterAsset {
+  id: string;
+  name: string;
+  city: string;
+  country: string;
+  coordinates: [number, number];
+  operator: string;
+  serversCount: string;
+  tier: string;
+  securityRating: string;
+}
+
+interface CableAsset {
+  id: string;
+  name: string;
+  landingPoints: string[];
+  status: 'Active' | 'Under Development';
+  owners: string;
+  suppliers: string;
+  securityRating: string;
+  coordinates: [number, number][];
+}
+
+interface EnergyAsset {
+  id: string;
+  name: string;
+  type: 'Pipeline' | 'HVDC Interconnector';
+  product: string;
   capacity: string;
-  status: 'operational' | 'limited' | 'inactive';
-  transitTimeFromIndia: string;
-  economicImpact: string;
-  description: string;
+  status: string;
+  route: string;
+  promoters: string;
+  coordinates: [number, number][];
 }
 
-interface TourStep {
-  title: string;
-  center: [number, number];
-  zoom: number;
-  pitch: number;
-  bearing: number;
-  description: string;
-  highlightedNodes: string[];
+interface AgreementAsset {
+  id: string;
+  name: string;
+  type: 'FTA' | 'Defense';
+  signedYear: string;
+  status: string;
+  members: string[];
+  provisions: string;
+  benefits: string;
+  developments: string[];
+  coordinates: [number, number][][][]; // Multipolygons for shading
 }
 
-// ── Node Definitions ────────────────────────────────────────
-const IMEC_NODES: ImecNode[] = [
+// ── Static Database ────────────────────────────────────────
+
+const PORTS_DATABASE: PortAsset[] = [
+  {
+    id: 'jnpt',
+    name: 'Jawaharlal Nehru Port (JNPT)',
+    country: 'India',
+    coordinates: [72.946, 18.948],
+    unLocode: 'INNSA',
+    teu: 10.0,
+    capacityText: '~10.0M TEU / Year',
+    draft: '15.0m',
+    turnaround: '1.5 Days',
+    ownership: 'Government of India / PSA International (Singapore)',
+    congestion: 'Moderate',
+    vesselsTracked: 24,
+    status: 'Active',
+    headlines: [
+      'JNPT handles record container volumes in Q1 2026.',
+      'New automated terminal systems reduce vessel wait times.'
+    ]
+  },
   {
     id: 'mundra',
     name: 'Mundra Port',
-    type: 'port',
     country: 'India',
     coordinates: [69.7317, 22.8397],
-    role: 'Primary departure port for East Corridor maritime segment',
-    capacity: '150 Million Metric Tonnes / Year',
-    status: 'operational',
-    transitTimeFromIndia: 'Day 0 (Origin)',
-    economicImpact: 'Directly supports $35B+ in Indian export trade; key manufacturing corridor link.',
-    description: 'Mundra is India\'s largest private commercial port, hosting deep-draft berths and high-speed cargo-handling equipment. It connects Northern and Western India\'s industrial heartlands directly to the Arabian Gulf.'
+    unLocode: 'INMUN',
+    teu: 8.0,
+    capacityText: '~8.0M TEU / Year',
+    draft: '16.5m',
+    turnaround: '1.2 Days',
+    ownership: 'Adani Ports (National) / DP World',
+    congestion: 'Moderate',
+    vesselsTracked: 18,
+    status: 'Active',
+    headlines: [
+      'Adani Ports announces new deep-water container terminal berths.',
+      'Strategic rail connectivity routes completed from Gujarat manufacturing belt.'
+    ]
   },
   {
-    id: 'kandla',
-    name: 'Kandla Port',
-    type: 'port',
+    id: 'mumbai_port',
+    name: 'Mumbai Port Authority',
     country: 'India',
-    coordinates: [70.2147, 23.0031],
-    role: 'Major dry bulk & petroleum handling terminal',
-    capacity: '127 Million Metric Tonnes / Year',
-    status: 'operational',
-    transitTimeFromIndia: 'Day 0 (Origin)',
-    economicImpact: 'Primary energy security hub for Northwest India; key fertilizer imports gateway.',
-    description: 'Deendayal Port in Kandla is a vital public port in Gujarat, handling massive volumes of dry bulk cargo, chemicals, and petroleum. It represents the public sector anchor of IMEC\'s eastern maritime leg.'
-  },
-  {
-    id: 'fujairah',
-    name: 'Fujairah Port',
-    type: 'port',
-    country: 'UAE',
-    coordinates: [56.3658, 25.1612],
-    role: 'Strait of Hormuz bypass terminal and rail connector',
-    capacity: '100 Million Metric Tonnes / Year',
-    status: 'operational',
-    transitTimeFromIndia: '3 Days (Sea)',
-    economicImpact: 'Acts as a critical strategic route avoiding maritime chokepoints; major bunkering node.',
-    description: 'Fujairah is a key port on the Gulf of Oman, allowing container and energy trade to bypass the volatile Strait of Hormuz. It marks the coastal entrance of the Etihad Rail freight network.'
+    coordinates: [72.8582, 18.9482],
+    unLocode: 'INBOM',
+    teu: 1.5,
+    capacityText: '75.15 MMT total cargo / Year',
+    draft: '12.5m',
+    turnaround: '2.0 Days',
+    ownership: 'Government of India (Mumbai Port Authority)',
+    congestion: 'Low',
+    vesselsTracked: 11,
+    status: 'Active',
+    headlines: [
+      'Mumbai Port Authority initiates dry bulk terminal modernization.',
+      'Cargo flow capacity upgrades approved for western manufacturing hubs.'
+    ]
   },
   {
     id: 'jebel_ali',
-    name: 'Jebel Ali Port',
-    type: 'port',
+    name: 'Port of Jebel Ali',
     country: 'UAE',
     coordinates: [55.0612, 25.0113],
-    role: 'Primary sea-to-rail intermodal transshipment terminal',
-    capacity: '22.4 Million TEU / Year',
-    status: 'operational',
-    transitTimeFromIndia: '3.5 Days (Sea)',
-    economicImpact: 'Key logistics anchor for 8,000+ multinational firms in JAFZA; central Gulf trade hub.',
-    description: 'Jebel Ali is the largest container port in the Middle East and one of the top 10 globally. In IMEC, it acts as the primary transfer hub where maritime container freight is loaded onto Etihad Rail.'
+    unLocode: 'AEJEA',
+    teu: 19.4,
+    capacityText: '~19.4M TEU / Year',
+    draft: '17.0m',
+    turnaround: '1.1 Days',
+    ownership: 'DP World (State-backed)',
+    congestion: 'Low',
+    vesselsTracked: 42,
+    status: 'Active',
+    headlines: [
+      'DP World integrates AI logistics tracking across Jebel Ali terminals.',
+      'Etihad Rail cargo services officially commence from Jebel Ali.'
+    ]
   },
   {
-    id: 'riyadh',
-    name: 'Riyadh Dry Port',
-    type: 'dry-port',
-    country: 'Saudi Arabia',
-    coordinates: [46.7249, 24.6402],
-    role: 'Central Arabian rail freight sorting and logistics node',
-    capacity: '1.2 Million TEU / Year',
-    status: 'limited',
-    transitTimeFromIndia: '4.5 Days (Sea + Rail)',
-    economicImpact: 'Cuts container customs clearance and transit times to Riyadh interior by 50%.',
-    description: 'Riyadh Dry Port is Saudi Arabia\'s premier inland rail terminal, connected to the Dammam line and the North-South Rail. It consolidates cargo traveling across the interior Saudi desert segment.'
+    id: 'khalifa',
+    name: 'Khalifa Port',
+    country: 'UAE',
+    coordinates: [54.6247, 24.8932],
+    unLocode: 'AEKHL',
+    teu: 8.0,
+    capacityText: '~8.0M TEU / Year',
+    draft: '18.0m',
+    turnaround: '1.2 Days',
+    ownership: 'Abu Dhabi Ports Group / CMA CGM (French)',
+    congestion: 'Low',
+    vesselsTracked: 19,
+    status: 'Active',
+    headlines: [
+      'Khalifa Port expands automated container yard.',
+      'French shipping major CMA CGM scales Mediterranean feeder routes.'
+    ]
   },
   {
-    id: 'al_haditha',
-    name: 'Al Haditha Terminal',
-    type: 'dry-port',
+    id: 'fujairah',
+    name: 'Port of Fujairah',
+    country: 'UAE',
+    coordinates: [56.3658, 25.1612],
+    unLocode: 'AEFJR',
+    teu: 1.0,
+    capacityText: '~1.0M TEU / Year',
+    draft: '18.0m',
+    turnaround: '1.8 Days',
+    ownership: 'Government of Fujairah / DP World',
+    congestion: 'Low',
+    vesselsTracked: 15,
+    status: 'Under Expansion',
+    headlines: [
+      'Fujairah begins container capacity expansion to absorb Hormuz bypass cargo.',
+      'New rail terminal links Fujairah direct to Saudi border.'
+    ]
+  },
+  {
+    id: 'duqm',
+    name: 'Port of Duqm',
+    country: 'Oman',
+    coordinates: [57.7513, 19.6738],
+    unLocode: 'OMDQM',
+    teu: 3.5,
+    capacityText: '~3.5M TEU / Year',
+    draft: '19.0m',
+    turnaround: '1.6 Days',
+    ownership: 'Asyad Ports Oman / Consortium Antwerp Port (Belgium)',
+    congestion: 'Low',
+    vesselsTracked: 8,
+    status: 'Under Expansion',
+    headlines: [
+      'Oman signs Belgium consortium deal to scale Duqm container operations.',
+      'Special Economic Zone at Duqm attracts $2.4B in logistics investments.'
+    ]
+  },
+  {
+    id: 'salalah',
+    name: 'Port of Salalah',
+    country: 'Oman',
+    coordinates: [54.0112, 16.9423],
+    unLocode: 'OMSLL',
+    teu: 6.5,
+    capacityText: '~6.5M TEU / Year',
+    draft: '18.5m',
+    turnaround: '1.3 Days',
+    ownership: 'APM Terminals (Danish) / Asyad Ports',
+    congestion: 'Moderate',
+    vesselsTracked: 20,
+    status: 'Active',
+    headlines: [
+      'Salalah Port increases transshipment links to East Africa.',
+      'New hybrid cranes deployed to improve turnaround efficiency.'
+    ]
+  },
+  {
+    id: 'dammam',
+    name: 'King Abdulaziz Port, Dammam',
     country: 'Saudi Arabia',
-    coordinates: [37.1597, 31.4553],
-    role: 'Saudi-Jordanian border logistics and customs terminal',
-    capacity: 'Freight yard capacity of 500,000 containers / Year',
-    status: 'limited',
-    transitTimeFromIndia: '5.5 Days (Sea + Rail)',
-    economicImpact: 'Key border corridor hub; facilitates customs pre-clearance and multi-state rail gauge transit.',
-    description: 'Al Haditha is the largest land border crossing in Saudi Arabia. Under IMEC, it represents the critical gateway linking the GCC network to Jordan, bypassing traditional road transport bottleneck zones.'
+    coordinates: [50.1753, 26.4328],
+    unLocode: 'SADMM',
+    teu: 3.5,
+    capacityText: '~3.5M TEU / Year',
+    draft: '16.0m',
+    turnaround: '1.4 Days',
+    ownership: 'Saudi Ports Authority (Mawani)',
+    congestion: 'Low',
+    vesselsTracked: 14,
+    status: 'Active',
+    headlines: [
+      'Dammam Port reports 12% growth in container volume.',
+      'New cargo rail connection to Riyadh dry port launched.'
+    ]
+  },
+  {
+    id: 'jeddah',
+    name: 'Jeddah Islamic Port',
+    country: 'Saudi Arabia',
+    coordinates: [39.1601, 21.4658],
+    unLocode: 'SAJED',
+    teu: 13.0,
+    capacityText: '~13.0M TEU / Year',
+    draft: '16.5m',
+    turnaround: '1.5 Days',
+    ownership: 'Saudi Ports Authority / DP World / RSGT',
+    congestion: 'High',
+    vesselsTracked: 22,
+    status: 'Active',
+    headlines: [
+      'Jeddah Port handles massive transshipments despite Red Sea shipping detours.',
+      'DP World expands automated container yard at Jeddah.'
+    ]
+  },
+  {
+    id: 'aqaba',
+    name: 'Port of Aqaba',
+    country: 'Jordan',
+    coordinates: [35.0118, 29.5267],
+    unLocode: 'JOAQB',
+    teu: 1.3,
+    capacityText: '~1.3M TEU / Year',
+    draft: '15.0m',
+    turnaround: '2.0 Days',
+    ownership: 'Aqaba Development Corp / APM Terminals',
+    congestion: 'Moderate',
+    vesselsTracked: 6,
+    status: 'Active',
+    headlines: [
+      'Jordan and UAE sign $2.3B deal for Aqaba railway line.',
+      'Aqaba Port scales bulk cargo operations.'
+    ]
   },
   {
     id: 'haifa',
-    name: 'Haifa Port',
-    type: 'port',
+    name: 'Port of Haifa',
     country: 'Israel',
     coordinates: [34.9892, 32.7940],
-    role: 'Primary rail-to-sea Mediterranean transshipment gateway',
-    capacity: '30 Million Tonnes / Year',
-    status: 'inactive',
-    transitTimeFromIndia: '6.5 Days (Sea + Rail)',
-    economicImpact: 'Bypasses the Suez Canal entirely for Levant cargo, reducing transit costs to the Mediterranean.',
-    description: 'Haifa Port is the leading gateway in Israel, operated by a consortium led by Adani Ports. In the IMEC pipeline, it receives overland rail cargo and loads it onto vessels heading to European shores.'
+    unLocode: 'ILHFA',
+    teu: 1.5,
+    capacityText: '~1.5M TEU / Year',
+    draft: '15.5m',
+    turnaround: '2.1 Days',
+    ownership: 'Adani Group (India) 70% / Gadot Group (Israel) 30% / Bay Port operated by Chinese SIPG',
+    congestion: 'High',
+    vesselsTracked: 12,
+    status: 'Active',
+    headlines: [
+      'Security review initiated regarding SIPGs Bay Port lease at Haifa.',
+      'Haifa terminal reports logistics backlogs amidst regional friction.'
+    ]
+  },
+  {
+    id: 'ashdod',
+    name: 'Port of Ashdod',
+    country: 'Israel',
+    coordinates: [34.6478, 31.8175],
+    unLocode: 'ILASD',
+    teu: 1.5,
+    capacityText: '~1.5M TEU / Year',
+    draft: '15.0m',
+    turnaround: '1.9 Days',
+    ownership: 'Israel Ports Authority / TIL (Swiss)',
+    congestion: 'Moderate',
+    vesselsTracked: 9,
+    status: 'Active',
+    headlines: [
+      'Ashdod absorbs cargo diverted from Red Sea blockades.',
+      'Upgrade plans approved to double container yard capacity.'
+    ]
   },
   {
     id: 'piraeus',
-    name: 'Piraeus Port',
-    type: 'port',
+    name: 'Port of Piraeus',
     country: 'Greece',
     coordinates: [23.6371, 37.9475],
-    role: 'Primary maritime gateway into Southeast & Central Europe',
-    capacity: '7.2 Million TEU / Year',
-    status: 'operational',
-    transitTimeFromIndia: '8.5 Days (Sea + Rail + Sea)',
-    economicImpact: 'Direct access to Balkan and European rail networks, reducing final delivery times by 3-4 days.',
-    description: 'Piraeus Port in Athens is the primary entry point for IMEC cargo into Europe. From Piraeus, goods enter the European rail system for distribution into Central and Eastern European markets.'
+    unLocode: 'GRPIR',
+    teu: 7.2,
+    capacityText: '~7.2M TEU / Year',
+    draft: '16.0m',
+    turnaround: '1.4 Days',
+    ownership: 'COSCO Shipping (China)',
+    congestion: 'Moderate',
+    vesselsTracked: 31,
+    status: 'Active',
+    headlines: [
+      'COSCO reports record EU-bound transshipments via Piraeus.',
+      'European Council debates digital security toolbox vetting for Piraeus terminals.'
+    ]
+  },
+  {
+    id: 'trieste',
+    name: 'Port of Trieste',
+    country: 'Italy',
+    coordinates: [13.7631, 45.6582],
+    unLocode: 'ITTRS',
+    teu: 1.0,
+    capacityText: '~1.0M TEU / Year',
+    draft: '18.0m',
+    turnaround: '1.3 Days',
+    ownership: 'AdSP Italy / HHLA (German)',
+    congestion: 'Low',
+    vesselsTracked: 7,
+    status: 'Active',
+    headlines: [
+      'Trieste Port records increase in Central European rail exports.',
+      'HHLA expands terminal infrastructure at Trieste.'
+    ]
   },
   {
     id: 'genoa',
-    name: 'Genoa Port',
-    type: 'port',
+    name: 'Port of Genoa',
     country: 'Italy',
     coordinates: [8.9463, 44.4056],
-    role: 'Southern European gateway for Italian & Swiss industrial hubs',
-    capacity: '2.8 Million TEU / Year',
-    status: 'operational',
-    transitTimeFromIndia: '9.5 Days (Sea + Rail + Sea)',
-    economicImpact: 'Bypasses Gibraltar shipping detours; connects directly to Northern Italy\'s manufacturing belt.',
-    description: 'Genoa is Italy\'s leading maritime hub, offering a direct path through the Alps to Central European industrial zones, bypassing the longer sea routes around Western Europe.'
+    unLocode: 'ITGOA',
+    teu: 3.0,
+    capacityText: '~3.0M TEU / Year',
+    draft: '15.0m',
+    turnaround: '1.6 Days',
+    ownership: 'AdSP Italy / PSA International (Singapore)',
+    congestion: 'Moderate',
+    vesselsTracked: 16,
+    status: 'Active',
+    headlines: [
+      'Genoa terminal links directly to Alpine rail network.',
+      'Suez detour bypass increases container rates at Genoa.'
+    ]
   },
   {
     id: 'marseille',
-    name: 'Marseille Port',
-    type: 'port',
+    name: 'Port of Marseille-Fos',
     country: 'France',
-    coordinates: [5.3698, 43.2965],
-    role: 'Western European maritime terminal and digital subsea cable landing',
-    capacity: '79 Million Tonnes / Year',
-    status: 'operational',
-    transitTimeFromIndia: '10 Days (Sea + Rail + Sea)',
-    economicImpact: 'Connects Middle East cargo to Western European consumers; landing point of Blue-Raman subsea fiber.',
-    description: 'Marseille is France\'s largest commercial port and a global digital hub. It serves as a major entry terminal for IMEC and the landing station for the Blue-Raman ultra-high-speed data pipeline.'
+    coordinates: [4.9768, 43.4345],
+    unLocode: 'FRMRS',
+    teu: 1.5,
+    capacityText: '~1.5M TEU / Year',
+    draft: '15.5m',
+    turnaround: '1.7 Days',
+    ownership: 'Grand Port Maritime de Marseille (State)',
+    congestion: 'Low',
+    vesselsTracked: 11,
+    status: 'Active',
+    headlines: [
+      'Marseille-Fos expands container berths to handle larger vessels.',
+      'New subsea fiber landing station commissioned at Marseille.'
+    ]
+  },
+  {
+    id: 'tartus',
+    name: 'Tartus Port (Alternative)',
+    country: 'Syria',
+    coordinates: [35.8789, 34.9048],
+    unLocode: 'SYTAR',
+    teu: 2.0,
+    capacityText: '2.0M TEU / Year Equivalent',
+    draft: '14.5m',
+    turnaround: '2.5 Days',
+    ownership: 'DP World (30-year concession)',
+    congestion: 'Low',
+    vesselsTracked: 3,
+    status: 'Under Expansion',
+    headlines: [
+      'DP World signs landmark 30-year deal to develop Tartus Port.',
+      'Syrian infrastructure projects attract Gulf logistics interest.'
+    ]
+  },
+  {
+    id: 'latakia',
+    name: 'Latakia Port (Alternative)',
+    country: 'Syria',
+    coordinates: [35.7876, 35.5312],
+    unLocode: 'SYLTK',
+    teu: 1.8,
+    capacityText: '1.8M TEU / Year Equivalent',
+    draft: '14.0m',
+    turnaround: '2.3 Days',
+    ownership: 'CMA CGM (French)',
+    congestion: 'Low',
+    vesselsTracked: 4,
+    status: 'Under Expansion',
+    headlines: [
+      'CMA CGM announces €200M Latakia port expansion.',
+      'Latakia terminal upgrades container processing software.'
+    ]
+  },
+  {
+    id: 'riyadh_dry_port',
+    name: 'Riyadh Dry Port',
+    country: 'Saudi Arabia',
+    coordinates: [46.7249, 24.6402],
+    unLocode: 'SARYD',
+    teu: 1.2,
+    capacityText: '1.2M TEU / Year',
+    draft: 'Land Terminal',
+    turnaround: '0.8 Days',
+    ownership: 'Saudi Railway Company (SAR)',
+    congestion: 'Moderate',
+    vesselsTracked: 0,
+    status: 'Active',
+    headlines: [
+      'Riyadh dry terminal handles record daily trains from Eastern province.',
+      'SAR implements smart cargo pre-clearing.'
+    ]
+  },
+  {
+    id: 'al_haditha_terminal',
+    name: 'Al Haditha Terminal',
+    country: 'Saudi Arabia',
+    coordinates: [37.1597, 31.4553],
+    unLocode: 'SAHDT',
+    teu: 0.5,
+    capacityText: '500k Containers / Year',
+    draft: 'Land Border',
+    turnaround: '1.4 Days',
+    ownership: 'Saudi Railway Company (SAR)',
+    congestion: 'Low',
+    vesselsTracked: 0,
+    status: 'Active',
+    headlines: [
+      'Border yard capacity expanded for container offloads.',
+      'Saudi-Jordan rail connector plans proceed to design stage.'
+    ]
   }
 ];
 
-// ── Guided Tour Steps ───────────────────────────────────────
-const TOUR_STEPS: TourStep[] = [
+const RAILWAYS_DATABASE: RailwayAsset[] = [
   {
-    title: '1. Corridor Overview',
-    center: [38.0, 31.0],
-    zoom: 3.5,
-    pitch: 30,
-    bearing: 0,
-    description: 'The India-Middle East-Europe Economic Corridor (IMEC) is a multi-modal transit network designed to streamline trade, digital data, and clean energy pipeline transport across three continents.',
-    highlightedNodes: []
+    id: 'etihad_rail',
+    name: 'Etihad Rail Freight Network',
+    status: 'Built',
+    length: '1,200 km',
+    gauge: 'Standard (1,435 mm)',
+    provisions: 'Main UAE corridor linking Fujairah bypass port to Jebel Ali, Khalifa, and Ghuwaifat border.',
+    country: 'UAE',
+    coordinates: [[56.36, 25.16], [55.06, 25.01], [54.37, 24.45], [51.62, 24.08]],
+    headlines: [
+      'Etihad Rail officially launches commercial operations.',
+      'Weekly container freight volumes reach record highs between Abu Dhabi and Fujairah.'
+    ]
   },
   {
-    title: '2. Indian Terminals (Origin)',
-    center: [69.9, 22.9],
-    zoom: 5.5,
-    pitch: 45,
-    bearing: -10,
-    description: 'IMEC begins at Mundra and Kandla ports in Gujarat, India. These deep-water ports serve as consolidation hubs for manufacturing exports originating from the Indian subcontinent.',
-    highlightedNodes: ['mundra', 'kandla']
+    id: 'uae_saudi_link',
+    name: 'UAE – Saudi Arabia Cross-Border Link',
+    status: 'Proposed',
+    length: '290 km',
+    gauge: 'Standard (1,435 mm)',
+    provisions: 'Connects UAE al-Ghuwaifat border terminal to Saudi East cargo track at Haradh/Dammam.',
+    country: 'UAE & Saudi Arabia',
+    coordinates: [[51.62, 24.08], [49.5, 24.0], [50.17, 26.43]],
+    headlines: [
+      'UAE-Saudi cross border link enters bidding/tender phase.',
+      'Bilateral committees align regulatory frameworks for freight transits.'
+    ]
   },
   {
-    title: '3. East Corridor Maritime Route',
-    center: [62.5, 23.5],
-    zoom: 4.8,
-    pitch: 40,
-    bearing: -20,
-    description: 'Vessels transit the Arabian Sea from West India to the UAE. This maritime leg replaces overland routes and connects South Asian trade directly to the Arabian Peninsula in 3 days.',
-    highlightedNodes: ['fujairah', 'jebel_ali']
+    id: 'saudi_east_north',
+    name: 'Saudi East Cargo & North Rail Network',
+    status: 'Built',
+    length: '1,749 km',
+    gauge: 'Standard (1,435 mm)',
+    provisions: 'Bypasses Hormuz chokepoints by connecting Dammam and Riyadh directly to Al Haditha Jordan border.',
+    country: 'Saudi Arabia',
+    coordinates: [[50.17, 26.43], [46.72, 24.64], [43.9, 26.3], [41.0, 27.5], [37.1597, 31.4553]],
+    headlines: [
+      'SAR officially launches consolidated active overland cargo corridor.',
+      'Double-stack container test runs completed from Riyadh inland ports.'
+    ]
   },
   {
-    title: '4. Arabian Gulf Terminals',
-    center: [55.5, 25.1],
-    zoom: 6.8,
-    pitch: 45,
-    bearing: 15,
-    description: 'Cargo is offloaded at Jebel Ali or Fujairah. Jebel Ali is the Middle East\'s largest container port, serving as the critical intermodal transshipment node where sea lanes meet the GCC railway.',
-    highlightedNodes: ['fujairah', 'jebel_ali']
+    id: 'saudi_jordan_link',
+    name: 'Saudi Arabia – Jordan Cross-Border Link',
+    status: 'Proposed',
+    length: '180 km',
+    gauge: 'Standard (1,435 mm)',
+    provisions: 'Extends from Al Haditha Saudi railhead into Jordanian standard-gauge network.',
+    country: 'Saudi Arabia & Jordan',
+    coordinates: [[37.1597, 31.4553], [36.0, 31.8], [35.01, 29.52]],
+    headlines: [
+      'Truck-to-rail container transfers continue at Al Haditha border depot.',
+      'Jordanian Ministry of Transport drafts standard-gauge border terminal design.'
+    ]
   },
   {
-    title: '5. Arabian Peninsula Railway Segment',
-    center: [47.0, 25.0],
-    zoom: 5.0,
-    pitch: 50,
-    bearing: 25,
-    description: 'The Northern Corridor utilizes a high-capacity railway. Running from Fujairah through Riyadh and across Saudi Arabia to Jordan and Israel, this 2,650km rail link bypasses maritime bottlenecks.',
-    highlightedNodes: ['riyadh', 'al_haditha']
+    id: 'jordan_aqaba_project',
+    name: 'Jordan Aqaba Railway Project',
+    status: 'Proposed',
+    length: '360 km',
+    gauge: 'Standard (1,435 mm)',
+    provisions: 'Links mining zones and inland hubs directly to Port of Aqaba. Anchored by UAE-funded package.',
+    country: 'Jordan',
+    coordinates: [[35.01, 29.52], [36.0, 31.5]],
+    headlines: [
+      'UAE signs $2.3B investment deal to construct and operate Aqaba Rail corridor.',
+      'Environmental assessments completed for standard-gauge track alignments.'
+    ]
   },
   {
-    title: '6. Levant Gateway (Haifa Port)',
-    center: [34.9892, 32.7940],
-    zoom: 8.0,
-    pitch: 55,
-    bearing: 30,
-    description: 'OVERLAND ENDPOINT: Rail cargo reaches Haifa Port, Israel. This strategic Mediterranean port transfers freight back onto ships bound for European maritime gateways.',
-    highlightedNodes: ['haifa']
+    id: 'jordan_israel_link',
+    name: 'Jordan – Israel Cross-Border Link',
+    status: 'Proposed',
+    length: '15 km',
+    gauge: 'Standard (1,435 mm)',
+    provisions: 'Strategic corridor between Jordan River border crossing and Israel Beit She\'an rail network.',
+    country: 'Jordan & Israel',
+    coordinates: [[36.0, 31.8], [35.5, 32.5], [35.0, 32.79]],
+    headlines: [
+      'Jordan-Israel link faces regional geopolitical negotiations.',
+      'Alternative logistics corridors evaluated to bypass land borders.'
+    ]
   },
   {
-    title: '7. Mediterranean Sea Lanes & European Terminals',
-    center: [15.0, 40.0],
-    zoom: 4.5,
-    pitch: 40,
-    bearing: -15,
-    description: 'The final leg connects Haifa to European ports (Piraeus in Greece, Genoa in Italy, Marseille in France) via Mediterranean maritime routes, cutting overall India-to-Europe shipping times to just 10 days.',
-    highlightedNodes: ['piraeus', 'genoa', 'marseille']
+    id: 'israel_port_link',
+    name: 'Haifa Port Rail Link',
+    status: 'Built',
+    length: '60 km',
+    gauge: 'Standard (1,435 mm)',
+    provisions: 'Connects Haifa maritime terminals to Beit She\'an network, providing the Levant cargo outlet.',
+    country: 'Israel',
+    coordinates: [[35.0, 32.79], [34.9892, 32.7940]],
+    headlines: [
+      'Haifa rail connection reports operational readiness for container freights.',
+      'New cargo yards commissioned to handle container diversions.'
+    ]
   }
+];
+
+const DATA_CENTERS_DATABASE: DataCenterAsset[] = [
+  { id: 'dc_mumbai', name: 'Yotta Navi Mumbai (NM1)', city: 'Navi Mumbai', country: 'India', coordinates: [73.08, 19.03], operator: 'Yotta Infrastructure', serversCount: '150,000+ Servers', tier: 'Tier IV Certified', securityRating: 'Sovereign-Ready' },
+  { id: 'dc_dubai', name: 'Khazna Dubai Cluster', city: 'Dubai', country: 'UAE', coordinates: [55.27, 25.20], operator: 'Khazna Data Centers', serversCount: '80,000+ Servers', tier: 'Tier III / IV', securityRating: 'Premier Regional Aggregator' },
+  { id: 'dc_riyadh', name: 'center3 Riyadh Hyperscale', city: 'Riyadh', country: 'Saudi Arabia', coordinates: [46.72, 24.64], operator: 'center3 (stc Group)', serversCount: '95,000+ Servers', tier: 'Tier IV', securityRating: 'Sovereign Cloud Localisation' },
+  { id: 'dc_aqaba', name: 'Aqaba IX Terrestrial Bridge', city: 'Aqaba', country: 'Jordan', coordinates: [35.01, 29.52], operator: 'Naitel / Aqaba IX', serversCount: '10,000+ Servers', tier: 'Tier III', securityRating: 'Critical Red Sea Bridge' },
+  { id: 'dc_telaviv', name: 'Tel Aviv EdgeConneX', city: 'Tel Aviv', country: 'Israel', coordinates: [34.78, 32.08], operator: 'EdgeConneX / AWS', serversCount: '45,000+ Servers', tier: 'Tier III', securityRating: 'Cybersecurity R&D Hub' },
+  { id: 'dc_athens', name: 'Athens Digital Realty', city: 'Athens', country: 'Greece', coordinates: [23.72, 37.98], operator: 'Digital Realty', serversCount: '25,000+ Servers', tier: 'Tier III', securityRating: 'EU Digital Gateway' },
+  { id: 'dc_milan', name: 'Milan Aruba Cluster', city: 'Milan', country: 'Italy', coordinates: [9.19, 45.46], operator: 'Aruba / Sparkle', serversCount: '120,000+ Servers', tier: 'Tier IV', securityRating: 'Southern European Axis' },
+  { id: 'dc_marseille', name: 'Marseille Connectivity Hub', city: 'Marseille', country: 'France', coordinates: [5.36, 43.29], operator: 'OVHcloud / Digital Realty', serversCount: '200,000+ Servers', tier: 'Tier IV', securityRating: 'Global Connectivity Capital' }
+];
+
+const CABLES_DATABASE: CableAsset[] = [
+  {
+    id: 'blue_raman',
+    name: 'Blue & Raman Cable System',
+    landingPoints: ['Genoa (Italy)', 'Marseille (France)', 'Chania (Greece)', 'Tel Aviv (Israel)', 'Aqaba (Jordan)', 'Dubah (Saudi Arabia)', 'Mumbai (India)'],
+    status: 'Under Development',
+    owners: 'Google / Sparkle / Zain Omantel International',
+    suppliers: 'Alcatel Submarine Networks (ASN)',
+    securityRating: 'Trusted Connectivity (EU Toolbox Approved)',
+    coordinates: [[5.3698, 43.2965], [8.94, 44.4], [12.0, 37.0], [23.63, 37.94], [34.98, 32.79], [35.01, 29.52], [39.16, 21.46], [54.01, 16.94], [72.946, 18.948]]
+  },
+  {
+    id: 'emc_cable',
+    name: 'East to Med Corridor (EMC)',
+    landingPoints: ['Marseille (France)', 'Genoa (Italy)', 'Athens (Greece)', 'Tel Aviv (Israel)', 'Jeddah (Saudi Arabia)'],
+    status: 'Active',
+    owners: 'stc / Cyta / PPC / TTSA',
+    suppliers: 'Alcatel Submarine Networks (ASN)',
+    securityRating: 'Trusted Corridor (French Strategic Oversight)',
+    coordinates: [[5.36, 43.2], [8.94, 44.40], [23.63, 37.94], [34.98, 32.79], [39.16, 21.46]]
+  },
+  {
+    id: 'iex_cable',
+    name: 'India-Europe Express (IEX)',
+    landingPoints: ['Mumbai (India)', 'Salalah (Oman)', 'Jeddah (Saudi Arabia)', 'Suez (Egypt)', 'Athens (Greece)', 'Marseille (France)'],
+    status: 'Active',
+    owners: 'Reliance Jio Infocomm',
+    suppliers: 'SubCom',
+    securityRating: 'National Champion Managed',
+    coordinates: [[72.946, 18.948], [54.01, 16.94], [39.16, 21.46], [32.32, 29.93], [23.63, 37.94], [5.36, 43.2]]
+  }
+];
+
+const ENERGY_DATABASE: EnergyAsset[] = [
+  {
+    id: 'eastmed_pipe',
+    name: 'EastMed Pipeline Project',
+    type: 'Pipeline',
+    product: 'Natural Gas (H2-ready)',
+    capacity: '10 Billion Cubic Meters / Year',
+    status: 'Permitting / Paused (Geopolitical dispute with Turkey)',
+    route: 'Israel Levantine Basin ↔ Cyprus ↔ Greece ↔ Italy',
+    promoters: 'IGI Poseidon (Edison Italy, DEPA Greece)',
+    coordinates: [[34.8, 32.0], [33.0, 34.5], [24.5, 35.0], [23.5, 38.0], [18.49, 40.14]]
+  },
+  {
+    id: 'south2_corridor',
+    name: 'SoutH2 Corridor',
+    type: 'Pipeline',
+    product: 'Green Hydrogen',
+    capacity: '4 Million Tonnes / Year',
+    status: 'Planned (EU Project of Common Interest)',
+    route: 'Algeria ↔ Tunisia ↔ Italy (Sicily) ↔ Austria ↔ Germany',
+    promoters: 'Snam (Italy)',
+    coordinates: [[3.27, 32.93], [8.83, 35.17], [12.58, 37.65], [12.8, 42.0], [9.19, 45.46]]
+  },
+  {
+    id: 'h2_poseidon',
+    name: 'H2Poseidon',
+    type: 'Pipeline',
+    product: '100% Green Hydrogen',
+    capacity: '2.5 Million Tonnes / Year',
+    status: 'Planned (Design & Auth obtained)',
+    route: 'Greece ↔ Italy (Ionian Sea Crossing)',
+    promoters: 'IGI Poseidon',
+    coordinates: [[20.26, 39.50], [18.49, 40.14]]
+  },
+  {
+    id: 'saudi_ew_pipeline',
+    name: 'Saudi East-West Crude Pipeline',
+    type: 'Pipeline',
+    product: 'Crude Oil',
+    capacity: '5.0 Million Barrels / Day',
+    status: 'Existing (Bypasses Strait of Hormuz)',
+    route: 'Saudi Eastern Province (Abqaiq) ↔ Yanbu (Red Sea)',
+    promoters: 'Saudi Aramco',
+    coordinates: [[49.68, 25.93], [46.72, 24.64], [38.22, 24.09]]
+  },
+  {
+    id: 'great_sea_interconnector',
+    name: 'Great Sea Interconnector',
+    type: 'HVDC Interconnector',
+    product: 'Electricity Grid',
+    capacity: '2,000 MW',
+    status: 'Under Construction (Expected 2029)',
+    route: 'Israel ↔ Cyprus ↔ Crete (Greece)',
+    promoters: 'Nexans / EuroAsia Interconnector',
+    coordinates: [[34.8, 32.0], [33.0, 34.5], [24.5, 35.0], [23.8, 37.8]]
+  },
+  {
+    id: 'egypt_ksa_link',
+    name: 'Egypt-KSA Interconnection',
+    type: 'HVDC Interconnector',
+    product: 'Electricity Grid',
+    capacity: '3,000 MW',
+    status: 'Final Stage (Phase 1 operational 2025)',
+    route: 'Saudi Arabia (Tabuk) ↔ Egypt (Badr)',
+    promoters: 'Saudi Electricity Company / ONGC Egypt',
+    coordinates: [[36.56, 28.38], [34.8, 28.2], [31.74, 30.13]]
+  },
+  {
+    id: 'india_uae_hvdc',
+    name: 'India–UAE HVDC Subsea Link',
+    type: 'HVDC Interconnector',
+    product: 'Electricity Grid',
+    capacity: '2,000 MW',
+    status: 'Feasibility Stage (OSOWOG framework)',
+    route: 'India (Mundra) ↔ UAE (Fujairah)',
+    promoters: 'Power Grid Corporation of India / TAQA UAE',
+    coordinates: [[69.73, 22.84], [56.36, 25.18]]
+  }
+];
+
+const AGREEMENTS_DATABASE: AgreementAsset[] = [
+  {
+    id: 'gcc_market',
+    name: 'GCC Common Market',
+    type: 'FTA',
+    signedYear: '2008 (Upgraded 2024)',
+    status: 'In Force',
+    members: ['Saudi Arabia', 'UAE', 'Oman', 'Qatar', 'Kuwait', 'Bahrain'],
+    provisions: 'Zero internal customs, unified tariff borders, free capital movement.',
+    benefits: 'Seamless trans-desert rail freight cargo routing without border transit duties.',
+    developments: [
+      'GCC Customs Union integrates digital rail manifest clearance systems.',
+      'Sovereign transit agreements approved for UAE-Saudi cross-border links.'
+    ],
+    coordinates: [
+      [[[34.5, 29.5], [48.0, 30.0], [60.0, 25.0], [59.0, 22.0], [54.0, 16.5], [44.0, 12.5], [35.0, 22.0], [34.5, 29.5]]]
+    ]
+  },
+  {
+    id: 'eu_market',
+    name: 'EU Single Market',
+    type: 'FTA',
+    signedYear: '1993',
+    status: 'In Force',
+    members: ['France', 'Italy', 'Greece', 'Germany', 'Austria', 'Spain', 'Belgium'],
+    provisions: 'Four freedoms: free movement of goods, capital, services, and people.',
+    benefits: 'Allows container cargo landed in Piraeus, Genoa, or Trieste to circulate without customs.',
+    developments: [
+      'EU Submarine Cable Security Toolbox integrated into maritime network protocols.',
+      'CBAM adjustments introduced on hydrogen pipelines crossing external borders.'
+    ],
+    coordinates: [
+      [[[-9.0, 38.0], [15.0, 38.0], [25.0, 36.0], [30.0, 45.0], [20.0, 54.0], [2.0, 50.0], [-9.0, 38.0]]]
+    ]
+  },
+  {
+    id: 'india_uae_cepa',
+    name: 'India–UAE Comprehensive Economic Partnership (CEPA)',
+    type: 'FTA',
+    signedYear: '2022',
+    status: 'In Force',
+    members: ['India', 'UAE'],
+    provisions: 'Elimination of tariffs on 90% of goods, digital trade rules, investment guarantees.',
+    benefits: 'Underwrites the East Corridor maritime leg, lowering shipping duty overheads by 15%.',
+    developments: [
+      'Bilateral trade reaches historic high of $90B.',
+      'Joint industrial parks launched in Gujarat and Abu Dhabi to support corridor exports.'
+    ],
+    coordinates: [
+      [[[68.1, 23.0], [72.0, 31.0], [77.0, 35.0], [88.0, 27.0], [92.0, 21.0], [80.0, 6.0], [72.0, 8.0], [68.1, 23.0]]],
+      [[[34.5, 29.5], [48.0, 30.0], [60.0, 25.0], [59.0, 22.0], [54.0, 16.5], [44.0, 12.5], [35.0, 22.0], [34.5, 29.5]]]
+    ]
+  },
+  {
+    id: 'aspides_shield',
+    name: 'EUNAVFOR Operation Aspides',
+    type: 'Defense',
+    signedYear: '2024',
+    status: 'Active Command',
+    members: ['European Union', 'Regional Escort Entities'],
+    provisions: 'Defensive naval convoy screens to safeguard commercial shipping lanes in Red Sea/Bab al-Mandab.',
+    benefits: 'Secures alternative Suez routes and Levantine sea lanes against asymmetric threat profiles.',
+    developments: [
+      'EU Aspides task force unifies coordination with regional naval anchors.',
+      'Over 400 container ships escorted with zero casualties reported under naval canopy.'
+    ],
+    coordinates: [
+      [[[32.32, 29.93], [35.0, 26.0], [39.5, 18.0], [43.25, 12.60], [40.0, 11.0], [31.0, 20.0], [32.32, 29.93]]]
+    ]
+  },
+  {
+    id: 'akashteer_dome',
+    name: 'Akashteer Air Defense Command Network',
+    type: 'Defense',
+    signedYear: '2025',
+    status: 'Active Canopy',
+    members: ['UAE', 'India Defense Primes (BEL)'],
+    provisions: 'Akashteer tactical air defense command network unifies Gulf multi-sensor radar infrastructure.',
+    benefits: 'Shields land corridors and ports in Jebel Ali and Fujairah against drone/missile attacks.',
+    developments: [
+      'UAE integrates Akashteer systems with Israeli anti-drone defensive batteries.',
+      'EDGE group coordinates technology sharing and radar sensor co-development.'
+    ],
+    coordinates: [
+      [[[52.0, 22.0], [58.0, 22.0], [58.0, 27.0], [52.0, 27.0], [52.0, 22.0]]]
+    ]
+  }
+];
+
+// Ticker bulletins
+const NEWS_BULLETINS = [
+  'ALERT: UAE Akashteer tactical air defense network unifies Gulf radar monitoring.',
+  'UPDATE: India-UAE CEPA trade volumes surge 15% in Q1 2026.',
+  'REPORT: Shanghai Port Group (SIPG) extends lease on Haifa\'s Bay Port; security review initiated.',
+  'DEAL: €200M CMA CGM investment in Syria\'s Latakia Port begins Phase 2 expansion.',
+  'HVDC: Egypt-KSA Interconnection (3000 MW) enters final testing stage.',
+  'SECURITY: EUNAVFOR Aspides frigate escorts container convoy through Bab al-Mandab.',
+  'ENERGY: Algeria-Italy SoutH2 corridor gains EU Project of Common Interest funding.',
+  'RAILWAY: Jordan standard-gauge rail network secures $2.3B UAE construction grant.'
 ];
 
 export default function ImecMap() {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
-  const animationFrameIdRef = useRef<number | null>(null);
   const markersRef = useRef<mapboxgl.Marker[]>([]);
 
-  // ── UI States ─────────────────────────────────────────────
-  const [mapStyle, setMapStyle] = useState<'dark' | 'light'>('light');
-  const [currentStep, setCurrentStep] = useState<number>(0);
-  const [selectedNode, setSelectedNode] = useState<ImecNode | null>(null);
-  const [isSuezToggled, setIsSuezToggled] = useState<boolean>(false);
-  const [isCablesToggled, setIsCablesToggled] = useState<boolean>(false);
-  const [isDataCentersToggled, setIsDataCentersToggled] = useState<boolean>(false);
-  const [isEconomicToggled, setIsEconomicToggled] = useState<boolean>(false);
-  const [mapLoaded, setMapLoaded] = useState<boolean>(false);
+  // ── Layer Visibility States ──────────────────────────────
+  const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>({
+    ports: true,
+    railways: true,
+    datacenters: false,
+    cables: false,
+    energy: false,
+    ftas: false,
+    defense: false
+  });
 
-  // ── Dash Array Sequences for Marching Ants ────────────────
-  const dashArraySequence = [
-    [3, 3],
-    [0, 0.5, 3, 2.5],
-    [0, 1.0, 3, 2.0],
-    [0, 1.5, 3, 1.5],
-    [0, 2.0, 3, 1.0],
-    [0, 2.5, 3, 0.5],
-    [0, 3.0, 3, 0]
-  ];
+  const [mapStyle, setMapStyle] = useState<'dark' | 'light'>('dark');
+  const [selectedAsset, setSelectedAsset] = useState<{ type: string; data: any } | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [tickerIndex, setTickerIndex] = useState(0);
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(3.0);
 
-  // ── Coordinates and Lines ─────────────────────────────────
-  const eastMaritimeLanes = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'LineString',
-          coordinates: [
-            [69.7317, 22.8397],
-            [64.5, 21.0],
-            [59.5, 22.0],
-            [56.3658, 25.1612]
-          ]
-        },
-        properties: { name: 'Mundra-Fujairah Sea Route' }
-      },
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'LineString',
-          coordinates: [
-            [70.2147, 23.0031],
-            [65.0, 21.3],
-            [60.0, 22.3],
-            [56.8, 25.8],
-            [55.0612, 25.0113]
-          ]
-        },
-        properties: { name: 'Kandla-Jebel Ali Sea Route' }
-      }
-    ]
+  // ── Toggle Layer Handler ──────────────────────────────────
+  const toggleLayer = (layer: string) => {
+    setActiveLayers(prev => ({ ...prev, [layer]: !prev[layer] }));
   };
 
-  const railwayLine = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'LineString',
-          coordinates: [
-            [56.3658, 25.1612],
-            [55.0612, 25.0113],
-            [54.3773, 24.4539],
-            [49.0817, 24.1353],
-            [46.7249, 24.6402],
-            [37.1597, 31.4553],
-            [35.9456, 31.9566],
-            [34.9896, 32.7940]
-          ]
-        },
-        properties: { name: 'GCC-Levant IMEC Railway Link' }
-      }
-    ]
-  };
+  // ── Simulated News Ticker Loop ────────────────────────────
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTickerIndex(prev => (prev + 1) % NEWS_BULLETINS.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
-  const northMaritimeLanes = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'LineString',
-          coordinates: [
-            [34.9892, 32.7940],
-            [31.5, 33.8],
-            [27.0, 35.0],
-            [23.6371, 37.9475]
-          ]
-        },
-        properties: { name: 'Haifa-Piraeus Sea Route' }
-      },
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'LineString',
-          coordinates: [
-            [34.9892, 32.7940],
-            [30.5, 33.5],
-            [24.0, 34.8],
-            [19.0, 36.0],
-            [14.0, 37.8],
-            [9.8, 41.5],
-            [8.9463, 44.4056]
-          ]
-        },
-        properties: { name: 'Haifa-Genoa Sea Route' }
-      },
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'LineString',
-          coordinates: [
-            [34.9892, 32.7940],
-            [30.5, 33.5],
-            [24.0, 34.8],
-            [19.0, 36.0],
-            [12.0, 37.5],
-            [7.0, 40.5],
-            [5.3698, 43.2965]
-          ]
-        },
-        properties: { name: 'Haifa-Marseille Sea Route' }
-      }
-    ]
-  };
-
-  const suezAlternativeRoute = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'LineString',
-          coordinates: [
-            [69.7317, 22.8397],
-            [65.0, 18.0],
-            [58.0, 14.5],
-            [47.5, 12.0],
-            [43.25, 12.60],
-            [39.5, 18.0],
-            [35.0, 26.0],
-            [32.32, 29.93],
-            [30.0, 32.5],
-            [20.0, 35.0],
-            [12.0, 37.5],
-            [5.3698, 43.2965]
-          ]
-        },
-        properties: { name: 'Suez Canal Route (Competitor)' }
-      }
-    ]
-  };
-
-  const subseaCablesGeoJSON = {
-    type: 'FeatureCollection',
-    features: SUBSEA_CABLES.map(cable => ({
-      type: 'Feature',
-      geometry: {
-        type: 'LineString',
-        coordinates: [cable.source, cable.target]
-      },
-      properties: {
-        name: cable.name,
-        status: cable.status,
-        owner: cable.owner
-      }
-    }))
-  };
-
-  const dataCentersGeoJSON = {
-    type: 'FeatureCollection',
-    features: DATA_CENTERS.map(dc => ({
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: dc.position
-      },
-      properties: {
-        facility: dc.facility,
-        city: dc.city,
-        country: dc.country,
-        entity: dc.entity
-      }
-    }))
-  };
-
-  const demographicGeoJSON = {
-    type: 'FeatureCollection',
-    features: DEMOGRAPHIC_POINTS.map(pt => ({
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [pt[0], pt[1]]
-      },
-      properties: {
-        weight: pt[2]
-      }
-    }))
-  };
-
-  // ── Setup Map & Layers ───────────────────────────────────
+  // ── Setup Sources & Layers (Mapbox) ───────────────────────
   const addMapLayersAndSources = useCallback(() => {
     const map = mapRef.current;
     if (!map) return;
 
-    // ── Add Sources ──
-    map.addSource('east-maritime', { type: 'geojson', data: eastMaritimeLanes as any });
-    map.addSource('railway', { type: 'geojson', data: railwayLine as any });
-    map.addSource('north-maritime', { type: 'geojson', data: northMaritimeLanes as any });
-    map.addSource('suez-alternative', { type: 'geojson', data: suezAlternativeRoute as any });
-    map.addSource('subsea-cables', { type: 'geojson', data: subseaCablesGeoJSON as any });
-    map.addSource('data-centers', { type: 'geojson', data: dataCentersGeoJSON as any });
-    map.addSource('demographics', { type: 'geojson', data: demographicGeoJSON as any });
+    // Remove existing sources/layers if reloading style
+    const cleanupLayers = [
+      'railways-layer', 'cables-layer', 'datacenters-layer',
+      'pipelines-layer', 'hvdc-layer', 'security-escort-layer',
+      'security-radar-layer', 'ftas-layer', 'defense-layer'
+    ];
+    cleanupLayers.forEach(id => {
+      if (map.getLayer(id)) map.removeLayer(id);
+    });
 
-    // ── Add Layers ──
+    const cleanupSources = [
+      'railways', 'subsea-cables', 'data-centers', 'energy-pipelines',
+      'electricity-hvdc', 'security-escort', 'security-radar',
+      'ftas-source', 'defense-source'
+    ];
+    cleanupSources.forEach(id => {
+      if (map.getSource(id)) map.removeSource(id);
+    });
 
-    // 1. Economic / Demographic Heatmap Layer
-    map.addLayer({
-      id: 'demographics-heatmap',
-      type: 'heatmap',
-      source: 'demographics',
-      layout: {
-        visibility: isEconomicToggled ? 'visible' : 'none'
-      },
-      paint: {
-        'heatmap-weight': ['interpolate', ['linear'], ['get', 'weight'], 0, 0, 6, 1],
-        'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 1, 9, 3],
-        'heatmap-color': [
-          'interpolate',
-          ['linear'],
-          ['heatmap-value'],
-          0, 'rgba(0,0,0,0)',
-          0.2, 'rgba(70, 130, 180, 0.1)',
-          0.5, 'rgba(70, 130, 180, 0.25)',
-          0.8, 'rgba(217, 119, 6, 0.35)',
-          1.0, 'rgba(185, 28, 28, 0.55)'
-        ],
-        'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 3, 9, 22],
-        'heatmap-opacity': 0.65
+    // 1. Railways GeoJSON
+    map.addSource('railways', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: RAILWAYS_DATABASE.map(rail => ({
+          type: 'Feature',
+          geometry: { type: 'LineString', coordinates: rail.coordinates },
+          properties: { id: rail.id, name: rail.name, status: rail.status }
+        }))
       }
     });
 
-    // 2. Suez Canal Layer (Crimson dotted)
+    // 2. Cables GeoJSON
+    map.addSource('subsea-cables', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: CABLES_DATABASE.map(cable => ({
+          type: 'Feature',
+          geometry: { type: 'LineString', coordinates: cable.coordinates },
+          properties: { id: cable.id, name: cable.name, status: cable.status, owners: cable.owners }
+        }))
+      }
+    });
+
+    // 3. Data Centers GeoJSON
+    map.addSource('data-centers', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: DATA_CENTERS_DATABASE.map(dc => ({
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: dc.coordinates },
+          properties: { id: dc.id, name: dc.name, operator: dc.operator }
+        }))
+      }
+    });
+
+    // 4. Energy Pipelines GeoJSON
+    map.addSource('energy-pipelines', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: ENERGY_DATABASE.filter(e => e.type === 'Pipeline').map(pipe => ({
+          type: 'Feature',
+          geometry: { type: 'LineString', coordinates: pipe.coordinates },
+          properties: { id: pipe.id, name: pipe.name, status: pipe.status }
+        }))
+      }
+    });
+
+    // 5. Electricity HVDC GeoJSON
+    map.addSource('electricity-hvdc', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: ENERGY_DATABASE.filter(e => e.type === 'HVDC Interconnector').map(hvdc => ({
+          type: 'Feature',
+          geometry: { type: 'LineString', coordinates: hvdc.coordinates },
+          properties: { id: hvdc.id, name: hvdc.name, status: hvdc.status }
+        }))
+      }
+    });
+
+    // 6. FTAs GeoJSON Polygons
+    map.addSource('ftas-source', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: AGREEMENTS_DATABASE.filter(a => a.type === 'FTA').map(fta => ({
+          type: 'Feature',
+          geometry: { type: 'MultiPolygon', coordinates: fta.coordinates },
+          properties: { id: fta.id, name: fta.name }
+        }))
+      }
+    });
+
+    // 7. Defense GeoJSON Polygons
+    map.addSource('defense-source', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: AGREEMENTS_DATABASE.filter(a => a.type === 'Defense').map(def => ({
+          type: 'Feature',
+          geometry: { type: 'MultiPolygon', coordinates: def.coordinates },
+          properties: { id: def.id, name: def.name }
+        }))
+      }
+    });
+
+    // ── Render Layers ──
+
+    // FTAs shaded background (Teal/Emerald)
     map.addLayer({
-      id: 'suez-layer',
+      id: 'ftas-layer',
+      type: 'fill',
+      source: 'ftas-source',
+      layout: { visibility: activeLayers.ftas ? 'visible' : 'none' },
+      paint: { 'fill-color': '#10b981', 'fill-opacity': 0.15, 'fill-outline-color': '#059669' }
+    });
+
+    // Defense shaded background (Indigo/Red)
+    map.addLayer({
+      id: 'defense-layer',
+      type: 'fill',
+      source: 'defense-source',
+      layout: { visibility: activeLayers.defense ? 'visible' : 'none' },
+      paint: { 'fill-color': '#f43f5e', 'fill-opacity': 0.18, 'fill-outline-color': '#e11d48' }
+    });
+
+    // Railways (Slate Built, Dashed Red Proposed)
+    map.addLayer({
+      id: 'railways-layer',
       type: 'line',
-      source: 'suez-alternative',
+      source: 'railways',
       layout: {
-        visibility: isSuezToggled ? 'visible' : 'none',
+        visibility: activeLayers.railways ? 'visible' : 'none',
         'line-cap': 'round',
         'line-join': 'round'
       },
       paint: {
-        'line-color': '#b91c1c',
-        'line-width': 2,
-        'line-dasharray': [3, 3]
+        'line-color': ['match', ['get', 'status'], 'Built', '#64748b', '#e11d48'],
+        'line-width': ['match', ['get', 'status'], 'Built', 3, 2],
+        'line-dasharray': ['match', ['get', 'status'], 'Built', [1, 0], [4, 3]]
       }
     });
 
-    // 3. Subsea Cables Layer (Deep Teal)
+    // Cables (Cyan Glowing Curved)
     map.addLayer({
       id: 'cables-layer',
       type: 'line',
       source: 'subsea-cables',
       layout: {
-        visibility: isCablesToggled ? 'visible' : 'none',
+        visibility: activeLayers.cables ? 'visible' : 'none',
         'line-cap': 'round',
         'line-join': 'round'
       },
-      paint: {
-        'line-color': '#0f766e',
-        'line-width': 2,
-        'line-opacity': 0.75
-      }
+      paint: { 'line-color': '#06b6d4', 'line-width': 2.5, 'line-opacity': 0.8 }
     });
 
-    // 4. Data Centers Point Layer (Charcoal/Slate)
+    // Data Centers (Server nodes)
     map.addLayer({
       id: 'datacenters-layer',
       type: 'circle',
       source: 'data-centers',
-      layout: {
-        visibility: isDataCentersToggled ? 'visible' : 'none'
-      },
+      layout: { visibility: activeLayers.datacenters ? 'visible' : 'none' },
       paint: {
-        'circle-radius': 5.5,
-        'circle-color': '#475569',
+        'circle-radius': 6.5,
+        'circle-color': '#0d9488',
         'circle-stroke-width': 1.5,
-        'circle-stroke-color': '#ffffff',
-        'circle-opacity': 0.9
+        'circle-stroke-color': '#ffffff'
       }
     });
 
-    // 5. East Corridor Maritime (Navy Flowing)
+    // Pipelines (Amber Dashed)
     map.addLayer({
-      id: 'east-maritime-layer',
+      id: 'pipelines-layer',
       type: 'line',
-      source: 'east-maritime',
-      paint: {
-        'line-color': '#1e3a8a',
-        'line-width': 3.5,
-        'line-dasharray': [3, 3]
-      }
+      source: 'energy-pipelines',
+      layout: {
+        visibility: activeLayers.energy ? 'visible' : 'none',
+        'line-cap': 'round',
+        'line-join': 'round'
+      },
+      paint: { 'line-color': '#d97706', 'line-width': 2.5, 'line-dasharray': [4, 3] }
     });
 
-    // 6. North Corridor Maritime (Navy Flowing)
+    // HVDC grids (Emerald Solid)
     map.addLayer({
-      id: 'north-maritime-layer',
+      id: 'hvdc-layer',
       type: 'line',
-      source: 'north-maritime',
-      paint: {
-        'line-color': '#1e3a8a',
-        'line-width': 3.5,
-        'line-dasharray': [3, 3]
-      }
+      source: 'electricity-hvdc',
+      layout: {
+        visibility: activeLayers.energy ? 'visible' : 'none',
+        'line-cap': 'round',
+        'line-join': 'round'
+      },
+      paint: { 'line-color': '#10b981', 'line-width': 3 }
     });
 
-    // 7. Rail Base (Dark Slate outline)
-    map.addLayer({
-      id: 'rail-base-layer',
-      type: 'line',
-      source: 'railway',
-      paint: {
-        'line-color': '#334155',
-        'line-width': 5.5
-      }
+    // ── Interaction Listeners ──
+    const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false });
+
+    const hoverLayers = [
+      { id: 'railways-layer', db: RAILWAYS_DATABASE, title: 'Railway Segment' },
+      { id: 'cables-layer', db: CABLES_DATABASE, title: 'Subsea Fiber Cable' },
+      { id: 'datacenters-layer', db: DATA_CENTERS_DATABASE, title: 'Data Center Facility' },
+      { id: 'pipelines-layer', db: ENERGY_DATABASE, title: 'Energy Pipeline' },
+      { id: 'hvdc-layer', db: ENERGY_DATABASE, title: 'HVDC Grid Line' },
+      { id: 'ftas-layer', db: AGREEMENTS_DATABASE, title: 'Trade Agreement Area' },
+      { id: 'defense-layer', db: AGREEMENTS_DATABASE, title: 'Defense Shield Canopy' }
+    ];
+
+    hoverLayers.forEach(({ id, db, title }) => {
+      map.on('mouseenter', id, (e) => {
+        map.getCanvas().style.cursor = 'pointer';
+        const features = map.queryRenderedFeatures(e.point, { layers: [id] });
+        if (!features.length) return;
+        
+        const featureId = features[0].properties?.id;
+        const record = db.find(x => x.id === featureId);
+        if (!record) return;
+
+        popup
+          .setLngLat(e.lngLat)
+          .setHTML(`
+            <div class="font-mono text-[9px] text-sky-400 font-bold uppercase tracking-wider mb-1">${title}</div>
+            <div class="font-sans font-bold text-xs text-gray-900 mb-0.5">${record.name}</div>
+            <div class="font-mono text-[9px] text-gray-500">${'status' in record ? record.status : 'Active'}</div>
+          `)
+          .addTo(map);
+      });
+
+      map.on('mouseleave', id, () => {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+      });
+
+      map.on('click', id, (e) => {
+        const features = map.queryRenderedFeatures(e.point, { layers: [id] });
+        if (!features.length) return;
+        const featureId = features[0].properties?.id;
+        const record = db.find(x => x.id === featureId);
+        if (record) {
+          const typeMap: Record<string, string> = {
+            'railways-layer': 'railway',
+            'cables-layer': 'cable',
+            'datacenters-layer': 'datacenter',
+            'pipelines-layer': 'energy',
+            'hvdc-layer': 'energy',
+            'ftas-layer': 'fta',
+            'defense-layer': 'defense'
+          };
+          setSelectedAsset({ type: typeMap[id], data: record });
+        }
+      });
     });
 
-    // 8. Rail Inner (Terracotta track)
-    map.addLayer({
-      id: 'rail-inner-layer',
-      type: 'line',
-      source: 'railway',
-      paint: {
-        'line-color': '#c2410c',
-        'line-width': 2.5,
-        'line-dasharray': [3, 3]
-      }
-    });
+  }, [activeLayers]);
 
-    // ── Popups ──
-    const popup = new mapboxgl.Popup({
-      closeButton: false,
-      closeOnClick: false,
-      className: 'imec-custom-popup'
-    });
-
-    map.on('mouseenter', 'datacenters-layer', (e) => {
-      map.getCanvas().style.cursor = 'pointer';
-      const features = map.queryRenderedFeatures(e.point, { layers: ['datacenters-layer'] });
-      if (!features.length) return;
-
-      const feat = features[0];
-      const props = feat.properties || {};
-      const coords = (feat.geometry as any).coordinates;
-
-      popup
-        .setLngLat(coords)
-        .setHTML(`
-          <div class="font-mono text-[9px] text-cyan-400 font-bold uppercase tracking-wider mb-1">
-            Data Hub Facility
-          </div>
-          <div class="font-sans font-bold text-xs text-white mb-0.5">${props.facility || ''}</div>
-          <div class="font-sans text-[11px] text-gray-300 mb-1">${props.city || ''}, ${props.country || ''}</div>
-          <div class="border-t border-white/10 pt-1 text-[8px] text-gray-400 uppercase tracking-widest font-mono">
-            Provider: ${props.entity || ''}
-          </div>
-        `)
-        .addTo(map);
-    });
-
-    map.on('mouseleave', 'datacenters-layer', () => {
-      map.getCanvas().style.cursor = '';
-      popup.remove();
-    });
-
-    map.on('mouseenter', 'cables-layer', (e) => {
-      map.getCanvas().style.cursor = 'pointer';
-      const features = map.queryRenderedFeatures(e.point, { layers: ['cables-layer'] });
-      if (!features.length) return;
-
-      const feat = features[0];
-      const props = feat.properties || {};
-
-      popup
-        .setLngLat(e.lngLat)
-        .setHTML(`
-          <div class="font-mono text-[9px] text-emerald-400 font-bold uppercase tracking-wider mb-1">
-            Subsea Fiber Cable
-          </div>
-          <div class="font-sans font-bold text-xs text-white mb-0.5">${props.name}</div>
-          <div class="font-sans text-[11px] text-gray-300 mb-1">Status: <span class="${props.status === 'Active' ? 'text-emerald-400' : 'text-amber-400'} font-bold">${props.status}</span></div>
-          <div class="border-t border-white/10 pt-1 text-[8px] text-gray-400 uppercase tracking-widest font-mono">
-            Consortium: ${props.owner}
-          </div>
-        `)
-        .addTo(map);
-    });
-
-    map.on('mouseleave', 'cables-layer', () => {
-      map.getCanvas().style.cursor = '';
-      popup.remove();
-    });
-
-  }, [isSuezToggled, isCablesToggled, isDataCentersToggled, isEconomicToggled]);
-
-  // ── Render Custom Markers ──
-  const updateMarkers = useCallback(() => {
+  // ── Sync Custom Port Markers ──
+  const updatePortMarkers = useCallback(() => {
     const map = mapRef.current;
     if (!map) return;
 
     markersRef.current.forEach(m => m.remove());
     markersRef.current = [];
 
-    IMEC_NODES.forEach(node => {
+    if (!activeLayers.ports) return;
+
+    PORTS_DATABASE.forEach(port => {
+      // Automatic Zoom-based visibility & layout clustering
+      const isVisible = 
+        zoomLevel >= 6 ||
+        (zoomLevel >= 4 && port.teu >= 1.5) ||
+        (zoomLevel < 4 && port.teu >= 3.5);
+
+      if (!isVisible) return;
+
       const el = document.createElement('div');
       el.className = 'relative flex items-center justify-center cursor-pointer group';
-      
+
       const ringColor = 
-        node.status === 'operational' ? 'border-emerald-600 bg-emerald-600/5' :
-        node.status === 'limited' ? 'border-amber-600 bg-amber-600/5' :
-        'border-gray-400 bg-gray-400/5';
+        port.status === 'Active' ? 'border-sky-500 bg-sky-500/5' :
+        port.status === 'Under Expansion' ? 'border-amber-500 bg-amber-500/5' :
+        'border-gray-500 bg-gray-500/5';
 
       const dotColor = 
-        node.status === 'operational' ? 'bg-emerald-700' :
-        node.status === 'limited' ? 'bg-amber-700' :
-        'bg-gray-500';
+        port.status === 'Active' ? 'bg-sky-500' :
+        port.status === 'Under Expansion' ? 'bg-amber-500' :
+        'bg-gray-400';
 
-      const isStepHighlighted = TOUR_STEPS[currentStep].highlightedNodes.includes(node.id);
-      const isSelected = selectedNode?.id === node.id;
-      
+      const markerSize = Math.max(12, Math.min(24, Math.sqrt(port.teu) * 4.5));
+      const innerDotSize = Math.max(4, markerSize / 2.5);
+
+      const isSelected = selectedAsset?.type === 'port' && selectedAsset.data.id === port.id;
+
       el.innerHTML = `
-        <div class="absolute w-7 h-7 border rounded-full ${ringColor} ${isStepHighlighted || isSelected ? 'animate-ping' : 'opacity-40 group-hover:animate-ping'} duration-1000"></div>
-        <div class="relative w-3.5 h-3.5 border border-gray-300 rounded-full ${dotColor} shadow-sm flex items-center justify-center transition-all ${isSelected ? 'scale-125 ring-2 ring-gray-400/50' : 'group-hover:scale-110'}">
-          <div class="w-1 h-1 bg-white rounded-full"></div>
+        <div class="absolute w-[200%] h-[200%] border rounded-full ${ringColor} ${isSelected ? 'animate-ping' : 'opacity-40 group-hover:animate-ping'} transition-all"></div>
+        <div class="relative rounded-full ${dotColor} flex items-center justify-center transition-all ${isSelected ? 'scale-125 ring-2 ring-white/50' : 'group-hover:scale-110'}" style="width: ${markerSize}px; height: ${markerSize}px;">
+          <div class="rounded-full bg-slate-900" style="width: ${innerDotSize}px; height: ${innerDotSize}px;"></div>
         </div>
-        <div class="absolute bottom-full mb-2 bg-white text-gray-950 font-mono text-[9px] font-bold tracking-widest uppercase border border-gray-300 px-2 py-1 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 shadow-sm">
-          ${node.name}
+        <div class="absolute top-[120%] bg-slate-900/90 text-white font-mono text-[8px] font-bold tracking-wider uppercase border border-slate-700/50 px-1.5 py-0.5 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
+          ${port.name} (${port.capacityText})
         </div>
       `;
 
       el.addEventListener('click', (e) => {
         e.stopPropagation();
-        setSelectedNode(node);
-        map.flyTo({
-          center: node.coordinates,
-          zoom: 7.5,
-          pitch: 50,
-          speed: 1.2
-        });
+        setSelectedAsset({ type: 'port', data: port });
+        map.flyTo({ center: port.coordinates, zoom: 6.5, speed: 1.2 });
       });
 
       const marker = new mapboxgl.Marker({ element: el })
-        .setLngLat(node.coordinates)
+        .setLngLat(port.coordinates)
         .addTo(map);
 
       markersRef.current.push(marker);
     });
-  }, [currentStep, selectedNode]);
+  }, [activeLayers.ports, zoomLevel, selectedAsset]);
 
   // ── Effect: Initialize Mapbox ──
   useEffect(() => {
     if (mapRef.current) return;
 
     const styleUrl = mapStyle === 'dark' 
-      ? 'mapbox://styles/mapbox/navigation-night-v1' 
+      ? 'mapbox://styles/mapbox/dark-v11' 
       : 'mapbox://styles/mapbox/light-v11';
 
     const map = new mapboxgl.Map({
       container: mapContainerRef.current!,
       style: styleUrl,
-      center: TOUR_STEPS[0].center,
-      zoom: TOUR_STEPS[0].zoom,
-      pitch: TOUR_STEPS[0].pitch,
-      bearing: TOUR_STEPS[0].bearing,
-      antialias: true
+      center: [38.0, 31.0],
+      zoom: 3.0,
+      pitch: 0,
+      bearing: 0,
+      projection: { name: 'mercator' }
     });
 
     mapRef.current = map;
-    map.addControl(new mapboxgl.NavigationControl({ showCompass: true }), 'bottom-right');
 
     map.on('load', () => {
       setMapLoaded(true);
       addMapLayersAndSources();
-      updateMarkers();
+      updatePortMarkers();
+    });
 
-      // Start flow animation
-      let step = 0;
-      let lastUpdate = 0;
-      const animate = (timestamp: number) => {
-        if (!mapRef.current) return;
-
-        if (timestamp - lastUpdate > 65) {
-          lastUpdate = timestamp;
-          step = (step + 1) % dashArraySequence.length;
-          const currentDash = dashArraySequence[step];
-
-          if (mapRef.current.getLayer('east-maritime-layer')) {
-            mapRef.current.setPaintProperty('east-maritime-layer', 'line-dasharray', currentDash);
-          }
-          if (mapRef.current.getLayer('north-maritime-layer')) {
-            mapRef.current.setPaintProperty('north-maritime-layer', 'line-dasharray', currentDash);
-          }
-          if (mapRef.current.getLayer('suez-layer')) {
-            mapRef.current.setPaintProperty('suez-layer', 'line-dasharray', currentDash);
-          }
-          
-          const offsetShift = step % 2 === 0 ? [3, 3] : [0, 1.5, 3, 1.5];
-          if (mapRef.current.getLayer('rail-inner-layer')) {
-            mapRef.current.setPaintProperty('rail-inner-layer', 'line-dasharray', offsetShift);
-          }
-        }
-        animationFrameIdRef.current = requestAnimationFrame(animate);
-      };
-
-      animationFrameIdRef.current = requestAnimationFrame(animate);
+    map.on('zoom', () => {
+      setZoomLevel(map.getZoom());
     });
 
     return () => {
-      if (animationFrameIdRef.current) {
-        cancelAnimationFrame(animationFrameIdRef.current);
-      }
       markersRef.current.forEach(m => m.remove());
       map.remove();
       mapRef.current = null;
     };
   }, []);
 
-  // ── Effect: Handle style changes and visibility updates ──
+  // Update layout when styles/toggles reload
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !mapLoaded) return;
 
     const targetStyle = mapStyle === 'dark' 
-      ? 'mapbox://styles/mapbox/navigation-night-v1' 
+      ? 'mapbox://styles/mapbox/dark-v11' 
       : 'mapbox://styles/mapbox/light-v11';
 
     const currentStyle = map.getStyle();
@@ -803,361 +1252,508 @@ export default function ImecMap() {
       map.setStyle(targetStyle);
       map.once('style.load', () => {
         addMapLayersAndSources();
-        updateMarkers();
+        updatePortMarkers();
       });
       return;
     }
 
-    if (map.getLayer('suez-layer')) {
-      map.setLayoutProperty('suez-layer', 'visibility', isSuezToggled ? 'visible' : 'none');
-    }
-    if (map.getLayer('cables-layer')) {
-      map.setLayoutProperty('cables-layer', 'visibility', isCablesToggled ? 'visible' : 'none');
-    }
-    if (map.getLayer('datacenters-layer')) {
-      map.setLayoutProperty('datacenters-layer', 'visibility', isDataCentersToggled ? 'visible' : 'none');
-    }
-    if (map.getLayer('demographics-heatmap')) {
-      map.setLayoutProperty('demographics-heatmap', 'visibility', isEconomicToggled ? 'visible' : 'none');
-    }
-  }, [mapStyle, isSuezToggled, isCablesToggled, isDataCentersToggled, isEconomicToggled, mapLoaded, addMapLayersAndSources, updateMarkers]);
+    addMapLayersAndSources();
+    updatePortMarkers();
+  }, [mapStyle, activeLayers, mapLoaded, addMapLayersAndSources, updatePortMarkers]);
 
-  // Sync markers
+  // Sync zoom-based clusters
   useEffect(() => {
-    updateMarkers();
-  }, [currentStep, selectedNode, updateMarkers]);
+    updatePortMarkers();
+  }, [zoomLevel, selectedAsset, updatePortMarkers]);
 
-  // Tour navigation
-  const handleTourStep = (index: number) => {
-    const map = mapRef.current;
-    if (!map) return;
-
-    const targetIndex = Math.max(0, Math.min(TOUR_STEPS.length - 1, index));
-    setCurrentStep(targetIndex);
-    setSelectedNode(null);
-
-    const step = TOUR_STEPS[targetIndex];
-    map.flyTo({
-      center: step.center,
-      zoom: step.zoom,
-      pitch: step.pitch,
-      bearing: step.bearing,
-      speed: 1.0,
-      curve: 1.2
-    });
-  };
+  // ── Search Database Handler ───────────────────────────────
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    const q = searchQuery.toLowerCase();
+    const ports = PORTS_DATABASE.filter(x => x.name.toLowerCase().includes(q)).map(x => ({ type: 'port', data: x }));
+    const rails = RAILWAYS_DATABASE.filter(x => x.name.toLowerCase().includes(q)).map(x => ({ type: 'railway', data: x }));
+    const dcs = DATA_CENTERS_DATABASE.filter(x => x.name.toLowerCase().includes(q)).map(x => ({ type: 'datacenter', data: x }));
+    const cables = CABLES_DATABASE.filter(x => x.name.toLowerCase().includes(q)).map(x => ({ type: 'cable', data: x }));
+    const energy = ENERGY_DATABASE.filter(x => x.name.toLowerCase().includes(q)).map(x => ({ type: 'energy', data: x }));
+    const agreements = AGREEMENTS_DATABASE.filter(x => x.name.toLowerCase().includes(q)).map(x => ({ type: 'agreement', data: x }));
+    
+    return [...ports, ...rails, ...dcs, ...cables, ...energy, ...agreements];
+  }, [searchQuery]);
 
   return (
-    <div className="w-full h-full relative font-sans">
-      <div ref={mapContainerRef} className="w-full h-full absolute inset-0" />
-
-      {/* Floating Story HUD */}
-      <div className="absolute top-16 bottom-4 left-4 z-[400] w-[350px] max-w-[calc(100vw-2rem)] flex flex-col pointer-events-none">
-        <div className="flex flex-col gap-3 max-h-full pointer-events-auto overflow-y-auto brutalist-scrollbar bg-white/95 border border-gray-300 p-5 text-gray-900 shadow-md relative">
-          
-          <div className="border-b border-gray-200 pb-3">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] text-gray-500 font-mono tracking-[0.25em] uppercase font-bold flex items-center gap-1.5">
-                <Compass className="w-3.5 h-3.5 text-gray-400 animate-spin" style={{ animationDuration: '8s' }} />
-                IMEC Intelligence HUD
-              </span>
-              <button 
-                onClick={() => setMapStyle(prev => prev === 'dark' ? 'light' : 'dark')}
-                className="p-1 hover:bg-gray-100 rounded transition-all border border-gray-200 text-gray-500 hover:text-gray-900"
-                title="Toggle Base Map"
-              >
-                {mapStyle === 'dark' ? <Sun size={12} /> : <Moon size={12} />}
-              </button>
-            </div>
-            <h2 className="font-sans font-bold text-base tracking-tight mt-1.5 text-gray-900 uppercase">
-              Interactive Terminal
-            </h2>
+    <div className="w-full h-full relative flex text-slate-100 font-sans overflow-hidden">
+      
+      {/* ── Left Sidebar (Bloomberg/SaaS Terminal) ── */}
+      <div className="w-[360px] h-full bg-slate-900 border-r border-slate-800 flex flex-col z-[400] select-none pointer-events-auto">
+        
+        {/* Terminal Header */}
+        <div className="p-5 border-b border-slate-800 bg-slate-950/40">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] text-cyan-400 font-mono tracking-[0.25em] uppercase font-bold flex items-center gap-1.5">
+              <Globe className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '12s' }} />
+              Logistics Terminal
+            </span>
+            <button 
+              onClick={() => setMapStyle(prev => prev === 'dark' ? 'light' : 'dark')}
+              className="p-1 hover:bg-slate-800 rounded transition-all border border-slate-700/50 text-slate-400 hover:text-white"
+              title="Toggle Map Base"
+            >
+              {mapStyle === 'dark' ? <Sun size={12} /> : <Moon size={12} />}
+            </button>
           </div>
+          <h2 className="font-sans font-bold text-base tracking-tight mt-2 uppercase">
+            GEOPOLITICAL INTELLIGENCE
+          </h2>
+        </div>
 
-          {/* Guided Tour */}
-          <div className="bg-gray-50 border border-gray-200 p-3.5">
-            <h3 className="font-mono text-[9px] text-gray-500 uppercase tracking-widest mb-1.5 flex justify-between items-center">
-              <span>Guided Geoeconomic Tour</span>
-              <span className="text-gray-700 font-bold">{currentStep + 1}/{TOUR_STEPS.length}</span>
+        {/* Global Search Bar */}
+        <div className="px-5 py-3 border-b border-slate-800/60 bg-slate-950/20">
+          <div className="relative">
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-500" />
+            <input
+              type="text"
+              placeholder="Search global assets, agreements..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-slate-950 border border-slate-800 pl-9 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 font-sans transition-all"
+            />
+          </div>
+          {searchResults.length > 0 && (
+            <div className="mt-2 max-h-40 overflow-y-auto bg-slate-950 border border-slate-800 rounded scrollbar-thin">
+              {searchResults.map((res: any, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setSelectedAsset({ type: res.type, data: res.data });
+                    if (res.data.coordinates && typeof res.data.coordinates[0] === 'number') {
+                      mapRef.current?.flyTo({ center: res.data.coordinates, zoom: 6.0 });
+                    }
+                  }}
+                  className="w-full text-left px-3 py-1.5 hover:bg-slate-800 text-[11px] border-b border-slate-800/40 last:border-b-0 flex justify-between items-center"
+                >
+                  <span className="truncate font-sans text-slate-350">{res.data.name}</span>
+                  <span className="font-mono text-[9px] text-cyan-400 uppercase tracking-widest bg-cyan-950/40 border border-cyan-800/40 px-1 rounded">{res.type}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Layer Filters control list */}
+        <div className="flex-1 overflow-y-auto p-5 flex flex-col gap-4 brutalist-scrollbar">
+          <div>
+            <h3 className="font-mono text-[9.5px] text-slate-400 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+              <Layers className="w-3.5 h-3.5 text-slate-500" />
+              Interactive Layers & Overlays
             </h3>
-            <h4 className="font-sans font-bold text-sm text-gray-900 mb-2 uppercase tracking-tight">
-              {TOUR_STEPS[currentStep].title}
-            </h4>
-            <p className="font-serif text-[12px] text-gray-600 leading-relaxed mb-4">
-              {TOUR_STEPS[currentStep].description}
-            </p>
             
-            <div className="flex items-center justify-between gap-2 border-t border-gray-200/60 pt-3">
-              <button
-                onClick={() => handleTourStep(currentStep - 1)}
-                disabled={currentStep === 0}
-                className="flex-1 flex items-center justify-center gap-1 py-1.5 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-30 disabled:pointer-events-none transition-all font-mono text-[9px] uppercase tracking-wider"
-              >
-                <ChevronLeft size={14} /> Back
-              </button>
-              <button
-                onClick={() => handleTourStep(currentStep + 1)}
-                disabled={currentStep === TOUR_STEPS.length - 1}
-                className="flex-1 flex items-center justify-center gap-1 py-1.5 bg-gray-900 border border-gray-800 text-white hover:bg-black disabled:opacity-30 disabled:pointer-events-none transition-all font-mono text-[9px] uppercase tracking-wider"
-              >
-                Next <ChevronRight size={14} />
-              </button>
-            </div>
-          </div>
-
-          {/* Layer Control */}
-          <div className="bg-gray-50 border border-gray-200 p-3.5">
-            <h3 className="font-mono text-[9px] text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
-              <Layers className="w-3.5 h-3.5 text-gray-400" />
-              Intelligence Layer Overlays
-            </h3>
             <div className="flex flex-col gap-2">
-              <button
-                onClick={() => setIsSuezToggled(prev => !prev)}
-                className={`flex items-center justify-between p-2 border text-left transition-all ${
-                  isSuezToggled 
-                    ? 'bg-red-50 border-red-200 text-red-800' 
-                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                <span className="font-mono text-[10px] uppercase tracking-wider">Suez Canal Alternative</span>
-                <span className={`w-2 h-2 rounded-full ${isSuezToggled ? 'bg-red-700 shadow-sm' : 'bg-gray-200'}`} />
-              </button>
-
-              <button
-                onClick={() => setIsCablesToggled(prev => !prev)}
-                className={`flex items-center justify-between p-2 border text-left transition-all ${
-                  isCablesToggled 
-                    ? 'bg-emerald-50 border-emerald-200 text-emerald-800' 
-                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                <span className="font-mono text-[10px] uppercase tracking-wider">Blue-Raman Fiber Cables</span>
-                <span className={`w-2 h-2 rounded-full ${isCablesToggled ? 'bg-emerald-700 shadow-sm' : 'bg-gray-200'}`} />
-              </button>
-
-              <button
-                onClick={() => setIsDataCentersToggled(prev => !prev)}
-                className={`flex items-center justify-between p-2 border text-left transition-all ${
-                  isDataCentersToggled 
-                    ? 'bg-sky-50 border-sky-200 text-sky-800' 
-                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                <span className="font-mono text-[10px] uppercase tracking-wider">Cloud Data Centers</span>
-                <span className={`w-2 h-2 rounded-full ${isDataCentersToggled ? 'bg-sky-600 shadow-sm' : 'bg-gray-200'}`} />
-              </button>
-
-              <button
-                onClick={() => setIsEconomicToggled(prev => !prev)}
-                className={`flex items-center justify-between p-2 border text-left transition-all ${
-                  isEconomicToggled 
-                    ? 'bg-amber-50 border-amber-200 text-amber-800' 
-                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                <span className="font-mono text-[10px] uppercase tracking-wider">Economic Density Heatmap</span>
-                <span className={`w-2 h-2 rounded-full ${isEconomicToggled ? 'bg-amber-700 shadow-sm' : 'bg-gray-200'}`} />
-              </button>
+              {[
+                { key: 'ports', label: 'Maritime Ports', color: 'border-sky-500 text-sky-400 bg-sky-950/10', dotColor: 'bg-sky-500', icon: <Anchor size={12} /> },
+                { key: 'railways', label: 'Logistics Railways', color: 'border-slate-500 text-slate-400 bg-slate-950/10', dotColor: 'bg-slate-400', icon: <Layers size={12} /> },
+                { key: 'datacenters', label: 'Data Processing Hubs', color: 'border-teal-500 text-teal-400 bg-teal-950/10', dotColor: 'bg-teal-500', icon: <Database size={12} /> },
+                { key: 'cables', label: 'Subsea Fiber Cables', color: 'border-cyan-500 text-cyan-400 bg-cyan-950/10', dotColor: 'bg-cyan-500', icon: <Cpu size={12} /> },
+                { key: 'energy', label: 'Energy Pipelines & Grids', color: 'border-amber-500 text-amber-400 bg-amber-950/10', dotColor: 'bg-amber-500', icon: <Zap size={12} /> },
+                { key: 'ftas', label: 'Trade Agreements (FTAs)', color: 'border-emerald-500 text-emerald-400 bg-emerald-950/10', dotColor: 'bg-emerald-500', icon: <Users size={12} /> },
+                { key: 'defense', label: 'Defense & Security Shields', color: 'border-rose-500 text-rose-400 bg-rose-950/10', dotColor: 'bg-rose-500', icon: <Shield size={12} /> }
+              ].map(lyr => (
+                <button
+                  key={lyr.key}
+                  onClick={() => toggleLayer(lyr.key)}
+                  className={`flex items-center justify-between p-2.5 border text-left transition-all ${
+                    activeLayers[lyr.key]
+                      ? `${lyr.color} font-bold`
+                      : 'bg-slate-950/40 border-slate-800 text-slate-500 hover:border-slate-700/60'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider">
+                    {lyr.icon}
+                    {lyr.label}
+                  </div>
+                  <span className={`w-2 h-2 rounded-full ${activeLayers[lyr.key] ? lyr.dotColor : 'bg-slate-800'}`} />
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Suez Comparison Stats */}
-          <AnimatePresence>
-            {isSuezToggled && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="bg-red-50/50 border border-red-200 p-3.5"
-              >
-                <h3 className="font-mono text-[9px] text-red-800 uppercase tracking-widest mb-3 flex items-center gap-1.5">
-                  <BarChart3 className="w-3.5 h-3.5" />
-                  Suez Canal vs. IMEC Transit Metrics
-                </h3>
-                <div className="flex flex-col gap-3 font-mono text-[10px]">
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-500">Transit Duration (Days)</span>
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <div>
-                        <div className="flex justify-between text-[9px] text-red-800">
-                          <span>SUEZ ROUTE</span>
-                          <span>18 Days</span>
-                        </div>
-                        <div className="w-full h-1.5 bg-gray-100 border border-gray-200">
-                          <div className="h-full bg-red-700" style={{ width: '100%' }}></div>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="flex justify-between text-[9px] text-blue-800">
-                          <span>IMEC CORRIDOR</span>
-                          <span>10 Days (-44%)</span>
-                        </div>
-                        <div className="w-full h-1.5 bg-gray-100 border border-gray-200">
-                          <div className="h-full bg-blue-700" style={{ width: '55.5%' }}></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2 text-center border-t border-gray-200 pt-2 mt-1">
-                    <div className="bg-white p-2 border border-gray-200">
-                      <div className="text-[8px] text-gray-400 uppercase">Suez Route</div>
-                      <div className="text-[11px] font-bold text-red-700 mt-0.5">12,000 KM</div>
-                      <div className="text-[8px] text-red-600 mt-0.5">100% Maritime</div>
-                      <div className="text-[8px] text-gray-400 mt-1">Red Sea Risks</div>
-                    </div>
-                    <div className="bg-white p-2 border border-gray-200">
-                      <div className="text-[8px] text-gray-400 uppercase">IMEC Pipeline</div>
-                      <div className="text-[11px] font-bold text-blue-700 mt-0.5">6,800 KM</div>
-                      <div className="text-[8px] text-blue-600 mt-0.5">Sea + Rail Hybrid</div>
-                      <div className="text-[8px] text-gray-400 mt-1">Bypasses Suez</div>
-                    </div>
-                  </div>
+          {/* Infrastructure Health Indicator */}
+          <div className="bg-slate-950/40 border border-slate-800 p-4 font-mono text-[10px]">
+            <h4 className="text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+              <ActivitySquare className="w-3.5 h-3.5 text-cyan-500" />
+              Corridor Flow Metrics
+            </h4>
+            <div className="flex flex-col gap-3">
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Tracked Container Volume</span>
+                  <span className="text-cyan-400 font-bold">144.2K TEU/d</span>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Infrastructure Cable Notes */}
-          <AnimatePresence>
-            {isCablesToggled && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="bg-emerald-50/50 border border-emerald-200 p-3 font-mono text-[9px] text-gray-700 flex flex-col gap-1.5"
-              >
-                <span className="text-[9px] font-bold text-emerald-800 uppercase tracking-widest flex items-center gap-1">
-                  <Cpu size={12} /> Digital Corridor Alignments
-                </span>
-                <p className="font-serif leading-relaxed text-[11px] text-gray-600 mt-0.5">
-                  The IMEC agenda parallels the layout of high-speed transcontinental cables like Blue-Raman, routing digital capacity alongside container logistics.
-                </p>
-                <div className="flex flex-col gap-1 mt-1 border-t border-emerald-200/60 pt-1.5">
-                  <div className="flex justify-between">
-                    <span>BLUE SYSTEM (Europe-Levant):</span>
-                    <span className="text-emerald-700 font-bold">Active</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>RAMAN SYSTEM (Levant-India):</span>
-                    <span className="text-amber-700 font-bold">Under Dev</span>
-                  </div>
+                <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-cyan-500" style={{ width: '78%' }} />
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Energy Pipeline Capacity</span>
+                  <span className="text-amber-400 font-bold">5.8M Bbl/d</span>
+                </div>
+                <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-amber-500" style={{ width: '92%' }} />
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Digital Grid Bandwidth</span>
+                  <span className="text-emerald-400 font-bold">420 Tb/s</span>
+                </div>
+                <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-emerald-500" style={{ width: '64%' }} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Real-time Ticker Footer */}
+        <div className="p-4 bg-slate-950 border-t border-slate-800 h-16 flex items-center overflow-hidden">
+          <div className="flex items-start gap-2.5">
+            <span className="px-1.5 py-0.5 bg-cyan-950 border border-cyan-800 text-[8px] font-mono text-cyan-400 font-bold uppercase tracking-widest rounded animate-pulse">
+              Feed
+            </span>
+            <div className="flex-1 min-w-0">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={tickerIndex}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="font-mono text-[9px] text-slate-400 leading-normal line-clamp-2"
+                >
+                  {NEWS_BULLETINS[tickerIndex]}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Node Inspector Overlay */}
+      {/* ── Center Map Canvas ── */}
+      <div className="flex-1 h-full relative">
+        <div ref={mapContainerRef} className="w-full h-full absolute inset-0 bg-slate-950" />
+      </div>
+
+      {/* ── Right Slide-over Drawer (Details Panel) ── */}
       <AnimatePresence>
-        {selectedNode && (
+        {selectedAsset && (
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 400 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-16 bottom-4 right-4 z-[400] w-[360px] max-w-[calc(100vw-2rem)] bg-white/95 border border-gray-300 p-5 text-gray-900 shadow-md flex flex-col overflow-y-auto brutalist-scrollbar"
+            exit={{ opacity: 0, x: 400 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            className="w-[400px] h-full bg-slate-900 border-l border-slate-800 z-[400] flex flex-col pointer-events-auto select-none font-sans"
           >
-            <div className="flex items-start justify-between border-b border-gray-200 pb-3 mb-4">
+            
+            {/* Header info */}
+            <div className="p-6 border-b border-slate-800 flex justify-between items-start">
               <div>
-                <span className="text-[9px] text-gray-500 font-mono tracking-widest uppercase font-bold flex items-center gap-1">
-                  <MapPin size={11} />
-                  Terminal Node Inspector
+                <span className="text-[9px] text-cyan-400 font-mono tracking-widest uppercase font-bold flex items-center gap-1.5">
+                  <MapPin size={11} className="animate-bounce" />
+                  Asset Deep-Dive
                 </span>
-                <h2 className="font-sans font-bold text-base mt-1.5 text-gray-900 uppercase tracking-tight">
-                  {selectedNode.name}
+                <h2 className="font-sans font-bold text-lg mt-1 text-slate-100 uppercase tracking-tight leading-snug">
+                  {selectedAsset.data.name}
                 </h2>
-                <span className="font-mono text-[9px] text-gray-400 uppercase tracking-widest">
-                  {selectedNode.country}
+                <span className="font-mono text-[9px] text-slate-400 uppercase tracking-widest">
+                  {'country' in selectedAsset.data ? selectedAsset.data.country : 'Multinational'}
                 </span>
               </div>
               <button
-                onClick={() => setSelectedNode(null)}
-                className="p-1 hover:bg-gray-100 rounded transition-all text-gray-500 hover:text-gray-900"
+                onClick={() => setSelectedAsset(null)}
+                className="p-1 hover:bg-slate-800 rounded transition-all text-slate-400 hover:text-white"
               >
                 <X size={16} />
               </button>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <div className="flex justify-between items-center text-[10px] font-mono">
-                <span className="text-gray-500">CORRIDOR STATUS</span>
-                <span className={`px-2 py-0.5 font-bold uppercase tracking-wider ${
-                  selectedNode.status === 'operational' ? 'bg-emerald-50 border border-emerald-300 text-emerald-700' :
-                  selectedNode.status === 'limited' ? 'bg-amber-50 border border-amber-300 text-amber-700' :
-                  'bg-gray-100 border border-gray-300 text-gray-600'
-                }`}>
-                  {selectedNode.status}
-                </span>
-              </div>
+            {/* Dynamic content rendering based on selected item type */}
+            <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 brutalist-scrollbar">
+              
+              {selectedAsset.type === 'port' && (
+                <div className="flex flex-col gap-5">
+                  <div className="grid grid-cols-2 gap-3 text-center">
+                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
+                      <div className="text-[8px] text-slate-500 uppercase">Annual Volume</div>
+                      <div className="text-[13px] font-bold text-cyan-400 mt-1">{(selectedAsset.data as PortAsset).capacityText}</div>
+                    </div>
+                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
+                      <div className="text-[8px] text-slate-500 uppercase">Congestion Rate</div>
+                      <div className={`text-[13px] font-bold mt-1 ${
+                        (selectedAsset.data as PortAsset).congestion === 'High' ? 'text-rose-500' :
+                        (selectedAsset.data as PortAsset).congestion === 'Moderate' ? 'text-amber-500' :
+                        'text-emerald-500'
+                      }`}>
+                        {(selectedAsset.data as PortAsset).congestion}
+                      </div>
+                    </div>
+                  </div>
 
-              <div>
-                <h4 className="text-[9px] font-mono text-gray-500 uppercase tracking-widest mb-1">Functional Outline</h4>
-                <p className="font-serif text-[12px] text-gray-700 leading-relaxed">
-                  {selectedNode.description}
-                </p>
-              </div>
+                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-800 pt-4">
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">UN/LOCODE:</span>
+                      <span className="text-slate-200 font-bold">{(selectedAsset.data as PortAsset).unLocode}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Max Draft Depth:</span>
+                      <span className="text-slate-200">{(selectedAsset.data as PortAsset).draft}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Avg Turnaround Time:</span>
+                      <span className="text-slate-200">{(selectedAsset.data as PortAsset).turnaround}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Ownership/Operators:</span>
+                      <span className="text-slate-200 text-right truncate max-w-[200px]" title={(selectedAsset.data as PortAsset).ownership}>
+                        {(selectedAsset.data as PortAsset).ownership}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-1">
+                      <span className="text-slate-500">Live Tracked Vessels:</span>
+                      <span className="text-emerald-400 font-bold">{(selectedAsset.data as PortAsset).vesselsTracked} Vessels</span>
+                    </div>
+                  </div>
 
-              <div className="grid grid-cols-2 gap-2 mt-1">
-                <div className="bg-gray-50 border border-gray-200 p-2.5 font-mono">
-                  <div className="text-[8px] text-gray-400 uppercase">Transit Timeline</div>
-                  <div className="text-[11px] font-bold text-blue-800 mt-1 flex items-center gap-1">
-                    <Clock size={11} /> {selectedNode.transitTimeFromIndia}
+                  <div>
+                    <h3 className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5 text-cyan-400" />
+                      Live Geopolitical News Feed
+                    </h3>
+                    <div className="flex flex-col gap-2">
+                      {(selectedAsset.data as PortAsset).headlines.map((headline, idx) => (
+                        <div key={idx} className="bg-slate-950/60 border border-slate-800 p-3 font-mono text-[10px] leading-relaxed text-slate-350">
+                          {headline}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <div className="bg-gray-50 border border-gray-200 p-2.5 font-mono">
-                  <div className="text-[8px] text-gray-400 uppercase">Capacity / Volume</div>
-                  <div className="text-[11px] font-bold text-gray-900 mt-1">
-                    {selectedNode.capacity}
+              )}
+
+              {selectedAsset.type === 'railway' && (
+                <div className="flex flex-col gap-5">
+                  <div className="grid grid-cols-2 gap-3 text-center">
+                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
+                      <div className="text-[8px] text-slate-500 uppercase">Operational Link Length</div>
+                      <div className="text-[13px] font-bold text-cyan-400 mt-1">{(selectedAsset.data as RailwayAsset).length}</div>
+                    </div>
+                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
+                      <div className="text-[8px] text-slate-500 uppercase">Track Gauge</div>
+                      <div className="text-[13px] font-bold text-slate-200 mt-1">{(selectedAsset.data as RailwayAsset).gauge}</div>
+                    </div>
+                  </div>
+
+                  <div className="font-mono text-xs border-t border-slate-800 pt-4">
+                    <h4 className="text-[9px] text-slate-500 uppercase mb-1">Corridor Segment Role</h4>
+                    <p className="font-sans text-xs text-slate-300 leading-relaxed bg-slate-950/40 p-3 border border-slate-800">
+                      {(selectedAsset.data as RailwayAsset).provisions}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5 text-cyan-400" />
+                      Infrastructure Developments
+                    </h3>
+                    <div className="flex flex-col gap-2">
+                      {(selectedAsset.data as RailwayAsset).headlines.map((h, idx) => (
+                        <div key={idx} className="bg-slate-950/60 border border-slate-800 p-3 font-mono text-[10px] leading-relaxed text-slate-350">
+                          {h}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
-              <div className="border-t border-gray-200 pt-3 flex flex-col gap-3 font-mono text-[10px]">
-                <div>
-                  <span className="text-gray-400 uppercase text-[8px] block mb-0.5">Corridor Segment Role</span>
-                  <span className="text-gray-800">{selectedNode.role}</span>
-                </div>
-                <div>
-                  <span className="text-gray-400 uppercase text-[8px] block mb-0.5">Geoeconomic & Regional Impact</span>
-                  <span className="text-gray-700 font-serif leading-relaxed text-[11px] block mt-0.5">{selectedNode.economicImpact}</span>
-                </div>
-              </div>
+              {selectedAsset.type === 'datacenter' && (
+                <div className="flex flex-col gap-5">
+                  <div className="grid grid-cols-2 gap-3 text-center">
+                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
+                      <div className="text-[8px] text-slate-500 uppercase">System Density</div>
+                      <div className="text-[13px] font-bold text-teal-400 mt-1">{(selectedAsset.data as DataCenterAsset).serversCount}</div>
+                    </div>
+                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
+                      <div className="text-[8px] text-slate-500 uppercase">Tier Rating</div>
+                      <div className="text-[13px] font-bold text-slate-200 mt-1">{(selectedAsset.data as DataCenterAsset).tier}</div>
+                    </div>
+                  </div>
 
-              <button
-                onClick={() => {
-                  if (mapRef.current) {
-                    mapRef.current.flyTo({
-                      center: selectedNode.coordinates,
-                      zoom: 8.5,
-                      pitch: 60,
-                      speed: 1.0
+                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-800 pt-4">
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Operating Entity:</span>
+                      <span className="text-slate-200 font-bold">{(selectedAsset.data as DataCenterAsset).operator}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Processing Location:</span>
+                      <span className="text-slate-200">{(selectedAsset.data as DataCenterAsset).city}, {(selectedAsset.data as DataCenterAsset).country}</span>
+                    </div>
+                    <div className="flex justify-between py-1">
+                      <span className="text-slate-500">Security / Sovereignty Tier:</span>
+                      <span className="text-emerald-400 font-bold">{(selectedAsset.data as DataCenterAsset).securityRating}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {selectedAsset.type === 'cable' && (
+                <div className="flex flex-col gap-5">
+                  <div className="bg-slate-950/40 border border-slate-800 p-4 font-mono text-xs">
+                    <h4 className="text-[9px] text-slate-500 uppercase mb-2">Landing Core Stations</h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {(selectedAsset.data as CableAsset).landingPoints.map((pt, idx) => (
+                        <span key={idx} className="bg-slate-900 border border-slate-800 px-2 py-0.5 text-[9px] text-slate-300 font-sans">
+                          {pt}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-800 pt-4">
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Status:</span>
+                      <span className="text-cyan-400 font-bold">{(selectedAsset.data as CableAsset).status}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Consortium Owners:</span>
+                      <span className="text-slate-200 text-right max-w-[220px] truncate">{(selectedAsset.data as CableAsset).owners}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Technical Supplier:</span>
+                      <span className="text-slate-200">{(selectedAsset.data as CableAsset).suppliers}</span>
+                    </div>
+                    <div className="flex justify-between py-1">
+                      <span className="text-slate-500">Trusted Connectivity Vetting:</span>
+                      <span className="text-emerald-400 font-bold">{(selectedAsset.data as CableAsset).securityRating}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {selectedAsset.type === 'energy' && (
+                <div className="flex flex-col gap-5">
+                  <div className="grid grid-cols-2 gap-3 text-center">
+                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
+                      <div className="text-[8px] text-slate-500 uppercase">Product Type</div>
+                      <div className="text-[13px] font-bold text-amber-400 mt-1">{(selectedAsset.data as EnergyAsset).product}</div>
+                    </div>
+                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
+                      <div className="text-[8px] text-slate-500 uppercase">Throughput Capacity</div>
+                      <div className="text-[13px] font-bold text-emerald-400 mt-1">{(selectedAsset.data as EnergyAsset).capacity}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-800 pt-4">
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Infrastructure Type:</span>
+                      <span className="text-slate-200 font-bold">{(selectedAsset.data as EnergyAsset).type}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Operational Status:</span>
+                      <span className="text-slate-200">{(selectedAsset.data as EnergyAsset).status}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Connecting Grid Route:</span>
+                      <span className="text-slate-200 text-right max-w-[200px] truncate" title={(selectedAsset.data as EnergyAsset).route}>
+                        {(selectedAsset.data as EnergyAsset).route}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-1">
+                      <span className="text-slate-500">Promoters & Engineering:</span>
+                      <span className="text-slate-200 text-right max-w-[200px] truncate">{(selectedAsset.data as EnergyAsset).promoters}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {(selectedAsset.type === 'fta' || selectedAsset.type === 'defense') && (
+                <div className="flex flex-col gap-5">
+                  <div className="bg-slate-950/40 border border-slate-800 p-4 font-mono text-xs">
+                    <h4 className="text-[9px] text-slate-500 uppercase mb-2">Sovereign Signatories</h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {(selectedAsset.data as AgreementAsset).members.map((m, idx) => (
+                        <span key={idx} className="bg-slate-900 border border-slate-800 px-2 py-0.5 text-[9px] text-slate-350">
+                          {m}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-3 font-mono text-xs border-t border-slate-800 pt-4">
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Treaty Type:</span>
+                      <span className="text-slate-200 font-bold">{(selectedAsset.data as AgreementAsset).type}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-slate-800/40">
+                      <span className="text-slate-500">Signing/Launch Year:</span>
+                      <span className="text-slate-200">{(selectedAsset.data as AgreementAsset).signedYear}</span>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 uppercase text-[8.5px] block mb-0.5">Core Provisions</span>
+                      <span className="text-slate-300 font-sans text-xs bg-slate-950/40 p-2.5 border border-slate-800 block leading-relaxed">
+                        {(selectedAsset.data as AgreementAsset).provisions}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 uppercase text-[8.5px] block mb-0.5">Economic/Geopolitical Benefits</span>
+                      <span className="text-slate-300 font-sans text-xs bg-slate-950/40 p-2.5 border border-slate-800 block leading-relaxed">
+                        {(selectedAsset.data as AgreementAsset).benefits}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5 text-cyan-400" />
+                      Treaty Developments
+                    </h3>
+                    <div className="flex flex-col gap-2">
+                      {(selectedAsset.data as AgreementAsset).developments.map((dev, idx) => (
+                        <div key={idx} className="bg-slate-950/60 border border-slate-800 p-3 font-mono text-[10px] leading-relaxed text-slate-350">
+                          {dev}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Focus Button */}
+              {selectedAsset.data.coordinates && (
+                <button
+                  onClick={() => {
+                    const map = mapRef.current;
+                    if (!map) return;
+                    
+                    const coords = 
+                      typeof selectedAsset.data.coordinates[0] === 'number' 
+                        ? selectedAsset.data.coordinates
+                        : selectedAsset.data.coordinates[0];
+
+                    map.flyTo({
+                      center: coords,
+                      zoom: selectedAsset.type === 'port' ? 7.5 : 5.0,
+                      speed: 1.2
                     });
-                  }
-                }}
-                className="mt-2 w-full py-2 bg-white border border-gray-300 hover:bg-gray-50 hover:border-gray-400 transition-all font-mono text-[9px] uppercase tracking-widest text-center text-gray-700 hover:text-gray-900 shadow-sm"
-              >
-                Focus Coordinates
-              </button>
+                  }}
+                  className="w-full py-2.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs font-mono font-bold uppercase tracking-widest text-center text-cyan-400 transition-all select-none"
+                >
+                  Focus Coordinates
+                </button>
+              )}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Status Bar */}
-      <div className="absolute bottom-4 left-4 z-[400] flex items-center gap-2 pointer-events-none">
-        <div className="bg-white/90 backdrop-blur-md border border-gray-300 px-3 py-1.5 flex items-center gap-2 font-mono text-[9px] text-gray-500 uppercase tracking-widest shadow-sm pointer-events-auto">
-          <Activity size={10} className="text-emerald-600" />
-          <span>Engine: WebGL v2</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-          <span className="text-gray-900 font-bold">Active</span>
-        </div>
-      </div>
     </div>
   );
 }
