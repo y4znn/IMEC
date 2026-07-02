@@ -26,12 +26,12 @@ export default function MapPage() {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-slate-950 overflow-hidden">
+    <div className="fixed inset-0 z-[9999] bg-gray-50 overflow-hidden">
       {/* ── Floating Navigation ── */}
       <div className="absolute top-4 right-4 z-[500] flex items-center gap-2">
         <Link
           href="/"
-          className="flex items-center gap-1.5 bg-slate-900/70 backdrop-blur-md border border-white/10 text-gray-300 hover:text-white font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-2 hover:border-white/20 transition-all"
+          className="flex items-center gap-1.5 bg-white/90 backdrop-blur-md border border-gray-300 text-gray-700 hover:text-gray-900 font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-2 hover:bg-gray-50 hover:border-gray-400 transition-all shadow-sm"
         >
           <ArrowLeft size={12} />
           Back
@@ -40,12 +40,12 @@ export default function MapPage() {
 
       {/* ── Map Title Badge ── */}
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[500]">
-        <div className="bg-slate-900/60 backdrop-blur-md border border-white/10 px-5 py-2 flex items-center gap-3">
-          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-          <h1 className="font-sans font-bold text-sm tracking-tight text-white">
+        <div className="bg-white/90 backdrop-blur-md border border-gray-300 px-5 py-2 flex items-center gap-3 shadow-sm">
+          <div className="w-2 h-2 bg-emerald-600 rounded-full animate-pulse" />
+          <h1 className="font-sans font-bold text-sm tracking-tight text-gray-900 uppercase">
             IMEC Corridor
           </h1>
-          <span className="font-mono text-[8px] text-gray-400 uppercase tracking-[0.2em]">
+          <span className="font-mono text-[8px] text-gray-500 uppercase tracking-[0.2em]">
             3D Intelligence Map
           </span>
         </div>

@@ -259,7 +259,7 @@ export default function ImecMap() {
   const markersRef = useRef<mapboxgl.Marker[]>([]);
 
   // ── UI States ─────────────────────────────────────────────
-  const [mapStyle, setMapStyle] = useState<'dark' | 'light'>('dark');
+  const [mapStyle, setMapStyle] = useState<'dark' | 'light'>('light');
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [selectedNode, setSelectedNode] = useState<ImecNode | null>(null);
   const [isSuezToggled, setIsSuezToggled] = useState<boolean>(false);
@@ -493,17 +493,17 @@ export default function ImecMap() {
           ['linear'],
           ['heatmap-value'],
           0, 'rgba(0,0,0,0)',
-          0.2, 'rgba(6, 182, 212, 0.15)',
-          0.5, 'rgba(14, 165, 233, 0.3)',
-          0.8, 'rgba(245, 158, 11, 0.45)',
-          1.0, 'rgba(239, 68, 68, 0.65)'
+          0.2, 'rgba(70, 130, 180, 0.1)',
+          0.5, 'rgba(70, 130, 180, 0.25)',
+          0.8, 'rgba(217, 119, 6, 0.35)',
+          1.0, 'rgba(185, 28, 28, 0.55)'
         ],
         'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 3, 9, 22],
         'heatmap-opacity': 0.65
       }
     });
 
-    // 2. Suez Canal Layer (Red dotted)
+    // 2. Suez Canal Layer (Crimson dotted)
     map.addLayer({
       id: 'suez-layer',
       type: 'line',
@@ -514,13 +514,13 @@ export default function ImecMap() {
         'line-join': 'round'
       },
       paint: {
-        'line-color': '#ef4444',
+        'line-color': '#b91c1c',
         'line-width': 2,
         'line-dasharray': [3, 3]
       }
     });
 
-    // 3. Subsea Cables Layer (Teal)
+    // 3. Subsea Cables Layer (Deep Teal)
     map.addLayer({
       id: 'cables-layer',
       type: 'line',
@@ -531,13 +531,13 @@ export default function ImecMap() {
         'line-join': 'round'
       },
       paint: {
-        'line-color': '#0d9488',
+        'line-color': '#0f766e',
         'line-width': 2,
         'line-opacity': 0.75
       }
     });
 
-    // 4. Data Centers Point Layer
+    // 4. Data Centers Point Layer (Charcoal/Slate)
     map.addLayer({
       id: 'datacenters-layer',
       type: 'circle',
@@ -547,55 +547,55 @@ export default function ImecMap() {
       },
       paint: {
         'circle-radius': 5.5,
-        'circle-color': '#06b6d4',
+        'circle-color': '#475569',
         'circle-stroke-width': 1.5,
         'circle-stroke-color': '#ffffff',
         'circle-opacity': 0.9
       }
     });
 
-    // 5. East Corridor Maritime (Cyan Flowing)
+    // 5. East Corridor Maritime (Navy Flowing)
     map.addLayer({
       id: 'east-maritime-layer',
       type: 'line',
       source: 'east-maritime',
       paint: {
-        'line-color': '#06b6d4',
+        'line-color': '#1e3a8a',
         'line-width': 3.5,
         'line-dasharray': [3, 3]
       }
     });
 
-    // 6. North Corridor Maritime (Sky Flowing)
+    // 6. North Corridor Maritime (Navy Flowing)
     map.addLayer({
       id: 'north-maritime-layer',
       type: 'line',
       source: 'north-maritime',
       paint: {
-        'line-color': '#0284c7',
+        'line-color': '#1e3a8a',
         'line-width': 3.5,
         'line-dasharray': [3, 3]
       }
     });
 
-    // 7. Rail Base (Dark outline)
+    // 7. Rail Base (Dark Slate outline)
     map.addLayer({
       id: 'rail-base-layer',
       type: 'line',
       source: 'railway',
       paint: {
-        'line-color': '#0f172a',
+        'line-color': '#334155',
         'line-width': 5.5
       }
     });
 
-    // 8. Rail Inner (Gold/Amber track)
+    // 8. Rail Inner (Terracotta track)
     map.addLayer({
       id: 'rail-inner-layer',
       type: 'line',
       source: 'railway',
       paint: {
-        'line-color': '#fbbf24',
+        'line-color': '#c2410c',
         'line-width': 2.5,
         'line-dasharray': [3, 3]
       }
@@ -680,24 +680,24 @@ export default function ImecMap() {
       el.className = 'relative flex items-center justify-center cursor-pointer group';
       
       const ringColor = 
-        node.status === 'operational' ? 'border-emerald-500 bg-emerald-500/10' :
-        node.status === 'limited' ? 'border-amber-500 bg-amber-500/10' :
-        'border-gray-500 bg-gray-500/10';
+        node.status === 'operational' ? 'border-emerald-600 bg-emerald-600/5' :
+        node.status === 'limited' ? 'border-amber-600 bg-amber-600/5' :
+        'border-gray-400 bg-gray-400/5';
 
       const dotColor = 
-        node.status === 'operational' ? 'bg-emerald-400' :
-        node.status === 'limited' ? 'bg-amber-400' :
-        'bg-gray-400';
+        node.status === 'operational' ? 'bg-emerald-700' :
+        node.status === 'limited' ? 'bg-amber-700' :
+        'bg-gray-500';
 
       const isStepHighlighted = TOUR_STEPS[currentStep].highlightedNodes.includes(node.id);
       const isSelected = selectedNode?.id === node.id;
       
       el.innerHTML = `
         <div class="absolute w-7 h-7 border rounded-full ${ringColor} ${isStepHighlighted || isSelected ? 'animate-ping' : 'opacity-40 group-hover:animate-ping'} duration-1000"></div>
-        <div class="relative w-3.5 h-3.5 border border-white/30 rounded-full ${dotColor} shadow-md flex items-center justify-center transition-all ${isSelected ? 'scale-125 ring-2 ring-white/50' : 'group-hover:scale-110'}">
-          <div class="w-1.5 h-1.5 bg-slate-950 rounded-full"></div>
+        <div class="relative w-3.5 h-3.5 border border-gray-300 rounded-full ${dotColor} shadow-sm flex items-center justify-center transition-all ${isSelected ? 'scale-125 ring-2 ring-gray-400/50' : 'group-hover:scale-110'}">
+          <div class="w-1 h-1 bg-white rounded-full"></div>
         </div>
-        <div class="absolute bottom-full mb-2 bg-slate-950/90 text-white font-mono text-[9px] font-bold tracking-widest uppercase border border-white/10 px-2 py-1 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
+        <div class="absolute bottom-full mb-2 bg-white text-gray-950 font-mono text-[9px] font-bold tracking-widest uppercase border border-gray-300 px-2 py-1 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 shadow-sm">
           ${node.name}
         </div>
       `;
@@ -848,57 +848,57 @@ export default function ImecMap() {
   };
 
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative font-sans">
       <div ref={mapContainerRef} className="w-full h-full absolute inset-0" />
 
       {/* Floating Story HUD */}
       <div className="absolute top-16 bottom-4 left-4 z-[400] w-[350px] max-w-[calc(100vw-2rem)] flex flex-col pointer-events-none">
-        <div className="flex flex-col gap-3 max-h-full pointer-events-auto overflow-y-auto brutalist-scrollbar bg-slate-950/85 backdrop-blur-lg border border-white/10 p-5 text-white shadow-2xl relative">
+        <div className="flex flex-col gap-3 max-h-full pointer-events-auto overflow-y-auto brutalist-scrollbar bg-white/95 border border-gray-300 p-5 text-gray-900 shadow-md relative">
           
-          <div className="border-b border-white/10 pb-3">
+          <div className="border-b border-gray-200 pb-3">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] text-cyan-400 font-mono tracking-[0.25em] uppercase font-bold flex items-center gap-1.5">
-                <Compass className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '6s' }} />
+              <span className="text-[10px] text-gray-500 font-mono tracking-[0.25em] uppercase font-bold flex items-center gap-1.5">
+                <Compass className="w-3.5 h-3.5 text-gray-400 animate-spin" style={{ animationDuration: '8s' }} />
                 IMEC Intelligence HUD
               </span>
               <button 
                 onClick={() => setMapStyle(prev => prev === 'dark' ? 'light' : 'dark')}
-                className="p-1 hover:bg-white/10 rounded transition-all border border-white/5 text-gray-400 hover:text-white"
+                className="p-1 hover:bg-gray-100 rounded transition-all border border-gray-200 text-gray-500 hover:text-gray-900"
                 title="Toggle Base Map"
               >
                 {mapStyle === 'dark' ? <Sun size={12} /> : <Moon size={12} />}
               </button>
             </div>
-            <h2 className="font-sans font-bold text-lg tracking-tight mt-1 text-white uppercase">
+            <h2 className="font-sans font-bold text-base tracking-tight mt-1.5 text-gray-900 uppercase">
               Interactive Terminal
             </h2>
           </div>
 
           {/* Guided Tour */}
-          <div className="bg-white/5 border border-white/10 p-3.5">
-            <h3 className="font-mono text-[9px] text-gray-400 uppercase tracking-widest mb-1.5 flex justify-between items-center">
+          <div className="bg-gray-50 border border-gray-200 p-3.5">
+            <h3 className="font-mono text-[9px] text-gray-500 uppercase tracking-widest mb-1.5 flex justify-between items-center">
               <span>Guided Geoeconomic Tour</span>
-              <span className="text-cyan-400 font-bold">{currentStep + 1}/{TOUR_STEPS.length}</span>
+              <span className="text-gray-700 font-bold">{currentStep + 1}/{TOUR_STEPS.length}</span>
             </h3>
-            <h4 className="font-sans font-bold text-sm text-white mb-2 uppercase">
+            <h4 className="font-sans font-bold text-sm text-gray-900 mb-2 uppercase tracking-tight">
               {TOUR_STEPS[currentStep].title}
             </h4>
-            <p className="font-serif text-[12px] text-gray-300 leading-relaxed mb-4">
+            <p className="font-serif text-[12px] text-gray-600 leading-relaxed mb-4">
               {TOUR_STEPS[currentStep].description}
             </p>
             
-            <div className="flex items-center justify-between gap-2 border-t border-white/5 pt-3">
+            <div className="flex items-center justify-between gap-2 border-t border-gray-200/60 pt-3">
               <button
                 onClick={() => handleTourStep(currentStep - 1)}
                 disabled={currentStep === 0}
-                className="flex-1 flex items-center justify-center gap-1 py-1.5 bg-slate-900 border border-white/10 hover:bg-slate-800 disabled:opacity-30 disabled:pointer-events-none transition-all font-mono text-[9px] uppercase tracking-wider"
+                className="flex-1 flex items-center justify-center gap-1 py-1.5 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-30 disabled:pointer-events-none transition-all font-mono text-[9px] uppercase tracking-wider"
               >
                 <ChevronLeft size={14} /> Back
               </button>
               <button
                 onClick={() => handleTourStep(currentStep + 1)}
                 disabled={currentStep === TOUR_STEPS.length - 1}
-                className="flex-1 flex items-center justify-center gap-1 py-1.5 bg-cyan-950 border border-cyan-800/50 hover:bg-cyan-900 text-cyan-200 disabled:opacity-30 disabled:pointer-events-none transition-all font-mono text-[9px] uppercase tracking-wider"
+                className="flex-1 flex items-center justify-center gap-1 py-1.5 bg-gray-900 border border-gray-800 text-white hover:bg-black disabled:opacity-30 disabled:pointer-events-none transition-all font-mono text-[9px] uppercase tracking-wider"
               >
                 Next <ChevronRight size={14} />
               </button>
@@ -906,9 +906,9 @@ export default function ImecMap() {
           </div>
 
           {/* Layer Control */}
-          <div className="bg-white/5 border border-white/10 p-3.5">
-            <h3 className="font-mono text-[9px] text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
-              <Layers className="w-3.5 h-3.5" />
+          <div className="bg-gray-50 border border-gray-200 p-3.5">
+            <h3 className="font-mono text-[9px] text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+              <Layers className="w-3.5 h-3.5 text-gray-400" />
               Intelligence Layer Overlays
             </h3>
             <div className="flex flex-col gap-2">
@@ -916,48 +916,48 @@ export default function ImecMap() {
                 onClick={() => setIsSuezToggled(prev => !prev)}
                 className={`flex items-center justify-between p-2 border text-left transition-all ${
                   isSuezToggled 
-                    ? 'bg-red-950/20 border-red-500/40 text-red-200' 
-                    : 'bg-slate-900/40 border-white/10 text-gray-400 hover:border-white/20'
+                    ? 'bg-red-50 border-red-200 text-red-800' 
+                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
               >
                 <span className="font-mono text-[10px] uppercase tracking-wider">Suez Canal Alternative</span>
-                <span className={`w-2.5 h-2.5 rounded-full ${isSuezToggled ? 'bg-red-500 shadow-lg shadow-red-500/50' : 'bg-white/10'}`} />
+                <span className={`w-2 h-2 rounded-full ${isSuezToggled ? 'bg-red-700 shadow-sm' : 'bg-gray-200'}`} />
               </button>
 
               <button
                 onClick={() => setIsCablesToggled(prev => !prev)}
                 className={`flex items-center justify-between p-2 border text-left transition-all ${
                   isCablesToggled 
-                    ? 'bg-emerald-950/20 border-emerald-500/40 text-emerald-200' 
-                    : 'bg-slate-900/40 border-white/10 text-gray-400 hover:border-white/20'
+                    ? 'bg-emerald-50 border-emerald-200 text-emerald-800' 
+                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
               >
                 <span className="font-mono text-[10px] uppercase tracking-wider">Blue-Raman Fiber Cables</span>
-                <span className={`w-2.5 h-2.5 rounded-full ${isCablesToggled ? 'bg-emerald-500 shadow-lg shadow-emerald-500/50' : 'bg-white/10'}`} />
+                <span className={`w-2 h-2 rounded-full ${isCablesToggled ? 'bg-emerald-700 shadow-sm' : 'bg-gray-200'}`} />
               </button>
 
               <button
                 onClick={() => setIsDataCentersToggled(prev => !prev)}
                 className={`flex items-center justify-between p-2 border text-left transition-all ${
                   isDataCentersToggled 
-                    ? 'bg-cyan-950/20 border-cyan-500/40 text-cyan-200' 
-                    : 'bg-slate-900/40 border-white/10 text-gray-400 hover:border-white/20'
+                    ? 'bg-sky-50 border-sky-200 text-sky-800' 
+                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
               >
                 <span className="font-mono text-[10px] uppercase tracking-wider">Cloud Data Centers</span>
-                <span className={`w-2.5 h-2.5 rounded-full ${isDataCentersToggled ? 'bg-cyan-400 shadow-lg shadow-cyan-400/50' : 'bg-white/10'}`} />
+                <span className={`w-2 h-2 rounded-full ${isDataCentersToggled ? 'bg-sky-600 shadow-sm' : 'bg-gray-200'}`} />
               </button>
 
               <button
                 onClick={() => setIsEconomicToggled(prev => !prev)}
                 className={`flex items-center justify-between p-2 border text-left transition-all ${
                   isEconomicToggled 
-                    ? 'bg-amber-950/20 border-amber-500/40 text-amber-200' 
-                    : 'bg-slate-900/40 border-white/10 text-gray-400 hover:border-white/20'
+                    ? 'bg-amber-50 border-amber-200 text-amber-800' 
+                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
               >
                 <span className="font-mono text-[10px] uppercase tracking-wider">Economic Density Heatmap</span>
-                <span className={`w-2.5 h-2.5 rounded-full ${isEconomicToggled ? 'bg-amber-500 shadow-lg shadow-amber-500/50' : 'bg-white/10'}`} />
+                <span className={`w-2 h-2 rounded-full ${isEconomicToggled ? 'bg-amber-700 shadow-sm' : 'bg-gray-200'}`} />
               </button>
             </div>
           </div>
@@ -970,51 +970,51 @@ export default function ImecMap() {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                className="bg-red-950/15 border border-red-500/25 p-3.5"
+                className="bg-red-50/50 border border-red-200 p-3.5"
               >
-                <h3 className="font-mono text-[9px] text-red-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                <h3 className="font-mono text-[9px] text-red-800 uppercase tracking-widest mb-3 flex items-center gap-1.5">
                   <BarChart3 className="w-3.5 h-3.5" />
                   Suez Canal vs. IMEC Transit Metrics
                 </h3>
                 <div className="flex flex-col gap-3 font-mono text-[10px]">
                   <div>
                     <div className="flex justify-between mb-1">
-                      <span className="text-gray-400">Transit Duration (Days)</span>
+                      <span className="text-gray-500">Transit Duration (Days)</span>
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <div>
-                        <div className="flex justify-between text-[9px] text-red-300">
+                        <div className="flex justify-between text-[9px] text-red-800">
                           <span>SUEZ ROUTE</span>
                           <span>18 Days</span>
                         </div>
-                        <div className="w-full h-1.5 bg-white/5 border border-white/10">
-                          <div className="h-full bg-red-600/70" style={{ width: '100%' }}></div>
+                        <div className="w-full h-1.5 bg-gray-100 border border-gray-200">
+                          <div className="h-full bg-red-700" style={{ width: '100%' }}></div>
                         </div>
                       </div>
                       <div>
-                        <div className="flex justify-between text-[9px] text-cyan-300">
+                        <div className="flex justify-between text-[9px] text-blue-800">
                           <span>IMEC CORRIDOR</span>
                           <span>10 Days (-44%)</span>
                         </div>
-                        <div className="w-full h-1.5 bg-white/5 border border-white/10">
-                          <div className="h-full bg-cyan-400/80" style={{ width: '55.5%' }}></div>
+                        <div className="w-full h-1.5 bg-gray-100 border border-gray-200">
+                          <div className="h-full bg-blue-700" style={{ width: '55.5%' }}></div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 text-center border-t border-white/5 pt-2 mt-1">
-                    <div className="bg-slate-900/60 p-2 border border-white/5">
-                      <div className="text-[8px] text-gray-500 uppercase">Suez Route</div>
-                      <div className="text-[11px] font-bold text-red-300 mt-0.5">12,000 KM</div>
-                      <div className="text-[8px] text-red-400/70 mt-0.5">100% Maritime</div>
-                      <div className="text-[8px] text-gray-400 mt-1">Red Sea Bottlenecks</div>
+                  <div className="grid grid-cols-2 gap-2 text-center border-t border-gray-200 pt-2 mt-1">
+                    <div className="bg-white p-2 border border-gray-200">
+                      <div className="text-[8px] text-gray-400 uppercase">Suez Route</div>
+                      <div className="text-[11px] font-bold text-red-700 mt-0.5">12,000 KM</div>
+                      <div className="text-[8px] text-red-600 mt-0.5">100% Maritime</div>
+                      <div className="text-[8px] text-gray-400 mt-1">Red Sea Risks</div>
                     </div>
-                    <div className="bg-slate-900/60 p-2 border border-white/5">
-                      <div className="text-[8px] text-gray-500 uppercase">IMEC Pipeline</div>
-                      <div className="text-[11px] font-bold text-cyan-300 mt-0.5">6,800 KM</div>
-                      <div className="text-[8px] text-cyan-400/70 mt-0.5">Sea + Rail Hybrid</div>
-                      <div className="text-[8px] text-gray-400 mt-1">Bypasses Chokepoints</div>
+                    <div className="bg-white p-2 border border-gray-200">
+                      <div className="text-[8px] text-gray-400 uppercase">IMEC Pipeline</div>
+                      <div className="text-[11px] font-bold text-blue-700 mt-0.5">6,800 KM</div>
+                      <div className="text-[8px] text-blue-600 mt-0.5">Sea + Rail Hybrid</div>
+                      <div className="text-[8px] text-gray-400 mt-1">Bypasses Suez</div>
                     </div>
                   </div>
                 </div>
@@ -1029,22 +1029,22 @@ export default function ImecMap() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                className="bg-emerald-950/15 border border-emerald-500/25 p-3 font-mono text-[9px] text-gray-300 flex flex-col gap-1.5"
+                className="bg-emerald-50/50 border border-emerald-200 p-3 font-mono text-[9px] text-gray-700 flex flex-col gap-1.5"
               >
-                <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest flex items-center gap-1">
+                <span className="text-[9px] font-bold text-emerald-800 uppercase tracking-widest flex items-center gap-1">
                   <Cpu size={12} /> Digital Corridor Alignments
                 </span>
-                <p className="font-serif leading-relaxed text-[11px] text-gray-300 mt-0.5">
+                <p className="font-serif leading-relaxed text-[11px] text-gray-600 mt-0.5">
                   The IMEC agenda parallels the layout of high-speed transcontinental cables like Blue-Raman, routing digital capacity alongside container logistics.
                 </p>
-                <div className="flex flex-col gap-1 mt-1 border-t border-emerald-500/10 pt-1.5">
+                <div className="flex flex-col gap-1 mt-1 border-t border-emerald-200/60 pt-1.5">
                   <div className="flex justify-between">
                     <span>BLUE SYSTEM (Europe-Levant):</span>
-                    <span className="text-emerald-400 font-bold">Active</span>
+                    <span className="text-emerald-700 font-bold">Active</span>
                   </div>
                   <div className="flex justify-between">
                     <span>RAMAN SYSTEM (Levant-India):</span>
-                    <span className="text-amber-400 font-bold">Under Dev</span>
+                    <span className="text-amber-700 font-bold">Under Dev</span>
                   </div>
                 </div>
               </motion.div>
@@ -1061,15 +1061,15 @@ export default function ImecMap() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-16 bottom-4 right-4 z-[400] w-[360px] max-w-[calc(100vw-2rem)] bg-slate-950/85 backdrop-blur-lg border border-white/10 p-5 text-white shadow-2xl flex flex-col overflow-y-auto brutalist-scrollbar"
+            className="absolute top-16 bottom-4 right-4 z-[400] w-[360px] max-w-[calc(100vw-2rem)] bg-white/95 border border-gray-300 p-5 text-gray-900 shadow-md flex flex-col overflow-y-auto brutalist-scrollbar"
           >
-            <div className="flex items-start justify-between border-b border-white/10 pb-3 mb-4">
+            <div className="flex items-start justify-between border-b border-gray-200 pb-3 mb-4">
               <div>
-                <span className="text-[9px] text-cyan-400 font-mono tracking-widest uppercase font-bold flex items-center gap-1">
-                  <MapPin size={11} className="animate-bounce" />
+                <span className="text-[9px] text-gray-500 font-mono tracking-widest uppercase font-bold flex items-center gap-1">
+                  <MapPin size={11} />
                   Terminal Node Inspector
                 </span>
-                <h2 className="font-sans font-bold text-base mt-1 text-white uppercase tracking-tight">
+                <h2 className="font-sans font-bold text-base mt-1.5 text-gray-900 uppercase tracking-tight">
                   {selectedNode.name}
                 </h2>
                 <span className="font-mono text-[9px] text-gray-400 uppercase tracking-widest">
@@ -1078,7 +1078,7 @@ export default function ImecMap() {
               </div>
               <button
                 onClick={() => setSelectedNode(null)}
-                className="p-1 hover:bg-white/10 rounded transition-all text-gray-400 hover:text-white"
+                className="p-1 hover:bg-gray-100 rounded transition-all text-gray-500 hover:text-gray-900"
               >
                 <X size={16} />
               </button>
@@ -1088,44 +1088,44 @@ export default function ImecMap() {
               <div className="flex justify-between items-center text-[10px] font-mono">
                 <span className="text-gray-500">CORRIDOR STATUS</span>
                 <span className={`px-2 py-0.5 font-bold uppercase tracking-wider ${
-                  selectedNode.status === 'operational' ? 'bg-emerald-950/40 border border-emerald-500/30 text-emerald-400' :
-                  selectedNode.status === 'limited' ? 'bg-amber-950/40 border border-amber-500/30 text-amber-400' :
-                  'bg-slate-900 border border-white/10 text-gray-400'
+                  selectedNode.status === 'operational' ? 'bg-emerald-50 border border-emerald-300 text-emerald-700' :
+                  selectedNode.status === 'limited' ? 'bg-amber-50 border border-amber-300 text-amber-700' :
+                  'bg-gray-100 border border-gray-300 text-gray-600'
                 }`}>
                   {selectedNode.status}
                 </span>
               </div>
 
               <div>
-                <h4 className="text-[9px] font-mono text-gray-400 uppercase tracking-widest mb-1">Functional Outline</h4>
-                <p className="font-serif text-[12px] text-gray-200 leading-relaxed">
+                <h4 className="text-[9px] font-mono text-gray-500 uppercase tracking-widest mb-1">Functional Outline</h4>
+                <p className="font-serif text-[12px] text-gray-700 leading-relaxed">
                   {selectedNode.description}
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-2 mt-1">
-                <div className="bg-white/5 border border-white/10 p-2.5 font-mono">
+                <div className="bg-gray-50 border border-gray-200 p-2.5 font-mono">
                   <div className="text-[8px] text-gray-400 uppercase">Transit Timeline</div>
-                  <div className="text-[11px] font-bold text-cyan-400 mt-1 flex items-center gap-1">
+                  <div className="text-[11px] font-bold text-blue-800 mt-1 flex items-center gap-1">
                     <Clock size={11} /> {selectedNode.transitTimeFromIndia}
                   </div>
                 </div>
-                <div className="bg-white/5 border border-white/10 p-2.5 font-mono">
+                <div className="bg-gray-50 border border-gray-200 p-2.5 font-mono">
                   <div className="text-[8px] text-gray-400 uppercase">Capacity / Volume</div>
-                  <div className="text-[11px] font-bold text-white mt-1">
+                  <div className="text-[11px] font-bold text-gray-900 mt-1">
                     {selectedNode.capacity}
                   </div>
                 </div>
               </div>
 
-              <div className="border-t border-white/5 pt-3 flex flex-col gap-3 font-mono text-[10px]">
+              <div className="border-t border-gray-200 pt-3 flex flex-col gap-3 font-mono text-[10px]">
                 <div>
-                  <span className="text-gray-500 uppercase text-[8px] block mb-0.5">Corridor Segment Role</span>
-                  <span className="text-gray-200">{selectedNode.role}</span>
+                  <span className="text-gray-400 uppercase text-[8px] block mb-0.5">Corridor Segment Role</span>
+                  <span className="text-gray-800">{selectedNode.role}</span>
                 </div>
                 <div>
-                  <span className="text-gray-500 uppercase text-[8px] block mb-0.5">Geoeconomic & Regional Impact</span>
-                  <span className="text-gray-200 font-serif leading-relaxed text-[11px] block mt-0.5">{selectedNode.economicImpact}</span>
+                  <span className="text-gray-400 uppercase text-[8px] block mb-0.5">Geoeconomic & Regional Impact</span>
+                  <span className="text-gray-700 font-serif leading-relaxed text-[11px] block mt-0.5">{selectedNode.economicImpact}</span>
                 </div>
               </div>
 
@@ -1140,7 +1140,7 @@ export default function ImecMap() {
                     });
                   }
                 }}
-                className="mt-2 w-full py-2 bg-slate-900 border border-white/10 hover:bg-slate-800 transition-all font-mono text-[9px] uppercase tracking-widest text-center text-cyan-400"
+                className="mt-2 w-full py-2 bg-white border border-gray-300 hover:bg-gray-50 hover:border-gray-400 transition-all font-mono text-[9px] uppercase tracking-widest text-center text-gray-700 hover:text-gray-900 shadow-sm"
               >
                 Focus Coordinates
               </button>
@@ -1151,11 +1151,11 @@ export default function ImecMap() {
 
       {/* Status Bar */}
       <div className="absolute bottom-4 left-4 z-[400] flex items-center gap-2 pointer-events-none">
-        <div className="bg-slate-950/80 backdrop-blur-md border border-white/10 px-3 py-1.5 flex items-center gap-2 font-mono text-[9px] text-gray-400 uppercase tracking-widest shadow-xl pointer-events-auto">
-          <Activity size={10} className="text-emerald-400 animate-pulse" />
+        <div className="bg-white/90 backdrop-blur-md border border-gray-300 px-3 py-1.5 flex items-center gap-2 font-mono text-[9px] text-gray-500 uppercase tracking-widest shadow-sm pointer-events-auto">
+          <Activity size={10} className="text-emerald-600" />
           <span>Engine: WebGL v2</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-          <span className="text-white">Active</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+          <span className="text-gray-900 font-bold">Active</span>
         </div>
       </div>
     </div>
