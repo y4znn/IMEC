@@ -21,7 +21,8 @@ import {
   Database,
   Search,
   Users,
-  ActivitySquare
+  ActivitySquare,
+  ArrowLeft
 } from 'lucide-react';
 
 // Set Mapbox token
@@ -1580,25 +1581,34 @@ export default function ImecMap() {
           >
             
             {/* Header info */}
-            <div className="p-6 border-b border-slate-200 flex justify-between items-start bg-slate-50">
+            <div className="p-6 border-b border-slate-200 flex flex-col gap-4 bg-slate-50">
+              <div className="flex justify-between items-center">
+                <button
+                  onClick={() => setSelectedAsset(null)}
+                  className="flex items-center gap-1 bg-white border border-slate-200 text-slate-500 hover:text-slate-800 font-mono text-[9px] uppercase tracking-wider px-2.5 py-1.5 hover:bg-slate-50 transition-all shadow-sm cursor-pointer"
+                >
+                  <ArrowLeft size={10} />
+                  Back
+                </button>
+                <button
+                  onClick={() => setSelectedAsset(null)}
+                  className="p-1 hover:bg-slate-200 rounded transition-all text-slate-400 hover:text-slate-700 cursor-pointer"
+                >
+                  <X size={15} />
+                </button>
+              </div>
               <div>
                 <span className="text-[9px] text-slate-500 font-mono tracking-widest uppercase font-bold flex items-center gap-1.5">
                   <MapPin size={10} className="text-slate-450" />
                   Asset Matrix Deep-Dive
                 </span>
-                <h2 className="font-serif font-bold text-base mt-1 text-slate-900 uppercase tracking-tight leading-snug">
+                <h2 className="font-serif font-bold text-base mt-1.5 text-slate-900 uppercase tracking-tight leading-snug">
                   {selectedAsset.data.name}
                 </h2>
                 <span className="font-mono text-[9px] text-slate-450 uppercase tracking-widest font-semibold mt-0.5 block">
                   {'country' in selectedAsset.data ? selectedAsset.data.country : 'Multinational Axis'}
                 </span>
               </div>
-              <button
-                onClick={() => setSelectedAsset(null)}
-                className="p-1 hover:bg-slate-200 rounded transition-all text-slate-400 hover:text-slate-700"
-              >
-                <X size={15} />
-              </button>
             </div>
 
             {/* Dynamic content rendering based on selected item type */}

@@ -38,19 +38,6 @@ export default function MapPage() {
         </Link>
       </div>
 
-      {/* ── Map Title Badge ── */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[500]">
-        <div className="bg-white border border-gray-200 px-5 py-2 flex items-center gap-3 shadow-sm">
-          <div className="w-1.5 h-1.5 bg-slate-700 rounded-full animate-pulse" />
-          <h1 className="font-serif font-bold text-xs tracking-wider text-gray-900 uppercase">
-            IMEC Radar Terminal
-          </h1>
-          <span className="font-mono text-[8px] text-gray-400 uppercase tracking-[0.15em]">
-            2D Geoeconomic Map
-          </span>
-        </div>
-      </div>
-
       {/* ── Full-Screen Map ── */}
       <ImecMap />
     </div>
