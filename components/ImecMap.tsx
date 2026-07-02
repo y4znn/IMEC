@@ -1342,7 +1342,7 @@ export default function ImecMap() {
     };
   }, []);
 
-  // Update layout when styles/toggles reload
+  // 1. Handle Map Style Changes (Light <-> Dark)
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !mapLoaded) return;
@@ -1351,24 +1351,42 @@ export default function ImecMap() {
       ? 'mapbox://styles/mapbox/dark-v11' 
       : 'mapbox://styles/mapbox/light-v11';
 
-    const currentStyle = map.getStyle();
-    if (currentStyle && currentStyle.sprite !== targetStyle) {
-      map.setStyle(targetStyle);
-      map.once('style.load', () => {
-        addMapLayersAndSources();
-        updatePortMarkers();
+    map.setStyle(targetStyle);
+    map.once('style.load', () => {
+      // Re-add sources and layers because style reload wipes them out
+      addMapLayersAndSources();
+      updatePortMarkers();
+    });
+  }, [mapStyle, mapLoaded]);
+
+  // 2. Handle Layer Visibilities via Instant setLayoutProperty Updates
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapLoaded) return;
+
+    const layerVisibilities: Record<string, string[]> = {
+      railways: ['railways-built-layer', 'railways-proposed-layer'],
+      datacenters: ['datacenters-layer'],
+      cables: ['cables-layer'],
+      energy: ['pipelines-layer', 'hvdc-layer'],
+      ftas: ['ftas-layer'],
+      defense: ['defense-layer']
+    };
+
+    Object.entries(layerVisibilities).forEach(([key, layerIds]) => {
+      const isVisible = activeLayers[key] ? 'visible' : 'none';
+      layerIds.forEach(id => {
+        if (map.getLayer(id)) {
+          map.setLayoutProperty(id, 'visibility', isVisible);
+        }
       });
-      return;
-    }
+    });
+  }, [activeLayers, mapLoaded]);
 
-    addMapLayersAndSources();
-    updatePortMarkers();
-  }, [mapStyle, activeLayers, mapLoaded, addMapLayersAndSources, updatePortMarkers]);
-
-  // Sync zoom-based clusters
+  // 3. Sync zoom-based clusters and port toggling
   useEffect(() => {
     updatePortMarkers();
-  }, [zoomLevel, selectedAsset, updatePortMarkers]);
+  }, [zoomLevel, activeLayers.ports, selectedAsset, updatePortMarkers]);
 
   // ── Search Database Handler ───────────────────────────────
   const searchResults = useMemo(() => {
