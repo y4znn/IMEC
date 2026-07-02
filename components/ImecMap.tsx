@@ -929,6 +929,7 @@ export default function ImecMap() {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const markersRef = useRef<mapboxgl.Marker[]>([]);
+  const loadedStyleRef = useRef<'light' | 'dark'>('light');
 
   // ── Layer Visibility States ──────────────────────────────
   const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>({
@@ -1324,6 +1325,7 @@ export default function ImecMap() {
     });
 
     mapRef.current = map;
+    loadedStyleRef.current = mapStyle;
 
     map.on('load', () => {
       setMapLoaded(true);
@@ -1347,16 +1349,19 @@ export default function ImecMap() {
     const map = mapRef.current;
     if (!map || !mapLoaded) return;
 
-    const targetStyle = mapStyle === 'dark' 
-      ? 'mapbox://styles/mapbox/dark-v11' 
-      : 'mapbox://styles/mapbox/light-v11';
+    if (loadedStyleRef.current !== mapStyle) {
+      loadedStyleRef.current = mapStyle;
+      const targetStyle = mapStyle === 'dark' 
+        ? 'mapbox://styles/mapbox/dark-v11' 
+        : 'mapbox://styles/mapbox/light-v11';
 
-    map.setStyle(targetStyle);
-    map.once('style.load', () => {
-      // Re-add sources and layers because style reload wipes them out
-      addMapLayersAndSources();
-      updatePortMarkers();
-    });
+      map.setStyle(targetStyle);
+      map.once('style.load', () => {
+        // Re-add sources and layers because style reload wipes them out
+        addMapLayersAndSources();
+        updatePortMarkers();
+      });
+    }
   }, [mapStyle, mapLoaded]);
 
   // 2. Handle Layer Visibilities via Instant setLayoutProperty Updates
