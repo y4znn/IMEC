@@ -10,8 +10,6 @@ import {
   Layers,
   Activity,
   X,
-  ChevronRight,
-  ChevronLeft,
   Sun,
   Moon,
   BarChart3,
@@ -23,7 +21,6 @@ import {
   Database,
   Search,
   Users,
-  Menu,
   ActivitySquare
 } from 'lucide-react';
 
@@ -106,15 +103,15 @@ interface AgreementAsset {
   provisions: string;
   benefits: string;
   developments: string[];
-  coordinates: [number, number][][][]; // Multipolygons for shading
+  coordinates: [number, number][][][]; // Multi-polygons for shading
 }
 
-// ── Static Database ────────────────────────────────────────
+// ── Static Database (Direct alignment with Google Briefing Doc) ──
 
 const PORTS_DATABASE: PortAsset[] = [
   {
     id: 'jnpt',
-    name: 'Jawaharlal Nehru Port (JNPT)',
+    name: 'Jawaharlal Nehru Port (JNPT), Mumbai',
     country: 'India',
     coordinates: [72.946, 18.948],
     unLocode: 'INNSA',
@@ -152,7 +149,7 @@ const PORTS_DATABASE: PortAsset[] = [
   },
   {
     id: 'mumbai_port',
-    name: 'Mumbai Port Authority',
+    name: 'Mumbai Port',
     country: 'India',
     coordinates: [72.8582, 18.9482],
     unLocode: 'INBOM',
@@ -165,8 +162,8 @@ const PORTS_DATABASE: PortAsset[] = [
     vesselsTracked: 11,
     status: 'Active',
     headlines: [
-      'Mumbai Port Authority initiates dry bulk terminal modernization.',
-      'Cargo flow capacity upgrades approved for western manufacturing hubs.'
+      'Mumbai Port undergoes major bulk/liquid capacity transformation.',
+      'Infrastructure updates approved for western industrial trade routes.'
     ]
   },
   {
@@ -331,7 +328,7 @@ const PORTS_DATABASE: PortAsset[] = [
     capacityText: '~1.5M TEU / Year',
     draft: '15.5m',
     turnaround: '2.1 Days',
-    ownership: 'Adani Group (India) 70% / Gadot Group (Israel) 30% / Bay Port operated by Chinese SIPG',
+    ownership: 'Adani Group (India) 70% / Gadot Group (Israel) 30% | Chinese state-owned SIPG operates adjacent Bay Port under 25-yr lease.',
     congestion: 'High',
     vesselsTracked: 12,
     status: 'Active',
@@ -562,7 +559,7 @@ const RAILWAYS_DATABASE: RailwayAsset[] = [
     status: 'Proposed',
     length: '180 km',
     gauge: 'Standard (1,435 mm)',
-    provisions: 'Extends from Al Haditha Saudi railhead into Jordanian standard-gauge network.',
+    provisions: 'Extends from Al Haditha Saudi railhead into Jordanian rail network.',
     country: 'Saudi Arabia & Jordan',
     coordinates: [[37.1597, 31.4553], [36.0, 31.8], [35.01, 29.52]],
     headlines: [
@@ -614,24 +611,26 @@ const RAILWAYS_DATABASE: RailwayAsset[] = [
   }
 ];
 
+// Table 5: Country-based Data Center Sovereign Ecosystems
 const DATA_CENTERS_DATABASE: DataCenterAsset[] = [
-  { id: 'dc_mumbai', name: 'Yotta Navi Mumbai (NM1)', city: 'Navi Mumbai', country: 'India', coordinates: [73.08, 19.03], operator: 'Yotta Infrastructure', serversCount: '150,000+ Servers', tier: 'Tier IV Certified', securityRating: 'Sovereign-Ready' },
-  { id: 'dc_dubai', name: 'Khazna Dubai Cluster', city: 'Dubai', country: 'UAE', coordinates: [55.27, 25.20], operator: 'Khazna Data Centers', serversCount: '80,000+ Servers', tier: 'Tier III / IV', securityRating: 'Premier Regional Aggregator' },
-  { id: 'dc_riyadh', name: 'center3 Riyadh Hyperscale', city: 'Riyadh', country: 'Saudi Arabia', coordinates: [46.72, 24.64], operator: 'center3 (stc Group)', serversCount: '95,000+ Servers', tier: 'Tier IV', securityRating: 'Sovereign Cloud Localisation' },
-  { id: 'dc_aqaba', name: 'Aqaba IX Terrestrial Bridge', city: 'Aqaba', country: 'Jordan', coordinates: [35.01, 29.52], operator: 'Naitel / Aqaba IX', serversCount: '10,000+ Servers', tier: 'Tier III', securityRating: 'Critical Red Sea Bridge' },
-  { id: 'dc_telaviv', name: 'Tel Aviv EdgeConneX', city: 'Tel Aviv', country: 'Israel', coordinates: [34.78, 32.08], operator: 'EdgeConneX / AWS', serversCount: '45,000+ Servers', tier: 'Tier III', securityRating: 'Cybersecurity R&D Hub' },
-  { id: 'dc_athens', name: 'Athens Digital Realty', city: 'Athens', country: 'Greece', coordinates: [23.72, 37.98], operator: 'Digital Realty', serversCount: '25,000+ Servers', tier: 'Tier III', securityRating: 'EU Digital Gateway' },
-  { id: 'dc_milan', name: 'Milan Aruba Cluster', city: 'Milan', country: 'Italy', coordinates: [9.19, 45.46], operator: 'Aruba / Sparkle', serversCount: '120,000+ Servers', tier: 'Tier IV', securityRating: 'Southern European Axis' },
-  { id: 'dc_marseille', name: 'Marseille Connectivity Hub', city: 'Marseille', country: 'France', coordinates: [5.36, 43.29], operator: 'OVHcloud / Digital Realty', serversCount: '200,000+ Servers', tier: 'Tier IV', securityRating: 'Global Connectivity Capital' }
+  { id: 'dc_india', name: 'India Sovereign Data Ecosystem', city: 'Mumbai / Chennai / Noida', country: 'India', coordinates: [72.8777, 19.0760], operator: 'CtrlS, Nxtra, Yotta, NTT, AWS, Google', serversCount: '150+ Facilities', tier: 'Tier III / IV Scale', securityRating: 'Sovereign-Ready / FDI Secure' },
+  { id: 'dc_uae', name: 'UAE Regional Aggregator Hub', city: 'Dubai / Abu Dhabi', country: 'UAE', coordinates: [54.3773, 24.4539], operator: 'Khazna, Equinix, Moro Hub, Microsoft, AWS', serversCount: '50+ Facilities', tier: 'Tier III / IV Hub', securityRating: 'Premier Regional Data Aggregator' },
+  { id: 'dc_saudi', name: 'Saudi Arabia Sovereign Cloud', city: 'Riyadh / Jeddah / NEOM', country: 'Saudi Arabia', coordinates: [46.7219, 24.6877], operator: 'center3 (stc group), Mobily, NEOM Cloud', serversCount: '35+ Facilities', tier: 'Tier IV Cloud Core', securityRating: 'Sovereign Cloud Localisation' },
+  { id: 'dc_jordan', name: 'Jordan Terrestrial Bridge', city: 'Aqaba / Amman', country: 'Jordan', coordinates: [35.9304, 31.9454], operator: 'Aqaba IX, Naitel Gateway', serversCount: '5–10 Facilities', tier: 'Tier III Edge', securityRating: 'Critical Red Sea Bridge Link' },
+  { id: 'dc_israel', name: 'Israel Cyber & AI Hub', city: 'Tel Aviv / Haifa', country: 'Israel', coordinates: [34.7818, 32.0853], operator: 'Serverfarm, EdgeConneX, AWS, Google Cloud', serversCount: '30+ Facilities', tier: 'Tier III R&D Edge', securityRating: 'Cybersecurity R&D Hub' },
+  { id: 'dc_greece', name: 'Greece EU Digital Gateway', city: 'Athens / Chania', country: 'Greece', coordinates: [23.7275, 37.9838], operator: 'Digital Realty, DATA4, Microsoft Hub', serversCount: '15+ Facilities', tier: 'Tier III Gateway', securityRating: 'EU Digital Gateway' },
+  { id: 'dc_italy', name: 'Italy Southern Digital Axis', city: 'Milan / Rome / Palermo', country: 'Italy', coordinates: [9.1900, 45.4642], operator: 'Aruba, Sparkle, Equinix, Vantage', serversCount: '135+ Facilities', tier: 'Tier IV Edge Cluster', securityRating: 'Southern European Axis' },
+  { id: 'dc_france', name: 'France Connectivity Capital', city: 'Marseille / Paris', country: 'France', coordinates: [5.3698, 43.2965], operator: 'OVHcloud, Orange, Digital Realty, Equinix', serversCount: '260+ Facilities', tier: 'Tier IV Sovereign Core', securityRating: 'Global Connectivity Capital' }
 ];
 
+// Table 4: Subsea Cables
 const CABLES_DATABASE: CableAsset[] = [
   {
     id: 'blue_raman',
     name: 'Blue & Raman Cable System',
     landingPoints: ['Genoa (Italy)', 'Marseille (France)', 'Chania (Greece)', 'Tel Aviv (Israel)', 'Aqaba (Jordan)', 'Dubah (Saudi Arabia)', 'Mumbai (India)'],
     status: 'Under Development',
-    owners: 'Google / Sparkle / Zain Omantel International',
+    owners: 'Google, Sparkle, Zain Omantel Intl.',
     suppliers: 'Alcatel Submarine Networks (ASN)',
     securityRating: 'Trusted Connectivity (EU Toolbox Approved)',
     coordinates: [[5.3698, 43.2965], [8.94, 44.4], [12.0, 37.0], [23.63, 37.94], [34.98, 32.79], [35.01, 29.52], [39.16, 21.46], [54.01, 16.94], [72.946, 18.948]]
@@ -641,7 +640,7 @@ const CABLES_DATABASE: CableAsset[] = [
     name: 'East to Med Corridor (EMC)',
     landingPoints: ['Marseille (France)', 'Genoa (Italy)', 'Athens (Greece)', 'Tel Aviv (Israel)', 'Jeddah (Saudi Arabia)'],
     status: 'Active',
-    owners: 'stc / Cyta / PPC / TTSA',
+    owners: 'EMC Subsea Cable Co. (stc, Cyta, PPC, TTSA)',
     suppliers: 'Alcatel Submarine Networks (ASN)',
     securityRating: 'Trusted Corridor (French Strategic Oversight)',
     coordinates: [[5.36, 43.2], [8.94, 44.40], [23.63, 37.94], [34.98, 32.79], [39.16, 21.46]]
@@ -655,16 +654,47 @@ const CABLES_DATABASE: CableAsset[] = [
     suppliers: 'SubCom',
     securityRating: 'National Champion Managed',
     coordinates: [[72.946, 18.948], [54.01, 16.94], [39.16, 21.46], [32.32, 29.93], [23.63, 37.94], [5.36, 43.2]]
+  },
+  {
+    id: 'medusa_cable',
+    name: 'Medusa Cable',
+    landingPoints: ['Portugal', 'Spain', 'Marseille (France)', 'Italy', 'Cyprus', 'Egypt', 'Syria', 'Lebanon'],
+    status: 'Active',
+    owners: 'AFR-IX telecom',
+    suppliers: 'Alcatel Submarine Networks (ASN)',
+    securityRating: 'EU Strategic Infrastructure Approved',
+    coordinates: [[-9.13, 38.72], [2.17, 41.38], [5.36, 43.29], [13.36, 38.11], [33.0, 34.5], [31.2, 30.0], [35.8, 34.9], [35.5, 33.8]]
+  },
+  {
+    id: 'greenmed_cable',
+    name: 'GreenMed System',
+    landingPoints: ['Genoa (Italy)', 'Balkans', 'Chania (Greece)', 'Aqaba (Jordan)'],
+    status: 'Active',
+    owners: 'Sparkle',
+    suppliers: 'Alcatel Submarine Networks (ASN), Elettra Tlc',
+    securityRating: 'EU Sovereign Security Compliance',
+    coordinates: [[8.94, 44.40], [18.0, 42.0], [24.0, 35.5], [35.01, 29.52]]
+  },
+  {
+    id: 'eu_africa_india',
+    name: 'EU-Africa-India Corridor',
+    landingPoints: ['Marseille (France)', 'Djibouti', 'Mumbai (India)'],
+    status: 'Active',
+    owners: 'Géant, EIB, European Commission',
+    suppliers: 'European private sector consortia (ASN-led)',
+    securityRating: 'Multilateral Trusted Security Shield',
+    coordinates: [[5.36, 43.29], [43.14, 11.57], [72.946, 18.948]]
   }
 ];
 
+// Tables 6 & 7: Energy Integration
 const ENERGY_DATABASE: EnergyAsset[] = [
   {
     id: 'eastmed_pipe',
     name: 'EastMed Pipeline Project',
     type: 'Pipeline',
     product: 'Natural Gas (H2-ready)',
-    capacity: '10 Billion Cubic Meters / Year',
+    capacity: '10 BCM / Year',
     status: 'Permitting / Paused (Geopolitical dispute with Turkey)',
     route: 'Israel Levantine Basin ↔ Cyprus ↔ Greece ↔ Italy',
     promoters: 'IGI Poseidon (Edison Italy, DEPA Greece)',
@@ -677,7 +707,7 @@ const ENERGY_DATABASE: EnergyAsset[] = [
     product: 'Green Hydrogen',
     capacity: '4 Million Tonnes / Year',
     status: 'Planned (EU Project of Common Interest)',
-    route: 'Algeria ↔ Tunisia ↔ Italy (Sicily) ↔ Austria ↔ Germany',
+    route: 'Algeria ↔ Tunisia ↔ Italy ↔ Austria ↔ Germany',
     promoters: 'Snam (Italy)',
     coordinates: [[3.27, 32.93], [8.83, 35.17], [12.58, 37.65], [12.8, 42.0], [9.19, 45.46]]
   },
@@ -687,16 +717,16 @@ const ENERGY_DATABASE: EnergyAsset[] = [
     type: 'Pipeline',
     product: '100% Green Hydrogen',
     capacity: '2.5 Million Tonnes / Year',
-    status: 'Planned (Design & Auth obtained)',
+    status: 'Planned',
     route: 'Greece ↔ Italy (Ionian Sea Crossing)',
-    promoters: 'IGI Poseidon',
+    promoters: 'IGI Poseidon (Edison, DEPA)',
     coordinates: [[20.26, 39.50], [18.49, 40.14]]
   },
   {
     id: 'saudi_ew_pipeline',
     name: 'Saudi East-West Crude Pipeline',
     type: 'Pipeline',
-    product: 'Crude Oil',
+    product: 'Crude Oil / NGLs',
     capacity: '5.0 Million Barrels / Day',
     status: 'Existing (Bypasses Strait of Hormuz)',
     route: 'Saudi Eastern Province (Abqaiq) ↔ Yanbu (Red Sea)',
@@ -704,14 +734,25 @@ const ENERGY_DATABASE: EnergyAsset[] = [
     coordinates: [[49.68, 25.93], [46.72, 24.64], [38.22, 24.09]]
   },
   {
+    id: 'neom_h2',
+    name: 'NEOM Green Hydrogen Export',
+    type: 'Pipeline',
+    product: 'Ammonia / H2 Export',
+    capacity: '2.5 Million Tonnes / Year equivalent',
+    status: 'Under Construction',
+    route: 'Saudi Arabia (NEOM) ↔ Global export via ships/pipes',
+    promoters: 'ACWA Power, Air Products',
+    coordinates: [[35.0, 28.5], [34.0, 27.5]]
+  },
+  {
     id: 'great_sea_interconnector',
     name: 'Great Sea Interconnector',
     type: 'HVDC Interconnector',
     product: 'Electricity Grid',
-    capacity: '2,000 MW',
+    capacity: '2,000 MW (Offshore HVDC)',
     status: 'Under Construction (Expected 2029)',
     route: 'Israel ↔ Cyprus ↔ Crete (Greece)',
-    promoters: 'Nexans / EuroAsia Interconnector',
+    promoters: 'Nexans / EuroAsia Interconnector / EU PCI',
     coordinates: [[34.8, 32.0], [33.0, 34.5], [24.5, 35.0], [23.8, 37.8]]
   },
   {
@@ -721,9 +762,9 @@ const ENERGY_DATABASE: EnergyAsset[] = [
     product: 'Electricity Grid',
     capacity: '3,000 MW',
     status: 'Final Stage (Phase 1 operational 2025)',
-    route: 'Saudi Arabia (Tabuk) ↔ Egypt (Badr)',
+    route: 'Saudi Arabia ↔ Egypt',
     promoters: 'Saudi Electricity Company / ONGC Egypt',
-    coordinates: [[36.56, 28.38], [34.8, 28.2], [31.74, 30.13]]
+    coordinates: [[46.72, 24.64], [36.56, 28.38], [34.8, 28.2], [31.2, 30.0]]
   },
   {
     id: 'india_uae_hvdc',
@@ -735,9 +776,54 @@ const ENERGY_DATABASE: EnergyAsset[] = [
     route: 'India (Mundra) ↔ UAE (Fujairah)',
     promoters: 'Power Grid Corporation of India / TAQA UAE',
     coordinates: [[69.73, 22.84], [56.36, 25.18]]
+  },
+  {
+    id: 'india_saudi_hvdc',
+    name: 'India–Saudi Arabia HVDC Link',
+    type: 'HVDC Interconnector',
+    product: 'Electricity Grid',
+    capacity: '2,000 MW',
+    status: 'Feasibility Stage',
+    route: 'India (Mundra) ↔ Saudi Arabia',
+    promoters: 'Power Grid Corporation of India',
+    coordinates: [[69.73, 22.84], [54.01, 16.94], [46.72, 24.64]]
+  },
+  {
+    id: 'elmed_interconnector',
+    name: 'ELMED Interconnector',
+    type: 'HVDC Interconnector',
+    product: 'Electricity Grid',
+    capacity: '600 MW',
+    status: 'Permitting (Expected 2028)',
+    route: 'Tunisia ↔ Sicily (Italy)',
+    promoters: 'Terna, built by Prysmian',
+    coordinates: [[10.18, 36.8], [12.58, 37.65]]
+  },
+  {
+    id: 'gregy_interconnector',
+    name: 'GREGY Interconnector',
+    type: 'HVDC Interconnector',
+    product: 'Electricity Grid',
+    capacity: '3,000 MW',
+    status: 'Feasibility Study',
+    route: 'Egypt ↔ Greece',
+    promoters: 'Elica Group (Copelouzos)',
+    coordinates: [[31.2, 30.0], [23.63, 37.94]]
+  },
+  {
+    id: 'eurogulf_interconnector',
+    name: 'EuroGulf Interconnector',
+    type: 'HVDC Interconnector',
+    product: 'Electricity Grid',
+    capacity: '2,000 MW',
+    status: 'Under Consideration',
+    route: 'Saudi Arabia ↔ Egypt ↔ Cyprus ↔ EU',
+    promoters: 'EuroAsia Interconnector Group',
+    coordinates: [[46.72, 24.64], [31.2, 30.0], [33.0, 34.5], [23.63, 37.94]]
   }
 ];
 
+// Table 8: Strategic Defense Shields & Security Pacts
 const AGREEMENTS_DATABASE: AgreementAsset[] = [
   {
     id: 'gcc_market',
@@ -827,16 +913,16 @@ const AGREEMENTS_DATABASE: AgreementAsset[] = [
   }
 ];
 
-// Ticker bulletins
+// Strategic Update Log Bulletins
 const NEWS_BULLETINS = [
-  'ALERT: UAE Akashteer tactical air defense network unifies Gulf radar monitoring.',
-  'UPDATE: India-UAE CEPA trade volumes surge 15% in Q1 2026.',
-  'REPORT: Shanghai Port Group (SIPG) extends lease on Haifa\'s Bay Port; security review initiated.',
-  'DEAL: €200M CMA CGM investment in Syria\'s Latakia Port begins Phase 2 expansion.',
-  'HVDC: Egypt-KSA Interconnection (3000 MW) enters final testing stage.',
-  'SECURITY: EUNAVFOR Aspides frigate escorts container convoy through Bab al-Mandab.',
-  'ENERGY: Algeria-Italy SoutH2 corridor gains EU Project of Common Interest funding.',
-  'RAILWAY: Jordan standard-gauge rail network secures $2.3B UAE construction grant.'
+  'UPDATE: India-UAE CEPA trade volumes surge 15% in Q1 2026 under expanded tariff removals.',
+  'INFRASTRUCTURE: Jordan standard-gauge rail network secures $2.3B UAE construction funding grant.',
+  'RADAR: UAE Akashteer tactical air defense canopy unifies regional Gulf multi-sensor monitoring.',
+  'CABLES: EU Submarine Cable Security Toolbox implementation begins landing station audits.',
+  'POWER: Egypt-KSA Interconnection (3000 MW) enters final load-balancing testing stage.',
+  'SECURITY: EUNAVFOR Aspides Task Force increases naval escort frequencies through Red Sea corridors.',
+  'PORT EXPANSION: Fujairah and Duqm fast-track container berths to absorb Hormuz bypass cargo.',
+  'HYDROGEN: Algeria-Italy SoutH2 green hydrogen corridor files design updates to EU Commission.'
 ];
 
 export default function ImecMap() {
@@ -855,7 +941,7 @@ export default function ImecMap() {
     defense: false
   });
 
-  const [mapStyle, setMapStyle] = useState<'dark' | 'light'>('dark');
+  const [mapStyle, setMapStyle] = useState<'dark' | 'light'>('light');
   const [selectedAsset, setSelectedAsset] = useState<{ type: string; data: any } | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [tickerIndex, setTickerIndex] = useState(0);
@@ -871,7 +957,7 @@ export default function ImecMap() {
   useEffect(() => {
     const timer = setInterval(() => {
       setTickerIndex(prev => (prev + 1) % NEWS_BULLETINS.length);
-    }, 6000);
+    }, 7000);
     return () => clearInterval(timer);
   }, []);
 
@@ -882,9 +968,8 @@ export default function ImecMap() {
 
     // Remove existing sources/layers if reloading style
     const cleanupLayers = [
-      'railways-layer', 'cables-layer', 'datacenters-layer',
-      'pipelines-layer', 'hvdc-layer', 'security-escort-layer',
-      'security-radar-layer', 'ftas-layer', 'defense-layer'
+      'railways-built-layer', 'railways-proposed-layer', 'cables-layer', 'datacenters-layer',
+      'pipelines-layer', 'hvdc-layer', 'ftas-layer', 'defense-layer'
     ];
     cleanupLayers.forEach(id => {
       if (map.getLayer(id)) map.removeLayer(id);
@@ -892,14 +977,13 @@ export default function ImecMap() {
 
     const cleanupSources = [
       'railways', 'subsea-cables', 'data-centers', 'energy-pipelines',
-      'electricity-hvdc', 'security-escort', 'security-radar',
-      'ftas-source', 'defense-source'
+      'electricity-hvdc', 'ftas-source', 'defense-source'
     ];
     cleanupSources.forEach(id => {
       if (map.getSource(id)) map.removeSource(id);
     });
 
-    // 1. Railways GeoJSON
+    // 1. Railways GeoJSON Source
     map.addSource('railways', {
       type: 'geojson',
       data: {
@@ -912,7 +996,7 @@ export default function ImecMap() {
       }
     });
 
-    // 2. Cables GeoJSON
+    // 2. Cables GeoJSON Source
     map.addSource('subsea-cables', {
       type: 'geojson',
       data: {
@@ -925,7 +1009,7 @@ export default function ImecMap() {
       }
     });
 
-    // 3. Data Centers GeoJSON
+    // 3. Data Centers GeoJSON Source
     map.addSource('data-centers', {
       type: 'geojson',
       data: {
@@ -938,7 +1022,7 @@ export default function ImecMap() {
       }
     });
 
-    // 4. Energy Pipelines GeoJSON
+    // 4. Energy Pipelines GeoJSON Source
     map.addSource('energy-pipelines', {
       type: 'geojson',
       data: {
@@ -951,7 +1035,7 @@ export default function ImecMap() {
       }
     });
 
-    // 5. Electricity HVDC GeoJSON
+    // 5. Electricity HVDC GeoJSON Source
     map.addSource('electricity-hvdc', {
       type: 'geojson',
       data: {
@@ -964,7 +1048,7 @@ export default function ImecMap() {
       }
     });
 
-    // 6. FTAs GeoJSON Polygons
+    // 6. FTAs GeoJSON Polygons Source
     map.addSource('ftas-source', {
       type: 'geojson',
       data: {
@@ -977,7 +1061,7 @@ export default function ImecMap() {
       }
     });
 
-    // 7. Defense GeoJSON Polygons
+    // 7. Defense GeoJSON Polygons Source
     map.addSource('defense-source', {
       type: 'geojson',
       data: {
@@ -990,44 +1074,62 @@ export default function ImecMap() {
       }
     });
 
-    // ── Render Layers ──
+    // ── Render Layers (Muted Academic Colors) ──
 
-    // FTAs shaded background (Teal/Emerald)
+    // FTAs shaded background (Soft Green Wash)
     map.addLayer({
       id: 'ftas-layer',
       type: 'fill',
       source: 'ftas-source',
       layout: { visibility: activeLayers.ftas ? 'visible' : 'none' },
-      paint: { 'fill-color': '#10b981', 'fill-opacity': 0.15, 'fill-outline-color': '#059669' }
+      paint: { 'fill-color': '#16a34a', 'fill-opacity': 0.06, 'fill-outline-color': '#15803d' }
     });
 
-    // Defense shaded background (Indigo/Red)
+    // Defense shaded background (Soft Dust-Red Wash)
     map.addLayer({
       id: 'defense-layer',
       type: 'fill',
       source: 'defense-source',
       layout: { visibility: activeLayers.defense ? 'visible' : 'none' },
-      paint: { 'fill-color': '#f43f5e', 'fill-opacity': 0.18, 'fill-outline-color': '#e11d48' }
+      paint: { 'fill-color': '#b91c1c', 'fill-opacity': 0.06, 'fill-outline-color': '#991b1b' }
     });
 
-    // Railways (Slate Built, Dashed Red Proposed)
+    // Railways Built (Slate Solid Line - Separated to avoid Mapbox dash expression crash)
     map.addLayer({
-      id: 'railways-layer',
+      id: 'railways-built-layer',
       type: 'line',
       source: 'railways',
+      filter: ['==', ['get', 'status'], 'Built'],
       layout: {
         visibility: activeLayers.railways ? 'visible' : 'none',
         'line-cap': 'round',
         'line-join': 'round'
       },
       paint: {
-        'line-color': ['match', ['get', 'status'], 'Built', '#64748b', '#e11d48'],
-        'line-width': ['match', ['get', 'status'], 'Built', 3, 2],
-        'line-dasharray': ['match', ['get', 'status'], 'Built', [1, 0], [4, 3]]
+        'line-color': '#475569',
+        'line-width': 2.5
       }
     });
 
-    // Cables (Cyan Glowing Curved)
+    // Railways Proposed (Muted Crimson Dashed Line)
+    map.addLayer({
+      id: 'railways-proposed-layer',
+      type: 'line',
+      source: 'railways',
+      filter: ['==', ['get', 'status'], 'Proposed'],
+      layout: {
+        visibility: activeLayers.railways ? 'visible' : 'none',
+        'line-cap': 'round',
+        'line-join': 'round'
+      },
+      paint: {
+        'line-color': '#b91c1c',
+        'line-width': 1.5,
+        'line-dasharray': [4, 3]
+      }
+    });
+
+    // Cables (Muted Deep Blue)
     map.addLayer({
       id: 'cables-layer',
       type: 'line',
@@ -1037,24 +1139,24 @@ export default function ImecMap() {
         'line-cap': 'round',
         'line-join': 'round'
       },
-      paint: { 'line-color': '#06b6d4', 'line-width': 2.5, 'line-opacity': 0.8 }
+      paint: { 'line-color': '#0284c7', 'line-width': 2, 'line-opacity': 0.75 }
     });
 
-    // Data Centers (Server nodes)
+    // Data Centers (Muted Sage Teal Node)
     map.addLayer({
       id: 'datacenters-layer',
       type: 'circle',
       source: 'data-centers',
       layout: { visibility: activeLayers.datacenters ? 'visible' : 'none' },
       paint: {
-        'circle-radius': 6.5,
-        'circle-color': '#0d9488',
-        'circle-stroke-width': 1.5,
+        'circle-radius': 5.5,
+        'circle-color': '#0f766e',
+        'circle-stroke-width': 1,
         'circle-stroke-color': '#ffffff'
       }
     });
 
-    // Pipelines (Amber Dashed)
+    // Pipelines (Terracotta/Clay Orange Dashed)
     map.addLayer({
       id: 'pipelines-layer',
       type: 'line',
@@ -1064,10 +1166,10 @@ export default function ImecMap() {
         'line-cap': 'round',
         'line-join': 'round'
       },
-      paint: { 'line-color': '#d97706', 'line-width': 2.5, 'line-dasharray': [4, 3] }
+      paint: { 'line-color': '#b45309', 'line-width': 2, 'line-dasharray': [4, 3] }
     });
 
-    // HVDC grids (Emerald Solid)
+    // HVDC grids (Solid Green Line)
     map.addLayer({
       id: 'hvdc-layer',
       type: 'line',
@@ -1077,16 +1179,17 @@ export default function ImecMap() {
         'line-cap': 'round',
         'line-join': 'round'
       },
-      paint: { 'line-color': '#10b981', 'line-width': 3 }
+      paint: { 'line-color': '#16a34a', 'line-width': 2.5 }
     });
 
     // ── Interaction Listeners ──
     const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false });
 
     const hoverLayers = [
-      { id: 'railways-layer', db: RAILWAYS_DATABASE, title: 'Railway Segment' },
+      { id: 'railways-built-layer', db: RAILWAYS_DATABASE, title: 'Railway Segment' },
+      { id: 'railways-proposed-layer', db: RAILWAYS_DATABASE, title: 'Railway Segment' },
       { id: 'cables-layer', db: CABLES_DATABASE, title: 'Subsea Fiber Cable' },
-      { id: 'datacenters-layer', db: DATA_CENTERS_DATABASE, title: 'Data Center Facility' },
+      { id: 'datacenters-layer', db: DATA_CENTERS_DATABASE, title: 'Sovereign DC Ecosystem' },
       { id: 'pipelines-layer', db: ENERGY_DATABASE, title: 'Energy Pipeline' },
       { id: 'hvdc-layer', db: ENERGY_DATABASE, title: 'HVDC Grid Line' },
       { id: 'ftas-layer', db: AGREEMENTS_DATABASE, title: 'Trade Agreement Area' },
@@ -1106,9 +1209,9 @@ export default function ImecMap() {
         popup
           .setLngLat(e.lngLat)
           .setHTML(`
-            <div class="font-mono text-[9px] text-sky-400 font-bold uppercase tracking-wider mb-1">${title}</div>
-            <div class="font-sans font-bold text-xs text-gray-900 mb-0.5">${record.name}</div>
-            <div class="font-mono text-[9px] text-gray-500">${'status' in record ? record.status : 'Active'}</div>
+            <div class="font-mono text-[8px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">${title}</div>
+            <div class="font-sans font-bold text-xs text-slate-900 mb-0.5">${record.name}</div>
+            <div class="font-mono text-[8px] text-slate-500">${'status' in record ? record.status : 'Active'}</div>
           `)
           .addTo(map);
       });
@@ -1125,7 +1228,8 @@ export default function ImecMap() {
         const record = db.find(x => x.id === featureId);
         if (record) {
           const typeMap: Record<string, string> = {
-            'railways-layer': 'railway',
+            'railways-built-layer': 'railway',
+            'railways-proposed-layer': 'railway',
             'cables-layer': 'cable',
             'datacenters-layer': 'datacenter',
             'pipelines-layer': 'energy',
@@ -1151,7 +1255,7 @@ export default function ImecMap() {
     if (!activeLayers.ports) return;
 
     PORTS_DATABASE.forEach(port => {
-      // Automatic Zoom-based visibility & layout clustering
+      // Zoom-based density controls
       const isVisible = 
         zoomLevel >= 6 ||
         (zoomLevel >= 4 && port.teu >= 1.5) ||
@@ -1163,34 +1267,34 @@ export default function ImecMap() {
       el.className = 'relative flex items-center justify-center cursor-pointer group';
 
       const ringColor = 
-        port.status === 'Active' ? 'border-sky-500 bg-sky-500/5' :
-        port.status === 'Under Expansion' ? 'border-amber-500 bg-amber-500/5' :
-        'border-gray-500 bg-gray-500/5';
+        port.status === 'Active' ? 'border-slate-700 bg-slate-700/5' :
+        port.status === 'Under Expansion' ? 'border-amber-700 bg-amber-700/5' :
+        'border-gray-400 bg-gray-400/5';
 
       const dotColor = 
-        port.status === 'Active' ? 'bg-sky-500' :
-        port.status === 'Under Expansion' ? 'bg-amber-500' :
+        port.status === 'Active' ? 'bg-slate-700' :
+        port.status === 'Under Expansion' ? 'bg-amber-700' :
         'bg-gray-400';
 
-      const markerSize = Math.max(12, Math.min(24, Math.sqrt(port.teu) * 4.5));
-      const innerDotSize = Math.max(4, markerSize / 2.5);
+      const markerSize = Math.max(10, Math.min(20, Math.sqrt(port.teu) * 4));
+      const innerDotSize = Math.max(3, markerSize / 2.5);
 
       const isSelected = selectedAsset?.type === 'port' && selectedAsset.data.id === port.id;
 
       el.innerHTML = `
-        <div class="absolute w-[200%] h-[200%] border rounded-full ${ringColor} ${isSelected ? 'animate-ping' : 'opacity-40 group-hover:animate-ping'} transition-all"></div>
-        <div class="relative rounded-full ${dotColor} flex items-center justify-center transition-all ${isSelected ? 'scale-125 ring-2 ring-white/50' : 'group-hover:scale-110'}" style="width: ${markerSize}px; height: ${markerSize}px;">
-          <div class="rounded-full bg-slate-900" style="width: ${innerDotSize}px; height: ${innerDotSize}px;"></div>
+        <div class="absolute w-[200%] h-[200%] border rounded-full ${ringColor} ${isSelected ? 'scale-110 border-slate-900 border-2' : 'opacity-40'} transition-all"></div>
+        <div class="relative rounded-full ${dotColor} flex items-center justify-center transition-all ${isSelected ? 'scale-110' : 'group-hover:scale-105'}" style="width: ${markerSize}px; height: ${markerSize}px;">
+          <div class="rounded-full bg-white" style="width: ${innerDotSize}px; height: ${innerDotSize}px;"></div>
         </div>
-        <div class="absolute top-[120%] bg-slate-900/90 text-white font-mono text-[8px] font-bold tracking-wider uppercase border border-slate-700/50 px-1.5 py-0.5 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
-          ${port.name} (${port.capacityText})
+        <div class="absolute top-[120%] bg-white text-slate-800 border border-slate-200 px-1.5 py-0.5 font-mono text-[8px] font-bold tracking-wider uppercase pointer-events-none opacity-0 group-hover:opacity-100 shadow-sm transition-opacity whitespace-nowrap z-50">
+          ${port.name}
         </div>
       `;
 
       el.addEventListener('click', (e) => {
         e.stopPropagation();
         setSelectedAsset({ type: 'port', data: port });
-        map.flyTo({ center: port.coordinates, zoom: 6.5, speed: 1.2 });
+        map.flyTo({ center: port.coordinates, zoom: 6.5, speed: 1.0 });
       });
 
       const marker = new mapboxgl.Marker({ element: el })
@@ -1281,45 +1385,45 @@ export default function ImecMap() {
   }, [searchQuery]);
 
   return (
-    <div className="w-full h-full relative flex text-slate-100 font-sans overflow-hidden">
+    <div className="w-full h-full relative flex text-slate-800 font-sans overflow-hidden bg-gray-50">
       
-      {/* ── Left Sidebar (Bloomberg/SaaS Terminal) ── */}
-      <div className="w-[360px] h-full bg-slate-900 border-r border-slate-800 flex flex-col z-[400] select-none pointer-events-auto">
+      {/* ── Left Sidebar (Light Academic Theme) ── */}
+      <div className="w-[360px] h-full bg-white border-r border-slate-200 flex flex-col z-[400] select-none pointer-events-auto shadow-sm">
         
-        {/* Terminal Header */}
-        <div className="p-5 border-b border-slate-800 bg-slate-950/40">
+        {/* Academic Header */}
+        <div className="p-5 border-b border-slate-200 bg-slate-50">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] text-cyan-400 font-mono tracking-[0.25em] uppercase font-bold flex items-center gap-1.5">
-              <Globe className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '12s' }} />
-              Logistics Terminal
+            <span className="text-[9px] text-slate-500 font-mono tracking-[0.2em] uppercase font-bold flex items-center gap-1.5">
+              <Globe className="w-3 h-3 text-slate-400" />
+              IMEC Geopolitical radar
             </span>
             <button 
               onClick={() => setMapStyle(prev => prev === 'dark' ? 'light' : 'dark')}
-              className="p-1 hover:bg-slate-800 rounded transition-all border border-slate-700/50 text-slate-400 hover:text-white"
-              title="Toggle Map Base"
+              className="p-1 hover:bg-slate-200 rounded transition-all border border-slate-200 text-slate-500 hover:text-slate-900"
+              title="Toggle Map Style"
             >
               {mapStyle === 'dark' ? <Sun size={12} /> : <Moon size={12} />}
             </button>
           </div>
-          <h2 className="font-sans font-bold text-base tracking-tight mt-2 uppercase">
-            GEOPOLITICAL INTELLIGENCE
+          <h2 className="font-serif font-bold text-base tracking-tight mt-2 text-slate-950 uppercase leading-snug">
+            Corridor Analytics
           </h2>
         </div>
 
         {/* Global Search Bar */}
-        <div className="px-5 py-3 border-b border-slate-800/60 bg-slate-950/20">
+        <div className="px-5 py-3 border-b border-slate-200/60 bg-slate-50/50">
           <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-500" />
+            <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-450" />
             <input
               type="text"
-              placeholder="Search global assets, agreements..."
+              placeholder="Filter infrastructure database..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 pl-9 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 font-sans transition-all"
+              className="w-full bg-white border border-slate-200 pl-8 pr-4 py-1.5 text-xs text-slate-700 placeholder-slate-400 focus:outline-none focus:border-slate-400 transition-all font-sans"
             />
           </div>
           {searchResults.length > 0 && (
-            <div className="mt-2 max-h-40 overflow-y-auto bg-slate-950 border border-slate-800 rounded scrollbar-thin">
+            <div className="mt-1 max-h-36 overflow-y-auto bg-white border border-slate-200 rounded-none shadow-sm">
               {searchResults.map((res: any, idx) => (
                 <button
                   key={idx}
@@ -1329,118 +1433,116 @@ export default function ImecMap() {
                       mapRef.current?.flyTo({ center: res.data.coordinates, zoom: 6.0 });
                     }
                   }}
-                  className="w-full text-left px-3 py-1.5 hover:bg-slate-800 text-[11px] border-b border-slate-800/40 last:border-b-0 flex justify-between items-center"
+                  className="w-full text-left px-3 py-1.5 hover:bg-slate-50 text-[11px] border-b border-slate-100 last:border-b-0 flex justify-between items-center"
                 >
-                  <span className="truncate font-sans text-slate-350">{res.data.name}</span>
-                  <span className="font-mono text-[9px] text-cyan-400 uppercase tracking-widest bg-cyan-950/40 border border-cyan-800/40 px-1 rounded">{res.type}</span>
+                  <span className="truncate font-sans text-slate-700 font-medium">{res.data.name}</span>
+                  <span className="font-mono text-[8px] text-slate-500 uppercase bg-slate-100 border border-slate-200 px-1 rounded">{res.type}</span>
                 </button>
               ))}
             </div>
           )}
         </div>
 
-        {/* Layer Filters control list */}
+        {/* Layer Filters list */}
         <div className="flex-1 overflow-y-auto p-5 flex flex-col gap-4 brutalist-scrollbar">
           <div>
-            <h3 className="font-mono text-[9.5px] text-slate-400 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
-              <Layers className="w-3.5 h-3.5 text-slate-500" />
-              Interactive Layers & Overlays
+            <h3 className="font-mono text-[9px] text-slate-450 uppercase tracking-widest mb-2.5 flex items-center gap-1.5 font-bold">
+              <Layers className="w-3 h-3 text-slate-450" />
+              Corridor Layer Matrices
             </h3>
             
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1.5">
               {[
-                { key: 'ports', label: 'Maritime Ports', color: 'border-sky-500 text-sky-400 bg-sky-950/10', dotColor: 'bg-sky-500', icon: <Anchor size={12} /> },
-                { key: 'railways', label: 'Logistics Railways', color: 'border-slate-500 text-slate-400 bg-slate-950/10', dotColor: 'bg-slate-400', icon: <Layers size={12} /> },
-                { key: 'datacenters', label: 'Data Processing Hubs', color: 'border-teal-500 text-teal-400 bg-teal-950/10', dotColor: 'bg-teal-500', icon: <Database size={12} /> },
-                { key: 'cables', label: 'Subsea Fiber Cables', color: 'border-cyan-500 text-cyan-400 bg-cyan-950/10', dotColor: 'bg-cyan-500', icon: <Cpu size={12} /> },
-                { key: 'energy', label: 'Energy Pipelines & Grids', color: 'border-amber-500 text-amber-400 bg-amber-950/10', dotColor: 'bg-amber-500', icon: <Zap size={12} /> },
-                { key: 'ftas', label: 'Trade Agreements (FTAs)', color: 'border-emerald-500 text-emerald-400 bg-emerald-950/10', dotColor: 'bg-emerald-500', icon: <Users size={12} /> },
-                { key: 'defense', label: 'Defense & Security Shields', color: 'border-rose-500 text-rose-400 bg-rose-950/10', dotColor: 'bg-rose-500', icon: <Shield size={12} /> }
+                { key: 'ports', label: 'Maritime Ports (TEU / MMT)', color: 'border-slate-400 text-slate-800 bg-slate-50', dotColor: 'bg-slate-700', icon: <Anchor size={11} className="text-slate-500" /> },
+                { key: 'railways', label: 'Overland Railways (built/prop)', color: 'border-slate-400 text-slate-800 bg-slate-50', dotColor: 'bg-slate-600', icon: <Layers size={11} className="text-slate-500" /> },
+                { key: 'datacenters', label: 'Digital Data Ecosystems', color: 'border-slate-400 text-slate-800 bg-slate-50', dotColor: 'bg-teal-700', icon: <Database size={11} className="text-slate-500" /> },
+                { key: 'cables', label: 'Subsea Fiber Cables', color: 'border-slate-400 text-slate-800 bg-slate-50', dotColor: 'bg-sky-600', icon: <Cpu size={11} className="text-slate-500" /> },
+                { key: 'energy', label: 'Energy pipelines & grids', color: 'border-slate-400 text-slate-800 bg-slate-50', dotColor: 'bg-amber-700', icon: <Zap size={11} className="text-slate-500" /> },
+                { key: 'ftas', label: 'Trade Agreements (FTAs)', color: 'border-slate-400 text-slate-800 bg-slate-50', dotColor: 'bg-emerald-600', icon: <Users size={11} className="text-slate-500" /> },
+                { key: 'defense', label: 'Defense Shields & Pacts', color: 'border-slate-400 text-slate-800 bg-slate-50', dotColor: 'bg-red-750', icon: <Shield size={11} className="text-slate-500" /> }
               ].map(lyr => (
                 <button
                   key={lyr.key}
                   onClick={() => toggleLayer(lyr.key)}
-                  className={`flex items-center justify-between p-2.5 border text-left transition-all ${
+                  className={`flex items-center justify-between px-3 py-2 border text-left rounded-none transition-all ${
                     activeLayers[lyr.key]
-                      ? `${lyr.color} font-bold`
-                      : 'bg-slate-950/40 border-slate-800 text-slate-500 hover:border-slate-700/60'
+                      ? `${lyr.color} border-slate-400 font-bold shadow-sm`
+                      : 'bg-white border-slate-200 text-slate-400 hover:border-slate-300 hover:bg-slate-50/50'
                   }`}
                 >
-                  <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider">
+                  <div className="flex items-center gap-2 font-mono text-[9.5px] uppercase tracking-wider">
                     {lyr.icon}
                     {lyr.label}
                   </div>
-                  <span className={`w-2 h-2 rounded-full ${activeLayers[lyr.key] ? lyr.dotColor : 'bg-slate-800'}`} />
+                  <span className={`w-1.5 h-1.5 rounded-full ${activeLayers[lyr.key] ? lyr.dotColor : 'bg-slate-200'}`} />
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Infrastructure Health Indicator */}
-          <div className="bg-slate-950/40 border border-slate-800 p-4 font-mono text-[10px]">
-            <h4 className="text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
-              <ActivitySquare className="w-3.5 h-3.5 text-cyan-500" />
-              Corridor Flow Metrics
+          {/* Infrastructure Capacity Indicators */}
+          <div className="bg-slate-50 border border-slate-200 p-4 font-mono text-[9px]">
+            <h4 className="text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-1.5 font-bold">
+              <ActivitySquare className="w-3 h-3 text-slate-500" />
+              Sovereign Cargo Metrics
             </h4>
             <div className="flex flex-col gap-3">
               <div>
-                <div className="flex justify-between mb-1">
+                <div className="flex justify-between mb-1 text-slate-600">
                   <span>Tracked Container Volume</span>
-                  <span className="text-cyan-400 font-bold">144.2K TEU/d</span>
+                  <span className="text-slate-800 font-bold">144.2K TEU/d</span>
                 </div>
-                <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-cyan-500" style={{ width: '78%' }} />
+                <div className="w-full h-1 bg-slate-200 overflow-hidden">
+                  <div className="h-full bg-slate-600" style={{ width: '78%' }} />
                 </div>
               </div>
               <div>
-                <div className="flex justify-between mb-1">
+                <div className="flex justify-between mb-1 text-slate-600">
                   <span>Energy Pipeline Capacity</span>
-                  <span className="text-amber-400 font-bold">5.8M Bbl/d</span>
+                  <span className="text-slate-800 font-bold">5.8M Bbl/d</span>
                 </div>
-                <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-amber-500" style={{ width: '92%' }} />
+                <div className="w-full h-1 bg-slate-200 overflow-hidden">
+                  <div className="h-full bg-amber-700" style={{ width: '92%' }} />
                 </div>
               </div>
               <div>
-                <div className="flex justify-between mb-1">
+                <div className="flex justify-between mb-1 text-slate-600">
                   <span>Digital Grid Bandwidth</span>
-                  <span className="text-emerald-400 font-bold">420 Tb/s</span>
+                  <span className="text-slate-800 font-bold">420 Tb/s</span>
                 </div>
-                <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-emerald-500" style={{ width: '64%' }} />
+                <div className="w-full h-1 bg-slate-200 overflow-hidden">
+                  <div className="h-full bg-teal-700" style={{ width: '64%' }} />
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Real-time Ticker Footer */}
-        <div className="p-4 bg-slate-950 border-t border-slate-800 h-16 flex items-center overflow-hidden">
-          <div className="flex items-start gap-2.5">
-            <span className="px-1.5 py-0.5 bg-cyan-950 border border-cyan-800 text-[8px] font-mono text-cyan-400 font-bold uppercase tracking-widest rounded animate-pulse">
-              Feed
-            </span>
-            <div className="flex-1 min-w-0">
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={tickerIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="font-mono text-[9px] text-slate-400 leading-normal line-clamp-2"
-                >
-                  {NEWS_BULLETINS[tickerIndex]}
-                </motion.p>
-              </AnimatePresence>
-            </div>
+        {/* Academic Briefing Logs (Clean grey footer) */}
+        <div className="p-4 bg-slate-50 border-t border-slate-200 h-24 flex flex-col justify-center overflow-hidden">
+          <div className="text-[8px] font-mono text-slate-450 uppercase tracking-widest mb-1.5 font-bold">
+            Strategic briefing logs
+          </div>
+          <div className="flex-1 min-w-0 overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={tickerIndex}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.25 }}
+                className="font-mono text-[9px] text-slate-650 leading-relaxed font-medium"
+              >
+                {NEWS_BULLETINS[tickerIndex]}
+              </motion.p>
+            </AnimatePresence>
           </div>
         </div>
       </div>
 
       {/* ── Center Map Canvas ── */}
       <div className="flex-1 h-full relative">
-        <div ref={mapContainerRef} className="w-full h-full absolute inset-0 bg-slate-950" />
+        <div ref={mapContainerRef} className="w-full h-full absolute inset-0 bg-slate-105" />
       </div>
 
       {/* ── Right Slide-over Drawer (Details Panel) ── */}
@@ -1450,87 +1552,87 @@ export default function ImecMap() {
             initial={{ opacity: 0, x: 400 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 400 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="w-[400px] h-full bg-slate-900 border-l border-slate-800 z-[400] flex flex-col pointer-events-auto select-none font-sans"
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="w-[400px] h-full bg-white border-l border-slate-200 z-[400] flex flex-col pointer-events-auto select-none"
           >
             
             {/* Header info */}
-            <div className="p-6 border-b border-slate-800 flex justify-between items-start">
+            <div className="p-6 border-b border-slate-200 flex justify-between items-start bg-slate-50">
               <div>
-                <span className="text-[9px] text-cyan-400 font-mono tracking-widest uppercase font-bold flex items-center gap-1.5">
-                  <MapPin size={11} className="animate-bounce" />
-                  Asset Deep-Dive
+                <span className="text-[9px] text-slate-500 font-mono tracking-widest uppercase font-bold flex items-center gap-1.5">
+                  <MapPin size={10} className="text-slate-450" />
+                  Asset Matrix Deep-Dive
                 </span>
-                <h2 className="font-sans font-bold text-lg mt-1 text-slate-100 uppercase tracking-tight leading-snug">
+                <h2 className="font-serif font-bold text-base mt-1 text-slate-900 uppercase tracking-tight leading-snug">
                   {selectedAsset.data.name}
                 </h2>
-                <span className="font-mono text-[9px] text-slate-400 uppercase tracking-widest">
-                  {'country' in selectedAsset.data ? selectedAsset.data.country : 'Multinational'}
+                <span className="font-mono text-[9px] text-slate-450 uppercase tracking-widest font-semibold mt-0.5 block">
+                  {'country' in selectedAsset.data ? selectedAsset.data.country : 'Multinational Axis'}
                 </span>
               </div>
               <button
                 onClick={() => setSelectedAsset(null)}
-                className="p-1 hover:bg-slate-800 rounded transition-all text-slate-400 hover:text-white"
+                className="p-1 hover:bg-slate-200 rounded transition-all text-slate-400 hover:text-slate-700"
               >
-                <X size={16} />
+                <X size={15} />
               </button>
             </div>
 
             {/* Dynamic content rendering based on selected item type */}
-            <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 brutalist-scrollbar">
+            <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 brutalist-scrollbar bg-white">
               
               {selectedAsset.type === 'port' && (
                 <div className="flex flex-col gap-5">
                   <div className="grid grid-cols-2 gap-3 text-center">
-                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
-                      <div className="text-[8px] text-slate-500 uppercase">Annual Volume</div>
-                      <div className="text-[13px] font-bold text-cyan-400 mt-1">{(selectedAsset.data as PortAsset).capacityText}</div>
+                    <div className="bg-slate-50 border border-slate-200 p-3 font-mono">
+                      <div className="text-[8px] text-slate-450 uppercase font-semibold">Max capacity</div>
+                      <div className="text-[12px] font-bold text-slate-800 mt-1">{(selectedAsset.data as PortAsset).capacityText}</div>
                     </div>
-                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
-                      <div className="text-[8px] text-slate-500 uppercase">Congestion Rate</div>
-                      <div className={`text-[13px] font-bold mt-1 ${
-                        (selectedAsset.data as PortAsset).congestion === 'High' ? 'text-rose-500' :
-                        (selectedAsset.data as PortAsset).congestion === 'Moderate' ? 'text-amber-500' :
-                        'text-emerald-500'
+                    <div className="bg-slate-50 border border-slate-200 p-3 font-mono">
+                      <div className="text-[8px] text-slate-450 uppercase font-semibold">Congestion Index</div>
+                      <div className={`text-[12px] font-bold mt-1 ${
+                        (selectedAsset.data as PortAsset).congestion === 'High' ? 'text-red-700' :
+                        (selectedAsset.data as PortAsset).congestion === 'Moderate' ? 'text-amber-700' :
+                        'text-emerald-700'
                       }`}>
                         {(selectedAsset.data as PortAsset).congestion}
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-800 pt-4">
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">UN/LOCODE:</span>
-                      <span className="text-slate-200 font-bold">{(selectedAsset.data as PortAsset).unLocode}</span>
+                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-200 pt-4">
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">UN/LOCODE Identifier:</span>
+                      <span className="text-slate-800 font-bold">{(selectedAsset.data as PortAsset).unLocode}</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Max Draft Depth:</span>
-                      <span className="text-slate-200">{(selectedAsset.data as PortAsset).draft}</span>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Max Draft Depth:</span>
+                      <span className="text-slate-800">{(selectedAsset.data as PortAsset).draft}</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Avg Turnaround Time:</span>
-                      <span className="text-slate-200">{(selectedAsset.data as PortAsset).turnaround}</span>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Avg Turnaround Metrics:</span>
+                      <span className="text-slate-800">{(selectedAsset.data as PortAsset).turnaround}</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Ownership/Operators:</span>
-                      <span className="text-slate-200 text-right truncate max-w-[200px]" title={(selectedAsset.data as PortAsset).ownership}>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Ownership / Operators:</span>
+                      <span className="text-slate-700 text-right truncate max-w-[200px]" title={(selectedAsset.data as PortAsset).ownership}>
                         {(selectedAsset.data as PortAsset).ownership}
                       </span>
                     </div>
                     <div className="flex justify-between py-1">
-                      <span className="text-slate-500">Live Tracked Vessels:</span>
-                      <span className="text-emerald-400 font-bold">{(selectedAsset.data as PortAsset).vesselsTracked} Vessels</span>
+                      <span className="text-slate-450 font-medium">Vessels In Port (24h):</span>
+                      <span className="text-slate-850 font-bold">{(selectedAsset.data as PortAsset).vesselsTracked} Tracked</span>
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                      <Activity className="w-3.5 h-3.5 text-cyan-400" />
-                      Live Geopolitical News Feed
+                    <h3 className="text-[9px] font-mono text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
+                      <Activity className="w-3 h-3 text-slate-450" />
+                      Geoeconomic updates
                     </h3>
                     <div className="flex flex-col gap-2">
                       {(selectedAsset.data as PortAsset).headlines.map((headline, idx) => (
-                        <div key={idx} className="bg-slate-950/60 border border-slate-800 p-3 font-mono text-[10px] leading-relaxed text-slate-350">
+                        <div key={idx} className="bg-slate-50 border border-slate-200 p-3 font-mono text-[9.5px] leading-relaxed text-slate-650 font-medium">
                           {headline}
                         </div>
                       ))}
@@ -1542,31 +1644,31 @@ export default function ImecMap() {
               {selectedAsset.type === 'railway' && (
                 <div className="flex flex-col gap-5">
                   <div className="grid grid-cols-2 gap-3 text-center">
-                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
-                      <div className="text-[8px] text-slate-500 uppercase">Operational Link Length</div>
-                      <div className="text-[13px] font-bold text-cyan-400 mt-1">{(selectedAsset.data as RailwayAsset).length}</div>
+                    <div className="bg-slate-50 border border-slate-200 p-3 font-mono">
+                      <div className="text-[8px] text-slate-450 uppercase font-semibold">Track Length</div>
+                      <div className="text-[12px] font-bold text-slate-800 mt-1">{(selectedAsset.data as RailwayAsset).length}</div>
                     </div>
-                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
-                      <div className="text-[8px] text-slate-500 uppercase">Track Gauge</div>
-                      <div className="text-[13px] font-bold text-slate-200 mt-1">{(selectedAsset.data as RailwayAsset).gauge}</div>
+                    <div className="bg-slate-50 border border-slate-200 p-3 font-mono">
+                      <div className="text-[8px] text-slate-450 uppercase font-semibold">Track Gauge</div>
+                      <div className="text-[12px] font-bold text-slate-700 mt-1">{(selectedAsset.data as RailwayAsset).gauge}</div>
                     </div>
                   </div>
 
-                  <div className="font-mono text-xs border-t border-slate-800 pt-4">
-                    <h4 className="text-[9px] text-slate-500 uppercase mb-1">Corridor Segment Role</h4>
-                    <p className="font-sans text-xs text-slate-300 leading-relaxed bg-slate-950/40 p-3 border border-slate-800">
+                  <div className="font-mono text-xs border-t border-slate-200 pt-4">
+                    <h4 className="text-[8.5px] text-slate-450 uppercase mb-1 font-bold">Segment Description</h4>
+                    <p className="font-sans text-[11.5px] text-slate-750 leading-relaxed bg-slate-50 p-3 border border-slate-200">
                       {(selectedAsset.data as RailwayAsset).provisions}
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                      <Activity className="w-3.5 h-3.5 text-cyan-400" />
+                    <h3 className="text-[9px] font-mono text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
+                      <Activity className="w-3 h-3 text-slate-450" />
                       Infrastructure Developments
                     </h3>
                     <div className="flex flex-col gap-2">
                       {(selectedAsset.data as RailwayAsset).headlines.map((h, idx) => (
-                        <div key={idx} className="bg-slate-950/60 border border-slate-800 p-3 font-mono text-[10px] leading-relaxed text-slate-350">
+                        <div key={idx} className="bg-slate-50 border border-slate-200 p-3 font-mono text-[9.5px] leading-relaxed text-slate-650 font-medium">
                           {h}
                         </div>
                       ))}
@@ -1578,28 +1680,30 @@ export default function ImecMap() {
               {selectedAsset.type === 'datacenter' && (
                 <div className="flex flex-col gap-5">
                   <div className="grid grid-cols-2 gap-3 text-center">
-                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
-                      <div className="text-[8px] text-slate-500 uppercase">System Density</div>
-                      <div className="text-[13px] font-bold text-teal-400 mt-1">{(selectedAsset.data as DataCenterAsset).serversCount}</div>
+                    <div className="bg-slate-50 border border-slate-200 p-3 font-mono">
+                      <div className="text-[8px] text-slate-450 uppercase font-semibold">Ecosystem Density</div>
+                      <div className="text-[12px] font-bold text-slate-800 mt-1">{(selectedAsset.data as DataCenterAsset).serversCount}</div>
                     </div>
-                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
-                      <div className="text-[8px] text-slate-500 uppercase">Tier Rating</div>
-                      <div className="text-[13px] font-bold text-slate-200 mt-1">{(selectedAsset.data as DataCenterAsset).tier}</div>
+                    <div className="bg-slate-50 border border-slate-200 p-3 font-mono">
+                      <div className="text-[8px] text-slate-450 uppercase font-semibold">Tier Metrics</div>
+                      <div className="text-[12px] font-bold text-slate-700 mt-1">{(selectedAsset.data as DataCenterAsset).tier}</div>
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-800 pt-4">
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Operating Entity:</span>
-                      <span className="text-slate-200 font-bold">{(selectedAsset.data as DataCenterAsset).operator}</span>
+                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-200 pt-4">
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Dominant Operators:</span>
+                      <span className="text-slate-800 text-right max-w-[220px] truncate" title={(selectedAsset.data as DataCenterAsset).operator}>
+                        {(selectedAsset.data as DataCenterAsset).operator}
+                      </span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Processing Location:</span>
-                      <span className="text-slate-200">{(selectedAsset.data as DataCenterAsset).city}, {(selectedAsset.data as DataCenterAsset).country}</span>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Hub Locations:</span>
+                      <span className="text-slate-850 font-medium">{(selectedAsset.data as DataCenterAsset).city}, {(selectedAsset.data as DataCenterAsset).country}</span>
                     </div>
                     <div className="flex justify-between py-1">
-                      <span className="text-slate-500">Security / Sovereignty Tier:</span>
-                      <span className="text-emerald-400 font-bold">{(selectedAsset.data as DataCenterAsset).securityRating}</span>
+                      <span className="text-slate-450 font-medium">Security / Sovereignty Tier:</span>
+                      <span className="text-teal-700 font-bold">{(selectedAsset.data as DataCenterAsset).securityRating}</span>
                     </div>
                   </div>
                 </div>
@@ -1607,33 +1711,35 @@ export default function ImecMap() {
 
               {selectedAsset.type === 'cable' && (
                 <div className="flex flex-col gap-5">
-                  <div className="bg-slate-950/40 border border-slate-800 p-4 font-mono text-xs">
-                    <h4 className="text-[9px] text-slate-500 uppercase mb-2">Landing Core Stations</h4>
+                  <div className="bg-slate-50 border border-slate-200 p-4 font-mono text-xs">
+                    <h4 className="text-[8.5px] text-slate-450 uppercase mb-2 font-bold">Landing Core Stations</h4>
                     <div className="flex flex-wrap gap-1.5">
                       {(selectedAsset.data as CableAsset).landingPoints.map((pt, idx) => (
-                        <span key={idx} className="bg-slate-900 border border-slate-800 px-2 py-0.5 text-[9px] text-slate-300 font-sans">
+                        <span key={idx} className="bg-white border border-slate-200 px-2 py-0.5 text-[9px] text-slate-700 font-sans shadow-sm font-medium">
                           {pt}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-800 pt-4">
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Status:</span>
-                      <span className="text-cyan-400 font-bold">{(selectedAsset.data as CableAsset).status}</span>
+                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-200 pt-4">
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Deployment Status:</span>
+                      <span className="text-slate-800 font-bold">{(selectedAsset.data as CableAsset).status}</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Consortium Owners:</span>
-                      <span className="text-slate-200 text-right max-w-[220px] truncate">{(selectedAsset.data as CableAsset).owners}</span>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Consortium Owners:</span>
+                      <span className="text-slate-800 text-right max-w-[220px] truncate" title={(selectedAsset.data as CableAsset).owners}>
+                        {(selectedAsset.data as CableAsset).owners}
+                      </span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Technical Supplier:</span>
-                      <span className="text-slate-200">{(selectedAsset.data as CableAsset).suppliers}</span>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Technical Supplier:</span>
+                      <span className="text-slate-800">{(selectedAsset.data as CableAsset).suppliers}</span>
                     </div>
                     <div className="flex justify-between py-1">
-                      <span className="text-slate-500">Trusted Connectivity Vetting:</span>
-                      <span className="text-emerald-400 font-bold">{(selectedAsset.data as CableAsset).securityRating}</span>
+                      <span className="text-slate-450 font-medium">Trusted Vetting:</span>
+                      <span className="text-sky-750 font-bold">{(selectedAsset.data as CableAsset).securityRating}</span>
                     </div>
                   </div>
                 </div>
@@ -1642,34 +1748,36 @@ export default function ImecMap() {
               {selectedAsset.type === 'energy' && (
                 <div className="flex flex-col gap-5">
                   <div className="grid grid-cols-2 gap-3 text-center">
-                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
-                      <div className="text-[8px] text-slate-500 uppercase">Product Type</div>
-                      <div className="text-[13px] font-bold text-amber-400 mt-1">{(selectedAsset.data as EnergyAsset).product}</div>
+                    <div className="bg-slate-50 border border-slate-200 p-3 font-mono">
+                      <div className="text-[8px] text-slate-450 uppercase font-semibold">Product Type</div>
+                      <div className="text-[12px] font-bold text-amber-700 mt-1">{(selectedAsset.data as EnergyAsset).product}</div>
                     </div>
-                    <div className="bg-slate-950/40 border border-slate-800 p-3 font-mono">
-                      <div className="text-[8px] text-slate-500 uppercase">Throughput Capacity</div>
-                      <div className="text-[13px] font-bold text-emerald-400 mt-1">{(selectedAsset.data as EnergyAsset).capacity}</div>
+                    <div className="bg-slate-50 border border-slate-200 p-3 font-mono">
+                      <div className="text-[8px] text-slate-450 uppercase font-semibold">Throughput Metric</div>
+                      <div className="text-[12px] font-bold text-emerald-700 mt-1">{(selectedAsset.data as EnergyAsset).capacity}</div>
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-800 pt-4">
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Infrastructure Type:</span>
-                      <span className="text-slate-200 font-bold">{(selectedAsset.data as EnergyAsset).type}</span>
+                  <div className="flex flex-col gap-2 font-mono text-xs border-t border-slate-200 pt-4">
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Infrastructure Grid Type:</span>
+                      <span className="text-slate-800 font-bold">{(selectedAsset.data as EnergyAsset).type}</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Operational Status:</span>
-                      <span className="text-slate-200">{(selectedAsset.data as EnergyAsset).status}</span>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Operational Status:</span>
+                      <span className="text-slate-800">{(selectedAsset.data as EnergyAsset).status}</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Connecting Grid Route:</span>
-                      <span className="text-slate-200 text-right max-w-[200px] truncate" title={(selectedAsset.data as EnergyAsset).route}>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Connecting Grid Route:</span>
+                      <span className="text-slate-700 text-right max-w-[200px] truncate" title={(selectedAsset.data as EnergyAsset).route}>
                         {(selectedAsset.data as EnergyAsset).route}
                       </span>
                     </div>
                     <div className="flex justify-between py-1">
-                      <span className="text-slate-500">Promoters & Engineering:</span>
-                      <span className="text-slate-200 text-right max-w-[200px] truncate">{(selectedAsset.data as EnergyAsset).promoters}</span>
+                      <span className="text-slate-450 font-medium">Grid Promoters & Engineering:</span>
+                      <span className="text-slate-700 text-right max-w-[200px] truncate" title={(selectedAsset.data as EnergyAsset).promoters}>
+                        {(selectedAsset.data as EnergyAsset).promoters}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1677,48 +1785,48 @@ export default function ImecMap() {
 
               {(selectedAsset.type === 'fta' || selectedAsset.type === 'defense') && (
                 <div className="flex flex-col gap-5">
-                  <div className="bg-slate-950/40 border border-slate-800 p-4 font-mono text-xs">
-                    <h4 className="text-[9px] text-slate-500 uppercase mb-2">Sovereign Signatories</h4>
+                  <div className="bg-slate-50 border border-slate-200 p-4 font-mono text-xs">
+                    <h4 className="text-[8.5px] text-slate-450 uppercase mb-2 font-bold font-mono">Sovereign Signatories</h4>
                     <div className="flex flex-wrap gap-1.5">
                       {(selectedAsset.data as AgreementAsset).members.map((m, idx) => (
-                        <span key={idx} className="bg-slate-900 border border-slate-800 px-2 py-0.5 text-[9px] text-slate-350">
+                        <span key={idx} className="bg-white border border-slate-200 px-2 py-0.5 text-[9px] text-slate-750 font-sans shadow-sm font-medium">
                           {m}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-3 font-mono text-xs border-t border-slate-800 pt-4">
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Treaty Type:</span>
-                      <span className="text-slate-200 font-bold">{(selectedAsset.data as AgreementAsset).type}</span>
+                  <div className="flex flex-col gap-3 font-mono text-xs border-t border-slate-200 pt-4">
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Treaty Type:</span>
+                      <span className="text-slate-800 font-bold">{(selectedAsset.data as AgreementAsset).type}</span>
                     </div>
-                    <div className="flex justify-between py-1 border-b border-slate-800/40">
-                      <span className="text-slate-500">Signing/Launch Year:</span>
-                      <span className="text-slate-200">{(selectedAsset.data as AgreementAsset).signedYear}</span>
+                    <div className="flex justify-between py-1 border-b border-slate-100">
+                      <span className="text-slate-450 font-medium">Signing / Launch Year:</span>
+                      <span className="text-slate-800">{(selectedAsset.data as AgreementAsset).signedYear}</span>
                     </div>
                     <div>
-                      <span className="text-slate-500 uppercase text-[8.5px] block mb-0.5">Core Provisions</span>
-                      <span className="text-slate-300 font-sans text-xs bg-slate-950/40 p-2.5 border border-slate-800 block leading-relaxed">
+                      <span className="text-slate-450 uppercase text-[8px] block mb-0.5 font-bold">Core Provisions</span>
+                      <span className="text-slate-700 font-sans text-xs bg-slate-50 p-2.5 border border-slate-200 block leading-relaxed">
                         {(selectedAsset.data as AgreementAsset).provisions}
                       </span>
                     </div>
                     <div>
-                      <span className="text-slate-500 uppercase text-[8.5px] block mb-0.5">Economic/Geopolitical Benefits</span>
-                      <span className="text-slate-300 font-sans text-xs bg-slate-950/40 p-2.5 border border-slate-800 block leading-relaxed">
+                      <span className="text-slate-450 uppercase text-[8px] block mb-0.5 font-bold">Geopolitical & Economic Benefits</span>
+                      <span className="text-slate-700 font-sans text-xs bg-slate-50 p-2.5 border border-slate-200 block leading-relaxed">
                         {(selectedAsset.data as AgreementAsset).benefits}
                       </span>
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                      <Activity className="w-3.5 h-3.5 text-cyan-400" />
+                    <h3 className="text-[9px] font-mono text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
+                      <Activity className="w-3 h-3 text-slate-450" />
                       Treaty Developments
                     </h3>
                     <div className="flex flex-col gap-2">
                       {(selectedAsset.data as AgreementAsset).developments.map((dev, idx) => (
-                        <div key={idx} className="bg-slate-950/60 border border-slate-800 p-3 font-mono text-[10px] leading-relaxed text-slate-350">
+                        <div key={idx} className="bg-slate-50 border border-slate-200 p-3 font-mono text-[9.5px] leading-relaxed text-slate-650 font-medium">
                           {dev}
                         </div>
                       ))}
@@ -1740,12 +1848,12 @@ export default function ImecMap() {
                         : selectedAsset.data.coordinates[0];
 
                     map.flyTo({
-                      center: coords,
+                      center: coords as [number, number],
                       zoom: selectedAsset.type === 'port' ? 7.5 : 5.0,
-                      speed: 1.2
+                      speed: 1.0
                     });
                   }}
-                  className="w-full py-2.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs font-mono font-bold uppercase tracking-widest text-center text-cyan-400 transition-all select-none"
+                  className="w-full py-2 bg-slate-800 hover:bg-slate-900 border border-slate-800 text-xs font-mono font-bold uppercase tracking-widest text-center text-white transition-all select-none"
                 >
                   Focus Coordinates
                 </button>
