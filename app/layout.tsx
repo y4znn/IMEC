@@ -3,23 +3,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Fraunces, JetBrains_Mono } from 'next/font/google';
 import { Menu, X } from 'lucide-react';
 import './globals.css';
 import { DefenseProvider } from '@/components/DefenseContext';
 import CRTOverlay from '@/components/CRTOverlay';
-
-const fraunces = Fraunces({
-    subsets: ['latin'],
-    variable: '--font-fraunces',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-    subsets: ['latin'],
-    variable: '--font-jetbrains-mono',
-});
-
-
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -39,10 +26,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 ` }} />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                {/* Mapbox and Web Fonts styling links */}
+                <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.1/mapbox-gl.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Inter:wght@100..900&display=swap" rel="stylesheet" />
                 <title>IMEC Radar</title>
                 <meta name="description" content="IMEC Radar Intelligence Platform — India-Middle East-Europe Economic Corridor Analysis" />
             </head>
-            <body className={`min-h-screen bg-gray-50 text-gray-900 ${fraunces.variable} ${jetbrainsMono.variable} font-serif antialiased overflow-x-hidden`}>
+            <body className="min-h-screen bg-gray-50 text-gray-900 font-serif antialiased overflow-x-hidden">
                 <DefenseProvider>
                     {/* ── Navigation Bar ── */}
                     <header className="relative z-50 bg-gray-50 border-b border-gray-300">

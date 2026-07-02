@@ -1,0 +1,115 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [35.0061, 29.5319] },
+      "properties": {
+        "Facility_Name": "Aqaba Landing Station",
+        "Node_Type": "Landing Station",
+        "System": "Blue-Raman",
+        "Country": "Jordan",
+        "Owners": "Multiple"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [43.145, 11.8251] },
+      "properties": {
+        "Facility_Name": "Djibouti Gateway",
+        "Node_Type": "Landing Station",
+        "System": "Blue-Raman",
+        "Country": "Djibouti",
+        "Owners": "Djibouti Telecom"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [72.8777, 19.0760] },
+      "properties": {
+        "Facility_Name": "Mumbai Cable Station",
+        "Node_Type": "Landing Station",
+        "System": "Blue-Raman",
+        "Country": "India",
+        "Owners": "Multiple"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [8.9463, 44.4056] },
+      "properties": {
+        "Facility_Name": "Genoa Landing Node",
+        "Node_Type": "Landing Station",
+        "System": "Blue-Raman",
+        "Country": "Italy",
+        "Owners": "Sparkle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [23.6467, 37.9429] },
+      "properties": {
+        "Facility_Name": "Piraeus Terminal",
+        "Node_Type": "Landing Station",
+        "System": "Blue-Raman",
+        "Country": "Greece",
+        "Owners": "Multiple"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [29.6333, 30.9833] },
+      "properties": {
+        "Facility_Name": "Sidi Kerir Station",
+        "Node_Type": "Landing Station",
+        "System": "IEX",
+        "Country": "Egypt",
+        "Owners": "Telecom Egypt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [32.65, 29.1167] },
+      "properties": {
+        "Facility_Name": "Zafarana Node",
+        "Node_Type": "Landing Station",
+        "System": "IEX",
+        "Country": "Egypt",
+        "Owners": "Telecom Egypt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [24.7667, 35.0667] },
+      "properties": {
+        "Facility_Name": "Tympaki Connector",
+        "Node_Type": "Landing Station",
+        "System": "IEX",
+        "Country": "Greece",
+        "Owners": "Multiple"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [8.4833, 44.3167] },
+      "properties": {
+        "Facility_Name": "Savona Terminal",
+        "Node_Type": "Landing Station",
+        "System": "IEX",
+        "Country": "Italy",
+        "Owners": "Multiple"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [38.063, 24.0891] },
+      "properties": {
+        "Facility_Name": "Yanbu Node",
+        "Node_Type": "Landing Station",
+        "System": "IEX",
+        "Country": "Saudi Arabia",
+        "Owners": "China Mobile, Reliance Jio"
+      }
+    }
+  ]
+}

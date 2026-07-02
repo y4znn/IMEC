@@ -1,0 +1,64 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.3698, 43.2965],
+          [8.9463, 44.4056],
+          [23.6371, 37.9475],
+          [35.0078, 29.5267]
+        ]
+      },
+      "properties": {
+        "System": "Blue-Raman",
+        "Segment": "Blue",
+        "Alignment": "IMEC",
+        "Status": "Active"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [35.0078, 29.5267],
+          [34.8444, 28.2344],
+          [39.1611, 21.5292],
+          [43.1456, 11.5721],
+          [54.0924, 17.0151],
+          [57.8891, 23.7074],
+          [72.8774, 19.0761]
+        ]
+      },
+      "properties": {
+        "System": "Blue-Raman",
+        "Segment": "Raman",
+        "Alignment": "IMEC",
+        "Status": "Delayed - Geopolitical Tension"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [67.0011, 24.8607],
+          [39.6682, -4.0435],
+          [43.1456, 11.5721],
+          [32.6560, 29.1130],
+          [29.6380, 31.0543],
+          [5.3698, 43.2965]
+        ]
+      },
+      "properties": {
+        "System": "PEACE",
+        "Segment": "Main Trunk",
+        "Alignment": "BRI (Competitor)",
+        "Status": "Active"
+      }
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [72.8965, 19.1144]
+      },
+      "properties": {
+        "Facility": "Equinix MB3",
+        "City": "Mumbai",
+        "Country": "India"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [55.1870, 25.0262]
+      },
+      "properties": {
+        "Facility": "Equinix DX1",
+        "City": "Dubai",
+        "Country": "UAE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [35.9300, 31.9300]
+      },
+      "properties": {
+        "Facility": "STS Data Center",
+        "City": "Amman",
+        "Country": "Jordan"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [46.7720, 24.7171]
+      },
+      "properties": {
+        "Facility": "STC Rawabi Data Center",
+        "City": "Riyadh",
+        "Country": "KSA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [35.0118, 31.8963]
+      },
+      "properties": {
+        "Facility": "Microsoft Azure Israel Central",
+        "City": "Modi'in",
+        "Country": "Israel"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [33.0580, 34.7150]
+      },
+      "properties": {
+        "Facility": "CL8",
+        "City": "Limassol",
+        "Country": "Cyprus"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.7548, 38.0772]
+      },
+      "properties": {
+        "Facility": "Equinix Metamorfosi",
+        "City": "Athens",
+        "Country": "Greece"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.3765, 43.3168]
+      },
+      "properties": {
+        "Facility": "Digital Realty MRS1",
+        "City": "Marseille",
+        "Country": "France"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [9.1578, 45.4497]
+      },
+      "properties": {
+        "Facility": "Equinix ML2",
+        "City": "Milan",
+        "Country": "Italy"
+      }
+    }
+  ]
+}

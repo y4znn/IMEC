@@ -1,0 +1,82 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [55.2708, 25.2048] },
+      "properties": {
+        "Station_Name": "Dubai Central Hub",
+        "Node_Type": "Railway Hub",
+        "Track_Usage": "Main line",
+        "Gauge": "1435 mm",
+        "Status": "Active"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [54.3773, 24.4539] },
+      "properties": {
+        "Station_Name": "Abu Dhabi Terminal",
+        "Node_Type": "Railway Hub",
+        "Track_Usage": "Freight/Passenger",
+        "Gauge": "1435 mm",
+        "Status": "Active"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [51.5310, 25.2854] },
+      "properties": {
+        "Station_Name": "Doha Logistics Node",
+        "Node_Type": "Railway Hub",
+        "Track_Usage": "Freight",
+        "Gauge": "1435 mm",
+        "Status": "Planned"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [46.7249, 24.6402] },
+      "properties": {
+        "Station_Name": "Riyadh Logistics Hub",
+        "Node_Type": "Railway Hub",
+        "Track_Usage": "Main line",
+        "Gauge": "1435 mm",
+        "Status": "Active"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [37.1597, 31.4553] },
+      "properties": {
+        "Station_Name": "Al Haditha Dry Port",
+        "Node_Type": "Railway Hub",
+        "Track_Usage": "Freight",
+        "Gauge": "1435 mm",
+        "Status": "Active"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [35.9284, 31.9454] },
+      "properties": {
+        "Station_Name": "Amman Transit Hub",
+        "Node_Type": "Railway Hub",
+        "Track_Usage": "Main line",
+        "Gauge": "1435 mm",
+        "Status": "Planned"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [34.9892, 32.7940] },
+      "properties": {
+        "Station_Name": "Haifa Port Terminal",
+        "Node_Type": "Railway Hub",
+        "Track_Usage": "Freight",
+        "Gauge": "1435 mm",
+        "Status": "Active"
+      }
+    }
+  ]
+}
