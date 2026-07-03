@@ -58,12 +58,6 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                 <div
                     className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 flex flex-col items-center justify-center text-center shadow-sm group min-h-[400px]"
                 >
-                    <img
-                        src="/ahmad-profile.jpg"
-                        alt="Ahmad's Profile Picture"
-                        className="w-24 h-24 rounded-none border border-gray-300 mb-5 object-cover grayscale group-hover:grayscale-0 group-hover:border-gray-400 transition-all duration-500"
-                    />
-
                     <div className="text-xl font-medium text-gray-900 tracking-tight font-serif mb-1 truncate w-full uppercase">
                         {data.researcherName}
                     </div>

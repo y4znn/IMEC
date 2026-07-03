@@ -11,8 +11,8 @@ export default function IntelligencePulse() {
         <div className="relative z-50 w-full max-w-[420px] mx-auto bg-white border border-gray-200 rounded-none p-8 shadow-sm hover:shadow-md transition-all text-left animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-forwards">
             {/* ── Subscription Module Section ── */}
             <div>
-                <h3 className="text-sm font-sans font-bold text-gray-900 tracking-tight uppercase mb-4">
-                    Daily Intelligence Briefing
+                <h3 className="text-sm font-sans font-bold text-gray-900 tracking-tight uppercase mb-6">
+                    Daily Intelligence Brief
                 </h3>
 
                 {submitted ? (
@@ -23,10 +23,6 @@ export default function IntelligencePulse() {
                     </div>
                 ) : (
                     <>
-                        <p className="text-[11px] font-mono tracking-widest text-gray-500 uppercase mb-4">
-                            Subscribe via the form to receive the briefing.
-                        </p>
-
                         <a
                             href={BRIEFING_FORM_URL}
                             target="_blank"
@@ -34,7 +30,7 @@ export default function IntelligencePulse() {
                             onClick={() => setSubmitted(true)}
                             className="block w-full text-center py-3.5 bg-gray-900 text-white font-mono text-[10px] tracking-[0.2em] uppercase hover:bg-black transition-colors"
                         >
-                            Subscribe to the Briefing
+                            Subscribe
                         </a>
                     </>
                 )}
