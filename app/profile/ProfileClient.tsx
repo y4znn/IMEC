@@ -45,7 +45,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
 
                 {/* Left/Center: Executive Bio (col-span-3) */}
-                <div className="md:col-span-3 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-between shadow-sm min-h-[400px]">
+                <div className="md:col-span-3 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col shadow-sm">
                     <div>
                         <div className="flex items-center gap-2 mb-6 border-b border-gray-300 pb-4">
                             <Focus className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
@@ -58,13 +58,10 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                         </div>
                     </div>
                     
-                    <div className="mt-8 border-t border-gray-200 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div className="mt-6 border-t border-gray-200 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div>
                             <div className="text-sm font-bold text-gray-900 tracking-tight font-serif uppercase">
                                 {data.researcherName}
-                            </div>
-                            <div className="text-[9px] text-gray-450 tracking-widest uppercase font-mono mt-0.5">
-                                {data.researcherTitle || "VERIFIED_RESEARCHER"}
                             </div>
                         </div>
                         <a
