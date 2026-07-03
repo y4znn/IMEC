@@ -1,7 +1,6 @@
 'use client';
 
-import { Focus, GraduationCap, Library, Linkedin } from 'lucide-react';
-
+import { Focus, Library, Linkedin } from 'lucide-react';
 
 interface Publication {
     title: string;
@@ -22,14 +21,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
         researcherTitle: storyData?.researcherTitle || "",
         linkedinText: storyData?.linkedinText || "LinkedIn Profile",
         bioHeading: storyData?.bioHeading || "Executive Bio",
-        executive_bio: storyData?.executive_bio || "Ahmad Ghosn is a doctoral researcher specializing...",
-        thesisHeading: storyData?.thesisHeading || "Dissertation Title",
-        thesis_synthesis: storyData?.thesis_synthesis || "India–Middle East–Europe Economic Corridor: Geoeconomic Architecture of a New Middle East",
-        credentialsHeading: storyData?.credentialsHeading || "Academic Record",
-        academicRecord: storyData?.academicRecord || [
-            "MA in Strategic Studies, Joint Master’s – Lebanese University & Lebanese Armed Forces.<br />MA Thesis Title: Israeli Militarization of Artificial Intelligence: Case Study of the 2024 War.",
-            "BA in Philosophy and Political and Social Sciences - Lebanese University."
-        ],
+        executive_bio: storyData?.executive_bio || "Ahmad Ghosn is a researcher in strategic and military studies, with a focus on Middle Eastern security, regional power dynamics, and the evolving nature of warfare. His work increasingly engages questions of geopolitics and geoeconomics, particularly how emerging connectivity projects such as the India–Middle East–Europe Economic Corridor (IMEC) reconfigure regional influence, supply chains, and strategic alignments.\n\nHe holds an MA in Strategic Studies, a joint master’s degree between the Lebanese Armed Forces and the Lebanese University, where his research examined the Israeli militarisation of artificial intelligence through the 2024 Gaza–Lebanon war as a central case study. He also holds a BA in Philosophy from the Lebanese University, grounding his work in political thought and epistemology.",
         publicationsHeading: storyData?.publicationsHeading || "Publications",
         publications: storyData?.publications || []
     };
@@ -37,9 +29,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
     return (
         <div className="max-w-6xl mx-auto space-y-4 md:space-y-6 pt-6 md:pt-10 pb-12 md:pb-20 relative">
             {/* ── Page Header ── */}
-            <div
-                className="pb-4 md:pb-6 border-b border-gray-200 mb-6 md:mb-8"
-            >
+            <div className="pb-4 md:pb-6 border-b border-gray-200 mb-6 md:mb-8">
                 <div
                     className="text-2xl md:text-3xl font-semibold text-gray-900 tracking-tight font-serif"
                     style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
@@ -51,99 +41,46 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                 </div>
             </div>
 
-            {/* ── Bento Grid Layout ── */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {/* ── Profile Layout ── */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
 
-                {/* Box 1: Profile (col-span-1) */}
-                <div
-                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 flex flex-col items-center justify-center text-center shadow-sm group min-h-[400px]"
-                >
-                    <div className="text-xl font-medium text-gray-900 tracking-tight font-serif mb-1 truncate w-full uppercase">
-                        {data.researcherName}
-                    </div>
-
-                    <div className="mb-6 text-[10px] text-gray-400 tracking-widest uppercase font-mono truncate w-full">
-                        {data.researcherTitle || "VERIFIED_RESEARCHER"}
-                    </div>
-
-                    <a
-                        href="https://lb.linkedin.com/in/ahmadghsnn"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full px-4 py-2 border border-gray-300 text-xs text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 rounded-none cursor-pointer"
-                    >
-                        <Linkedin className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.2} />
-                        <div className="font-mono">
-                            {data.linkedinText}
-                        </div>
-                    </a>
-                </div>
-
-                {/* Box 2: Executive Bio (col-span-3) */}
-                <div
-                    className="md:col-span-3 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm min-h-[400px]"
-                >
-                    <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-gray-300 pb-4">
-                        <Focus className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
-                        <div className="text-sm font-medium text-gray-900 font-mono uppercase tracking-widest">
-                            {data.bioHeading}
-                        </div>
-                    </div>
-                    <div className="text-gray-700 leading-relaxed font-light text-sm md:text-base font-serif overflow-y-auto whitespace-pre-wrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                        {data.executive_bio}
-                    </div>
-                </div>
-
-                {/* Box 3: The Thesis (col-span-2) */}
-                <div
-                    className="md:col-span-2 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-center shadow-sm relative overflow-hidden min-h-[400px] group"
-                >
-                    <div className="absolute top-0 right-0 p-32 bg-[radial-gradient(circle,rgba(0,0,0,0.03)_0%,transparent_70%)] pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-50" />
-
-                    <div className="mb-6 shrink-0 z-10 border-b border-gray-300 pb-4">
-                        <div className="text-[10px] text-gray-400 uppercase tracking-widest font-mono">
-                            {data.thesisHeading}
-                        </div>
-                    </div>
-                    <div
-                        className="text-lg md:text-2xl text-gray-900 leading-tight font-medium font-serif z-10 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] uppercase tracking-tight"
-                        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                    >
-                        {data.thesis_synthesis}
-                    </div>
-                </div>
-
-                {/* Box 4: Education (col-span-1) */}
-                <div
-                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col min-h-[400px]"
-                >
-                    <div className="flex items-center gap-2 mb-6 shrink-0 border-b border-gray-300 pb-4">
-                        <GraduationCap className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
-                        <div className="text-sm font-medium text-gray-900 font-mono uppercase tracking-widest">
-                            {data.credentialsHeading}
-                        </div>
-                    </div>
-                    <div className="space-y-4 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                        {data.academicRecord.map((record: string, i: number) => (
-                            <div key={i} className="flex items-start gap-2">
-                                <span className="text-gray-900 mt-1 flex-shrink-0 text-xs text-center">—</span>
-                                <div className="text-xs text-gray-900 font-mono leading-relaxed">
-                                    {record.split('<br />').map((line: string, lineIdx: number, arr: string[]) => (
-                                        <span key={lineIdx}>
-                                            {line}
-                                            {lineIdx !== arr.length - 1 && <br />}
-                                        </span>
-                                    ))}
-                                </div>
+                {/* Left/Center: Executive Bio (col-span-3) */}
+                <div className="md:col-span-3 bg-white border border-gray-300 rounded-none p-6 md:p-8 flex flex-col justify-between shadow-sm min-h-[400px]">
+                    <div>
+                        <div className="flex items-center gap-2 mb-6 border-b border-gray-300 pb-4">
+                            <Focus className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
+                            <div className="text-sm font-medium text-gray-900 font-mono uppercase tracking-widest">
+                                {data.bioHeading}
                             </div>
-                        ))}
+                        </div>
+                        <div className="text-gray-755 leading-relaxed font-light text-sm md:text-base font-serif whitespace-pre-wrap">
+                            {data.executive_bio}
+                        </div>
+                    </div>
+                    
+                    <div className="mt-8 border-t border-gray-200 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div>
+                            <div className="text-sm font-bold text-gray-900 tracking-tight font-serif uppercase">
+                                {data.researcherName}
+                            </div>
+                            <div className="text-[9px] text-gray-450 tracking-widest uppercase font-mono mt-0.5">
+                                {data.researcherTitle || "VERIFIED_RESEARCHER"}
+                            </div>
+                        </div>
+                        <a
+                            href="https://lb.linkedin.com/in/ahmadghsnn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 text-xs text-gray-900 hover:bg-gray-100 hover:text-black transition-all duration-300 rounded-none cursor-pointer font-mono"
+                        >
+                            <Linkedin className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.2} />
+                            {data.linkedinText}
+                        </a>
                     </div>
                 </div>
 
-                {/* Box 5: Publications Section (col-span-1) */}
-                <div
-                    className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col min-h-[400px]"
-                >
+                {/* Right: Publications (col-span-1) */}
+                <div className="md:col-span-1 bg-white border border-gray-300 rounded-none p-6 shadow-sm flex flex-col min-h-[400px]">
                     <div className="flex items-center gap-2 mb-4 shrink-0 border-b border-gray-300 pb-4">
                         <Library className="w-4 h-4 text-gray-900 flex-shrink-0" strokeWidth={1.2} />
                         <div className="text-sm font-medium text-gray-900 font-mono tracking-widest uppercase">
@@ -174,6 +111,7 @@ export default function ProfileClient({ storyData }: ProfileClientProps) {
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     );
